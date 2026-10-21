@@ -3,8 +3,8 @@ import { useState, type FormEvent } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SITE } from "@/lib/site";
 
-const TITLE = "Contact Al Imran | Free Website, GA4 or Google Ads Audit";
-const DESC = "Book a free call or audit with Al Imran for Google Ads, GA4 tracking, Shopify or WordPress/WooCommerce projects. Fast replies, worldwide.";
+const TITLE = "Contact Imran Hasan | Free Website, GA4 or Google Ads Audit";
+const DESC = "Book a free call or audit with Imran Hasan for Google Ads, GA4 tracking, Shopify or WordPress/WooCommerce projects. Fast replies, worldwide.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
