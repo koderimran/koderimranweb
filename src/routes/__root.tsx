@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Al Imran | Google Ads, Analytics & E-commerce Web Specialist" },
       { name: "description", content: "Google Ads, GA4 tracking, Shopify and WordPress/WooCommerce services by Al Imran." },
       { name: "author", content: "Al Imran" },
-      { property: "og:site_name", content: "CoderImranBD" },
+      { property: "og:site_name", content: "Koder Imran" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@CoderImran" },
@@ -101,11 +101,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "CoderImranBD — Al Imran",
+          name: "Koder Imran — Al Imran",
           url: SITE.url,
           email: SITE.email,
           telephone: SITE.phone,
-          image: SITE.portrait,
           areaServed: "Worldwide",
           address: { "@type": "PostalAddress", addressLocality: "Dinajpur", addressRegion: "Rangpur", addressCountry: "BD" },
           founder: {

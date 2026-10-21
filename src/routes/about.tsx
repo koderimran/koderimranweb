@@ -4,7 +4,7 @@ import { SectionHead, Faq, faqJsonLd } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
 
 const TITLE = "About Al Imran | E-commerce Web Developer & Google Ads Specialist";
-const DESC = "Meet Al Imran (CoderImranBD), a Bangladesh-based WordPress, Shopify, Google Ads and GA4 specialist working with clients worldwide.";
+const DESC = "Meet Al Imran (Koder Imran), a Bangladesh-based WordPress, Shopify, Google Ads and GA4 specialist working with clients worldwide.";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,9 +14,7 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "profile" },
-      { property: "og:image", content: SITE.portrait },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: SITE.portrait },
     ],
     links: [{ rel: "canonical", href: SITE.url + "/about" }],
     scripts: [faqJsonLd()],
