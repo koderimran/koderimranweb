@@ -14,27 +14,29 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
-      <div className="container-page flex h-16 items-center justify-between">
+      <div className="container-page flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
           <span className="grid size-8 place-items-center rounded-lg bg-ink text-sm text-signal">KI</span>
           {SITE.brand}
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center justify-center gap-8 md:flex">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className="text-sm font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
               {n.label}
             </Link>
           ))}
+        </nav>
+        <div className="hidden md:flex md:justify-self-end">
           <Link to="/contact" className="rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-ink-foreground hover:opacity-90">
             Book a free call
           </Link>
-        </nav>
+        </div>
         <button className="md:hidden" aria-label="Toggle menu" onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </button>
       </div>
       {open && (
-        <nav className="container-page flex flex-col gap-4 pb-6 md:hidden">
+        <nav className="container-page flex flex-col items-center gap-4 pb-6 text-center md:hidden">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-semibold">
               {n.label}

@@ -4,7 +4,7 @@ export const SITE = {
   brand: "Koder Imran",
   url: "https://coderimranbd.com",
   role: "Google Ads, Web Analytics & E-commerce Web Specialist",
-  email: "coderimranbd@gmail.com",
+  email: "koderimran@gmail.com",
   phone: "+8801737919566",
   location: "Khilkhet, Dhaka, Bangladesh",
   portrait: photo.url,
