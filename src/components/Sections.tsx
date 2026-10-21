@@ -18,7 +18,7 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
   return (
     <div className={`mt-12 grid gap-5 ${detailed ? "" : "md:grid-cols-2"}`}>
       {SERVICES.map((s, i) => {
-        const Icon = ICONS[i];
+        const Icon = ICONS[i % ICONS.length] ?? Megaphone;
         return (
           <article key={s.slug} id={s.slug} className="group scroll-mt-24 rounded-3xl border bg-card p-8 transition hover:shadow-soft">
             <div className="flex items-start justify-between">
