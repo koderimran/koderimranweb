@@ -17,7 +17,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
         <Link to="/" className="flex items-center gap-2.5 font-display text-lg font-bold">
-          <img src={logo.url} alt="Koder Imran logo" width={40} height={40} className="size-10 rounded-xl" />
+          <img src={logo.url} alt="Koder Imran logo" width={40} height={40} className="size-10 rounded-full" />
           {SITE.brand}
         </Link>
         <nav className="hidden items-center justify-center gap-8 md:flex">
@@ -83,7 +83,7 @@ export function Footer() {
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <p className="flex items-center gap-3 font-display text-xl font-bold">
-            <img src={logo.url} alt="Koder Imran logo" width={48} height={48} className="size-12 rounded-xl" loading="lazy" />
+            <img src={logo.url} alt="Koder Imran logo" width={48} height={48} className="size-12 rounded-full" loading="lazy" />
             {SITE.brand}
           </p>
           <p className="mt-3 max-w-sm text-sm text-muted-foreground">
