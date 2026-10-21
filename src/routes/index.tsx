@@ -1,24 +1,112 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE } from "@/lib/site";
+import { SectionHead, ServiceGrid, WorkGrid, Reviews, Process, Faq, faqJsonLd } from "@/components/Sections";
+import { CtaBand } from "@/components/SiteChrome";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "Al Imran | Google Ads, GA4 Tracking, Shopify & WordPress Expert";
+const DESC =
+  "Al Imran (CoderImranBD) helps e-commerce brands grow with Google Ads management, GA4 & GTM tracking, Shopify stores and WordPress/WooCommerce websites.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: SITE.portrait },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: SITE.portrait },
+    ],
+    links: [{ rel: "canonical", href: SITE.url + "/" }],
+    scripts: [faqJsonLd()],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const STATS = [
+  { k: "100+", v: "Projects delivered" },
+  { k: "5★", v: "Average client rating" },
+  { k: "4+ yrs", v: "Hands-on experience" },
+  { k: "24/7", v: "Support & communication" },
+];
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <section className="bg-grid border-b">
+        <div className="container-page grid items-center gap-12 py-16 md:grid-cols-[1.3fr_1fr] md:py-24">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
+              <span className="size-2 rounded-full bg-signal" /> Available for new projects
+            </p>
+            <h1 className="mt-6 text-4xl font-bold leading-[1.05] md:text-6xl">
+              More traffic. Better tracking. <span className="rounded-xl bg-signal px-2">More sales.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+              I'm <strong className="text-foreground">Al Imran</strong> — a Google Ads, web analytics and e-commerce
+              specialist. I build Shopify & WordPress stores, track every conversion with GA4, and run ads that turn
+              clicks into customers.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/contact" className="rounded-full bg-ink px-7 py-4 font-bold text-ink-foreground hover:opacity-90">
+                Get a free audit
+              </Link>
+              <Link to="/portfolio" className="rounded-full border bg-card px-7 py-4 font-bold hover:bg-muted">
+                See my work
+              </Link>
+            </div>
+            <p className="mt-6 text-sm text-muted-foreground">Trusted by clients in the USA, UK & Germany</p>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-[2.5rem] bg-accent/60 rotate-3" />
+            <img src={SITE.portrait} alt="Al Imran, Google Ads and e-commerce web specialist" className="relative aspect-[4/5] w-full rounded-[2rem] bg-muted object-cover shadow-soft" />
+            <div className="absolute -bottom-5 -left-5 rounded-2xl bg-ink px-5 py-4 text-ink-foreground shadow-soft">
+              <p className="text-xs text-ink-foreground/60">Specialist in</p>
+              <p className="font-display font-bold">Ads · GA4 · Shopify · WP</p>
+            </div>
+          </div>
+        </div>
+        <div className="container-page grid grid-cols-2 gap-6 border-t py-8 md:grid-cols-4">
+          {STATS.map((s) => (
+            <div key={s.v}>
+              <p className="font-display text-3xl font-bold">{s.k}</p>
+              <p className="text-sm text-muted-foreground">{s.v}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-page py-20">
+        <SectionHead eyebrow="Services" title="Everything your online business needs to grow" text="One specialist for your store, your data and your ads — so nothing gets lost between agencies." />
+        <ServiceGrid />
+      </section>
+
+      <section className="border-y bg-secondary/50">
+        <div className="container-page py-20">
+          <SectionHead eyebrow="Recent work" title="Websites that look great and sell" />
+          <WorkGrid limit={3} />
+          <Link to="/portfolio" className="mt-8 inline-block font-bold underline underline-offset-4">Browse all projects →</Link>
+        </div>
+      </section>
+
+      <section className="container-page py-20">
+        <SectionHead eyebrow="How I work" title="A simple, transparent process" />
+        <Process />
+      </section>
+
+      <section className="container-page pb-20">
+        <SectionHead eyebrow="Client reviews" title="What clients say" />
+        <Reviews />
+      </section>
+
+      <section className="container-page pb-4">
+        <SectionHead eyebrow="FAQ" title="Questions clients ask" />
+        <Faq />
+      </section>
+
+      <CtaBand />
+    </>
   );
 }

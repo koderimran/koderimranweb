@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header, Footer } from "@/components/SiteChrome";
+import { SITE } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -78,21 +80,43 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Al Imran | Google Ads, Analytics & E-commerce Web Specialist" },
+      { name: "description", content: "Google Ads, GA4 tracking, Shopify and WordPress/WooCommerce services by Al Imran." },
+      { name: "author", content: "Al Imran" },
+      { property: "og:site_name", content: "CoderImranBD" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@CoderImran" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Manrope:wght@400..800&display=swap" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "CoderImranBD — Al Imran",
+          url: SITE.url,
+          email: SITE.email,
+          telephone: SITE.phone,
+          image: SITE.portrait,
+          areaServed: "Worldwide",
+          address: { "@type": "PostalAddress", addressLocality: "Dinajpur", addressRegion: "Rangpur", addressCountry: "BD" },
+          founder: {
+            "@type": "Person",
+            name: SITE.name,
+            jobTitle: SITE.role,
+            sameAs: SITE.socials.map((s) => s.href),
+            knowsAbout: ["Google Ads", "Google Analytics 4", "Google Tag Manager", "Shopify", "WordPress", "WooCommerce", "Conversion tracking"],
+          },
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -120,8 +144,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
     </QueryClientProvider>
   );
 }
