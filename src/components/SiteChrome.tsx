@@ -16,7 +16,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="grid size-8 place-items-center rounded-lg bg-ink text-sm text-signal">AI</span>
+          <span className="grid size-8 place-items-center rounded-lg bg-ink text-sm text-signal">KI</span>
           {SITE.brand}
         </Link>
         <nav className="hidden items-center gap-8 md:flex">

@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/SiteChrome";
 
 const TITLE = "Al Imran | Google Ads, GA4 Tracking, Shopify & WordPress Expert";
 const DESC =
-  "Al Imran (CoderImranBD) helps e-commerce brands grow with Google Ads management, GA4 & GTM tracking, Shopify stores and WordPress/WooCommerce websites.";
+  "Al Imran (Koder Imran) helps e-commerce brands grow with Google Ads management, GA4 & GTM tracking, Shopify stores and WordPress/WooCommerce websites.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,9 +15,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: SITE.portrait },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: SITE.portrait },
     ],
     links: [{ rel: "canonical", href: SITE.url + "/" }],
     scripts: [faqJsonLd()],

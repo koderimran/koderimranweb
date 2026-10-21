@@ -1,13 +1,13 @@
+import photo from "@/assets/koder-imran.png.asset.json";
 export const SITE = {
   name: "Al Imran",
-  brand: "CoderImranBD",
+  brand: "Koder Imran",
   url: "https://coderimranbd.com",
   role: "Google Ads, Web Analytics & E-commerce Web Specialist",
   email: "coderimranbd@gmail.com",
   phone: "+8801737919566",
   location: "Dinajpur, Rangpur, Bangladesh",
-  portrait:
-    "https://coderimranbd.com/wp-content/uploads/2026/08/df2e333f-fbef-4356-927f-5d3134d9233d.png",
+  portrait: photo.url,
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/al-imran-56b2091b5/" },
     { label: "Facebook", href: "https://www.facebook.com/CoderImranBD" },
@@ -118,7 +118,7 @@ export const PROCESS = [
 ];
 
 export const FAQS = [
-  { q: "What services does Al Imran offer?", a: "Al Imran (CoderImranBD) offers Google Ads management, GA4 and Google Tag Manager tracking, Shopify store development, and WordPress / WooCommerce website development for small businesses and e-commerce brands worldwide." },
+  { q: "What services does Al Imran offer?", a: "Al Imran (Koder Imran) offers Google Ads management, GA4 and Google Tag Manager tracking, Shopify store development, and WordPress / WooCommerce website development for small businesses and e-commerce brands worldwide." },
   { q: "Can you set up GA4 e-commerce and conversion tracking?", a: "Yes. I set up GA4 with Google Tag Manager, full e-commerce events from view_item to purchase, Google Ads conversion tracking, enhanced conversions, Meta Pixel with Conversions API and Consent Mode v2." },
   { q: "Should I choose Shopify or WooCommerce?", a: "Shopify suits brands that want a hosted, low-maintenance store that is quick to launch. WooCommerce suits businesses that want full control, lower monthly fees and deep customisation on WordPress. I build on both and recommend based on your budget and goals." },
   { q: "Do you manage Google Shopping and Performance Max campaigns?", a: "Yes. I set up Google Merchant Center, fix feed and disapproval issues, and run Shopping and Performance Max campaigns optimised for return on ad spend." },
