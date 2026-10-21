@@ -65,18 +65,34 @@
   --signal-foreground: oklch(0.2 0.04 255);
   --shadow-soft: 0 20px 50px -25px oklch(0.24 0.035 255 / 0.35);
   --grid-line: oklch(0.24 0.035 255 / 0.06);
+  --outer: oklch(0.9 0.025 250);
+  --gradient-page: linear-gradient(160deg, oklch(0.985 0.03 128) 0%, oklch(0.975 0.008 95) 35%, oklch(0.97 0.02 240) 75%, oklch(0.96 0.04 150) 100%);
+  --shadow-frame: 0 0 0 1px oklch(0.24 0.035 255 / 0.08), 0 30px 80px -20px oklch(0.24 0.035 255 / 0.35);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
-    background-color: var(--color-background);
+    background: var(--outer);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; }
+}
+
+@utility page-frame {
+  max-width: 84rem;
+  margin-inline: auto;
+  background: var(--gradient-page);
+  @media (min-width: 1280px) {
+    margin-block: 1.5rem;
+    border-radius: 1.75rem;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-frame);
+    overflow: clip;
+  }
 }
 
 @utility container-page {
