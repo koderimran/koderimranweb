@@ -73,7 +73,7 @@ export function WorkGrid({ limit }: { limit?: number }) {
       {WORKS.slice(0, limit).map((w) => (
         <a key={w.name} href={w.url} target="_blank" rel="noopener noreferrer" className="group overflow-hidden rounded-3xl border bg-card">
           <div className="aspect-[16/10] overflow-hidden bg-muted">
-            <img src={w.img} alt={`${w.name} website designed by Al Imran`} loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-105" />
+            <img src={w.img} alt={`${w.name} website designed by Imran Hasan`} loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-105" />
           </div>
           <div className="flex items-center justify-between p-5">
             <div>

@@ -3,8 +3,8 @@ import { SITE } from "@/lib/site";
 import { PageHero, WorkGrid, Reviews, SectionHead } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
 
-const TITLE = "Portfolio: Shopify, WooCommerce & WordPress Websites | Al Imran";
-const DESC = "Selected Shopify, WooCommerce and WordPress websites designed and developed by Al Imran for clients worldwide.";
+const TITLE = "Portfolio: Shopify, WooCommerce & WordPress Websites | Imran Hasan";
+const DESC = "Selected Shopify, WooCommerce and WordPress websites designed and developed by Imran Hasan for clients worldwide.";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
