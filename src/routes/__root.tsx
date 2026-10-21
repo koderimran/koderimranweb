@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           email: SITE.email,
           telephone: SITE.phone,
           areaServed: "Worldwide",
-          address: { "@type": "PostalAddress", addressLocality: "Dinajpur", addressRegion: "Rangpur", addressCountry: "BD" },
+          address: { "@type": "PostalAddress", streetAddress: "Khilkhet", addressLocality: "Dhaka", addressRegion: "Dhaka", addressCountry: "BD" },
           founder: {
             "@type": "Person",
             name: SITE.name,
