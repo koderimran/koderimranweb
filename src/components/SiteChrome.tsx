@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { SITE } from "@/lib/site";
+import logo from "@/assets/koder-imran-logo.png.asset.json";
 
 const NAV = [
   { to: "/services", label: "Services" },
@@ -15,8 +16,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
-        <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="grid size-8 place-items-center rounded-lg bg-ink text-sm text-signal">KI</span>
+        <Link to="/" className="flex items-center gap-2.5 font-display text-lg font-bold">
+          <img src={logo.url} alt="Koder Imran logo" width={40} height={40} className="size-10 rounded-xl" />
           {SITE.brand}
         </Link>
         <nav className="hidden items-center justify-center gap-8 md:flex">
@@ -81,7 +82,10 @@ export function Footer() {
     <footer className="border-t">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-display text-xl font-bold">{SITE.brand}</p>
+          <p className="flex items-center gap-3 font-display text-xl font-bold">
+            <img src={logo.url} alt="Koder Imran logo" width={48} height={48} className="size-12 rounded-xl" loading="lazy" />
+            {SITE.brand}
+          </p>
           <p className="mt-3 max-w-sm text-sm text-muted-foreground">
             {SITE.name} — {SITE.role}. Helping e-commerce brands and service businesses grow with measurable results.
           </p>
