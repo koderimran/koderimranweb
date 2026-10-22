@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
+import { Reveal } from "@/components/Reveal";
 import logo from "@/assets/koder-imran-logo.png.asset.json";
 
 const NAV = [
@@ -34,13 +35,13 @@ export function Header() {
         </Link>
         <nav className="hidden items-center justify-center gap-8 md:flex">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="text-sm font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
+            <Link key={n.to} to={n.to} className="nav-link text-sm font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
               {n.label}
             </Link>
           ))}
         </nav>
         <div className="hidden md:flex md:justify-self-end">
-          <Button asChild className="rounded-full bg-ink px-5 text-sm font-bold text-ink-foreground hover:bg-ink/90">
+          <Button asChild className="btn-press rounded-full bg-ink px-5 text-sm font-bold text-ink-foreground hover:bg-ink/90">
             <Link to="/contact">Book a free call</Link>
           </Button>
         </div>
@@ -49,7 +50,7 @@ export function Header() {
         </Button>
       </div>
       {open && (
-        <nav className="container-page flex flex-col items-center gap-4 pb-6 text-center md:hidden">
+        <nav className="animate-menu-in container-page flex flex-col items-center gap-4 pb-6 text-center md:hidden">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-semibold">
               {n.label}
@@ -64,7 +65,7 @@ export function Header() {
 export function CtaBand() {
   return (
     <section className="container-page py-20">
-      <div className="relative overflow-hidden rounded-3xl bg-ink px-8 py-14 text-ink-foreground md:px-14">
+      <Reveal className="relative overflow-hidden rounded-3xl bg-ink px-8 py-14 text-ink-foreground md:px-14">
         <div className="absolute inset-0 bg-grid opacity-20" />
         <div className="relative grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
           <div>
@@ -76,15 +77,15 @@ export function CtaBand() {
             </p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
-            <Link to="/contact" className="rounded-full bg-signal px-7 py-4 text-center font-bold text-signal-foreground hover:opacity-90">
+            <Link to="/contact" className="btn-press rounded-full bg-signal px-7 py-4 text-center font-bold text-signal-foreground hover:opacity-90">
               Get my free audit →
             </Link>
-            <a href={`mailto:${SITE.email}`} className="text-sm text-ink-foreground/70 hover:text-ink-foreground">
+            <a href={`mailto:${SITE.email}`} className="text-sm text-ink-foreground/70 transition-colors hover:text-ink-foreground">
               {SITE.email}
             </a>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
