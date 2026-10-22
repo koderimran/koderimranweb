@@ -49,16 +49,18 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
                   </ul>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {s.tools.map((t) => (
-                      <span key={t} className="rounded-full bg-muted px-3 py-1 text-xs font-semibold">{t}</span>
+                      <span key={t} className="pill rounded-full px-3 py-1 text-xs font-semibold">{t}</span>
                     ))}
+
                   </div>
                 </div>
               </div>
             ) : (
               <ul className="mt-5 flex flex-wrap gap-2">
                 {s.outcomes.map((o) => (
-                  <li key={o} className="rounded-full bg-muted px-3 py-1 text-xs font-semibold">{o}</li>
+                  <li key={o} className="pill rounded-full px-3 py-1 text-xs font-semibold">{o}</li>
                 ))}
+
               </ul>
             )}
           </Reveal>
@@ -153,9 +155,10 @@ export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: str
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="animate-rise mt-4 max-w-4xl text-4xl font-bold md:text-6xl" style={{ animationDelay: "90ms" }}>{title}</h1>
         <p className="animate-rise mt-6 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
-        <Link to="/contact" className="btn-press animate-rise mt-8 inline-block rounded-full bg-ink px-7 py-4 font-bold text-ink-foreground hover:opacity-90" style={{ animationDelay: "270ms" }}>
+        <Link to="/contact" className="btn btn-ink animate-rise mt-8 rounded-full px-7 py-4 font-bold" style={{ animationDelay: "270ms" }}>
           Book a free call
         </Link>
+
       </div>
     </section>
   );

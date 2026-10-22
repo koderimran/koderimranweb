@@ -41,10 +41,11 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden md:flex md:justify-self-end">
-          <Button asChild className="btn-press rounded-full bg-ink px-5 text-sm font-bold text-ink-foreground hover:bg-ink/90">
-            <Link to="/contact">Book a free call</Link>
-          </Button>
+          <Link to="/contact" className="btn btn-ink rounded-full px-5 py-2.5 text-sm font-bold">
+            Book a free call
+          </Link>
         </div>
+
         <Button variant="ghost" size="icon" className="md:hidden" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </Button>
@@ -77,9 +78,10 @@ export function CtaBand() {
             </p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
-            <Link to="/contact" className="btn-press rounded-full bg-signal px-7 py-4 text-center font-bold text-signal-foreground hover:opacity-90">
-              Get my free audit →
+            <Link to="/contact" className="btn btn-signal rounded-full px-7 py-4 text-center font-bold">
+              Get my free audit <span className="btn-arrow">→</span>
             </Link>
+
             <a href={`mailto:${SITE.email}`} className="text-sm text-ink-foreground/70 transition-colors hover:text-ink-foreground">
               {SITE.email}
             </a>
