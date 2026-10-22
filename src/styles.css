@@ -235,6 +235,166 @@
   transform: scale(0.97);
 }
 
+/* ===== Buttons ===== */
+@utility btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    color-mix(in oklab, var(--color-ink-foreground) 45%, transparent) 50%,
+    transparent 65%
+  );
+  transform: translateX(-130%);
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:hover::before {
+  transform: translateX(130%);
+}
+.btn:active {
+  transform: translateY(0) scale(0.97);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@utility btn-ink {
+  background-color: var(--color-ink);
+  color: var(--color-ink-foreground);
+  box-shadow: 0 12px 26px -18px color-mix(in oklab, var(--ink) 85%, transparent);
+}
+.btn-ink::before {
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    color-mix(in oklab, var(--signal) 65%, transparent) 50%,
+    transparent 65%
+  );
+}
+.btn-ink:hover {
+  background-color: color-mix(in oklab, var(--ink) 86%, var(--signal));
+  box-shadow: 0 20px 38px -18px color-mix(in oklab, var(--ink) 80%, transparent);
+}
+
+@utility btn-signal {
+  background-color: var(--color-signal);
+  color: var(--color-signal-foreground);
+  box-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 70%, transparent);
+}
+.btn-signal:hover {
+  background-color: color-mix(in oklab, var(--signal) 85%, var(--color-ink-foreground));
+  box-shadow: 0 22px 42px -16px color-mix(in oklab, var(--signal) 80%, transparent);
+}
+
+@utility btn-outline {
+  background-color: var(--color-card);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+}
+.btn-outline::before {
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    color-mix(in oklab, var(--ring) 22%, transparent) 50%,
+    transparent 65%
+  );
+}
+.btn-outline:hover {
+  background-color: var(--color-muted);
+  border-color: color-mix(in oklab, var(--border) 55%, var(--ring));
+  box-shadow: 0 16px 30px -20px color-mix(in oklab, var(--ink) 60%, transparent);
+}
+
+/* Arrow / icon nudge inside buttons and links */
+.btn-arrow {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn:hover .btn-arrow,
+.link-arrow:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Underlined call-to-action link */
+@utility link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  text-underline-offset: 4px;
+  transition:
+    text-underline-offset 220ms ease,
+    color 220ms ease;
+}
+.link-arrow:hover {
+  text-underline-offset: 7px;
+  color: color-mix(in oklab, var(--foreground) 70%, var(--ring));
+}
+
+/* Selectable chips (service picker) */
+@utility chip {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-muted-foreground);
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+.chip:hover {
+  transform: translateY(-1px);
+  background-color: var(--color-muted);
+  border-color: color-mix(in oklab, var(--border) 50%, var(--ring));
+  color: var(--color-foreground);
+}
+.chip:active {
+  transform: translateY(0) scale(0.97);
+}
+.chip[aria-pressed="true"] {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-ink-foreground);
+}
+
+/* Skill / tag pills */
+@utility pill {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+.pill:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--border) 45%, var(--ring));
+  background-color: var(--color-muted);
+}
+
+
 /* FAQ smooth open/close */
 @utility faq-item {
   overflow: hidden;
@@ -283,4 +443,16 @@
   .faq-item::details-content {
     transition: none;
   }
+  .btn::before {
+    display: none;
+  }
+  .btn:hover,
+  .btn:active,
+  .chip:hover,
+  .chip:active,
+  .pill:hover,
+  .btn-arrow {
+    transform: none;
+  }
 }
+
