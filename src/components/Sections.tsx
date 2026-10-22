@@ -1,16 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
 import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
+import { Reveal } from "@/components/Reveal";
 
 const ICONS = [Megaphone, BarChart3, ShoppingBag, LayoutTemplate];
 
 export function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
   return (
-    <div className="max-w-2xl">
+    <Reveal className="max-w-2xl">
       <p className="eyebrow">{eyebrow}</p>
       <h2 className="mt-3 text-3xl font-bold md:text-5xl">{title}</h2>
       {text && <p className="mt-4 text-lg text-muted-foreground">{text}</p>}
-    </div>
+    </Reveal>
   );
 }
 
@@ -20,7 +21,7 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
       {SERVICES.map((s, i) => {
         const Icon = ICONS[i % ICONS.length] ?? Megaphone;
         return (
-          <article key={s.slug} id={s.slug} className="group scroll-mt-24 rounded-3xl border bg-card p-8 transition hover:shadow-soft">
+          <Reveal as="article" key={s.slug} delay={i * 90} className="group hover-lift scroll-mt-24 rounded-3xl border bg-card p-8">
             <div className="flex items-start justify-between">
               <span className="grid size-12 place-items-center rounded-2xl bg-accent text-accent-foreground">
                 <Icon className="size-6" />
@@ -60,7 +61,7 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
                 ))}
               </ul>
             )}
-          </article>
+          </Reveal>
         );
       })}
     </div>
@@ -70,8 +71,9 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
 export function WorkGrid({ limit }: { limit?: number }) {
   return (
     <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {WORKS.slice(0, limit).map((w) => (
-        <a key={w.name} href={w.url} target="_blank" rel="noopener noreferrer" className="group overflow-hidden rounded-3xl border bg-card">
+      {WORKS.slice(0, limit).map((w, i) => (
+        <Reveal key={w.name} delay={i * 90} className="hover-lift overflow-hidden rounded-3xl border bg-card">
+        <a href={w.url} target="_blank" rel="noopener noreferrer" className="group block">
           <div className="aspect-[16/10] overflow-hidden bg-muted">
             <img src={w.img} alt={`${w.name} website designed by Imran Hasan`} loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-105" />
           </div>
@@ -83,6 +85,7 @@ export function WorkGrid({ limit }: { limit?: number }) {
             <ArrowUpRight className="size-5 transition group-hover:-translate-y-1 group-hover:translate-x-1" />
           </div>
         </a>
+        </Reveal>
       ))}
     </div>
   );
@@ -91,12 +94,12 @@ export function WorkGrid({ limit }: { limit?: number }) {
 export function Reviews() {
   return (
     <div className="mt-12 grid gap-5 md:grid-cols-3">
-      {REVIEWS.slice(0, 3).map((r) => (
-        <figure key={r.name} className="rounded-3xl border bg-card p-7">
+      {REVIEWS.slice(0, 3).map((r, i) => (
+        <Reveal as="figure" key={r.name} delay={i * 110} className="hover-lift rounded-3xl border bg-card p-7">
           <p className="text-signal-foreground">★★★★★</p>
           <blockquote className="mt-4 text-lg leading-relaxed">“{r.text}”</blockquote>
           <figcaption className="mt-6 text-sm font-semibold">{r.name} <span className="font-normal text-muted-foreground">· {r.country}</span></figcaption>
-        </figure>
+        </Reveal>
       ))}
     </div>
   );
@@ -106,11 +109,11 @@ export function Process() {
   return (
     <ol className="mt-12 grid gap-5 md:grid-cols-4">
       {PROCESS.map((p, i) => (
-        <li key={p.title} className="rounded-3xl border-t-4 border-ink bg-card p-6">
+        <Reveal as="li" key={p.title} delay={i * 100} className="hover-lift rounded-3xl border-t-4 border-ink bg-card p-6">
           <span className="font-display text-4xl font-bold text-muted-foreground/40">0{i + 1}</span>
           <h3 className="mt-3 text-lg font-bold">{p.title}</h3>
           <p className="mt-2 text-sm text-muted-foreground">{p.text}</p>
-        </li>
+        </Reveal>
       ))}
     </ol>
   );
@@ -118,9 +121,9 @@ export function Process() {
 
 export function Faq() {
   return (
-    <div className="mt-12 divide-y rounded-3xl border bg-card">
+    <Reveal className="mt-12 divide-y rounded-3xl border bg-card">
       {FAQS.map((f) => (
-        <details key={f.q} className="group p-6">
+        <details key={f.q} className="faq-item group p-6">
           <summary className="flex cursor-pointer list-none items-center justify-between font-display text-lg font-semibold">
             {f.q}
             <span className="ml-4 text-2xl transition group-open:rotate-45">+</span>
@@ -128,7 +131,7 @@ export function Faq() {
           <p className="mt-3 text-muted-foreground">{f.a}</p>
         </details>
       ))}
-    </div>
+    </Reveal>
   );
 }
 
@@ -147,10 +150,10 @@ export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: str
   return (
     <section className="bg-grid border-b">
       <div className="container-page py-20 md:py-28">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-bold md:text-6xl">{title}</h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{text}</p>
-        <Link to="/contact" className="mt-8 inline-block rounded-full bg-ink px-7 py-4 font-bold text-ink-foreground hover:opacity-90">
+        <p className="eyebrow animate-rise">{eyebrow}</p>
+        <h1 className="animate-rise mt-4 max-w-4xl text-4xl font-bold md:text-6xl" style={{ animationDelay: "90ms" }}>{title}</h1>
+        <p className="animate-rise mt-6 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
+        <Link to="/contact" className="btn-press animate-rise mt-8 inline-block rounded-full bg-ink px-7 py-4 font-bold text-ink-foreground hover:opacity-90" style={{ animationDelay: "270ms" }}>
           Book a free call
         </Link>
       </div>
