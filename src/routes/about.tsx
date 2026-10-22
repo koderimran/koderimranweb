@@ -45,8 +45,9 @@ function About() {
             </p>
             <Reveal className="mt-8 flex flex-wrap gap-2" delay={360}>
               {SKILLS.map((s) => (
-                <span key={s} className="rounded-full border bg-card px-3 py-1.5 text-sm font-semibold">{s}</span>
+                <span key={s} className="pill rounded-full px-3 py-1.5 text-sm font-semibold">{s}</span>
               ))}
+
             </Reveal>
           </div>
         </div>

@@ -51,8 +51,9 @@ function Contact() {
             <p className="mb-3 text-sm font-semibold">What do you need help with?</p>
             <div className="flex flex-wrap gap-2">
               {NEEDS.map((n) => (
-                <button type="button" key={n} onClick={() => setNeed(n)} className={`btn-press rounded-full border px-4 py-2 text-sm font-semibold ${need === n ? "bg-ink text-ink-foreground" : "bg-background"}`}>{n}</button>
+                <button type="button" key={n} onClick={() => setNeed(n)} aria-pressed={need === n} className="chip rounded-full px-4 py-2 text-sm font-semibold">{n}</button>
               ))}
+
             </div>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
@@ -61,7 +62,7 @@ function Contact() {
           </div>
           <input name="website" placeholder="Website URL (optional)" className={field} maxLength={255} />
           <textarea required name="message" rows={5} placeholder="Tell me about your goals, budget and timeline" className={field} maxLength={2000} />
-          <button className="btn-press w-full rounded-full bg-signal py-4 font-bold text-signal-foreground hover:opacity-90">Send message</button>
+          <button className="btn btn-signal w-full rounded-full py-4 font-bold">Send message</button>
         </form>
       </div>
     </section>

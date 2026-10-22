@@ -49,13 +49,14 @@ function Index() {
               clicks into customers.
             </p>
             <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-              <Link to="/contact" className="btn-press rounded-full bg-ink px-7 py-4 font-bold text-ink-foreground hover:opacity-90">
+              <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">
                 Get a free audit
               </Link>
-              <Link to="/portfolio" className="btn-press rounded-full border bg-card px-7 py-4 font-bold hover:bg-muted">
+              <Link to="/portfolio" className="btn btn-outline rounded-full px-7 py-4 font-bold">
                 See my work
               </Link>
             </div>
+
             <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Germany</p>
           </div>
           <div className="animate-rise relative" style={{ animationDelay: "180ms" }}>
@@ -86,7 +87,7 @@ function Index() {
         <div className="container-page py-20">
           <SectionHead eyebrow="Recent work" title="Websites that look great and sell" />
           <WorkGrid limit={3} />
-          <Link to="/portfolio" className="mt-8 inline-block font-bold underline underline-offset-4">Browse all projects →</Link>
+          <Link to="/portfolio" className="link-arrow mt-8 underline">Browse all projects <span className="btn-arrow">→</span></Link>
         </div>
       </section>
 
