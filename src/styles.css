@@ -394,6 +394,18 @@
   background-color: var(--color-muted);
 }
 
+/* Footer links */
+footer a {
+  transition:
+    color 180ms ease,
+    padding-left 180ms ease;
+}
+footer a:hover {
+  color: var(--color-foreground);
+  padding-left: 4px;
+}
+
+
 
 /* FAQ smooth open/close */
 @utility faq-item {
