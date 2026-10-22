@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep scroll-dependent header appearance in SiteChrome with semantic CSS tokens; a passive listener with separate enter/exit thresholds prevents shrink-induced flicker.
