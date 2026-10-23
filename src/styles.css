@@ -83,9 +83,13 @@
   transition: height 240ms ease;
 }
 .site-header-logo {
-  width: 2.5rem;
-  height: 2.5rem;
-  transition: width 240ms ease, height 240ms ease;
+  height: 2.75rem;
+  transition: height 240ms ease;
+}
+.site-header-logo img {
+  display: block;
+  height: 100%;
+  width: auto;
 }
 .site-header[data-compact="true"] {
   background: var(--header-scrolled-background);
@@ -93,7 +97,7 @@
   box-shadow: var(--shadow-header);
 }
 .site-header[data-compact="true"] .site-header-row { height: 3.25rem; }
-.site-header[data-compact="true"] .site-header-logo { width: 2rem; height: 2rem; }
+.site-header[data-compact="true"] .site-header-logo { height: 2.15rem; }
 @media (prefers-reduced-motion: reduce) {
   .site-header, .site-header-row, .site-header-logo { transition: none; }
 }
