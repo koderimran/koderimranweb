@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import logo from "@/assets/koder-imran-brush.png.asset.json";
-import darkLogo from "@/assets/koder-imran-signature.png.asset.json";
+import darkLogo from "@/assets/koder-imran-neon-brush.png.asset.json";
 import { useTheme } from "@/components/ThemeProvider";
 
 function BrandLogo() {
