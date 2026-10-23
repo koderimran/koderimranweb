@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
-import logo from "@/assets/koder-imran-signature.png.asset.json";
+import logo from "@/assets/koder-imran-brush.png.asset.json";
 
 const NAV = [
   { to: "/services", label: "Services" },
@@ -29,8 +29,8 @@ export function Header() {
   return (
     <header data-compact={compact} className="site-header sticky top-0 z-40 border-b backdrop-blur">
       <div className="site-header-row container-page flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
-        <Link to="/" className="font-display text-lg font-bold">
-          <span className="site-header-logo inline-flex items-center overflow-hidden rounded-full bg-black px-4">
+        <Link to="/" className="font-display text-lg font-bold" aria-label="Koder Imran — home">
+          <span className="site-header-logo inline-flex items-center">
             <img src={logo.url} alt="Koder Imran logo" className="h-full w-auto" />
           </span>
         </Link>
@@ -99,9 +99,7 @@ export function Footer() {
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <p className="font-display text-xl font-bold">
-            <span className="inline-flex items-center overflow-hidden rounded-full bg-black px-5 py-1.5">
-              <img src={logo.url} alt="Koder Imran logo" className="h-10 w-auto" loading="lazy" />
-            </span>
+            <img src={logo.url} alt="Koder Imran logo" className="h-9 w-auto" loading="lazy" />
           </p>
           <p className="mt-3 max-w-sm text-sm text-muted-foreground">
             {SITE.name} — {SITE.role}. Helping e-commerce brands and service businesses grow with measurable results.
