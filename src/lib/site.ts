@@ -1,6 +1,6 @@
 import photo from "@/assets/koder-imran.png.asset.json";
 export const SITE = {
-  name: "Imran Hasan",
+  name: "Imran",
   brand: "Koder Imran",
   url: "https://coderimranbd.com",
   role: "Google Ads, Web Analytics & E-commerce Web Specialist",
@@ -118,7 +118,7 @@ export const PROCESS = [
 ];
 
 export const FAQS = [
-  { q: "What services does Imran Hasan offer?", a: "Imran Hasan (Koder Imran) offers Google Ads management, GA4 and Google Tag Manager tracking, Shopify store development, and WordPress / WooCommerce website development for small businesses and e-commerce brands worldwide." },
+  { q: "What services does Imran offer?", a: "Imran (Koder Imran) offers Google Ads management, GA4 and Google Tag Manager tracking, Shopify store development, and WordPress / WooCommerce website development for small businesses and e-commerce brands worldwide." },
   { q: "Can you set up GA4 e-commerce and conversion tracking?", a: "Yes. I set up GA4 with Google Tag Manager, full e-commerce events from view_item to purchase, Google Ads conversion tracking, enhanced conversions, Meta Pixel with Conversions API and Consent Mode v2." },
   { q: "Should I choose Shopify or WooCommerce?", a: "Shopify suits brands that want a hosted, low-maintenance store that is quick to launch. WooCommerce suits businesses that want full control, lower monthly fees and deep customisation on WordPress. I build on both and recommend based on your budget and goals." },
   { q: "Do you manage Google Shopping and Performance Max campaigns?", a: "Yes. I set up Google Merchant Center, fix feed and disapproval issues, and run Shopping and Performance Max campaigns optimised for return on ad spend." },

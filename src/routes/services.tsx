@@ -3,7 +3,7 @@ import { SITE, SERVICES } from "@/lib/site";
 import { PageHero, ServiceGrid, Process, SectionHead } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
 
-const TITLE = "Services: Google Ads, GA4 Tracking, Shopify & WooCommerce | Imran Hasan";
+const TITLE = "Services: Google Ads, GA4 Tracking, Shopify & WooCommerce | Imran";
 const DESC = "Google Ads management, GA4 & Google Tag Manager tracking, Shopify store development and WordPress/WooCommerce websites for growing e-commerce brands.";
 
 export const Route = createFileRoute("/services")({

@@ -4,8 +4,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
-const TITLE = "Contact Imran Hasan | Free Website, GA4 or Google Ads Audit";
-const DESC = "Book a free call or audit with Imran Hasan for Google Ads, GA4 tracking, Shopify or WordPress/WooCommerce projects. Fast replies, worldwide.";
+const TITLE = "Contact Imran | Free Website, GA4 or Google Ads Audit";
+const DESC = "Book a free call or audit with Imran for Google Ads, GA4 tracking, Shopify or WordPress/WooCommerce projects. Fast replies, worldwide.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
