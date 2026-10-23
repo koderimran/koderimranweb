@@ -10,4 +10,5 @@
 - [x] Light-theme logo: uploaded Koder_Imran_Brush_Logo.png (black "Koder", lime "Imran") with white background removed, used in header and footer with no pill; neon signature kept for dark surfaces
 - [x] Dark-theme logo: uploaded Neon_Koder_Imran_Brush_Logo.png (white "Koder", lime "Imran") with black background removed, used in header and footer with no pill
 - [x] Header shows exactly one logo per theme, both padded to the same canvas so they render at identical size
+- [x] Header height raised to a medium size, identical in light and dark themes (top and scrolled)
 
