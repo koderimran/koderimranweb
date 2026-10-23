@@ -126,11 +126,11 @@
   transition: background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
 }
 .site-header-row {
-  height: 4rem;
+  height: 4.5rem;
   transition: height 240ms ease;
 }
 .site-header-logo {
-  height: 2.75rem;
+  height: 3rem;
   transition: height 240ms ease;
 }
 .site-header-logo img {
@@ -143,8 +143,8 @@
   border-color: var(--header-scrolled-border);
   box-shadow: var(--shadow-header);
 }
-.site-header[data-compact="true"] .site-header-row { height: 3.25rem; }
-.site-header[data-compact="true"] .site-header-logo { height: 2.15rem; }
+.site-header[data-compact="true"] .site-header-row { height: 3.75rem; }
+.site-header[data-compact="true"] .site-header-logo { height: 2.5rem; }
 @media (prefers-reduced-motion: reduce) {
   .site-header, .site-header-row, .site-header-logo { transition: none; }
 }
