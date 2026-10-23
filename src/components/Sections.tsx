@@ -98,7 +98,7 @@ export function Reviews() {
     <div className="mt-12 grid gap-5 md:grid-cols-3">
       {REVIEWS.slice(0, 3).map((r, i) => (
         <Reveal as="figure" key={r.name} delay={i * 110} className="hover-lift rounded-3xl border bg-card p-7">
-          <p className="text-signal-foreground">★★★★★</p>
+          <p className="text-signal-foreground dark:text-signal">★★★★★</p>
           <blockquote className="mt-4 text-lg leading-relaxed">“{r.text}”</blockquote>
           <figcaption className="mt-6 text-sm font-semibold">{r.name} <span className="font-normal text-muted-foreground">· {r.country}</span></figcaption>
         </Reveal>

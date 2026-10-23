@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer } from "@/components/SiteChrome";
 import { SITE } from "@/lib/site";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 function NotFoundComponent() {
   return (
@@ -143,6 +144,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
       <div className="page-frame">
         <Header />
         <main>
@@ -150,6 +152,7 @@ function RootComponent() {
         </main>
         <Footer />
       </div>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

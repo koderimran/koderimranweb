@@ -39,6 +39,7 @@
 }
 
 :root {
+  color-scheme: light;
   --radius: 0.875rem;
   --background: oklch(0.975 0.008 95);
   --foreground: oklch(0.2 0.02 255);
@@ -72,6 +73,55 @@
   --header-scrolled-background: color-mix(in oklab, var(--background) 90%, var(--signal));
   --header-scrolled-border: color-mix(in oklab, var(--border) 70%, var(--signal));
   --shadow-header: 0 8px 24px -12px color-mix(in oklab, var(--ink) 24%, transparent);
+}
+
+:root.dark {
+  color-scheme: dark;
+  --background: oklch(0.18 0.008 160);
+  --foreground: oklch(0.95 0.006 95);
+  --card: oklch(0.225 0.01 160);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.88 0.19 128);
+  --primary-foreground: oklch(0.19 0.015 160);
+  --secondary: oklch(0.26 0.015 160);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.275 0.012 160);
+  --muted-foreground: oklch(0.74 0.012 150);
+  --accent: oklch(0.33 0.065 140);
+  --accent-foreground: oklch(0.91 0.12 128);
+  --border: oklch(0.35 0.014 160);
+  --input: var(--border);
+  --ring: oklch(0.79 0.16 135);
+  --ink: oklch(0.13 0.008 160);
+  --ink-foreground: oklch(0.96 0.008 95);
+  --outer: oklch(0.105 0.006 160);
+  --gradient-page: linear-gradient(160deg, oklch(0.205 0.025 145) 0%, var(--background) 35%, oklch(0.19 0.016 225) 75%, oklch(0.21 0.03 160) 100%);
+  --grid-line: oklch(0.9 0.015 150 / 0.045);
+  --shadow-soft: 0 20px 50px -25px oklch(0.05 0 0 / 0.7);
+  --shadow-frame: 0 0 0 1px var(--border), 0 30px 80px -20px oklch(0.05 0 0 / 0.7);
+  --header-background: color-mix(in oklab, var(--background) 92%, transparent);
+  --header-scrolled-background: color-mix(in oklab, var(--background) 94%, var(--signal));
+  --header-scrolled-border: color-mix(in oklab, var(--border) 85%, var(--signal));
+  --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
+}
+
+.theme-toggle { border-radius: 999px; }
+.theme-toggle svg { transition: transform 240ms ease; }
+.theme-toggle:hover svg { transform: rotate(18deg); }
+.brand-logo { display: block; height: 100%; width: auto; }
+.brand-logo-dark { display: none; }
+.dark .brand-logo-light { display: none; }
+.dark .brand-logo-dark { display: block; }
+.dark .btn-ink {
+  background-color: var(--signal);
+  color: var(--signal-foreground);
+}
+.dark .btn-ink:hover { background-color: color-mix(in oklab, var(--signal) 85%, var(--foreground)); }
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle svg { transition: none; }
+  .theme-toggle:hover svg { transform: none; }
 }
 
 .site-header {

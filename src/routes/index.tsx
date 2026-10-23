@@ -34,14 +34,14 @@ const STATS = [
 function Index() {
   return (
     <>
-      <section className="bg-grid border-b">
+      <section className="bg-grid overflow-x-clip border-b">
         <div className="container-page grid items-center gap-12 py-16 md:grid-cols-[1.3fr_1fr] md:py-24">
           <div>
             <p className="animate-rise inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
               <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
             </p>
             <h1 className="animate-rise mt-6 text-4xl font-bold leading-[1.05] md:text-6xl" style={{ animationDelay: "90ms" }}>
-              More traffic. Better tracking. <span className="rounded-xl bg-signal px-2">More sales.</span>
+              More traffic. Better tracking. <span className="rounded-xl bg-signal px-2 text-signal-foreground">More sales.</span>
             </h1>
             <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
               I'm <strong className="text-foreground">Imran Hasan</strong> — a Google Ads, web analytics and e-commerce
