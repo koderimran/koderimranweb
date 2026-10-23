@@ -1,10 +1,29 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import logo from "@/assets/koder-imran-brush.png.asset.json";
+import darkLogo from "@/assets/koder-imran-signature.png.asset.json";
+import { useTheme } from "@/components/ThemeProvider";
+
+function BrandLogo() {
+  return <>
+    <img src={logo.url} alt="Koder Imran logo" className="brand-logo brand-logo-light" />
+    <img src={darkLogo.url} alt="Koder Imran logo" className="brand-logo brand-logo-dark" />
+  </>;
+}
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  const label = theme === "light" ? "Switch to dark theme" : "Switch to light theme";
+  return (
+    <Button variant="ghost" size="icon" className="theme-toggle shrink-0" onClick={toggleTheme} aria-label={label} title={label}>
+      {theme === "light" ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
+    </Button>
+  );
+}
 
 const NAV = [
   { to: "/services", label: "Services" },
@@ -31,7 +50,7 @@ export function Header() {
       <div className="site-header-row container-page flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
         <Link to="/" className="font-display text-lg font-bold" aria-label="Koder Imran — home">
           <span className="site-header-logo inline-flex items-center">
-            <img src={logo.url} alt="Koder Imran logo" className="h-full w-auto" />
+            <BrandLogo />
           </span>
         </Link>
         <nav className="hidden items-center justify-center gap-8 md:flex">
@@ -41,15 +60,18 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hidden md:flex md:justify-self-end">
+        <div className="hidden items-center gap-2 md:flex md:justify-self-end">
+          <ThemeToggle />
           <Link to="/contact" className="btn btn-ink rounded-full px-5 py-2.5 text-sm font-bold">
             Book a free call
           </Link>
         </div>
 
-        <Button variant="ghost" size="icon" className="md:hidden" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+        <div className="flex items-center md:hidden">
+        <Button variant="ghost" size="icon" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </Button>
+        </div>
       </div>
       {open && (
         <nav className="animate-menu-in container-page flex flex-col items-center gap-4 pb-6 text-center md:hidden">
@@ -58,6 +80,10 @@ export function Header() {
               {n.label}
             </Link>
           ))}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink rounded-full px-5 py-2.5 text-sm font-bold">Book a free call</Link>
+          </div>
         </nav>
       )}
     </header>
@@ -99,7 +125,7 @@ export function Footer() {
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <p className="font-display text-xl font-bold">
-            <img src={logo.url} alt="Koder Imran logo" className="h-9 w-auto" loading="lazy" />
+            <span className="inline-flex h-9"><BrandLogo /></span>
           </p>
           <p className="mt-3 max-w-sm text-sm text-muted-foreground">
             {SITE.name} — {SITE.role}. Helping e-commerce brands and service businesses grow with measurable results.
