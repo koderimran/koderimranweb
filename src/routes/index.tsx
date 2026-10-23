@@ -34,7 +34,7 @@ const STATS = [
 function Index() {
   return (
     <>
-      <section className="bg-grid border-b">
+      <section className="bg-grid overflow-x-clip border-b">
         <div className="container-page grid items-center gap-12 py-16 md:grid-cols-[1.3fr_1fr] md:py-24">
           <div>
             <p className="animate-rise inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
