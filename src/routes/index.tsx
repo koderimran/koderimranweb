@@ -41,7 +41,7 @@ function Index() {
               <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
             </p>
             <h1 className="animate-rise mt-6 text-4xl font-bold leading-[1.05] md:text-6xl" style={{ animationDelay: "90ms" }}>
-              More traffic. Better tracking. <span className="rounded-xl bg-signal px-2">More sales.</span>
+              More traffic. Better tracking. <span className="rounded-xl bg-signal px-2 text-signal-foreground">More sales.</span>
             </h1>
             <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
               I'm <strong className="text-foreground">Imran Hasan</strong> — a Google Ads, web analytics and e-commerce
