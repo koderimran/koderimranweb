@@ -9,10 +9,14 @@ import darkLogo from "@/assets/koder-imran-neon-brush.png.asset.json";
 import { useTheme } from "@/components/ThemeProvider";
 
 function BrandLogo() {
-  return <>
-    <img src={logo.url} alt="Koder Imran logo" className="brand-logo brand-logo-light" />
-    <img src={darkLogo.url} alt="Koder Imran logo" className="brand-logo brand-logo-dark" />
-  </>;
+  const { theme } = useTheme();
+  return (
+    <img
+      src={theme === "dark" ? darkLogo.url : logo.url}
+      alt="Koder Imran logo"
+      className="brand-logo"
+    />
+  );
 }
 
 function ThemeToggle() {
