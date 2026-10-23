@@ -4,9 +4,9 @@ import { SectionHead, ServiceGrid, WorkGrid, Reviews, Process, Faq, faqJsonLd } 
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/SiteChrome";
 
-const TITLE = "Imran Hasan | Google Ads, GA4 Tracking, Shopify & WordPress Expert";
+const TITLE = "Imran | Google Ads, GA4 Tracking, Shopify & WordPress Expert";
 const DESC =
-  "Imran Hasan (Koder Imran) helps e-commerce brands grow with Google Ads management, GA4 & GTM tracking, Shopify stores and WordPress/WooCommerce websites.";
+  "Imran (Koder Imran) helps e-commerce brands grow with Google Ads management, GA4 & GTM tracking, Shopify stores and WordPress/WooCommerce websites.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,7 +44,7 @@ function Index() {
               More traffic. Better tracking. <span className="rounded-xl bg-signal px-2 text-signal-foreground">More sales.</span>
             </h1>
             <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
-              I'm <strong className="text-foreground">Imran Hasan</strong> — a Google Ads, web analytics and e-commerce
+              I'm <strong className="text-foreground">Imran</strong> — a Google Ads, web analytics and e-commerce
               specialist. I build Shopify & WordPress stores, track every conversion with GA4, and run ads that turn
               clicks into customers.
             </p>
@@ -61,7 +61,7 @@ function Index() {
           </div>
           <div className="animate-rise relative" style={{ animationDelay: "180ms" }}>
             <div className="absolute -inset-4 rounded-[2.5rem] bg-accent/60 rotate-3" />
-            <img src={SITE.portrait} alt="Imran Hasan, Google Ads and e-commerce web specialist" className="relative aspect-[4/5] w-full rounded-[2rem] bg-muted object-cover shadow-soft" />
+            <img src={SITE.portrait} alt="Imran, Google Ads and e-commerce web specialist" className="relative aspect-[4/5] w-full rounded-[2rem] bg-muted object-cover shadow-soft" />
             <div className="absolute -bottom-5 -left-5 rounded-2xl bg-ink px-5 py-4 text-ink-foreground shadow-soft">
               <p className="text-xs text-ink-foreground/60">Specialist in</p>
               <p className="font-display font-bold">Ads · GA4 · Shopify · WP</p>
