@@ -10,4 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep scroll-dependent header appearance in SiteChrome with semantic CSS tokens; a passive listener with separate enter/exit thresholds prevents shrink-induced flicker.
-- Keep site-wide theme state in ThemeProvider and colors in semantic CSS tokens; apply and persist preferences after hydration so every route shares the theme without SSR mismatches.
+- Keep site-wide theme state in ThemeProvider and colors in semantic CSS tokens; apply and persist preferences after hydration so every route shares the theme without SSR mismatches. Render theme-dependent assets (logos) as a single element whose source is chosen in code from the active theme — two elements toggled with CSS display get overridden by more specific descendant selectors.
