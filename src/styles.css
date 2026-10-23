@@ -111,9 +111,6 @@
 .theme-toggle svg { transition: transform 240ms ease; }
 .theme-toggle:hover svg { transform: rotate(18deg); }
 .brand-logo { display: block; height: 100%; width: auto; }
-.brand-logo-dark { display: none; }
-.dark .brand-logo-light { display: none; }
-.dark .brand-logo-dark { display: block; }
 .dark .btn-ink {
   background-color: var(--signal);
   color: var(--signal-foreground);
