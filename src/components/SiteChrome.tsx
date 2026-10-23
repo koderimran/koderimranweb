@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
-import logo from "@/assets/koder-imran-logo.png.asset.json";
+import logo from "@/assets/koder-imran-signature.png.asset.json";
 
 const NAV = [
   { to: "/services", label: "Services" },
@@ -29,9 +29,10 @@ export function Header() {
   return (
     <header data-compact={compact} className="site-header sticky top-0 z-40 border-b backdrop-blur">
       <div className="site-header-row container-page flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
-        <Link to="/" className="flex items-center gap-2.5 font-display text-lg font-bold">
-          <img src={logo.url} alt="Koder Imran logo" width={40} height={40} className="site-header-logo rounded-full" />
-          {SITE.brand}
+        <Link to="/" className="font-display text-lg font-bold">
+          <span className="site-header-logo inline-flex items-center overflow-hidden rounded-full bg-black px-4">
+            <img src={logo.url} alt="Koder Imran logo" className="h-full w-auto" />
+          </span>
         </Link>
         <nav className="hidden items-center justify-center gap-8 md:flex">
           {NAV.map((n) => (
@@ -97,9 +98,10 @@ export function Footer() {
     <footer className="border-t">
       <div className="container-page grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="flex items-center gap-3 font-display text-xl font-bold">
-            <img src={logo.url} alt="Koder Imran logo" width={48} height={48} className="size-12 rounded-full" loading="lazy" />
-            {SITE.brand}
+          <p className="font-display text-xl font-bold">
+            <span className="inline-flex items-center overflow-hidden rounded-full bg-black px-5 py-1.5">
+              <img src={logo.url} alt="Koder Imran logo" className="h-10 w-auto" loading="lazy" />
+            </span>
           </p>
           <p className="mt-3 max-w-sm text-sm text-muted-foreground">
             {SITE.name} — {SITE.role}. Helping e-commerce brands and service businesses grow with measurable results.
