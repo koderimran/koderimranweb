@@ -12,5 +12,5 @@
 - [x] Header shows exactly one logo per theme, both padded to the same canvas so they render at identical size
 - [x] Header height raised to a medium size, identical in light and dark themes (top and scrolled)
 - [x] Apply the supplied cut-out portrait to dark-theme home and about pages, preserving the original light-theme portrait
-- [ ] Verify portrait switching, saved theme, and image rendering
+- [x] Verify portrait switching, saved theme, and image rendering
 
