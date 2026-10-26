@@ -112,10 +112,6 @@ export function CtaBand() {
             <Link to="/contact" className="btn btn-signal rounded-full px-7 py-4 text-center font-bold">
               Get my free audit <span className="btn-arrow">→</span>
             </Link>
-
-            <a href={`mailto:${SITE.email}`} className="text-sm text-ink-foreground/70 transition-colors hover:text-ink-foreground">
-              {SITE.email}
-            </a>
           </div>
         </div>
       </Reveal>
