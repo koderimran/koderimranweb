@@ -3,6 +3,7 @@ import { SITE } from "@/lib/site";
 import { SectionHead, Faq, faqJsonLd } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
 import { Reveal } from "@/components/Reveal";
+import { Portrait } from "@/components/Portrait";
 
 const TITLE = "About Imran | E-commerce Web Developer & Google Ads Specialist";
 const DESC = "Meet Imran (Koder Imran), a Bangladesh-based WordPress, Shopify, Google Ads and GA4 specialist working with clients worldwide.";
@@ -30,7 +31,7 @@ function About() {
     <>
       <section className="bg-grid border-b">
         <div className="container-page grid items-center gap-12 py-20 md:grid-cols-[1fr_1.3fr]">
-          <img src={SITE.portrait} alt="Portrait of Imran" className="animate-rise aspect-[4/5] w-full max-w-sm rounded-[2rem] bg-muted object-cover shadow-soft" />
+          <Portrait alt="Portrait of Imran" className="animate-rise aspect-[4/5] w-full max-w-sm rounded-[2rem] bg-muted shadow-soft" />
           <div>
             <p className="eyebrow animate-rise">About me</p>
             <h1 className="animate-rise mt-4 text-4xl font-bold md:text-6xl" style={{ animationDelay: "90ms" }}>Hi, I'm Imran.</h1>
