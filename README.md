@@ -1,6 +1,6 @@
 # Koderimranweb
 
-https://coderimranbd.com/ read this website and modify as an professional ui designer . consider niche  google ads ads, web analytics , wordpress amd shopify ecommerce website. arrange all content as an expert content creator. personal portfolio website look like professional, and client focus . must be seo aeo maintain and ai search top. also will be service focused.
+https://koderimran.com/ read this website and modify as an professional ui designer . consider niche  google ads ads, web analytics , wordpress amd shopify ecommerce website. arrange all content as an expert content creator. personal portfolio website look like professional, and client focus . must be seo aeo maintain and ai search top. also will be service focused.
 
 This project was built with [Lovable](https://lovable.dev).
 
