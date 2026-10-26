@@ -97,7 +97,11 @@
   --ink: oklch(0.13 0.008 160);
   --ink-foreground: oklch(0.96 0.008 95);
   --outer: oklch(0.105 0.006 160);
-  --gradient-page: linear-gradient(160deg, oklch(0.205 0.025 145) 0%, var(--background) 35%, oklch(0.19 0.016 225) 75%, oklch(0.21 0.03 160) 100%);
+  --gradient-page:
+    radial-gradient(72rem 44rem at 4% -2%, oklch(0.88 0.19 128 / 0.16), transparent 62%),
+    radial-gradient(60rem 40rem at 100% 8%, oklch(0.62 0.13 225 / 0.18), transparent 60%),
+    radial-gradient(84rem 52rem at 50% calc(100% - 30rem), oklch(0.88 0.19 128 / 0.12), transparent 66%),
+    linear-gradient(160deg, oklch(0.215 0.04 150) 0%, oklch(0.175 0.012 165) 34%, oklch(0.19 0.028 215) 68%, oklch(0.225 0.05 155) 100%);
   --grid-line: oklch(0.9 0.015 150 / 0.045);
   --shadow-soft: 0 20px 50px -25px oklch(0.05 0 0 / 0.7);
   --shadow-frame: 0 0 0 1px var(--border), 0 30px 80px -20px oklch(0.05 0 0 / 0.7);
