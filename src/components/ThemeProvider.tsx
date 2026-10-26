@@ -1,32 +1,16 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Theme = "light" | "dark";
-const STORAGE_KEY = "koder-imran-theme";
 const ThemeContext = createContext<{ theme: Theme; toggleTheme: () => void } | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  // Every page open starts in light theme. Dark is used only after the
+  // visitor explicitly selects it, and it never carries over to a new visit.
   const [theme, setTheme] = useState<Theme>("light");
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved === "light" || saved === "dark") setTheme(saved);
-    } catch {
-      // The switch still works when browser storage is unavailable.
-    }
-    setReady(true);
-  }, []);
-
-  useEffect(() => {
-    if (!ready) return;
     document.documentElement.classList.toggle("dark", theme === "dark");
-    try {
-      window.localStorage.setItem(STORAGE_KEY, theme);
-    } catch {
-      // Saving a preference is optional in private/restricted browsers.
-    }
-  }, [theme, ready]);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme: () => setTheme((current) => current === "light" ? "dark" : "light") }}>

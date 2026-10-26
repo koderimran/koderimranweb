@@ -22,11 +22,14 @@ describe("Site themes", () => {
     await waitFor(() => expect(document.documentElement.classList.contains("dark")).toBe(false));
   });
 
-  it("restores the saved theme and saves a new choice", async () => {
+  it("always opens in light theme, even when a dark choice was saved before", async () => {
     localStorage.setItem("koder-imran-theme", "dark");
     render(<ThemeProvider><Switch /></ThemeProvider>);
+    // Give any restore logic a chance to run before asserting it did not.
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    expect(document.documentElement.classList.contains("dark")).toBe(false);
+    expect(screen.getByRole("button", { name: "light" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "light" }));
     await waitFor(() => expect(document.documentElement.classList.contains("dark")).toBe(true));
-    fireEvent.click(screen.getByRole("button", { name: "dark" }));
-    await waitFor(() => expect(localStorage.getItem("koder-imran-theme")).toBe("light"));
   });
 });
