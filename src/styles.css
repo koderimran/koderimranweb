@@ -130,7 +130,8 @@
   transition: height 240ms ease;
 }
 .site-header-logo {
-  height: 3rem;
+  height: 2.5rem;
+  align-self: center;
   transition: height 240ms ease;
 }
 .site-header-logo img {
@@ -144,7 +145,7 @@
   box-shadow: var(--shadow-header);
 }
 .site-header[data-compact="true"] .site-header-row { height: 3.75rem; }
-.site-header[data-compact="true"] .site-header-logo { height: 2.5rem; }
+.site-header[data-compact="true"] .site-header-logo { height: 2.15rem; }
 @media (prefers-reduced-motion: reduce) {
   .site-header, .site-header-row, .site-header-logo { transition: none; }
 }
