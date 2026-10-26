@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Theme = "light" | "dark";
-const STORAGE_KEY = "koder-imran-theme";
 const ThemeContext = createContext<{ theme: Theme; toggleTheme: () => void } | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
