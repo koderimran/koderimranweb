@@ -11,6 +11,6 @@
 - [x] Dark-theme logo: uploaded Neon_Koder_Imran_Brush_Logo.png (white "Koder", lime "Imran") with black background removed, used in header and footer with no pill
 - [x] Header shows exactly one logo per theme, both padded to the same canvas so they render at identical size
 - [x] Header height raised to a medium size, identical in light and dark themes (top and scrolled)
-- [x] Apply the supplied cut-out portrait to dark-theme home and about pages, preserving the original light-theme portrait
-- [x] Verify portrait switching, saved theme, and image rendering
+- [x] Both themes show the same original uploaded portrait (dark-theme cut-out removed)
+
 
