@@ -59,7 +59,7 @@ export function Header() {
         </Link>
         <nav className="hidden items-center justify-center gap-8 md:flex">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="nav-link text-sm font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
+            <Link key={n.to} to={n.to} className="nav-link text-base font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
               {n.label}
             </Link>
           ))}
@@ -80,7 +80,7 @@ export function Header() {
       {open && (
         <nav className="animate-menu-in container-page flex flex-col items-center gap-4 pb-6 text-center md:hidden">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-semibold">
+            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="text-lg font-semibold">
               {n.label}
             </Link>
           ))}
