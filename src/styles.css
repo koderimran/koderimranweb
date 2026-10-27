@@ -440,6 +440,26 @@
   color: var(--color-ink-foreground);
 }
 
+/* Dark theme: the picker must read clearly on a dark card —
+   unselected chips lift off the card, the chosen one fills signal lime. */
+.dark .chip {
+  background-color: color-mix(in oklab, var(--card) 55%, var(--muted));
+  border-color: color-mix(in oklab, var(--border) 80%, var(--ring));
+  color: color-mix(in oklab, var(--muted-foreground) 55%, var(--foreground));
+}
+
+.dark .chip:hover {
+  background-color: var(--muted);
+  color: var(--color-foreground);
+}
+.dark .chip[aria-pressed="true"] {
+  background-color: var(--color-signal);
+  border-color: var(--color-signal);
+  color: var(--color-signal-foreground);
+  box-shadow: 0 8px 22px -10px color-mix(in oklab, var(--signal) 70%, transparent);
+}
+
+
 /* Skill / tag pills */
 @utility pill {
   border: 1px solid var(--color-border);
