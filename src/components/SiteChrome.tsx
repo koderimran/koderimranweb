@@ -52,11 +52,17 @@ export function Header() {
   return (
     <header data-compact={compact} className="site-header sticky top-0 z-40 border-b backdrop-blur">
       <div className="site-header-row container-page flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
-        <Link to="/" className="font-display inline-flex items-center text-lg font-bold" aria-label="Koder Imran — home">
-          <span className="site-header-logo inline-flex items-center">
-            <BrandLogo />
+        <div className="flex items-center gap-1">
+          <Link to="/" className="font-display inline-flex items-center text-lg font-bold" aria-label="Koder Imran — home">
+            <span className="site-header-logo inline-flex items-center">
+              <BrandLogo />
+            </span>
+          </Link>
+          <span className="md:hidden">
+            <ThemeToggle />
           </span>
-        </Link>
+        </div>
+
         <nav className="hidden items-center justify-center gap-8 md:flex">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className="nav-link text-base font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
@@ -78,18 +84,18 @@ export function Header() {
         </div>
       </div>
       {open && (
-        <nav className="animate-menu-in container-page flex flex-col items-center gap-4 pb-6 text-center md:hidden">
-          {NAV.map((n) => (
-            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="text-lg font-semibold">
-              {n.label}
-            </Link>
-          ))}
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink rounded-full px-5 py-2.5 text-sm font-bold">Book a free call</Link>
-          </div>
-        </nav>
+        <div className="animate-menu-in border-t border-border/70 bg-muted/50 md:hidden">
+          <nav className="container-page flex flex-col items-start gap-2 pb-6 pt-4 text-left">
+            {NAV.map((n) => (
+              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="menu-item w-full text-lg font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
+                {n.label}
+              </Link>
+            ))}
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink mt-2 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call</Link>
+          </nav>
+        </div>
       )}
+
     </header>
   );
 }

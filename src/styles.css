@@ -252,6 +252,23 @@
   position: relative;
   transition: color 200ms ease;
 }
+
+/* Mobile menu rows: quiet until hovered, then a light fill and border. */
+@utility menu-item {
+  border: 1px solid transparent;
+  border-radius: 0.9rem;
+  padding: 0.55rem 0.9rem;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+.menu-item:hover,
+.menu-item:focus-visible {
+  background-color: color-mix(in oklab, var(--muted) 75%, transparent);
+  border-color: var(--border);
+}
+
 .nav-link::after {
   content: "";
   position: absolute;
