@@ -445,7 +445,9 @@
 .dark .chip {
   background-color: color-mix(in oklab, var(--card) 55%, var(--muted));
   border-color: color-mix(in oklab, var(--border) 80%, var(--ring));
+  color: color-mix(in oklab, var(--muted-foreground) 55%, var(--foreground));
 }
+
 .dark .chip:hover {
   background-color: var(--muted);
   color: var(--color-foreground);
