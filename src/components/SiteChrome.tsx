@@ -51,7 +51,7 @@ export function Header() {
 
   return (
     <header data-compact={compact} className="site-header sticky top-0 z-40 border-b backdrop-blur">
-      <div className="site-header-row container-page flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
+      <div className="site-header-row container-page relative flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
         <div className="flex items-center">
           <Link to="/" className="font-display inline-flex items-center text-lg font-bold" aria-label="Koder Imran — home">
             <span className="site-header-logo inline-flex items-center">
@@ -60,7 +60,7 @@ export function Header() {
           </Link>
         </div>
 
-        <span className="theme-toggle-mobile md:hidden">
+        <span className="theme-toggle-mobile absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden">
           <ThemeToggle />
         </span>
 
