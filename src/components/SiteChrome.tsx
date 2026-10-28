@@ -51,17 +51,18 @@ export function Header() {
 
   return (
     <header data-compact={compact} className="site-header sticky top-0 z-40 border-b backdrop-blur">
-      <div className="site-header-row container-page flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
-        <div className="flex items-center gap-1">
+      <div className="site-header-row container-page relative flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
+        <div className="flex items-center">
           <Link to="/" className="font-display inline-flex items-center text-lg font-bold" aria-label="Koder Imran — home">
             <span className="site-header-logo inline-flex items-center">
               <BrandLogo />
             </span>
           </Link>
-          <span className="theme-toggle-mobile md:hidden">
-            <ThemeToggle />
-          </span>
         </div>
+
+        <span className="theme-toggle-mobile absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden">
+          <ThemeToggle />
+        </span>
 
         <nav className="hidden items-center justify-center gap-8 md:flex">
           {NAV.map((n) => (
@@ -85,13 +86,13 @@ export function Header() {
       </div>
       {open && (
         <div className="animate-menu-in border-t border-border/70 bg-muted/50 md:hidden">
-          <nav className="container-page flex flex-col items-start gap-2 pb-6 pt-4 text-left">
+          <nav className="container-page flex flex-col items-stretch pb-6 pt-4 text-left">
             {NAV.map((n) => (
               <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="menu-item text-lg font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink mt-2 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call</Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink mt-4 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call</Link>
           </nav>
         </div>
       )}

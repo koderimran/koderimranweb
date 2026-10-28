@@ -269,7 +269,9 @@
   align-self: stretch;
   width: auto;
   margin-inline: -1.25rem;
-  padding: 0.7rem 1.25rem;
+  /* Pull the row up 1px so its hover fill also covers the rule above it. */
+  margin-top: -1px;
+  padding: 0.95rem 1.25rem;
   transition:
     background-color 200ms ease,
     border-color 200ms ease,
@@ -278,7 +280,8 @@
 .menu-item:hover,
 .menu-item:focus-visible {
   background-color: color-mix(in oklab, var(--muted) 75%, transparent);
-  border-bottom-color: var(--border);
+  /* The fill runs the full height of the row, over the bottom rule. */
+  border-bottom-color: transparent;
 }
 
 .nav-link::after {
