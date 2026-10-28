@@ -58,7 +58,7 @@ export function Header() {
               <BrandLogo />
             </span>
           </Link>
-          <span className="md:hidden">
+          <span className="theme-toggle-mobile md:hidden">
             <ThemeToggle />
           </span>
         </div>
