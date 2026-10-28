@@ -58,7 +58,7 @@ export function Header() {
               <BrandLogo />
             </span>
           </Link>
-          <span className="md:hidden">
+          <span className="theme-toggle-mobile md:hidden">
             <ThemeToggle />
           </span>
         </div>
@@ -87,7 +87,7 @@ export function Header() {
         <div className="animate-menu-in border-t border-border/70 bg-muted/50 md:hidden">
           <nav className="container-page flex flex-col items-start gap-2 pb-6 pt-4 text-left">
             {NAV.map((n) => (
-              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="menu-item w-full text-lg font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
+              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="menu-item text-lg font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
                 {n.label}
               </Link>
             ))}

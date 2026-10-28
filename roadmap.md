@@ -12,5 +12,7 @@
 - [x] Header shows exactly one logo per theme, both padded to the same canvas so they render at identical size
 - [x] Header height raised to a medium size, identical in light and dark themes (top and scrolled)
 - [x] Both themes show the same original uploaded portrait (dark-theme cut-out removed)
+- [x] Mobile menu rows: light full-width bottom rule at rest, full-width light fill on hover
+- [x] Mobile theme button: theme-tinted fill in its resting (non-hover) state
 
 

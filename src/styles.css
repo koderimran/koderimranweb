@@ -112,6 +112,14 @@
 }
 
 .theme-toggle { border-radius: 999px; }
+/* Mobile: the theme button keeps a visible theme-tinted fill even before hover. */
+.theme-toggle-mobile .theme-toggle {
+  background-color: var(--muted);
+  border: 1px solid var(--border);
+}
+.theme-toggle-mobile .theme-toggle:hover {
+  background-color: color-mix(in oklab, var(--muted) 80%, var(--foreground));
+}
 .theme-toggle svg { transition: transform 240ms ease; }
 .theme-toggle:hover svg { transform: rotate(18deg); }
 .brand-logo { display: block; height: 100%; width: auto; }
@@ -253,11 +261,15 @@
   transition: color 200ms ease;
 }
 
-/* Mobile menu rows: quiet until hovered, then a light fill and border. */
+/* Mobile menu rows: a light bottom rule in the resting state,
+   then a full-width light fill on hover so the picked row is obvious.
+   The row is pulled out to the panel edges so its fill spans the full width. */
 @utility menu-item {
-  border: 1px solid transparent;
-  border-radius: 0.9rem;
-  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  align-self: stretch;
+  width: auto;
+  margin-inline: -1.25rem;
+  padding: 0.7rem 1.25rem;
   transition:
     background-color 200ms ease,
     border-color 200ms ease,
@@ -266,7 +278,7 @@
 .menu-item:hover,
 .menu-item:focus-visible {
   background-color: color-mix(in oklab, var(--muted) 75%, transparent);
-  border-color: var(--border);
+  border-bottom-color: var(--border);
 }
 
 .nav-link::after {
