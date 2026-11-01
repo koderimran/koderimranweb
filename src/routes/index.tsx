@@ -62,7 +62,6 @@ function Index() {
             </div>
 
             <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Germany</p>
-          </div>
             <p className="hero-specialism mt-6 text-sm font-semibold text-muted-foreground">Ads · GA4 · Shopify · WP</p>
           </div>
           </div>
