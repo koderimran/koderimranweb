@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Use the original hero portrait as an unframed background, with readable light/dark treatments and verify desktop/mobile.
+- [x] Use the original hero portrait as an unframed background, with readable light/dark treatments and verify desktop/mobile.
 
 - [x] Full-site light/dark tokens, header icon before booking button, matching logos, and saved preference
 - [x] Verify theme switching, navigation, refresh, and mobile layout
