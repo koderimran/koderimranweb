@@ -35,13 +35,16 @@ const STATS = [
 function Index() {
   return (
     <>
-      <section className="bg-grid overflow-x-clip border-b">
-        <div className="container-page grid items-center gap-12 py-16 md:grid-cols-[1.3fr_1fr] md:py-24">
-          <div>
+      <section className="overflow-x-clip border-b">
+        <div className="hero-backdrop">
+          <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
+          <div className="hero-photo-blend" aria-hidden="true" />
+          <div className="container-page hero-content">
+          <div className="hero-copy">
             <p className="animate-rise inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
               <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
             </p>
-            <h1 className="hero-title animate-rise mt-6 text-4xl font-bold leading-[1.05] md:text-6xl" style={{ animationDelay: "90ms" }}>
+            <h1 className="hero-title animate-rise mt-6 text-4xl font-bold leading-[1.05] lg:text-6xl" style={{ animationDelay: "90ms" }}>
               Smarter Ads. Accurate Tracking. <span className="rounded-xl bg-signal px-2 text-signal-foreground">Higher Sales.</span>
             </h1>
             <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
@@ -60,13 +63,8 @@ function Index() {
 
             <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Germany</p>
           </div>
-          <div className="animate-rise relative" style={{ animationDelay: "180ms" }}>
-            <div className="absolute -inset-4 rounded-[2.5rem] bg-accent/60 rotate-3" />
-            <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="relative aspect-[4/5] w-full rounded-[2rem] bg-muted shadow-soft" />
-            <div className="absolute -bottom-5 -left-5 rounded-2xl bg-ink px-5 py-4 text-ink-foreground shadow-soft">
-              <p className="text-xs text-ink-foreground/60">Specialist in</p>
-              <p className="font-display font-bold">Ads · GA4 · Shopify · WP</p>
-            </div>
+            <p className="hero-specialism mt-6 text-sm font-semibold text-muted-foreground">Ads · GA4 · Shopify · WP</p>
+          </div>
           </div>
         </div>
         <div className="container-page grid grid-cols-2 gap-6 border-t py-8 md:grid-cols-4">
