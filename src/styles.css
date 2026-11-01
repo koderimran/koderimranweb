@@ -67,6 +67,7 @@
   --shadow-soft: 0 20px 50px -25px oklch(0.24 0.035 255 / 0.35);
   --grid-line: oklch(0.24 0.035 255 / 0.06);
   --outer: var(--background);
+  --gradient-page: linear-gradient(160deg, oklch(0.985 0.03 128) 0%, oklch(0.975 0.008 95) 35%, oklch(0.97 0.02 240) 75%, oklch(0.96 0.04 150) 100%);
   --header-background: color-mix(in oklab, var(--background) 85%, transparent);
   --header-scrolled-background: color-mix(in oklab, var(--background) 90%, var(--signal));
   --header-scrolled-border: color-mix(in oklab, var(--border) 70%, var(--signal));
