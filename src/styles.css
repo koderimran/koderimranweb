@@ -231,7 +231,17 @@
   background-size: 44px 44px;
   background-color: var(--hero-surface);
 }
+.hero-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hero-gradient);
+  pointer-events: none;
+}
 .hero-background-photo {
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
   position: absolute;
   inset: 0 0 auto auto;
   width: 100%;
@@ -258,6 +268,8 @@
     width: 46%;
     height: 100%;
     object-position: center center;
+    -webkit-mask-image: radial-gradient(ellipse 75% 85% at 60% 42%, #000 45%, transparent 100%), linear-gradient(90deg, transparent 0%, #000 35%);
+    mask-image: radial-gradient(ellipse 75% 85% at 60% 42%, #000 45%, transparent 100%);
   }
   .hero-photo-blend {
     inset: 0;
