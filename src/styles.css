@@ -73,7 +73,12 @@
   --header-scrolled-border: color-mix(in oklab, var(--border) 70%, var(--signal));
   --shadow-header: 0 8px 24px -12px color-mix(in oklab, var(--ink) 24%, transparent);
   --hero-surface: var(--background);
-  --hero-photo-overlay: linear-gradient(90deg, var(--hero-surface) 0%, var(--hero-surface) 43%, transparent 65%);
+  /* Light theme: the photo's dark studio background is eased toward the light
+     surface with soft edge washes so it blends instead of reading as a dark block. */
+  --hero-photo-overlay:
+    linear-gradient(90deg, transparent 0%, transparent 53%, color-mix(in oklab, var(--hero-surface) 82%, transparent) 61%, transparent 75%),
+    linear-gradient(115deg, transparent 58%, color-mix(in oklab, var(--hero-surface) 16%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in oklab, var(--hero-surface) 50%, transparent) 0%, transparent 10%);
   --hero-mobile-overlay: linear-gradient(180deg, transparent 0%, transparent 65%, var(--hero-surface) 100%);
 }
 
@@ -110,6 +115,9 @@
   --header-scrolled-background: color-mix(in oklab, var(--background) 94%, var(--signal));
   --header-scrolled-border: color-mix(in oklab, var(--border) 85%, var(--signal));
   --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
+  /* Dark theme: a single blend is enough — the photo's dark background already
+     sits naturally on the dark surface, so no light washes are applied. */
+  --hero-photo-overlay: linear-gradient(90deg, transparent 0%, transparent 53%, color-mix(in oklab, var(--hero-surface) 82%, transparent) 61%, transparent 75%);
 }
 
 .theme-toggle { border-radius: 999px; }
@@ -216,25 +224,30 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: var(--hero-surface);
+  /* Subtle grid texture under the hero content (photo layers sit above it). */
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-color: var(--hero-surface);
 }
 .hero-background-photo {
   position: absolute;
   inset: 0 0 auto auto;
   width: 100%;
-  height: 23rem;
+  height: 18.4rem;
   object-position: center 30%;
 }
 .hero-photo-blend {
   position: absolute;
   inset: 0 0 auto;
-  height: 23rem;
+  height: 18.4rem;
   background: var(--hero-mobile-overlay);
   pointer-events: none;
 }
 .hero-content {
   position: relative;
-  padding-top: 22rem;
+  padding-top: 19rem;
   padding-bottom: 3rem;
 }
 .hero-copy { max-width: 36rem; }
@@ -242,7 +255,7 @@
 @media (min-width: 768px) {
   .hero-background-photo {
     inset: 0 0 0 auto;
-    width: 58%;
+    width: 46%;
     height: 100%;
     object-position: center center;
   }
