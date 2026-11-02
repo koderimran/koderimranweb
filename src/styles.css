@@ -73,13 +73,12 @@
   --header-scrolled-border: color-mix(in oklab, var(--border) 70%, var(--signal));
   --shadow-header: 0 8px 24px -12px color-mix(in oklab, var(--ink) 24%, transparent);
   --hero-surface: var(--background);
-  /* Light theme: the photo's dark studio background is eased toward the light
-     surface with soft edge washes so it blends instead of reading as a dark block. */
-  --hero-photo-overlay:
-    linear-gradient(90deg, transparent 0%, transparent 53%, color-mix(in oklab, var(--hero-surface) 82%, transparent) 61%, transparent 75%),
-    linear-gradient(115deg, transparent 58%, color-mix(in oklab, var(--hero-surface) 16%, transparent) 100%),
-    linear-gradient(180deg, color-mix(in oklab, var(--hero-surface) 50%, transparent) 0%, transparent 10%);
-  --hero-mobile-overlay: linear-gradient(180deg, transparent 0%, transparent 65%, var(--hero-surface) 100%);
+  --hero-gradient:
+    radial-gradient(40rem 32rem at 78% 45%, oklch(0.55 0.06 230 / 0.22), transparent 70%),
+    radial-gradient(36rem 28rem at 8% 10%, oklch(0.92 0.15 128 / 0.35), transparent 65%),
+    linear-gradient(115deg, oklch(0.985 0.02 120) 0%, oklch(0.97 0.012 160) 45%, oklch(0.93 0.025 220) 100%);
+  --hero-photo-overlay: none;
+  --hero-mobile-overlay: none;
 }
 
 :root.dark {
@@ -115,9 +114,11 @@
   --header-scrolled-background: color-mix(in oklab, var(--background) 94%, var(--signal));
   --header-scrolled-border: color-mix(in oklab, var(--border) 85%, var(--signal));
   --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
-  /* Dark theme: a single blend is enough — the photo's dark background already
-     sits naturally on the dark surface, so no light washes are applied. */
-  --hero-photo-overlay: linear-gradient(90deg, transparent 0%, transparent 53%, color-mix(in oklab, var(--hero-surface) 82%, transparent) 61%, transparent 75%);
+  --hero-gradient:
+    radial-gradient(40rem 32rem at 78% 45%, oklch(0.3 0.06 230 / 0.55), transparent 70%),
+    radial-gradient(36rem 28rem at 8% 10%, oklch(0.88 0.19 128 / 0.14), transparent 65%),
+    linear-gradient(115deg, oklch(0.2 0.03 150) 0%, oklch(0.18 0.015 170) 45%, oklch(0.2 0.035 225) 100%);
+  --hero-photo-overlay: none;
 }
 
 .theme-toggle { border-radius: 999px; }
@@ -229,9 +230,19 @@
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 44px 44px;
-  background-color: var(--hero-surface);
+  background-color: transparent;
+}
+.hero-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hero-gradient);
+  pointer-events: none;
 }
 .hero-background-photo {
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
   position: absolute;
   inset: 0 0 auto auto;
   width: 100%;
@@ -255,9 +266,11 @@
 @media (min-width: 768px) {
   .hero-background-photo {
     inset: 0 0 0 auto;
-    width: 46%;
+    width: 50%;
     height: 100%;
     object-position: center center;
+    -webkit-mask-image: radial-gradient(ellipse 75% 85% at 60% 42%, #000 45%, transparent 100%);
+    mask-image: radial-gradient(ellipse 75% 85% at 60% 42%, #000 45%, transparent 100%);
   }
   .hero-photo-blend {
     inset: 0;
