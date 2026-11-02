@@ -76,7 +76,7 @@
   /* Light theme: the photo's dark studio background is eased toward the light
      surface with soft edge washes so it blends instead of reading as a dark block. */
   --hero-photo-overlay:
-    linear-gradient(90deg, var(--hero-surface) 0%, var(--hero-surface) 52%, transparent 70%),
+    linear-gradient(90deg, color-mix(in oklab, var(--hero-surface) 97%, transparent) 0%, color-mix(in oklab, var(--hero-surface) 97%, transparent) 52%, transparent 70%),
     linear-gradient(115deg, transparent 58%, color-mix(in oklab, var(--hero-surface) 16%, transparent) 100%),
     linear-gradient(180deg, color-mix(in oklab, var(--hero-surface) 50%, transparent) 0%, transparent 10%);
   --hero-mobile-overlay: linear-gradient(180deg, transparent 0%, transparent 65%, var(--hero-surface) 100%);
@@ -117,7 +117,7 @@
   --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
   /* Dark theme: a single blend is enough — the photo's dark background already
      sits naturally on the dark surface, so no light washes are applied. */
-  --hero-photo-overlay: linear-gradient(90deg, var(--hero-surface) 0%, var(--hero-surface) 50%, transparent 70%);
+  --hero-photo-overlay: linear-gradient(90deg, color-mix(in oklab, var(--hero-surface) 97%, transparent) 0%, color-mix(in oklab, var(--hero-surface) 97%, transparent) 50%, transparent 70%);
 }
 
 .theme-toggle { border-radius: 999px; }
