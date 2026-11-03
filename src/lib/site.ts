@@ -1,4 +1,4 @@
-import photo from "@/assets/koder-imran-hero-cutout.png.asset.json";
+import photo from "@/assets/imran-original-portrait-transparent.png";
 export const SITE = {
   name: "Imran",
   brand: "Koder Imran",
@@ -7,7 +7,7 @@ export const SITE = {
   email: "koderimran@gmail.com",
   phone: "+8801737919566",
   location: "Khilkhet, Dhaka, Bangladesh",
-  portrait: photo.url,
+  portrait: photo,
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/al-imran-56b2091b5/" },
     { label: "Facebook", href: "https://www.facebook.com/CoderImranBD" },
