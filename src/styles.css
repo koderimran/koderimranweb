@@ -77,7 +77,9 @@
     radial-gradient(40rem 32rem at 78% 45%, oklch(0.55 0.06 230 / 0.22), transparent 70%),
     radial-gradient(36rem 28rem at 8% 10%, oklch(0.92 0.15 128 / 0.35), transparent 65%),
     linear-gradient(115deg, oklch(0.985 0.02 120) 0%, oklch(0.97 0.012 160) 45%, oklch(0.93 0.025 220) 100%);
-  --hero-photo-overlay: none;
+  --hero-photo-overlay:
+    radial-gradient(ellipse 24% 62% at 75% 52%, transparent 60%, oklch(0.95 0.018 200 / 0.9) 100%),
+    linear-gradient(90deg, transparent 50%, oklch(0.97 0.012 160 / 0.6) 58%, transparent 68%);
   --hero-mobile-overlay: none;
 }
 
@@ -118,7 +120,9 @@
     radial-gradient(40rem 32rem at 78% 45%, oklch(0.3 0.06 230 / 0.55), transparent 70%),
     radial-gradient(36rem 28rem at 8% 10%, oklch(0.88 0.19 128 / 0.14), transparent 65%),
     linear-gradient(115deg, oklch(0.2 0.03 150) 0%, oklch(0.18 0.015 170) 45%, oklch(0.2 0.035 225) 100%);
-  --hero-photo-overlay: none;
+  --hero-photo-overlay:
+    radial-gradient(ellipse 24% 62% at 75% 52%, transparent 60%, oklch(0.19 0.022 190 / 0.75) 100%),
+    linear-gradient(90deg, transparent 50%, oklch(0.18 0.015 170 / 0.6) 58%, transparent 68%);
 }
 
 .theme-toggle { border-radius: 999px; }
@@ -269,8 +273,10 @@
     width: 50%;
     height: 100%;
     object-position: center center;
-    -webkit-mask-image: radial-gradient(ellipse 75% 85% at 60% 42%, #000 45%, transparent 100%);
-    mask-image: radial-gradient(ellipse 75% 85% at 60% 42%, #000 45%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%), radial-gradient(ellipse 70% 90% at 62% 45%, #000 50%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 38%), radial-gradient(ellipse 70% 90% at 62% 45%, #000 50%, transparent 100%);
+    mask-composite: intersect;
   }
   .hero-photo-blend {
     inset: 0;
