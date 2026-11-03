@@ -1,4 +1,4 @@
-import photo from "@/assets/koder-imran.png.asset.json";
+import photo from "@/assets/koder-imran-hero-cutout.png.asset.json";
 export const SITE = {
   name: "Imran",
   brand: "Koder Imran",
