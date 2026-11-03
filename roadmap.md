@@ -18,5 +18,6 @@
 - [x] Both themes show the same original uploaded portrait (dark-theme cut-out removed)
 - [x] Mobile menu rows: light full-width bottom rule at rest, full-width light fill on hover
 - [x] Mobile theme button: theme-tinted fill in its resting (non-hover) state
+- [x] Replace the portrait with the latest uploaded photo, remove its background, and retain original face pixels in both themes.
 
 
