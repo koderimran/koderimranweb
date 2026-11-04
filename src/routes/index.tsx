@@ -37,7 +37,11 @@ function Index() {
     <>
       <section className="overflow-x-clip border-b">
         <div className="hero-backdrop">
-          <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
+          <div className="container-page">
+            <div className="hero-photo-stage" aria-hidden="true">
+              <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
+            </div>
+          </div>
           <div className="hero-photo-blend" aria-hidden="true" />
           <div className="container-page hero-content">
           <div className="hero-copy">
