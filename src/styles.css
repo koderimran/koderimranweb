@@ -245,15 +245,15 @@
   height: 0;
 }
 .hero-background-photo {
-  /* Sits 100px below the hero top, flush with the page container's right edge. */
+  /* 80px below the hero top, flush with the page container's right edge. */
   position: absolute;
-  top: 100px;
+  top: 80px;
   right: 0;
   width: 13rem;
   height: 13rem;
   /* Soft edge fade only — the photo's own pixels are untouched. */
-  -webkit-mask-image: radial-gradient(72% 72% at 50% 48%, #000 58%, transparent 92%);
-  mask-image: radial-gradient(72% 72% at 50% 48%, #000 58%, transparent 92%);
+  -webkit-mask-image: radial-gradient(78% 78% at 50% 46%, #000 42%, transparent 100%);
+  mask-image: radial-gradient(78% 78% at 50% 46%, #000 42%, transparent 100%);
 }
 .hero-photo-blend {
   position: absolute;
@@ -270,7 +270,15 @@
 .hero-copy { max-width: 36rem; }
 .hero-copy h1 { letter-spacing: 0; }
 @media (min-width: 768px) {
-  .hero-background-photo { width: 18rem; height: 18rem; }
+  /* Grows from 80px below the top all the way down to the hero bottom. */
+  .hero-background-photo {
+    top: 80px;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    max-width: 46%;
+  }
   .hero-photo-blend {
     inset: 0;
     height: auto;
@@ -282,19 +290,11 @@
     min-height: 36rem;
     padding-block: 3.5rem;
   }
-  .hero-copy { width: 53%; }
-}
-@media (min-width: 1024px) {
-  .hero-background-photo { width: 22rem; height: 22rem; }
-}
-@media (min-width: 1200px) {
-  .hero-background-photo { width: 26rem; height: 26rem; }
-}
-@media (min-width: 1400px) {
-  .hero-background-photo { width: 29rem; height: 29rem; }
+  .hero-copy { width: 48%; }
 }
 @media (min-width: 1024px) {
   .hero-content { min-height: 39rem; padding-block: 4rem; }
+  .hero-copy { width: 50%; }
 }
 
 @utility eyebrow {
