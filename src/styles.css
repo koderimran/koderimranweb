@@ -74,9 +74,8 @@
   --shadow-header: 0 8px 24px -12px color-mix(in oklab, var(--ink) 24%, transparent);
   --hero-surface: var(--background);
   --hero-gradient:
-    radial-gradient(40rem 32rem at 78% 45%, oklch(0.55 0.06 230 / 0.22), transparent 70%),
-    radial-gradient(36rem 28rem at 8% 10%, oklch(0.92 0.15 128 / 0.35), transparent 65%),
-    linear-gradient(115deg, oklch(0.985 0.02 120) 0%, oklch(0.97 0.012 160) 45%, oklch(0.93 0.025 220) 100%);
+    linear-gradient(155deg, color-mix(in oklab, var(--signal) 13%, transparent), transparent 52%),
+    linear-gradient(110deg, oklch(0.985 0.014 140) 0%, oklch(0.965 0.024 160) 48%, oklch(0.92 0.04 205) 100%);
   --hero-photo-overlay: none;
   --hero-mobile-overlay: none;
 }
@@ -115,9 +114,8 @@
   --header-scrolled-border: color-mix(in oklab, var(--border) 85%, var(--signal));
   --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
   --hero-gradient:
-    radial-gradient(40rem 32rem at 78% 45%, oklch(0.3 0.06 230 / 0.55), transparent 70%),
-    radial-gradient(36rem 28rem at 8% 10%, oklch(0.88 0.19 128 / 0.14), transparent 65%),
-    linear-gradient(115deg, oklch(0.2 0.03 150) 0%, oklch(0.18 0.015 170) 45%, oklch(0.2 0.035 225) 100%);
+    linear-gradient(155deg, color-mix(in oklab, var(--signal) 9%, transparent), transparent 55%),
+    linear-gradient(110deg, oklch(0.205 0.03 150) 0%, oklch(0.215 0.034 175) 48%, oklch(0.265 0.046 215) 100%);
   --hero-photo-overlay: none;
 }
 
@@ -246,9 +244,9 @@
   inset: 0;
 }
 .hero-background-photo {
-  /* 80px below the hero top, flush with the page container's right edge. */
+  /* Flush with the hero top and the page container's right edge. */
   position: absolute;
-  top: 80px;
+  top: 0;
   right: var(--page-gutter);
   width: 13rem;
   height: 13rem;
@@ -271,9 +269,9 @@
 .hero-copy { max-width: 36rem; }
 .hero-copy h1 { letter-spacing: 0; }
 @media (min-width: 768px) {
-  /* Grows from 80px below the top all the way down to the hero bottom. */
+  /* Fills the hero from top to bottom without changing the source photo. */
   .hero-background-photo {
-    height: calc(100% - 80px);
+    height: 100%;
     width: auto;
     max-width: 46%;
   }
