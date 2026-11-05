@@ -334,14 +334,18 @@
   .hero-content { position: relative; }
   .hero-specialism {
     position: absolute;
-    bottom: 3rem;
-    /* Sits just left of the photo (photo max-width 46%). */
-    right: calc(var(--page-gutter) + min(46%, 30rem) - 3rem);
+    /* Bottom lines up with the "Trusted by" line; sits by the right shoulder. */
+    bottom: 4rem;
+    right: calc(var(--page-gutter) + 0.75rem);
+    padding: 0.6rem 0.7rem;
+    gap: 0.4rem;
     flex-direction: column;
     margin-top: 0;
     z-index: 2;
   }
-  .hero-specialism-list { flex-direction: column; align-items: flex-start; }
+  .hero-specialism-list { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .hero-specialism-label { font-size: 0.6rem; }
+  .hero-specialism-chip { font-size: 0.7rem; padding: 0.2rem 0.55rem; }
 }
 @media (min-width: 1024px) {
   .hero-content { min-height: 39rem; padding-block: 4rem; }
