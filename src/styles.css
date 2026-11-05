@@ -82,7 +82,7 @@
     color-mix(in oklab, var(--background) 78%, transparent) 42%,
     color-mix(in oklab, var(--background) 18%, transparent) 62%,
     transparent 78%);
-  --hero-mobile-overlay: linear-gradient(180deg, transparent 55%, color-mix(in oklab, var(--background) 85%, transparent) 100%);
+  --hero-mobile-overlay: none;
 }
 
 :root.dark {
