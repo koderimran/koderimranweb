@@ -64,7 +64,17 @@ function Index() {
             </div>
 
             <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Germany</p>
-            <p className="hero-specialism mt-6 text-sm font-semibold text-muted-foreground">Ads · GA4 · Shopify · WP</p>
+          </div>
+          <div className="hero-specialism animate-rise" style={{ animationDelay: "450ms" }}>
+            <p className="hero-specialism-label">Specialists in</p>
+            <ul className="hero-specialism-list">
+              {["Ads", "GA4", "Shopify", "WP"].map((t) => (
+                <li key={t} className="hero-specialism-chip">
+                  <span className="size-1.5 rounded-full bg-signal" aria-hidden="true" />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
           </div>
         </div>
