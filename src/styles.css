@@ -679,3 +679,11 @@ footer a:hover {
   }
 }
 
+
+/* Light theme only: stronger copy contrast over the hero photo. */
+:root:not(.dark) .hero-copy .text-muted-foreground {
+  color: color-mix(in oklab, var(--foreground) 78%, var(--background));
+}
+:root:not(.dark) .hero-title {
+  text-shadow: 0 1px 14px color-mix(in oklab, var(--background) 85%, transparent);
+}
