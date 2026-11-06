@@ -83,6 +83,9 @@
     color-mix(in oklab, var(--background) 18%, transparent) 62%,
     transparent 78%);
   --hero-mobile-overlay: none;
+  --hero-badge-glass: color-mix(in oklab, var(--card) 48%, transparent);
+  --hero-badge-border: color-mix(in oklab, var(--card) 75%, var(--border));
+  --hero-badge-shadow: 0 8px 24px -12px color-mix(in oklab, var(--foreground) 28%, transparent);
 }
 
 :root.dark {
@@ -123,6 +126,8 @@
     linear-gradient(110deg, oklch(0.205 0.03 150) 0%, oklch(0.215 0.034 175) 48%, oklch(0.265 0.046 215) 100%);
   --hero-photo-overlay: none;
   --hero-mobile-overlay: none;
+  --hero-badge-glass: color-mix(in oklab, var(--card) 54%, transparent);
+  --hero-badge-border: color-mix(in oklab, var(--foreground) 24%, transparent);
 }
 
 .theme-toggle { border-radius: 999px; }
@@ -272,10 +277,15 @@
 .hero-content {
   position: relative;
   padding-top: 20rem;
-  padding-bottom: 3rem;
+  padding-bottom: 7rem;
 }
 .hero-copy { max-width: 36rem; }
 .hero-copy h1 { letter-spacing: 0; }
+.hero-copy .hero-title { font-size: 1.75rem; }
+.hero-title-line { display: block; white-space: nowrap; }
+@media (min-width: 400px) {
+  .hero-copy .hero-title { font-size: 2.25rem; }
+}
 @media (min-width: 768px) {
   /* Fills the hero from top to bottom without changing the source photo. */
   .hero-background-photo {
@@ -294,62 +304,54 @@
     justify-content: center;
     align-items: flex-start;
     min-height: 36rem;
-    padding-block: 3.5rem;
+    padding-block: 3.5rem 7rem;
   }
   .hero-copy { width: 48%; }
 }
 .hero-specialism {
-  margin-top: 1.75rem;
+  position: absolute;
+  bottom: 1.25rem;
+  right: var(--page-gutter);
+  z-index: 2;
   display: inline-flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 1.1rem;
-  background: color-mix(in oklab, var(--card) 78%, transparent);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 14px 34px -18px color-mix(in oklab, var(--foreground) 35%, transparent);
+  gap: 0.35rem;
+  padding: 0.6rem 0.7rem;
+  max-width: calc(100% - 2 * var(--page-gutter));
+  border: 1px solid var(--hero-badge-border);
+  border-radius: 0.5rem;
+  background: var(--hero-badge-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--hero-badge-shadow);
 }
 .hero-specialism-label {
-  font-size: 0.7rem;
+  font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
+  letter-spacing: 0;
+  color: var(--foreground);
 }
-.hero-specialism-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.hero-specialism-list { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 0.35rem; }
 .hero-specialism-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.7rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
   border: 1px solid color-mix(in oklab, var(--signal) 45%, var(--border));
-  background: color-mix(in oklab, var(--signal) 14%, var(--card));
+  background: color-mix(in oklab, var(--signal) 14%, transparent);
   color: var(--foreground);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 @media (min-width: 1024px) {
-  .hero-content { position: relative; }
-  .hero-specialism {
-    position: absolute;
-    /* Bottom lines up with the "Trusted by" line; sits by the right shoulder. */
-    bottom: 4rem;
-    right: calc(var(--page-gutter) + 0.75rem);
-    padding: 0.6rem 0.7rem;
-    gap: 0.4rem;
-    flex-direction: column;
-    margin-top: 0;
-    z-index: 2;
-  }
-  .hero-specialism-list { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
-  .hero-specialism-label { font-size: 0.6rem; }
-  .hero-specialism-chip { font-size: 0.7rem; padding: 0.2rem 0.55rem; }
+  .hero-copy .hero-title { font-size: 3rem; }
 }
 @media (min-width: 1024px) {
   .hero-content { min-height: 39rem; padding-block: 4rem; }
   .hero-copy { width: 50%; }
+}
+@media (min-width: 1200px) {
+  .hero-copy .hero-title { font-size: 3.25rem; }
 }
 
 @utility eyebrow {
