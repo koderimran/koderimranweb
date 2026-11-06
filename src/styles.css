@@ -315,13 +315,6 @@
     gap: 1rem;
     width: 100%;
   }
-  .hero-specialism {
-    position: static;
-    flex-shrink: 0;
-    margin-left: auto;
-    margin-right: 20px;
-    max-width: none;
-  }
   .hero-copy { width: 48%; }
 }
 .hero-specialism {
