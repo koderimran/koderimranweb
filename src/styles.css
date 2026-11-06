@@ -352,6 +352,16 @@
   font-weight: 700;
   white-space: nowrap;
 }
+@media (min-width: 768px) {
+  /* Badge sits in the flex row so its bottom lines up with the trusted-by line. */
+  .hero-specialism {
+    position: static;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: 20px;
+    max-width: none;
+  }
+}
 @media (min-width: 1024px) {
   .hero-copy .hero-title { font-size: 3rem; }
 }
