@@ -18,6 +18,8 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: SITE.portraitLight },
+      { name: "twitter:image", content: SITE.portraitLight },
     ],
     links: [{ rel: "canonical", href: SITE.url + "/" }],
     scripts: [faqJsonLd()],
@@ -47,7 +49,9 @@ function Index() {
               <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
             </p>
             <h1 className="hero-title animate-rise mt-6 text-4xl font-bold leading-[1.05] lg:text-6xl" style={{ animationDelay: "90ms" }}>
-              Smarter Ads. Accurate Tracking. <span className="rounded-xl bg-signal px-2 text-signal-foreground">Higher Sales.</span>
+              <span className="hero-title-line">Smarter Ads.</span>
+              <span className="hero-title-line">Accurate Tracking.</span>
+              <span className="hero-title-line"><span className="rounded-xl bg-signal px-2 text-signal-foreground">Higher Sales.</span></span>
             </h1>
             <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
               I'm <strong className="text-foreground">Imran</strong> — a Google Ads, web analytics and e-commerce
@@ -56,21 +60,20 @@ function Index() {
             </p>
             <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
               <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">
-                Get a free audit
+                Get Free Audit
               </Link>
               <Link to="/portfolio" className="btn btn-outline rounded-full px-7 py-4 font-bold">
                 See my work
               </Link>
             </div>
 
-            <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Germany</p>
+            <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Europe</p>
           </div>
           <div className="hero-specialism animate-rise" style={{ animationDelay: "450ms" }}>
             <p className="hero-specialism-label">Specialists in</p>
             <ul className="hero-specialism-list">
               {["Ads", "GA4", "Shopify", "WP"].map((t) => (
                 <li key={t} className="hero-specialism-chip">
-                  <span className="size-1.5 rounded-full bg-signal" aria-hidden="true" />
                   {t}
                 </li>
               ))}
