@@ -21,6 +21,6 @@
 - [x] Replace the portrait with the latest uploaded photo, remove its background, and retain original face pixels in both themes.
 - [x] Hero photo: use the uploaded koder-imran.png as-is with no top gap, stretching to the hero bottom, right-aligned to the page container edge; refine the continuous light/dark gradient and verify both themes.
 - [x] Keep the hero badge horizontal at bottom-right with theme-matched glass, no dots and a small label; enforce three heading lines and update audit/trust copy; verify both themes and screen sizes.
-- [ ] Change badge items back to a column at every size, 20px from the right and bottom; verify both themes.
+- [x] Change badge items back to a column at every size, 20px from the right and bottom; verify both themes.
 
 
