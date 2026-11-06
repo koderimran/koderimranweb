@@ -44,6 +44,7 @@ function Index() {
           </div>
           <div className="hero-photo-blend" aria-hidden="true" />
           <div className="container-page hero-content">
+          <div className="hero-row">
           <div className="hero-copy">
             <p className="animate-rise inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
               <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
@@ -78,6 +79,7 @@ function Index() {
                 </li>
               ))}
             </ul>
+          </div>
           </div>
           </div>
         </div>
