@@ -3,7 +3,7 @@ import photoLight from "@/assets/koder-imran-light.png.asset.json";
 export const SITE = {
   name: "Imran",
   brand: "Koder Imran",
-  url: "https://coderimranbd.com",
+  url: "https://koderimran.com",
   role: "Google Ads, Web Analytics & E-commerce Web Specialist",
   email: "koderimran@gmail.com",
   phone: "+8801737919566",
@@ -31,7 +31,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "google-ads",
-    title: "Google Ads Management",
+    title: "Google Ads Management & Optimization",
     short: "Search, Shopping & Performance Max campaigns built to lower cost per acquisition.",
     answer:
       "I plan, build and optimise Google Ads campaigns — Search, Shopping, Performance Max and remarketing — with accurate conversion tracking so every dollar is measured against real sales or leads.",
@@ -47,7 +47,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "web-analytics",
-    title: "Web Analytics & Tracking",
+    title: "Web Analytics & Conversion Tracking",
     short: "GA4, Google Tag Manager and server-side tracking you can actually trust.",
     answer:
       "I set up GA4, Google Tag Manager, Meta Pixel / Conversions API and e-commerce event tracking so you know exactly which channels, pages and campaigns drive revenue.",
@@ -63,7 +63,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "shopify",
-    title: "Shopify Store Development",
+    title: "Shopify Store Design, Tracking & Growth",
     short: "Fast, conversion-focused Shopify stores — from theme setup to custom sections.",
     answer:
       "I design and develop Shopify stores using premium or custom themes, optimised product pages, apps and payment setup — built to load fast and convert visitors into buyers.",
@@ -79,7 +79,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "wordpress-woocommerce",
-    title: "WordPress & WooCommerce",
+    title: "WordPress Website Design, Tracking & Growth",
     short: "Business websites and WooCommerce stores built with Elementor Pro and clean code.",
     answer:
       "I build responsive WordPress business sites and WooCommerce stores with Elementor Pro, Astra, Divi, Avada or WoodMart — including payment gateways, speed optimisation and technical SEO.",
