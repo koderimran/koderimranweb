@@ -141,8 +141,8 @@ export function Footer() {
         <div className="text-sm">
           <p className="eyebrow mb-3">Services</p>
           <ul className="space-y-2 text-muted-foreground">
-            <li><Link to="/services">Google Ads Management & Optimization</Link></li>
             <li><Link to="/services">Web Analytics & Conversion Tracking</Link></li>
+            <li><Link to="/services">Google Ads Management & Optimization</Link></li>
             <li><Link to="/services">Shopify Store Design, Tracking & Growth</Link></li>
             <li><Link to="/services">WordPress Website Design, Tracking & Growth</Link></li>
           </ul>

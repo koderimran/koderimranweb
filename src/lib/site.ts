@@ -30,22 +30,6 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
-    slug: "google-ads",
-    title: "Google Ads Management & Optimization",
-    short: "Search, Shopping & Performance Max campaigns built to lower cost per acquisition.",
-    answer:
-      "I plan, build and optimise Google Ads campaigns — Search, Shopping, Performance Max and remarketing — with accurate conversion tracking so every dollar is measured against real sales or leads.",
-    outcomes: ["Lower cost per lead / sale", "Clean account structure", "Weekly optimisation & reporting"],
-    deliverables: [
-      "Account audit & keyword research",
-      "Search, Shopping & PMax campaign setup",
-      "Google Merchant Center feed setup & fixes",
-      "Ad copy, extensions & negative keyword lists",
-      "Conversion tracking & enhanced conversions",
-    ],
-    tools: ["Google Ads", "Merchant Center", "Keyword Planner", "Looker Studio"],
-  },
-  {
     slug: "web-analytics",
     title: "Web Analytics & Conversion Tracking",
     short: "GA4, Google Tag Manager and server-side tracking you can actually trust.",
@@ -60,6 +44,22 @@ export const SERVICES: Service[] = [
       "Consent Mode v2 & Looker Studio dashboards",
     ],
     tools: ["GA4", "Google Tag Manager", "Meta CAPI", "Looker Studio", "Search Console"],
+  },
+  {
+    slug: "google-ads",
+    title: "Google Ads Management & Optimization",
+    short: "Search, Shopping & Performance Max campaigns built to lower cost per acquisition.",
+    answer:
+      "I plan, build and optimise Google Ads campaigns — Search, Shopping, Performance Max and remarketing — with accurate conversion tracking so every dollar is measured against real sales or leads.",
+    outcomes: ["Lower cost per lead / sale", "Clean account structure", "Weekly optimisation & reporting"],
+    deliverables: [
+      "Account audit & keyword research",
+      "Search, Shopping & PMax campaign setup",
+      "Google Merchant Center feed setup & fixes",
+      "Ad copy, extensions & negative keyword lists",
+      "Conversion tracking & enhanced conversions",
+    ],
+    tools: ["Google Ads", "Merchant Center", "Keyword Planner", "Looker Studio"],
   },
   {
     slug: "shopify",
@@ -96,12 +96,12 @@ export const SERVICES: Service[] = [
 ];
 
 export const WORKS = [
-  { name: "Lulu Teaware", url: "http://luluteaware.com/", tag: "E-commerce", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Lulu-Teaware-1024x615.png" },
-  { name: "Dutch Giant", url: "http://dutchgiant.com/", tag: "Business website", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Dutch-Giant-1024x615.png" },
-  { name: "Furniture From Turkey", url: "http://furniturefromturkey.com/", tag: "E-commerce", img: "https://coderimranbd.com/wp-content/uploads/2026/01/FFT-1024x615.png" },
-  { name: "Emi Code", url: "http://emicode.com/", tag: "Agency website", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Am-I-Responsive-2-1024x615.png" },
-  { name: "Theme Skills", url: "http://themeskills.com/", tag: "WordPress", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Theme-Skills-1024x616.png" },
-  { name: "Nova Module", url: "http://novamodule.com/", tag: "Corporate website", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Nova-Module-1024x615.png" },
+  { name: "Lulu Teaware", url: "http://luluteaware.com/", tag: "E-commerce", img: "https://koderimran.com/wp-content/uploads/2026/01/Lulu-Teaware-1024x615.png" },
+  { name: "Dutch Giant", url: "http://dutchgiant.com/", tag: "Business website", img: "https://koderimran.com/wp-content/uploads/2026/01/Dutch-Giant-1024x615.png" },
+  { name: "Furniture From Turkey", url: "http://furniturefromturkey.com/", tag: "E-commerce", img: "https://koderimran.com/wp-content/uploads/2026/01/FFT-1024x615.png" },
+  { name: "Emi Code", url: "http://emicode.com/", tag: "Agency website", img: "https://koderimran.com/wp-content/uploads/2026/01/Am-I-Responsive-2-1024x615.png" },
+  { name: "Theme Skills", url: "http://themeskills.com/", tag: "WordPress", img: "https://koderimran.com/wp-content/uploads/2026/01/Theme-Skills-1024x616.png" },
+  { name: "Nova Module", url: "http://novamodule.com/", tag: "Corporate website", img: "https://koderimran.com/wp-content/uploads/2026/01/Nova-Module-1024x615.png" },
 ];
 
 export const REVIEWS = [
