@@ -155,7 +155,7 @@ export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: str
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="animate-rise mt-4 max-w-4xl text-4xl font-bold md:text-6xl" style={{ animationDelay: "90ms" }}>{title}</h1>
         <p className="animate-rise mt-6 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
-        <Link to="/contact" className="btn btn-ink animate-rise mt-8 rounded-full px-7 py-4 font-bold" style={{ animationDelay: "270ms" }}>
+        <Link to="/contact" className="page-hero-cta btn btn-ink animate-rise mt-8 rounded-full px-7 py-4 font-bold" style={{ animationDelay: "270ms" }}>
           Book a free call
         </Link>
 
