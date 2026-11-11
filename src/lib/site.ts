@@ -11,7 +11,7 @@ export const SITE = {
   portrait: photo.url,
   portraitLight: photoLight.url,
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/al-imran-56b2091b5/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/koderimran/" },
     { label: "Facebook", href: "https://www.facebook.com/koderimran" },
     { label: "Instagram", href: "https://www.instagram.com/koderimran" },
     { label: "X", href: "https://x.com/koderimran" },
