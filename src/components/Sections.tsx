@@ -39,13 +39,6 @@ const SERVICE_PACKAGES: Record<string, { name: string; summary: string; features
   ],
 };
 
-const PACKAGE_COMPARISON: Record<string, string[]> = {
-  "web-analytics": ["GA4 setup / audit", "GTM installation", "Core event tracking", "E-commerce / lead tracking", "Google Ads conversions", "Enhanced conversions", "Looker Studio dashboard"],
-  "google-ads": ["Account and goal review", "Keyword research", "Campaign setup", "Conversion tracking", "Landing-page recommendations", "Ongoing optimisation", "Performance reporting"],
-  shopify: ["Store and theme setup", "Core pages and navigation", "Custom sections", "GA4 / GTM integration", "E-commerce event tracking", "Marketing integrations", "Speed and SEO improvements"],
-  "wordpress-woocommerce": ["WordPress setup", "Responsive page design", "Custom layouts", "GA4 / GTM integration", "Conversion tracking", "WooCommerce setup", "Performance and SEO"],
-};
-
 function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[number]; index: number }) {
   const [selected, setSelected] = useState(1);
   const [compareOpen, setCompareOpen] = useState(false);
