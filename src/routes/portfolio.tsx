@@ -38,7 +38,7 @@ function Portfolio() {
             A selection of websites, online stores and digital projects. Explore the work, then see how design,
             measurement and marketing can work together to support growth.
           </p>
-          <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
+          <div className="page-hero-actions animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
             <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Discuss a project</Link>
             <Link to="/services" className="btn btn-outline rounded-full px-7 py-4 font-bold">Explore services</Link>
           </div>
