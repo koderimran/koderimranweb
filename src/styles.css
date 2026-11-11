@@ -320,7 +320,7 @@
 .hero-specialism {
   position: absolute;
   bottom: 20px;
-  right: 20px;
+  right: var(--page-gutter);
   z-index: 2;
   display: inline-flex;
   flex-direction: column;
@@ -358,7 +358,7 @@
     position: static;
     flex-shrink: 0;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 0;
     max-width: none;
   }
 }
