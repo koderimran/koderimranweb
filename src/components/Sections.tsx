@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
 import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -96,7 +97,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           <p className="eyebrow">Service 0{index + 1}</p>
           <span className="text-xs font-semibold text-muted-foreground">Personalised service · Worldwide</span>
         </div>
-        <h2 className="mt-3 max-w-4xl text-2xl font-bold tracking-tight md:text-3xl">{service.title}</h2>
+        <h2 className="mt-3 max-w-4xl text-lg font-semibold tracking-tight text-muted-foreground md:text-xl">{service.title}</h2>
       </div>
 
       <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
@@ -176,18 +177,19 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
         </aside>
       </div>
 
-      {compareOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm sm:p-6" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
-          <section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={`compare-title-${service.slug}`} aria-describedby={`compare-description-${service.slug}`} tabIndex={-1} className="max-h-[90dvh] w-full max-w-5xl overflow-y-auto rounded-3xl border bg-card p-5 shadow-2xl sm:p-7">
-            <div className="flex items-start justify-between gap-4">
-              <div>
+      {compareOpen && createPortal(
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 p-3 backdrop-blur-md sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
+          <section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={`compare-title-${service.slug}`} aria-describedby={`compare-description-${service.slug}`} tabIndex={-1} className="flex max-h-[calc(100dvh-1.5rem)] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border bg-card shadow-2xl sm:max-h-[calc(100dvh-2.5rem)] sm:rounded-3xl">
+            <div className="flex shrink-0 items-start justify-between gap-4 border-b px-5 py-4 sm:px-7 sm:py-5">
+              <div className="min-w-0">
                 <p className="eyebrow">Package comparison</p>
-                <h3 id={`compare-title-${service.slug}`} className="mt-2 text-xl font-bold md:text-2xl">Find the right level of support</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{service.title}</p>
+                <h3 id={`compare-title-${service.slug}`} className="mt-1.5 text-lg font-bold tracking-tight sm:text-xl">Compare what’s included</h3>
+                <p className="mt-1 text-xs text-muted-foreground">{service.title}</p>
               </div>
-              <button type="button" onClick={() => setCompareOpen(false)} aria-label="Close package comparison" className="grid size-10 shrink-0 place-items-center rounded-full border text-xl text-muted-foreground transition hover:bg-muted hover:text-foreground">×</button>
+              <button type="button" onClick={() => setCompareOpen(false)} aria-label="Close package comparison" className="grid size-9 shrink-0 place-items-center rounded-full border text-xl text-muted-foreground transition hover:bg-muted hover:text-foreground">×</button>
             </div>
-            <div className="mt-6 overflow-x-auto rounded-2xl border">
+            <div className="min-h-0 flex-1 overflow-auto px-4 py-4 sm:px-7 sm:py-5">
+              <div className="overflow-x-auto rounded-xl border">
               <table className="w-full min-w-[620px] border-collapse text-left text-sm">
                 <thead className="bg-muted/70">
                   <tr>
@@ -213,14 +215,16 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
                   ))}
                 </tbody>
               </table>
+              </div>
+              <p id={`compare-description-${service.slug}`} className="mt-3 text-xs leading-relaxed text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
             </div>
-            <p id={`compare-description-${service.slug}`} className="mt-4 text-xs text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
-            <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-outline rounded-full px-5 py-3 text-sm font-bold">Close</button>
-              <Link to="/contact" className="btn btn-ink inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
+            <div className="flex shrink-0 flex-col-reverse gap-2 border-t bg-card px-5 py-4 sm:flex-row sm:justify-end sm:px-7">
+              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-outline rounded-full px-5 py-2.5 text-sm font-bold">Close</button>
+              <Link to="/contact" className="btn btn-ink inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
             </div>
           </section>
-        </div>
+        </div>,
+        document.body,
       )}
     </Reveal>
   );
