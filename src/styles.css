@@ -760,3 +760,115 @@ footer a:hover {
 :root:not(.dark) .hero-title {
   text-shadow: 0 1px 14px color-mix(in oklab, var(--background) 85%, transparent);
 }
+
+
+/* ===== Responsive refinements ===== */
+@media (max-width: 767px) {
+  :root { --page-gutter: clamp(1rem, 4.5vw, 1.25rem); }
+
+  html, body { max-width: 100%; overflow-x: clip; }
+  img, video, svg { max-width: 100%; }
+
+  /* Home hero: scale the portrait with the viewport instead of keeping it fixed. */
+  .hero-background-photo {
+    top: 0;
+    right: 50%;
+    width: clamp(8.5rem, 39vw, 14rem);
+    height: auto;
+    max-height: none;
+    aspect-ratio: 4 / 5;
+    transform: translateX(50%);
+    object-fit: cover;
+  }
+  .hero-photo-blend {
+    height: clamp(16rem, 66vw, 20rem);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in oklab, var(--background) 12%, transparent) 48%,
+      var(--background) 100%
+    );
+  }
+  .hero-content {
+    padding-top: clamp(16.5rem, 67vw, 20rem);
+    padding-bottom: 7.75rem;
+  }
+  .hero-copy {
+    width: 100%;
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .hero-copy > p:first-child { margin-inline: auto; }
+  .hero-copy .hero-title {
+    font-size: clamp(1.65rem, 7.1vw, 2.25rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .hero-title-line { white-space: normal; }
+  .hero-copy > p:not(:first-child) { margin-inline: auto; }
+  .hero-copy > div { width: 100%; flex-direction: column; }
+  .hero-copy > div > a { width: 100%; }
+  .hero-specialism {
+    right: 50%;
+    bottom: 1rem;
+    transform: translateX(50%);
+    align-items: center;
+    width: max-content;
+    max-width: calc(100% - 2 * var(--page-gutter));
+  }
+  .hero-specialism-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Page-level intro sections and their actions remain balanced on phones. */
+  .page-hero-content,
+  .portfolio-hero-content {
+    text-align: center;
+  }
+  .page-hero-content > *,
+  .portfolio-hero-content > * { margin-left: auto; margin-right: auto; }
+  .page-hero-content .page-hero-actions,
+  .portfolio-hero-content .page-hero-actions {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  .page-hero-content .page-hero-actions a,
+  .portfolio-hero-content .page-hero-actions a { width: 100%; }
+
+  /* Comfortable mobile spacing and prevent long content from forcing overflow. */
+  .container-page { min-width: 0; }
+  .container-page > * { min-width: 0; }
+  .site-header-row { min-height: 3.75rem; }
+  .site-header-logo { height: 2.15rem; }
+  .site-header[data-compact="true"] .site-header-logo { height: 1.6rem; }
+  .site-header-row > div:last-child { margin-left: auto; }
+  .site-header .btn { white-space: nowrap; }
+  .page-frame { overflow-x: clip; }
+  .faq-item { padding: 1.125rem; }
+  .faq-item summary { gap: 0.75rem; }
+  .faq-item summary > span { flex-shrink: 0; }
+  form.rounded-3xl { padding: 1.25rem; }
+  .hero-specialism-chip { font-size: 0.65rem; }
+  .footer, footer { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 380px) {
+  .hero-content { padding-top: clamp(15.5rem, 68vw, 17rem); }
+  .hero-copy .hero-title { font-size: clamp(1.5rem, 7vw, 1.75rem); }
+  .hero-copy > p:not(:first-child) { font-size: 1rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-content { min-height: 34rem; padding-bottom: 10rem; }
+  .hero-copy { width: 54%; }
+  .hero-copy .hero-title { font-size: clamp(2.5rem, 4.4vw, 3rem); }
+  .hero-background-photo { max-width: 44%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background-photo { scroll-behavior: auto; }
+}
