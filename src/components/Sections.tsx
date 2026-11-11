@@ -50,7 +50,6 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
   const [selected, setSelected] = useState(1);
   const [compareOpen, setCompareOpen] = useState(false);
   const packages = SERVICE_PACKAGES[service.slug] ?? SERVICE_PACKAGES["web-analytics"];
-  const features = PACKAGE_COMPARISON[service.slug] ?? PACKAGE_COMPARISON["web-analytics"];
 
   useEffect(() => {
     if (!compareOpen) return;
@@ -158,26 +157,21 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               </div>
               <button type="button" onClick={() => setCompareOpen(false)} aria-label="Close package comparison" className="grid size-10 shrink-0 place-items-center rounded-full border text-xl text-muted-foreground transition hover:bg-muted hover:text-foreground">×</button>
             </div>
-            <div className="mt-6 overflow-x-auto">
-              <table className="w-full min-w-[36rem] border-separate border-spacing-0 text-left text-sm">
-                <thead>
-                  <tr>
-                    <th className="border-b p-3 font-semibold text-muted-foreground">Included</th>
-                    {packages.map((item, i) => <th key={item.name} className={`border-b p-3 font-bold ${i === selected ? "bg-accent/50 text-foreground" : ""}`}>{item.name}</th>)}
-                  </tr>
-                </thead>
-                <tbody>
-                  {features.map((feature, row) => (
-                    <tr key={feature}>
-                      <th className="border-b p-3 font-medium text-muted-foreground">{feature}</th>
-                      {packages.map((item, col) => {
-                        const included = item.features.some((entry) => entry.toLowerCase().includes(feature.toLowerCase().split(" ")[0])) || (col > 0 && item.features.some((entry) => entry.startsWith("Everything in")));
-                        return <td key={item.name} className={`border-b p-3 ${col === selected ? "bg-accent/30" : ""}`}><span className={included ? "font-bold text-foreground" : "text-muted-foreground/40"}>{included ? "✓" : "—"}</span></td>;
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="mt-6 grid gap-3 md:grid-cols-3">
+              {packages.map((item, i) => (
+                <div key={item.name} className={`rounded-2xl border p-4 ${i === selected ? "border-ring bg-accent/30" : "bg-background"}`}>
+                  <p className="text-sm font-bold">{item.name}</p>
+                  <p className="mt-2 min-h-12 text-xs leading-relaxed text-muted-foreground">{item.summary}</p>
+                  <ul className="mt-4 space-y-3">
+                    {item.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-xs leading-relaxed">
+                        <Check className="mt-0.5 size-3.5 shrink-0 text-ring" aria-hidden="true" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
             <p className="mt-4 text-xs text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
