@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
 import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -42,15 +42,42 @@ const SERVICE_PACKAGES: Record<string, { name: string; summary: string; features
 function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[number]; index: number }) {
   const [selected, setSelected] = useState(1);
   const [compareOpen, setCompareOpen] = useState(false);
+  const dialogRef = useRef<HTMLElement>(null);
+  const compareButtonRef = useRef<HTMLButtonElement>(null);
   const packages = SERVICE_PACKAGES[service.slug] ?? SERVICE_PACKAGES["web-analytics"];
 
   useEffect(() => {
     if (!compareOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const dialog = dialogRef.current;
+    const focusable = dialog?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    );
+    focusable?.[0]?.focus();
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setCompareOpen(false);
+      if (event.key === "Escape") {
+        setCompareOpen(false);
+        return;
+      }
+      if (event.key !== "Tab" || !focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      compareButtonRef.current?.focus();
+    };
   }, [compareOpen]);
 
   return (
@@ -132,7 +159,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
             </ul>
           </div>
           <div className="mt-5 grid gap-2 border-t pt-4">
-            <button type="button" onClick={() => setCompareOpen(true)} className="btn btn-outline w-full rounded-full px-5 py-3 text-sm font-bold">Compare packages</button>
+            <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-outline w-full rounded-full px-5 py-3 text-sm font-bold">Compare packages</button>
             <Link to="/contact" className="btn btn-ink flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
               Request a quote <ArrowUpRight className="size-4" aria-hidden="true" />
             </Link>
@@ -142,7 +169,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
 
       {compareOpen && (
         <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
-          <section role="dialog" aria-modal="true" aria-labelledby={`compare-title-${service.slug}`} className="max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl border bg-card p-5 shadow-2xl sm:max-w-4xl sm:rounded-3xl sm:p-7">
+          <section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={`compare-title-${service.slug}`} aria-describedby={`compare-description-${service.slug}`} tabIndex={-1} className="max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl border bg-card p-5 shadow-2xl sm:max-w-4xl sm:rounded-3xl sm:p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="eyebrow">Package comparison</p>
@@ -167,7 +194,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
+            <p id={`compare-description-${service.slug}`} className="mt-4 text-xs text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
               <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-outline rounded-full px-5 py-3 text-sm font-bold">Close</button>
               <Link to="/contact" className="btn btn-ink inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
