@@ -138,14 +138,14 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
             </div>
             <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">3 options</span>
           </div>
-          <div className="mt-5 grid grid-cols-3 rounded-xl bg-muted p-1" role="tablist" aria-label={service.title + " packages"}>
+          <div className="mt-5 grid grid-cols-3 rounded-xl bg-muted p-1" role="group" aria-label={service.title + " packages"}>
             {packages.map((item, i) => (
-              <button key={item.name} type="button" role="tab" aria-selected={selected === i} onClick={() => setSelected(i)} className={`rounded-lg px-2 py-2.5 text-xs font-bold transition sm:text-sm ${selected === i ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
+              <button key={item.name} type="button" aria-pressed={selected === i} onClick={() => setSelected(i)} className={`rounded-lg px-2 py-2.5 text-xs font-bold transition sm:text-sm ${selected === i ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
                 {item.name}
               </button>
             ))}
           </div>
-          <div className="min-h-[16rem] pt-5" role="tabpanel">
+          <div className="min-h-[16rem] pt-5" aria-live="polite">
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{packages[selected].name} package</p>
             <h4 className="mt-2 text-xl font-bold">{packages[selected].summary}</h4>
             <p className="mt-2 text-sm text-muted-foreground">Scope-based quote</p>
