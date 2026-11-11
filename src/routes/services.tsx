@@ -35,9 +35,9 @@ export const Route = createFileRoute("/services")({
   }),
   component: () => (
     <>
-      <PageHero eyebrow="Services" title="Digital services built for measurable growth" text="From reliable conversion tracking and smarter Google Ads to conversion-focused Shopify and WordPress websites, bring your digital growth essentials together with one specialist." />
-      <section className="container-page py-16"><ServiceGrid detailed /></section>
-      <section className="container-page pb-8">
+      <PageHero eyebrow="Services" title="The right expertise for your next move" text="Explore my services in analytics, Google Ads, Shopify and WordPress. See what’s included, the outcomes to expect, and choose a package that fits your project." />
+      <section className="container-page py-14 md:py-20"><ServiceGrid detailed /></section>
+      <section className="container-page pb-6 md:pb-10">
         <SectionHead eyebrow="Process" title="From first call to growth" />
         <Process />
       </section>
