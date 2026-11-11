@@ -51,8 +51,8 @@ function Index() {
             </p>
             <h1 className="hero-title animate-rise mt-6 text-4xl font-bold leading-[1.05] lg:text-6xl" style={{ animationDelay: "90ms" }}>
               <span className="hero-title-line">Smarter Ads.</span>
-              <span className="hero-title-line">Accurate Tracking.</span>
-              <span className="hero-title-line"><span className="rounded-xl bg-signal px-2 text-signal-foreground">Higher Sales.</span></span>
+              <span className="hero-title-line">Precise Tracking.</span>
+              <span className="hero-title-line"><span className="rounded-xl bg-signal px-2 text-signal-foreground">Maximum Sales.</span></span>
             </h1>
             <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
               I'm <strong className="text-foreground">Imran</strong> — a Google Ads, web analytics and e-commerce
