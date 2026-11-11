@@ -69,33 +69,34 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           <h3 className="mt-3 max-w-2xl text-2xl font-bold leading-tight md:text-3xl">{service.short}</h3>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{service.answer}</p>
 
-          <div className="mt-8">
-            <h4 className="text-sm font-bold">What’s included</h4>
-            <ul className="mt-4 grid gap-x-5 gap-y-3 sm:grid-cols-2">
-              {service.deliverables.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
-                  <Check className="mt-0.5 size-4 shrink-0 text-ring" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mt-8 grid gap-7 sm:grid-cols-2">
+          <div className="mt-8 space-y-7">
             <div>
-              <h4 className="text-sm font-bold">Expected outcomes</h4>
-              <ul className="mt-3 space-y-2.5">
-                {service.outcomes.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm leading-relaxed">
+              <h4 className="text-sm font-bold">What’s included</h4>
+              <ul className="mt-4 space-y-3">
+                {service.deliverables.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
                     <Check className="mt-0.5 size-4 shrink-0 text-ring" aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
+
+            <div className="border-t pt-6">
+              <h4 className="text-sm font-bold">Expected outcomes</h4>
+              <ul className="mt-4 space-y-3">
+                {service.outcomes.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed">
+                    <Check className="mt-0.5 size-4 shrink-0 text-ring" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="border-t pt-6">
               <h4 className="text-sm font-bold">Tools & technologies</h4>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {service.tools.map((tool) => <span key={tool} className="pill rounded-full px-3 py-1.5 text-xs font-semibold">{tool}</span>)}
               </div>
             </div>
