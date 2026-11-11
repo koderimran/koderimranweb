@@ -3,8 +3,8 @@ import { SITE, SERVICES } from "@/lib/site";
 import { PageHero, ServiceGrid, Process, SectionHead } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
 
-const TITLE = "Services: Google Ads, GA4 Tracking, Shopify & WooCommerce | Imran";
-const DESC = "Google Ads management, GA4 & Google Tag Manager tracking, Shopify store development and WordPress/WooCommerce websites for growing e-commerce brands.";
+const TITLE = "Services: Conversion Tracking, Google Ads, Shopify & WordPress | Koder Imran";
+const DESC = "Web analytics and conversion tracking, Google Ads management, Shopify store design and growth, and WordPress website design and tracking by Koder Imran.";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/services")({
   }),
   component: () => (
     <>
-      <PageHero eyebrow="Services" title="Growth services for e-commerce & service businesses" text="Build the store, measure every conversion, and scale with Google Ads — handled by one accountable specialist." />
+      <PageHero eyebrow="Services" title="Digital services built for measurable growth" text="From reliable conversion tracking and smarter Google Ads to conversion-focused Shopify and WordPress websites, bring your digital growth essentials together with one specialist." />
       <section className="container-page py-16"><ServiceGrid detailed /></section>
       <section className="container-page pb-8">
         <SectionHead eyebrow="Process" title="From first call to growth" />
