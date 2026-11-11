@@ -3,7 +3,7 @@ import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check 
 import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
-const ICONS = [Megaphone, BarChart3, ShoppingBag, LayoutTemplate];
+const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
 
 export function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
   return (
