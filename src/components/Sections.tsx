@@ -44,7 +44,16 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
   const [compareOpen, setCompareOpen] = useState(false);
   const dialogRef = useRef<HTMLElement>(null);
   const compareButtonRef = useRef<HTMLButtonElement>(null);
-  const packages = SERVICE_PACKAGES[service.slug] ?? SERVICE_PACKAGES["web-analytics"];
+  const rawPackages = SERVICE_PACKAGES[service.slug] ?? SERVICE_PACKAGES["web-analytics"];
+  // Expand "Everything in ..." so each package shows its complete included task list.
+  const packages = rawPackages.map((item, i) => ({
+    ...item,
+    features: [
+      ...rawPackages.slice(0, i).flatMap((previous) => previous.features.filter((feature) => !feature.startsWith("Everything in "))),
+      ...item.features.filter((feature) => !feature.startsWith("Everything in ")),
+    ],
+  }));
+  const comparisonTasks = [...new Set(packages.flatMap((item) => item.features))];
 
   useEffect(() => {
     if (!compareOpen) return;
@@ -168,8 +177,8 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
       </div>
 
       {compareOpen && (
-        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
-          <section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={`compare-title-${service.slug}`} aria-describedby={`compare-description-${service.slug}`} tabIndex={-1} className="max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl border bg-card p-5 shadow-2xl sm:max-w-4xl sm:rounded-3xl sm:p-7">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm sm:p-6" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
+          <section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby={`compare-title-${service.slug}`} aria-describedby={`compare-description-${service.slug}`} tabIndex={-1} className="max-h-[90dvh] w-full max-w-5xl overflow-y-auto rounded-3xl border bg-card p-5 shadow-2xl sm:p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="eyebrow">Package comparison</p>
@@ -178,21 +187,32 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               </div>
               <button type="button" onClick={() => setCompareOpen(false)} aria-label="Close package comparison" className="grid size-10 shrink-0 place-items-center rounded-full border text-xl text-muted-foreground transition hover:bg-muted hover:text-foreground">×</button>
             </div>
-            <div className="mt-6 grid gap-3 md:grid-cols-3">
-              {packages.map((item, i) => (
-                <div key={item.name} className={`rounded-2xl border p-4 ${i === selected ? "border-ring bg-accent/30" : "bg-background"}`}>
-                  <p className="text-sm font-bold">{item.name}</p>
-                  <p className="mt-2 min-h-12 text-xs leading-relaxed text-muted-foreground">{item.summary}</p>
-                  <ul className="mt-4 space-y-3">
-                    {item.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 text-xs leading-relaxed">
-                        <Check className="mt-0.5 size-3.5 shrink-0 text-ring" aria-hidden="true" />
-                        <span>{feature}</span>
-                      </li>
+            <div className="mt-6 overflow-x-auto rounded-2xl border">
+              <table className="w-full min-w-[620px] border-collapse text-left text-sm">
+                <thead className="bg-muted/70">
+                  <tr>
+                    <th scope="col" className="w-[46%] px-4 py-4 text-xs font-bold uppercase tracking-wide text-muted-foreground">Tasks & features</th>
+                    {packages.map((item, i) => (
+                      <th key={item.name} scope="col" className={`px-3 py-4 text-center text-sm font-bold ${i === selected ? "bg-accent/50 text-foreground" : ""}`}>{item.name}</th>
                     ))}
-                  </ul>
-                </div>
-              ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonTasks.map((task, rowIndex) => (
+                    <tr key={task} className={rowIndex % 2 === 0 ? "bg-background" : "bg-muted/30"}>
+                      <th scope="row" className="border-t px-4 py-3 text-left text-xs font-medium leading-relaxed sm:text-sm">{task}</th>
+                      {packages.map((item, i) => {
+                        const included = item.features.includes(task);
+                        return (
+                          <td key={item.name} className={`border-t px-3 py-3 text-center ${i === selected ? "bg-accent/20" : ""}`}>
+                            <span className={`inline-flex size-7 items-center justify-center rounded-full text-base font-bold ${included ? "text-ring" : "text-muted-foreground/50"}`} aria-label={included ? "Included" : "Not included"}>{included ? "✓" : "×"}</span>
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             <p id={`compare-description-${service.slug}`} className="mt-4 text-xs text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
             <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
