@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
 import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -15,54 +16,202 @@ export function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: 
   );
 }
 
-export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
+const SERVICE_PACKAGES: Record<string, { name: string; summary: string; features: string[] }[]> = {
+  "web-analytics": [
+    { name: "Basic", summary: "Get the essential measurement foundations in place.", features: ["GA4 property setup or audit", "Google Tag Manager installation", "Core page-view and form events", "Basic conversion configuration", "Testing and handover notes"] },
+    { name: "Standard", summary: "Measure the actions that matter across your customer journey.", features: ["Everything in Basic", "Lead or e-commerce event tracking", "Google Ads conversion tracking", "Cross-domain setup when required", "Tracking validation and QA"] },
+    { name: "Premium", summary: "Build a more complete measurement and reporting system.", features: ["Everything in Standard", "Enhanced conversions where eligible", "Custom event and parameter setup", "Looker Studio reporting dashboard", "Documentation and walkthrough"] },
+  ],
+  "google-ads": [
+    { name: "Basic", summary: "A clear starting point for a focused campaign.", features: ["Account and goal review", "Keyword and audience research", "One campaign setup", "Ad copy and extensions", "Launch checks"] },
+    { name: "Standard", summary: "A structured campaign setup with conversion measurement.", features: ["Everything in Basic", "Multi-campaign structure", "Conversion tracking review or setup", "Landing-page recommendations", "Initial optimisation and reporting"] },
+    { name: "Premium", summary: "Ongoing campaign management focused on learning and improvement.", features: ["Everything in Standard", "Ongoing optimisation", "Search-term and budget reviews", "Performance reporting", "Regular strategy check-ins"] },
+  ],
+  shopify: [
+    { name: "Basic", summary: "Launch a clean, professional Shopify storefront.", features: ["Shopify setup and theme configuration", "Core pages and navigation", "Product and collection setup", "Responsive layout", "Essential app configuration"] },
+    { name: "Standard", summary: "Create a stronger storefront with reliable measurement.", features: ["Everything in Basic", "Theme customisation and custom sections", "GA4 and GTM setup", "E-commerce event tracking", "Product and collection optimisation"] },
+    { name: "Premium", summary: "A more complete store experience built to support growth.", features: ["Everything in Standard", "Advanced storefront improvements", "Marketing pixel integrations", "Speed and usability optimisation", "SEO essentials and handover support"] },
+  ],
+  "wordpress-woocommerce": [
+    { name: "Basic", summary: "Build a responsive website for your business.", features: ["WordPress installation and configuration", "Theme setup and page design", "Core business pages", "Responsive layout", "Essential plugin configuration"] },
+    { name: "Standard", summary: "Improve the website experience and measure key actions.", features: ["Everything in Basic", "Custom page sections and layouts", "GA4 and GTM integration", "Lead or form conversion tracking", "On-page SEO essentials"] },
+    { name: "Premium", summary: "A complete website or WooCommerce build with growth foundations.", features: ["Everything in Standard", "WooCommerce setup when required", "Product and checkout improvements", "Performance and technical SEO review", "Marketing integrations and handover"] },
+  ],
+};
+
+const PACKAGE_COMPARISON: Record<string, string[]> = {
+  "web-analytics": ["GA4 setup / audit", "GTM installation", "Core event tracking", "E-commerce / lead tracking", "Google Ads conversions", "Enhanced conversions", "Looker Studio dashboard"],
+  "google-ads": ["Account and goal review", "Keyword research", "Campaign setup", "Conversion tracking", "Landing-page recommendations", "Ongoing optimisation", "Performance reporting"],
+  shopify: ["Store and theme setup", "Core pages and navigation", "Custom sections", "GA4 / GTM integration", "E-commerce event tracking", "Marketing integrations", "Speed and SEO improvements"],
+  "wordpress-woocommerce": ["WordPress setup", "Responsive page design", "Custom layouts", "GA4 / GTM integration", "Conversion tracking", "WooCommerce setup", "Performance and SEO"],
+};
+
+function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[number]; index: number }) {
+  const [selected, setSelected] = useState(1);
+  const [compareOpen, setCompareOpen] = useState(false);
+  const packages = SERVICE_PACKAGES[service.slug] ?? SERVICE_PACKAGES["web-analytics"];
+  const features = PACKAGE_COMPARISON[service.slug] ?? PACKAGE_COMPARISON["web-analytics"];
+
+  useEffect(() => {
+    if (!compareOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setCompareOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [compareOpen]);
+
   return (
-    <div className={`mt-12 grid gap-5 ${detailed ? "" : "md:grid-cols-2"}`}>
+    <Reveal as="article" delay={index * 80} className="service-detail-card scroll-mt-28 overflow-hidden rounded-3xl border bg-card">
+      <div className="border-b px-6 py-6 md:px-9 md:py-7">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="eyebrow">Service 0{index + 1}</p>
+          <span className="text-xs font-semibold text-muted-foreground">Personalised service · Worldwide</span>
+        </div>
+        <h2 className="mt-3 max-w-4xl text-2xl font-bold tracking-tight md:text-3xl">{service.title}</h2>
+      </div>
+
+      <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
+        <div className="min-w-0">
+          <p className="eyebrow">The service</p>
+          <h3 className="mt-3 max-w-2xl text-2xl font-bold leading-tight md:text-3xl">{service.short}</h3>
+          <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{service.answer}</p>
+
+          <div className="mt-8">
+            <h4 className="text-sm font-bold">What’s included</h4>
+            <ul className="mt-4 grid gap-x-5 gap-y-3 sm:grid-cols-2">
+              {service.deliverables.map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
+                  <Check className="mt-0.5 size-4 shrink-0 text-ring" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-8 grid gap-7 sm:grid-cols-2">
+            <div>
+              <h4 className="text-sm font-bold">Expected outcomes</h4>
+              <ul className="mt-3 space-y-2.5">
+                {service.outcomes.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm leading-relaxed">
+                    <Check className="mt-0.5 size-4 shrink-0 text-ring" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold">Tools & technologies</h4>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {service.tools.map((tool) => <span key={tool} className="pill rounded-full px-3 py-1.5 text-xs font-semibold">{tool}</span>)}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside className="min-w-0 self-start rounded-2xl border bg-background p-4 md:p-5">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="eyebrow">Flexible options</p>
+              <h3 className="mt-1 text-xl font-bold">Choose your package</h3>
+            </div>
+            <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">3 options</span>
+          </div>
+          <div className="mt-5 grid grid-cols-3 rounded-xl bg-muted p-1" role="tablist" aria-label={service.title + " packages"}>
+            {packages.map((item, i) => (
+              <button key={item.name} type="button" role="tab" aria-selected={selected === i} onClick={() => setSelected(i)} className={`rounded-lg px-2 py-2.5 text-xs font-bold transition sm:text-sm ${selected === i ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
+                {item.name}
+              </button>
+            ))}
+          </div>
+          <div className="min-h-[16rem] pt-5" role="tabpanel">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{packages[selected].name} package</p>
+            <h4 className="mt-2 text-xl font-bold">{packages[selected].summary}</h4>
+            <p className="mt-2 text-sm text-muted-foreground">Scope-based quote</p>
+            <ul className="mt-5 space-y-3">
+              {packages[selected].features.map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm leading-relaxed">
+                  <Check className="mt-0.5 size-4 shrink-0 text-ring" aria-hidden="true" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-5 grid gap-2 border-t pt-4">
+            <button type="button" onClick={() => setCompareOpen(true)} className="btn btn-outline w-full rounded-full px-5 py-3 text-sm font-bold">Compare packages</button>
+            <Link to="/contact" className="btn btn-ink flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
+              Request a quote <ArrowUpRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </aside>
+      </div>
+
+      {compareOpen && (
+        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
+          <section role="dialog" aria-modal="true" aria-labelledby={`compare-title-${service.slug}`} className="max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl border bg-card p-5 shadow-2xl sm:max-w-4xl sm:rounded-3xl sm:p-7">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="eyebrow">Package comparison</p>
+                <h3 id={`compare-title-${service.slug}`} className="mt-2 text-xl font-bold md:text-2xl">Find the right level of support</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{service.title}</p>
+              </div>
+              <button type="button" onClick={() => setCompareOpen(false)} aria-label="Close package comparison" className="grid size-10 shrink-0 place-items-center rounded-full border text-xl text-muted-foreground transition hover:bg-muted hover:text-foreground">×</button>
+            </div>
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full min-w-[36rem] border-separate border-spacing-0 text-left text-sm">
+                <thead>
+                  <tr>
+                    <th className="border-b p-3 font-semibold text-muted-foreground">Included</th>
+                    {packages.map((item, i) => <th key={item.name} className={`border-b p-3 font-bold ${i === selected ? "bg-accent/50 text-foreground" : ""}`}>{item.name}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {features.map((feature, row) => (
+                    <tr key={feature}>
+                      <th className="border-b p-3 font-medium text-muted-foreground">{feature}</th>
+                      {packages.map((item, col) => {
+                        const included = item.features.some((entry) => entry.toLowerCase().includes(feature.toLowerCase().split(" ")[0])) || (col > 0 && item.features.some((entry) => entry.startsWith("Everything in")));
+                        return <td key={item.name} className={`border-b p-3 ${col === selected ? "bg-accent/30" : ""}`}><span className={included ? "font-bold text-foreground" : "text-muted-foreground/40"}>{included ? "✓" : "—"}</span></td>;
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
+            <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-outline rounded-full px-5 py-3 text-sm font-bold">Close</button>
+              <Link to="/contact" className="btn btn-ink inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
+            </div>
+          </section>
+        </div>
+      )}
+    </Reveal>
+  );
+}
+
+export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
+  if (detailed) {
+    return <div className="grid gap-7">{SERVICES.map((service, index) => <ServicePackagePanel key={service.slug} service={service} index={index} />)}</div>;
+  }
+
+  return (
+    <div className="mt-12 grid gap-5 md:grid-cols-2">
       {SERVICES.map((s, i) => {
         const Icon = ICONS[i % ICONS.length] ?? Megaphone;
         return (
           <Reveal as="article" key={s.slug} delay={i * 90} className="group hover-lift scroll-mt-24 rounded-3xl border bg-card p-8">
             <div className="flex items-start justify-between">
-              <span className="grid size-12 place-items-center rounded-2xl bg-accent text-accent-foreground">
-                <Icon className="size-6" />
-              </span>
+              <span className="grid size-12 place-items-center rounded-2xl bg-accent text-accent-foreground"><Icon className="size-6" /></span>
               <span className="font-display text-sm text-muted-foreground">0{i + 1}</span>
             </div>
             <h3 className="mt-6 text-2xl font-bold">{s.title}</h3>
-            <p className="mt-3 text-muted-foreground">{detailed ? s.answer : s.short}</p>
-            {detailed ? (
-              <div className="mt-6 grid gap-6 md:grid-cols-2">
-                <div>
-                  <p className="eyebrow mb-3">What you get</p>
-                  <ul className="space-y-2">
-                    {s.deliverables.map((d) => (
-                      <li key={d} className="flex gap-2 text-sm"><Check className="mt-0.5 size-4 shrink-0 text-ring" />{d}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="eyebrow mb-3">Results</p>
-                  <ul className="space-y-2">
-                    {s.outcomes.map((d) => (
-                      <li key={d} className="flex gap-2 text-sm font-semibold"><Check className="mt-0.5 size-4 shrink-0 text-ring" />{d}</li>
-                    ))}
-                  </ul>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {s.tools.map((t) => (
-                      <span key={t} className="pill rounded-full px-3 py-1 text-xs font-semibold">{t}</span>
-                    ))}
-
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {s.outcomes.map((o) => (
-                  <li key={o} className="pill rounded-full px-3 py-1 text-xs font-semibold">{o}</li>
-                ))}
-
-              </ul>
-            )}
+            <p className="mt-3 text-muted-foreground">{s.short}</p>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {s.outcomes.map((outcome) => <li key={outcome} className="pill rounded-full px-3 py-1 text-xs font-semibold">{outcome}</li>)}
+            </ul>
+            <Link to="/services" className="link-arrow mt-6">Explore service <ArrowUpRight className="size-4" /></Link>
           </Reveal>
         );
       })}
