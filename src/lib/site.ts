@@ -3,7 +3,7 @@ import photoLight from "@/assets/koder-imran-light.png.asset.json";
 export const SITE = {
   name: "Imran",
   brand: "Koder Imran",
-  url: "https://coderimranbd.com",
+  url: "https://koderimran.com",
   role: "Google Ads, Web Analytics & E-commerce Web Specialist",
   email: "koderimran@gmail.com",
   phone: "+8801737919566",
@@ -11,10 +11,10 @@ export const SITE = {
   portrait: photo.url,
   portraitLight: photoLight.url,
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/al-imran-56b2091b5/" },
-    { label: "Facebook", href: "https://www.facebook.com/CoderImranBD" },
-    { label: "Instagram", href: "https://www.instagram.com/coderimranpro" },
-    { label: "X", href: "https://x.com/CoderImran" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/koderimran/" },
+    { label: "Facebook", href: "https://www.facebook.com/koderimran" },
+    { label: "Instagram", href: "https://www.instagram.com/koderimran" },
+    { label: "X", href: "https://x.com/koderimran" },
   ],
 };
 
@@ -100,12 +100,12 @@ export const SERVICES: Service[] = [
 ];
 
 export const WORKS = [
-  { name: "Lulu Teaware", url: "http://luluteaware.com/", tag: "E-commerce", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Lulu-Teaware-1024x615.png" },
-  { name: "Dutch Giant", url: "http://dutchgiant.com/", tag: "Business website", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Dutch-Giant-1024x615.png" },
-  { name: "Furniture From Turkey", url: "http://furniturefromturkey.com/", tag: "E-commerce", img: "https://coderimranbd.com/wp-content/uploads/2026/01/FFT-1024x615.png" },
-  { name: "Emi Code", url: "http://emicode.com/", tag: "Agency website", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Am-I-Responsive-2-1024x615.png" },
-  { name: "Theme Skills", url: "http://themeskills.com/", tag: "WordPress", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Theme-Skills-1024x616.png" },
-  { name: "Nova Module", url: "http://novamodule.com/", tag: "Corporate website", img: "https://coderimranbd.com/wp-content/uploads/2026/01/Nova-Module-1024x615.png" },
+  { name: "Lulu Teaware", url: "http://luluteaware.com/", tag: "E-commerce", img: "https://koderimran.com/wp-content/uploads/2026/01/Lulu-Teaware-1024x615.png" },
+  { name: "Dutch Giant", url: "http://dutchgiant.com/", tag: "Business website", img: "https://koderimran.com/wp-content/uploads/2026/01/Dutch-Giant-1024x615.png" },
+  { name: "Furniture From Turkey", url: "http://furniturefromturkey.com/", tag: "E-commerce", img: "https://koderimran.com/wp-content/uploads/2026/01/FFT-1024x615.png" },
+  { name: "Emi Code", url: "http://emicode.com/", tag: "Agency website", img: "https://koderimran.com/wp-content/uploads/2026/01/Am-I-Responsive-2-1024x615.png" },
+  { name: "Theme Skills", url: "http://themeskills.com/", tag: "WordPress", img: "https://koderimran.com/wp-content/uploads/2026/01/Theme-Skills-1024x616.png" },
+  { name: "Nova Module", url: "http://novamodule.com/", tag: "Corporate website", img: "https://koderimran.com/wp-content/uploads/2026/01/Nova-Module-1024x615.png" },
 ];
 
 export const REVIEWS = [
