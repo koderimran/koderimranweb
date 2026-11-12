@@ -91,7 +91,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
   }, [compareOpen]);
 
   return (
-    <Reveal as="article" delay={index * 80} className="service-detail-card scroll-mt-28 overflow-hidden rounded-3xl border bg-card">
+    <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className="service-detail-card scroll-mt-28 overflow-hidden rounded-3xl border bg-card">
       <div className="border-b px-6 py-6 md:px-9 md:py-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow">Service 0{index + 1}</p>
