@@ -80,13 +80,15 @@ function Index() {
           </div>
           </div>
         </div>
-        <div className="container-page grid grid-cols-2 gap-6 border-t py-8 text-center md:grid-cols-4">
-          {STATS.map((s, i) => (
-            <Reveal key={s.v} delay={i * 90}>
-              <p className="font-display text-3xl font-bold">{s.k}</p>
-              <p className="text-sm text-muted-foreground">{s.v}</p>
-            </Reveal>
-          ))}
+        <div className="border-t">
+          <div className="container-page grid grid-cols-2 gap-6 py-8 text-center md:grid-cols-4">
+            {STATS.map((s, i) => (
+              <Reveal key={s.v} delay={i * 90}>
+                <p className="font-display text-3xl font-bold">{s.k}</p>
+                <p className="text-sm text-muted-foreground">{s.v}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
