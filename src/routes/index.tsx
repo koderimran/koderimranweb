@@ -38,7 +38,7 @@ function Index() {
   return (
     <>
       <section className="overflow-x-clip border-b">
-        <div className="hero-backdrop" style={{ "--hero-gradient": "linear-gradient(155deg, color-mix(in oklab, var(--signal) 7%, transparent), transparent 58%), linear-gradient(112deg, oklch(0.985 0.012 95) 0%, oklch(0.965 0.018 145) 48%, oklch(0.95 0.018 245) 100%)" } as React.CSSProperties}>
+        <div className="hero-backdrop">
           <div className="hero-photo-stage container-page" aria-hidden="true">
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
