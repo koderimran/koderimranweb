@@ -25,6 +25,8 @@ export type Service = {
   answer: string;
   outcomes: string[];
   deliverables: string[];
+  /** Short "who needs this service" lines shown on the home service cards. */
+  bestFor: string[];
   tools: string[];
 };
 
@@ -44,6 +46,7 @@ export const SERVICES: Service[] = [
       "Meta Pixel, Conversions API and Consent Mode support",
       "Looker Studio dashboards and tracking QA",
     ],
+    bestFor: ["Businesses with missing or broken tracking", "Teams unsure which campaigns drive sales", "Anyone who needs clear reporting"],
     tools: ["GA4", "Google Tag Manager", "Google Ads", "Meta CAPI", "Looker Studio"],
   },
   {
@@ -61,6 +64,7 @@ export const SERVICES: Service[] = [
       "Conversion tracking and enhanced conversions",
       "Search-term reviews, optimisation and performance reporting",
     ],
+    bestFor: ["Brands launching or fixing paid campaigns", "Stores that need Shopping & Performance Max", "Service businesses chasing qualified leads"],
     tools: ["Google Ads", "Merchant Center", "Keyword Planner", "GA4", "Looker Studio"],
   },
   {
@@ -78,6 +82,7 @@ export const SERVICES: Service[] = [
       "Marketing app and pixel integrations",
       "Store speed, usability and on-page SEO improvements",
     ],
+    bestFor: ["New Shopify store launches", "Stores with low conversion or slow pages", "Brands that want tracking built in"],
     tools: ["Shopify", "Liquid", "GA4", "Google Tag Manager", "Klaviyo"],
   },
   {
@@ -95,6 +100,7 @@ export const SERVICES: Service[] = [
       "Plugin, payment and marketing integrations",
       "Technical SEO, speed and ongoing improvements",
     ],
+    bestFor: ["Businesses that need a professional website", "WooCommerce stores to launch or improve", "Sites that need tracking and SEO foundations"],
     tools: ["WordPress", "WooCommerce", "Elementor Pro", "GA4", "Google Tag Manager"],
   },
 ];

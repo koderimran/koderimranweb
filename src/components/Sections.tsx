@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
+import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check, Layers } from "lucide-react";
 import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
 
 const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
 
@@ -91,7 +92,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
   }, [compareOpen]);
 
   return (
-    <Reveal as="article" delay={index * 80} className="service-detail-card scroll-mt-28 overflow-hidden rounded-3xl border bg-card">
+    <Reveal as="article" id={service.slug} delay={index * 80} className="service-detail-card scroll-mt-28 overflow-hidden rounded-3xl border bg-card">
       <div className="border-b px-6 py-6 md:px-9 md:py-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow">Service 0{index + 1}</p>
@@ -236,25 +237,86 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
   }
 
   return (
-    <div className="mt-12 grid gap-5 md:grid-cols-2">
-      {SERVICES.map((s, i) => {
-        const Icon = ICONS[i % ICONS.length] ?? Megaphone;
-        return (
-          <Reveal as="article" key={s.slug} delay={i * 90} className="group hover-lift scroll-mt-24 rounded-3xl border bg-card p-8">
-            <div className="flex items-start justify-between">
-              <span className="grid size-12 place-items-center rounded-2xl bg-accent text-accent-foreground"><Icon className="size-6" /></span>
-              <span className="font-display text-sm text-muted-foreground">0{i + 1}</span>
+    <>
+      <div className="mt-12 grid gap-6 md:grid-cols-2">
+        {SERVICES.map((s, i) => <ServiceCard3D key={s.slug} service={s} index={i} />)}
+      </div>
+
+      <Reveal className="mt-8 flex flex-col items-start justify-between gap-5 rounded-3xl border bg-secondary/50 p-6 md:flex-row md:items-center md:p-8">
+        <div>
+          <p className="font-display text-lg font-bold">Not sure which service fits?</p>
+          <p className="mt-1 max-w-xl text-sm text-muted-foreground">Tell me about your goals and I’ll point you to the right service and package for where your business is today.</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Link to="/contact" className="btn btn-ink rounded-full px-6 py-3 text-sm font-bold">Book a free call</Link>
+          <Link to="/services" className="link-arrow">Compare all packages <ArrowUpRight className="size-4" /></Link>
+        </div>
+      </Reveal>
+    </>
+  );
+}
+
+function ServiceCard3D({ service, index }: { service: (typeof SERVICES)[number]; index: number }) {
+  const Icon = ICONS[index % ICONS.length] ?? Megaphone;
+  const packages = SERVICE_PACKAGES[service.slug] ?? [];
+
+  return (
+    <Reveal as="article" delay={index * 90} className="service-reveal">
+      <TiltCard className="service-card flex h-full flex-col rounded-3xl border bg-card p-7 md:p-8">
+        <div className="flex items-start justify-between">
+          <span className="service-icon" style={{ animationDelay: `${index * 700}ms` }} aria-hidden="true">
+            <Icon className="size-7" />
+          </span>
+          <span className="font-display text-sm text-muted-foreground">0{index + 1}</span>
+        </div>
+
+        <h3 className="service-z-md mt-6 text-2xl font-bold">{service.title}</h3>
+        <p className="mt-3 text-muted-foreground">{service.short}</p>
+
+        <div className="mt-6">
+          <p className="service-label">What you get</p>
+          <ul className="mt-3 space-y-2.5">
+            {service.outcomes.map((outcome) => (
+              <li key={outcome} className="flex items-start gap-3 text-sm">
+                <span className="service-check" aria-hidden="true"><Check className="size-3.5" /></span>
+                {outcome}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-6">
+          <p className="service-label">Who needs this</p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {service.bestFor.map((item) => <li key={item} className="pill rounded-full px-3 py-1 text-xs font-semibold">{item}</li>)}
+          </ul>
+        </div>
+
+        {packages.length > 0 && (
+          <div className="service-packages mt-6 rounded-2xl border p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="service-label flex items-center gap-2"><Layers className="size-4" aria-hidden="true" />{packages.length} packages</p>
+              <span className="text-xs text-muted-foreground">Choose the level that fits</span>
             </div>
-            <h3 className="mt-6 text-2xl font-bold">{s.title}</h3>
-            <p className="mt-3 text-muted-foreground">{s.short}</p>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {s.outcomes.map((outcome) => <li key={outcome} className="pill rounded-full px-3 py-1 text-xs font-semibold">{outcome}</li>)}
+            <ul className="mt-3 grid grid-cols-3 gap-2">
+              {packages.map((item, tier) => (
+                <li key={item.name} className="service-tier" title={item.summary}>
+                  <span className="service-tier-bars" aria-hidden="true">
+                    {packages.map((_, bar) => <i key={bar} data-on={bar <= tier} />)}
+                  </span>
+                  <span className="text-xs font-bold">{item.name}</span>
+                </li>
+              ))}
             </ul>
-            <Link to="/services" className="link-arrow mt-6">Explore service <ArrowUpRight className="size-4" /></Link>
-          </Reveal>
-        );
-      })}
-    </div>
+          </div>
+        )}
+
+        <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-7">
+          <Link to="/services" hash={service.slug} className="btn btn-ink rounded-full px-6 py-3 text-sm font-bold">View packages</Link>
+          <Link to="/contact" className="link-arrow">Get a quote <ArrowUpRight className="size-4" /></Link>
+        </div>
+      </TiltCard>
+    </Reveal>
   );
 }
 
