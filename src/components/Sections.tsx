@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
@@ -7,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 
 const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
 
-export function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
+export function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: ReactNode; text?: string }) {
   return (
     <Reveal className="max-w-2xl">
       <p className="eyebrow">{eyebrow}</p>
