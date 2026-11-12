@@ -35,7 +35,7 @@ export const Route = createFileRoute("/services")({
   }),
   component: () => (
     <>
-      <PageHero eyebrow="Services" title="The right expertise for your next move" text="Explore my services in analytics, Google Ads, Shopify and WordPress. See what’s included, the outcomes to expect, and choose a package that fits your project." />
+      <PageHero eyebrow="Services" title="Websites, Ads & Analytics — All Under One Roof." text="Get professional website design, expert Google Ads management, and accurate analytics and conversion tracking, all delivered by one dedicated specialist to help your business grow." cta="Let’s Get Started" />
       <section className="container-page py-14 md:py-20"><ServiceGrid detailed /></section>
       <section className="container-page pb-6 md:pb-10">
         <SectionHead eyebrow="Process" title="From first call to growth" />
