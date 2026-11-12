@@ -1,21 +1,52 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Sparkles, Wallet, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Sparkles, Wallet, ShieldCheck } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
-const SERVICE_META: Record<string, { icon: typeof BarChart3; category: string; audience: string; accent: string }> = {
-  "web-analytics": { icon: BarChart3, category: "MEASURE WHAT MATTERS", audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", accent: "from-emerald-500/20 via-lime-400/10 to-transparent" },
-  "google-ads": { icon: Megaphone, category: "TURN INTENT INTO GROWTH", audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", accent: "from-amber-500/20 via-lime-400/10 to-transparent" },
-  shopify: { icon: ShoppingBag, category: "TRACKING & GROWTH", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
-  "wordpress-woocommerce": { icon: LayoutTemplate, category: "TRACKING & GROWTH", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
+const SERVICE_META: Record<string, { category: string; audience: string; accent: string }> = {
+  "web-analytics": { category: "MEASURE WHAT MATTERS", audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", accent: "from-emerald-500/20 via-lime-400/10 to-transparent" },
+  "google-ads": { category: "TURN INTENT INTO GROWTH", audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", accent: "from-amber-500/20 via-lime-400/10 to-transparent" },
+  shopify: { category: "TRACKING & GROWTH", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
+  "wordpress-woocommerce": { category: "TRACKING & GROWTH", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
 };
+
+function ServiceBrandLogo({ slug }: { slug: string }) {
+  if (slug === "web-analytics") return (
+    <svg viewBox="0 0 100 100" className="size-16 sm:size-[4.5rem]" role="img" aria-label="Google Tag Manager logo">
+      <path d="M50 8 87 45 50 82 13 45Z" fill="#4285F4" />
+      <path d="M50 8 68 26 31 63 13 45Z" fill="#669DF6" />
+      <circle cx="72" cy="72" r="13" fill="#34A853" />
+      <text x="50" y="53" textAnchor="middle" fontSize="20" fontWeight="800" fill="white">GTM</text>
+    </svg>
+  );
+  if (slug === "google-ads") return (
+    <svg viewBox="0 0 100 100" className="size-16 sm:size-[4.5rem]" role="img" aria-label="Google Ads logo">
+      <path d="M38 12c7-4 16-2 20 6l30 52c5 8 2 18-6 22-8 5-18 2-22-6L30 34c-5-8-1-18 8-22Z" fill="#34A853" />
+      <path d="M62 18c4-8 14-11 22-6 8 4 11 14 6 22L60 86c-5 8-15 10-23 6-8-5-10-15-5-23Z" fill="#4285F4" />
+      <circle cx="22" cy="78" r="13" fill="#FBBC04" />
+    </svg>
+  );
+  if (slug === "shopify") return (
+    <svg viewBox="0 0 100 100" className="size-16 sm:size-[4.5rem]" role="img" aria-label="Shopify logo">
+      <path d="m25 29 50-5 8 62-58 5Z" fill="#95BF47" />
+      <path d="M39 31c0-12 6-20 15-20s15 8 15 18" fill="none" stroke="#5E8E3E" strokeWidth="6" strokeLinecap="round" />
+      <text x="54" y="69" textAnchor="middle" fontSize="39" fontFamily="Georgia,serif" fontWeight="bold" fill="white">S</text>
+    </svg>
+  );
+  return (
+    <svg viewBox="0 0 100 100" className="size-16 sm:size-[4.5rem]" role="img" aria-label="WordPress logo">
+      <circle cx="50" cy="50" r="42" fill="#21759B" />
+      <circle cx="50" cy="50" r="35" fill="none" stroke="white" strokeWidth="2.5" />
+      <text x="50" y="66" textAnchor="middle" fontSize="54" fontFamily="Georgia,serif" fill="white">W</text>
+    </svg>
+  );
+}
 
 export function HomeServices() {
   return (
     <div className="mt-12 grid gap-5 lg:grid-cols-2">
       {SERVICES.map((service, index) => {
         const meta = SERVICE_META[service.slug] ?? SERVICE_META["web-analytics"];
-        const Icon = meta.icon;
         const detailHref = `/services#service-${service.slug}`;
         return (
           <Reveal key={service.slug} as="article" delay={index * 85} className="home-service-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card">
@@ -27,7 +58,7 @@ export function HomeServices() {
               </div>
               <div className="home-service-orbit absolute right-7 top-1/2 grid size-32 -translate-y-1/2 place-items-center rounded-[2rem] border border-white/40 bg-white/35 shadow-[0_22px_55px_-25px_rgba(30,50,25,.45)] backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.06] sm:right-10 sm:size-36">
                 <div className="grid size-[5.2rem] place-items-center rounded-[1.6rem] border border-white/60 bg-background/90 text-foreground shadow-xl dark:border-white/10">
-                  <Icon className="size-10 text-[oklch(0.56_0.16_135)]" strokeWidth={1.65} aria-hidden="true" />
+                  <ServiceBrandLogo slug={service.slug} />
                 </div>
                 <Sparkles className="absolute -right-2 -top-2 size-6 text-[oklch(0.56_0.16_135)]" aria-hidden="true" />
                 <span className="absolute -bottom-2 -left-2 size-5 rounded-full border-4 border-background bg-[oklch(0.78_0.18_130)]" />
