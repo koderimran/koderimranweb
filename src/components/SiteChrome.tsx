@@ -163,9 +163,11 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <p className="container-page border-t py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {SITE.name}. All rights reserved.
-      </p>
+      <div className="border-t">
+        <p className="container-page py-6 text-center text-xs text-muted-foreground">
+          © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+        </p>
+      </div>
     </footer>
   );
 }
