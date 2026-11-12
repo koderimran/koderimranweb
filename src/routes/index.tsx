@@ -70,7 +70,7 @@ function Index() {
           <div className="hero-specialism animate-rise" style={{ animationDelay: "450ms" }}>
             <p className="hero-specialism-label">Specialist in</p>
             <ul className="hero-specialism-list">
-              {["Ads", "GA4", "WP", "Shopify"].map((t) => (
+              {["Google Ads", "GA4 & GTM", "Shopify", "WordPress"].map((t) => (
                 <li key={t} className="hero-specialism-chip">
                   {t}
                 </li>
