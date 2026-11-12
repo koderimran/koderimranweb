@@ -42,7 +42,7 @@ export function HomeServices() {
               <div className="mb-3 inline-flex rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
                 3 Flexible Packages Available
               </div>
-              <h3 className="flex min-h-[4rem] items-start text-2xl font-bold leading-tight tracking-tight sm:text-[1.7rem]">{service.title}</h3>
+              <h3 className="flex min-h-[4rem] items-start pr-16 text-2xl font-bold leading-tight tracking-tight sm:pr-20 sm:text-[1.7rem]">{service.title}</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">{service.short}</p>
 
               <div className="mt-4 rounded-xl border border-[oklch(0.78_0.18_130)]/25 bg-[oklch(0.78_0.18_130)]/[0.07] px-4 py-3.5">
