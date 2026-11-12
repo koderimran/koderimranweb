@@ -6,8 +6,8 @@ import { Reveal } from "@/components/Reveal";
 const SERVICE_META: Record<string, { icon: typeof BarChart3; category: string; audience: string; accent: string }> = {
   "web-analytics": { icon: BarChart3, category: "MEASURE WHAT MATTERS", audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", accent: "from-emerald-500/20 via-lime-400/10 to-transparent" },
   "google-ads": { icon: Megaphone, category: "TURN INTENT INTO GROWTH", audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", accent: "from-amber-500/20 via-lime-400/10 to-transparent" },
-  shopify: { icon: ShoppingBag, category: "BUILD A BETTER STOREFRONT", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
-  "wordpress-woocommerce": { icon: LayoutTemplate, category: "MAKE YOUR WEBSITE WORK HARDER", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
+  shopify: { icon: ShoppingBag, category: "TRACKING & GROWTH", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
+  "wordpress-woocommerce": { icon: LayoutTemplate, category: "TRACKING & GROWTH", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
 };
 
 export function HomeServices() {
