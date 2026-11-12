@@ -19,8 +19,8 @@ export function HomeServices() {
         const detailHref = `/services#service-${service.slug}`;
         return (
           <Reveal key={service.slug} as="article" delay={index * 85} className="home-service-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card">
-            <span className="pointer-events-none absolute right-6 top-[13.25rem] z-0 select-none text-[7.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-            <div className={`home-service-art relative flex min-h-[12.5rem] items-center justify-between overflow-hidden border-b bg-gradient-to-br ${meta.accent} px-7 py-6 sm:px-9`}>
+            <span className="pointer-events-none absolute right-6 top-[10.25rem] z-0 select-none text-[7.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <div className={`home-service-art relative flex min-h-[9.5rem] items-center justify-between overflow-hidden border-b bg-gradient-to-br ${meta.accent} px-7 py-6 sm:px-9`}>
               <div className="relative z-10 max-w-[70%]">
                 <p className="text-[0.68rem] font-extrabold tracking-[0.18em] text-muted-foreground">{meta.category}</p>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">A focused service, shaped around your business goals.</p>
@@ -42,14 +42,7 @@ export function HomeServices() {
               <div className="mb-3 inline-flex rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
                 3 Flexible Packages Available
               </div>
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <h3 className="text-2xl font-bold tracking-tight sm:text-[1.7rem]">{service.title}</h3>
-                </div>
-                <Link to={detailHref} aria-label={`View ${service.title} details`} title={`View ${service.title} details`} className="grid size-10 shrink-0 place-items-center rounded-full border transition duration-300 hover:-translate-y-1 hover:translate-x-1 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  <ArrowUpRight className="size-5" aria-hidden="true" />
-                </Link>
-              </div>
+              <h3 className="text-2xl font-bold tracking-tight sm:text-[1.7rem]">{service.title}</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">{service.short}</p>
 
               <div className="mt-6 space-y-2.5">
