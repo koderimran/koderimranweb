@@ -42,8 +42,13 @@ export function HomeServices() {
               <div className="mb-3 inline-flex rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
                 3 Flexible Packages Available
               </div>
-              <h3 className="text-2xl font-bold tracking-tight sm:text-[1.7rem]">{service.title}</h3>
+              <h3 className="flex min-h-[4rem] items-start text-2xl font-bold leading-tight tracking-tight sm:text-[1.7rem]">{service.title}</h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">{service.short}</p>
+
+              <div className="mt-4 rounded-xl border border-[oklch(0.78_0.18_130)]/25 bg-[oklch(0.78_0.18_130)]/[0.07] px-4 py-3.5">
+                <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-[oklch(0.52_0.13_135)] dark:text-[oklch(0.82_0.16_130)]">Who it’s for</p>
+                <p className="mt-1.5 text-sm font-medium leading-relaxed text-foreground/85">{meta.audience}</p>
+              </div>
 
               <div className="mt-6 space-y-2.5">
                 <div className="flex items-center gap-2.5">
@@ -56,10 +61,6 @@ export function HomeServices() {
                 </div>
               </div>
 
-              <div className="mt-5">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">Who it’s for</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{meta.audience}</p>
-              </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link to={detailHref} className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
