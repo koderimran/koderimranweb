@@ -1,37 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check, Sparkles } from "lucide-react";
+import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Sparkles } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
 const SERVICE_META: Record<string, { icon: typeof BarChart3; category: string; audience: string; packageNote: string; accent: string }> = {
-  "web-analytics": {
-    icon: BarChart3,
-    category: "MEASURE WHAT MATTERS",
-    audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.",
-    packageNote: "GA4 foundations · Event & conversion tracking · Advanced measurement",
-    accent: "from-emerald-500/20 via-lime-400/10 to-transparent",
-  },
-  "google-ads": {
-    icon: Megaphone,
-    category: "TURN INTENT INTO GROWTH",
-    audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.",
-    packageNote: "Campaign launch · Multi-campaign setup · Ongoing optimisation",
-    accent: "from-amber-500/20 via-lime-400/10 to-transparent",
-  },
-  shopify: {
-    icon: ShoppingBag,
-    category: "BUILD A BETTER STOREFRONT",
-    audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.",
-    packageNote: "Store setup · Custom storefront · Growth-ready improvements",
-    accent: "from-lime-500/20 via-teal-400/10 to-transparent",
-  },
-  "wordpress-woocommerce": {
-    icon: LayoutTemplate,
-    category: "MAKE YOUR WEBSITE WORK HARDER",
-    audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.",
-    packageNote: "Business website · Custom layouts & tracking · WooCommerce build",
-    accent: "from-sky-500/20 via-lime-400/10 to-transparent",
-  },
+  "web-analytics": { icon: BarChart3, category: "MEASURE WHAT MATTERS", audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", packageNote: "GA4 foundations · Event & conversion tracking · Advanced measurement", accent: "from-emerald-500/20 via-lime-400/10 to-transparent" },
+  "google-ads": { icon: Megaphone, category: "TURN INTENT INTO GROWTH", audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", packageNote: "Campaign launch · Multi-campaign setup · Ongoing optimisation", accent: "from-amber-500/20 via-lime-400/10 to-transparent" },
+  shopify: { icon: ShoppingBag, category: "BUILD A BETTER STOREFRONT", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", packageNote: "Store setup · Custom storefront · Growth-ready improvements", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
+  "wordpress-woocommerce": { icon: LayoutTemplate, category: "MAKE YOUR WEBSITE WORK HARDER", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", packageNote: "Business website · Custom layouts & tracking · WooCommerce build", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
 };
 
 export function HomeServices() {
@@ -40,6 +16,7 @@ export function HomeServices() {
       {SERVICES.map((service, index) => {
         const meta = SERVICE_META[service.slug] ?? SERVICE_META["web-analytics"];
         const Icon = meta.icon;
+        const detailHref = `/services#service-${service.slug}`;
         return (
           <Reveal key={service.slug} as="article" delay={index * 85} className="home-service-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card">
             <div className={`home-service-art relative flex min-h-[12.5rem] items-center justify-between overflow-hidden border-b bg-gradient-to-br ${meta.accent} px-7 py-6 sm:px-9`}>
@@ -66,28 +43,15 @@ export function HomeServices() {
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Service 0{index + 1}</p>
                   <h3 className="mt-2 text-2xl font-bold tracking-tight sm:text-[1.7rem]">{service.title}</h3>
                 </div>
-                <span className="grid size-10 shrink-0 place-items-center rounded-full border transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-accent">
+                <Link to={detailHref} aria-label={`View ${service.title} details`} title={`View ${service.title} details`} className="grid size-10 shrink-0 place-items-center rounded-full border transition duration-300 hover:-translate-y-1 hover:translate-x-1 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   <ArrowUpRight className="size-5" aria-hidden="true" />
-                </span>
+                </Link>
               </div>
               <p className="mt-3 leading-relaxed text-muted-foreground">{service.short}</p>
 
-              <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                <div>
-                  <h4 className="text-sm font-bold">What you get</h4>
-                  <ul className="mt-3 space-y-2.5">
-                    {service.outcomes.map((outcome) => (
-                      <li key={outcome} className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
-                        <Check className="mt-0.5 size-4 shrink-0 text-[oklch(0.56_0.16_135)]" aria-hidden="true" />
-                        <span>{outcome}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="rounded-2xl border bg-muted/40 p-4">
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">Who it’s for</p>
-                  <p className="mt-2 text-sm leading-relaxed">{meta.audience}</p>
-                </div>
+              <div className="mt-6 rounded-2xl border bg-muted/40 p-4">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">Who it’s for</p>
+                <p className="mt-2 text-sm leading-relaxed">{meta.audience}</p>
               </div>
 
               <div className="mt-6 rounded-2xl border border-dashed p-4">
@@ -100,7 +64,7 @@ export function HomeServices() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Link to="/services" className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
+                <Link to={detailHref} className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
                   Explore service <ArrowUpRight className="size-4" aria-hidden="true" />
                 </Link>
                 <Link to="/contact" className="btn btn-outline inline-flex flex-1 items-center justify-center rounded-full px-5 py-3.5 text-sm font-bold">
