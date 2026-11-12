@@ -6,8 +6,8 @@ import { Reveal } from "@/components/Reveal";
 const SERVICE_META: Record<string, { icon: typeof BarChart3; category: string; audience: string; accent: string }> = {
   "web-analytics": { icon: BarChart3, category: "MEASURE WHAT MATTERS", audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", accent: "from-emerald-500/20 via-lime-400/10 to-transparent" },
   "google-ads": { icon: Megaphone, category: "TURN INTENT INTO GROWTH", audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", accent: "from-amber-500/20 via-lime-400/10 to-transparent" },
-  shopify: { icon: ShoppingBag, category: "BUILD A BETTER STOREFRONT", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
-  "wordpress-woocommerce": { icon: LayoutTemplate, category: "MAKE YOUR WEBSITE WORK HARDER", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
+  shopify: { icon: ShoppingBag, category: "TRACKING & GROWTH", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
+  "wordpress-woocommerce": { icon: LayoutTemplate, category: "TRACKING & GROWTH", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
 };
 
 export function HomeServices() {
@@ -21,7 +21,7 @@ export function HomeServices() {
           <Reveal key={service.slug} as="article" delay={index * 85} className="home-service-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card">
             <span className="pointer-events-none absolute right-6 top-[10.25rem] z-0 select-none text-[7.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <div className={`home-service-art relative flex min-h-[9.5rem] items-center justify-between overflow-hidden border-b bg-gradient-to-br ${meta.accent} px-7 py-6 sm:px-9`}>
-              <div className="relative z-10 max-w-[70%]">
+              <div className="relative z-10 w-[calc(100%-9.75rem)] max-w-none sm:w-[calc(100%-11.5rem)]">
                 <p className="text-[0.68rem] font-extrabold tracking-[0.18em] text-muted-foreground">{meta.category}</p>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">A focused service, shaped around your business goals.</p>
               </div>
