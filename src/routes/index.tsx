@@ -38,7 +38,7 @@ function Index() {
   return (
     <>
       <section className="overflow-x-clip border-b">
-        <div className="hero-backdrop">
+        <div className="hero-backdrop" style={{ "--hero-gradient": "linear-gradient(155deg, color-mix(in oklab, var(--signal) 7%, transparent), transparent 58%), linear-gradient(112deg, oklch(0.985 0.012 95) 0%, oklch(0.965 0.018 145) 48%, oklch(0.95 0.018 245) 100%)" } as React.CSSProperties}>
           <div className="hero-photo-stage container-page" aria-hidden="true">
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
@@ -51,7 +51,7 @@ function Index() {
             </p>
             <h1 className="hero-title animate-rise mt-6 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
               <span className="hero-title-line">The Right Expertise</span>
-              <span className="hero-title-line">for Your <em className="font-serif font-medium italic text-signal">Next Move.</em></span>
+              <span className="hero-title-line">for Your <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">Next Move.</em></span>
             </h1>
             <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
               I'm <strong className="text-foreground">Imran</strong> — a Google Ads, web analytics, and e-commerce specialist. I build Shopify and WordPress stores, implement precise conversion tracking with GA4 and GTM, and run data-driven ad campaigns that turn clicks into customers.
