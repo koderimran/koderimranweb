@@ -1,13 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Sparkles } from "lucide-react";
+import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Sparkles, Layers3, Wallet, ShieldCheck } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
-const SERVICE_META: Record<string, { icon: typeof BarChart3; category: string; audience: string; packageNote: string; accent: string }> = {
-  "web-analytics": { icon: BarChart3, category: "MEASURE WHAT MATTERS", audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", packageNote: "GA4 foundations · Event & conversion tracking · Advanced measurement", accent: "from-emerald-500/20 via-lime-400/10 to-transparent" },
-  "google-ads": { icon: Megaphone, category: "TURN INTENT INTO GROWTH", audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", packageNote: "Campaign launch · Multi-campaign setup · Ongoing optimisation", accent: "from-amber-500/20 via-lime-400/10 to-transparent" },
-  shopify: { icon: ShoppingBag, category: "BUILD A BETTER STOREFRONT", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", packageNote: "Store setup · Custom storefront · Growth-ready improvements", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
-  "wordpress-woocommerce": { icon: LayoutTemplate, category: "MAKE YOUR WEBSITE WORK HARDER", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", packageNote: "Business website · Custom layouts & tracking · WooCommerce build", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
+const SERVICE_META: Record<string, { icon: typeof BarChart3; category: string; audience: string; accent: string }> = {
+  "web-analytics": { icon: BarChart3, category: "MEASURE WHAT MATTERS", audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", accent: "from-emerald-500/20 via-lime-400/10 to-transparent" },
+  "google-ads": { icon: Megaphone, category: "TURN INTENT INTO GROWTH", audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", accent: "from-amber-500/20 via-lime-400/10 to-transparent" },
+  shopify: { icon: ShoppingBag, category: "BUILD A BETTER STOREFRONT", audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", accent: "from-lime-500/20 via-teal-400/10 to-transparent" },
+  "wordpress-woocommerce": { icon: LayoutTemplate, category: "MAKE YOUR WEBSITE WORK HARDER", audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", accent: "from-sky-500/20 via-lime-400/10 to-transparent" },
 };
 
 export function HomeServices() {
@@ -54,13 +54,21 @@ export function HomeServices() {
                 <p className="mt-2 text-sm leading-relaxed">{meta.audience}</p>
               </div>
 
-              <div className="mt-6 rounded-2xl border border-dashed p-4">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="text-sm font-bold">Flexible service packages</p>
-                  <span className="rounded-full bg-accent px-3 py-1 text-[0.68rem] font-bold text-accent-foreground">Basic · Standard · Premium</span>
+              <div className="mt-6 space-y-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
+                  <Layers3 className="size-3.5 text-[oklch(0.56_0.16_135)]" aria-hidden="true" />
+                  <span>3 Flexible Packages Available</span>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{meta.packageNote}</p>
-                <p className="mt-2 text-xs text-muted-foreground">Scope-based quote · Final deliverables confirmed for your project</p>
+                <div className="grid gap-2.5 rounded-2xl border bg-muted/30 p-4">
+                  <div className="flex items-center gap-2.5">
+                    <Wallet className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                    <span className="text-sm font-medium">Scope-based quote</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <ShieldCheck className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                    <span className="text-sm font-medium">Project-specific deliverables confirmed</span>
+                  </div>
+                </div>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
