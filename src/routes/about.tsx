@@ -34,7 +34,7 @@ function About() {
           <Portrait alt="Portrait of Imran" className="animate-rise aspect-[4/5] w-full max-w-sm rounded-[2rem] bg-muted shadow-soft" />
           <div>
             <p className="eyebrow animate-rise">About me</p>
-            <h1 className="animate-rise mt-4 text-4xl font-bold md:text-6xl" style={{ animationDelay: "90ms" }}>Hi, I'm Imran.</h1>
+            <h1 className="page-hero-title animate-rise mt-4 font-bold" style={{ animationDelay: "90ms" }}>Hi, I'm Imran.</h1>
             <p className="animate-rise mt-6 text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
               I'm a web developer and digital marketer from {SITE.location}. I help e-commerce brands and service
               businesses build websites that convert, set up analytics they can trust, and run Google Ads that are

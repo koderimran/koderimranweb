@@ -31,7 +31,7 @@ function Portfolio() {
       <section className="bg-grid border-b">
         <div className="container-page py-20 md:py-28">
           <p className="eyebrow animate-rise">Selected work</p>
-          <h1 className="animate-rise mt-4 max-w-4xl text-4xl font-bold md:text-6xl" style={{ animationDelay: "90ms" }}>
+          <h1 className="page-hero-title animate-rise mt-4 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>
             Digital experiences built around business goals.
           </h1>
           <p className="animate-rise mt-6 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
