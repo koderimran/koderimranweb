@@ -129,8 +129,8 @@ export function CtaBand() {
 export function Footer() {
   return (
     <footer className="border-t">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-4">
-        <div className="md:col-span-2">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-12">
+        <div className="md:col-span-12 lg:col-span-5">
           <p className="font-display text-xl font-bold">
             <span className="inline-flex h-12 items-center"><BrandLogo /></span>
           </p>
@@ -138,7 +138,7 @@ export function Footer() {
             {SITE.name} — {SITE.role}. Helping e-commerce brands and service businesses grow with measurable results.
           </p>
         </div>
-        <div className="text-sm">
+        <div className="text-sm md:col-span-6 lg:col-span-4">
           <p className="eyebrow mb-3">Services</p>
           <ul className="space-y-2 text-muted-foreground">
             <li><Link to="/services">Web Analytics & Conversion Tracking</Link></li>
@@ -147,7 +147,7 @@ export function Footer() {
             <li><Link to="/services">WordPress Website Design, Tracking & Growth</Link></li>
           </ul>
         </div>
-        <div className="text-sm">
+        <div className="text-sm md:col-span-6 lg:col-span-3">
           <p className="eyebrow mb-3">Contact</p>
           <ul className="space-y-2 text-muted-foreground">
             <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
