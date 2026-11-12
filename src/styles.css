@@ -878,3 +878,17 @@ footer a:hover {
 @media (max-width: 767px) {
   .page-hero-content > .page-hero-cta { display: flex; width: 100%; }
 }
+
+/* Inner-page hero title: same responsive sizes as the home hero title. */
+.page-hero-title { font-size: 2.25rem; line-height: 1.05; letter-spacing: 0; }
+@media (max-width: 767px) {
+  .page-hero-title { font-size: clamp(1.65rem, 7.1vw, 2.25rem); line-height: 1.08; }
+}
+@media (max-width: 380px) {
+  .page-hero-title { font-size: clamp(1.5rem, 7vw, 1.75rem); }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-hero-title { font-size: clamp(2.5rem, 4.4vw, 3rem); }
+}
+@media (min-width: 1024px) { .page-hero-title { font-size: 3rem; } }
+@media (min-width: 1200px) { .page-hero-title { font-size: 3.25rem; } }
