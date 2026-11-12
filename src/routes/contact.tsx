@@ -38,7 +38,7 @@ function Contact() {
       <div className="container-page grid gap-12 py-20 md:grid-cols-[1fr_1.2fr]">
         <div>
           <p className="eyebrow animate-rise">Contact</p>
-          <h1 className="animate-rise mt-4 text-4xl font-bold md:text-6xl" style={{ animationDelay: "90ms" }}>Let's grow your business.</h1>
+          <h1 className="page-hero-title animate-rise mt-4 font-bold" style={{ animationDelay: "90ms" }}>Let's grow your business.</h1>
           <p className="animate-rise mt-6 text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>Tell me about your project. I usually reply within 24 hours with next steps and a free quick audit.</p>
           <ul className="mt-10 space-y-5">
             <li><a href={`mailto:${SITE.email}`} className="flex items-center gap-4 font-semibold"><span className="grid size-11 place-items-center rounded-xl bg-accent"><Mail className="size-5" /></span>{SITE.email}</a></li>
