@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Sparkles, Layers3, Wallet, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Sparkles, Wallet, ShieldCheck } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
@@ -19,6 +19,7 @@ export function HomeServices() {
         const detailHref = `/services#service-${service.slug}`;
         return (
           <Reveal key={service.slug} as="article" delay={index * 85} className="home-service-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card">
+            <span className="pointer-events-none absolute right-6 top-[13.25rem] z-0 select-none text-[7.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <div className={`home-service-art relative flex min-h-[12.5rem] items-center justify-between overflow-hidden border-b bg-gradient-to-br ${meta.accent} px-7 py-6 sm:px-9`}>
               <div className="relative z-10 max-w-[70%]">
                 <p className="text-[0.68rem] font-extrabold tracking-[0.18em] text-muted-foreground">{meta.category}</p>
@@ -37,11 +38,13 @@ export function HomeServices() {
               <span className="absolute bottom-7 left-[48%] size-1.5 rounded-full bg-foreground/30" aria-hidden="true" />
             </div>
 
-            <div className="p-6 sm:p-8">
+            <div className="relative z-10 p-6 sm:p-8">
+              <div className="mb-3 inline-flex rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
+                3 Flexible Packages Available
+              </div>
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Service 0{index + 1}</p>
-                  <h3 className="mt-2 text-2xl font-bold tracking-tight sm:text-[1.7rem]">{service.title}</h3>
+                  <h3 className="text-2xl font-bold tracking-tight sm:text-[1.7rem]">{service.title}</h3>
                 </div>
                 <Link to={detailHref} aria-label={`View ${service.title} details`} title={`View ${service.title} details`} className="grid size-10 shrink-0 place-items-center rounded-full border transition duration-300 hover:-translate-y-1 hover:translate-x-1 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   <ArrowUpRight className="size-5" aria-hidden="true" />
@@ -49,26 +52,20 @@ export function HomeServices() {
               </div>
               <p className="mt-3 leading-relaxed text-muted-foreground">{service.short}</p>
 
-              <div className="mt-6 rounded-2xl border bg-muted/40 p-4">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">Who it’s for</p>
-                <p className="mt-2 text-sm leading-relaxed">{meta.audience}</p>
+              <div className="mt-6 space-y-2.5">
+                <div className="flex items-center gap-2.5">
+                  <Wallet className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  <span className="text-sm font-medium">Scope-based quote</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <ShieldCheck className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  <span className="text-sm font-medium">Project-specific deliverables confirmed</span>
+                </div>
               </div>
 
-              <div className="mt-6 space-y-3">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
-                  <Layers3 className="size-3.5 text-[oklch(0.56_0.16_135)]" aria-hidden="true" />
-                  <span>3 Flexible Packages Available</span>
-                </div>
-                <div className="grid gap-2.5 rounded-2xl border bg-muted/30 p-4">
-                  <div className="flex items-center gap-2.5">
-                    <Wallet className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-                    <span className="text-sm font-medium">Scope-based quote</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <ShieldCheck className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-                    <span className="text-sm font-medium">Project-specific deliverables confirmed</span>
-                  </div>
-                </div>
+              <div className="mt-5">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">Who it’s for</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{meta.audience}</p>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
