@@ -21,7 +21,7 @@ export function HomeServices() {
           <Reveal key={service.slug} as="article" delay={index * 85} className="home-service-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card">
             <span className="pointer-events-none absolute right-6 top-[10.25rem] z-0 select-none text-[7.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <div className={`home-service-art relative flex min-h-[9.5rem] items-center justify-between overflow-hidden border-b bg-gradient-to-br ${meta.accent} px-7 py-6 sm:px-9`}>
-              <div className="relative z-10 max-w-[70%]">
+              <div className="relative z-10 w-[calc(100%-9.75rem)] max-w-none sm:w-[calc(100%-11.5rem)]">
                 <p className="text-[0.68rem] font-extrabold tracking-[0.18em] text-muted-foreground">{meta.category}</p>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">A focused service, shaped around your business goals.</p>
               </div>
