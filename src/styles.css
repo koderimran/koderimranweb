@@ -897,3 +897,42 @@ footer a:hover {
 }
 @media (min-width: 1024px) { .page-hero-title { font-size: 3rem; } }
 @media (min-width: 1200px) { .page-hero-title { font-size: 3.25rem; } }
+
+
+/* Home service cards: four distinct, restrained gradients in both themes. */
+.home-service-card {
+  transition: border-color 240ms ease, box-shadow 240ms ease;
+}
+.home-service-card--1 {
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.9 0.17 128) 20%, var(--card)), color-mix(in oklab, oklch(0.82 0.09 165) 11%, var(--card)) 58%, var(--card)) !important;
+}
+.home-service-card--2 {
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.82 0.09 225) 17%, var(--card)), color-mix(in oklab, oklch(0.86 0.07 250) 10%, var(--card)) 58%, var(--card)) !important;
+}
+.home-service-card--3 {
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.84 0.11 75) 17%, var(--card)), color-mix(in oklab, oklch(0.86 0.08 45) 10%, var(--card)) 58%, var(--card)) !important;
+}
+.home-service-card--4 {
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.82 0.09 300) 15%, var(--card)), color-mix(in oklab, oklch(0.84 0.08 220) 10%, var(--card)) 58%, var(--card)) !important;
+}
+.dark .home-service-card--1 {
+  background: linear-gradient(135deg, oklch(0.29 0.045 135 / 0.72), oklch(0.235 0.018 165 / 0.9) 62%, var(--card)) !important;
+}
+.dark .home-service-card--2 {
+  background: linear-gradient(135deg, oklch(0.28 0.045 230 / 0.68), oklch(0.235 0.02 215 / 0.9) 62%, var(--card)) !important;
+}
+.dark .home-service-card--3 {
+  background: linear-gradient(135deg, oklch(0.29 0.045 75 / 0.62), oklch(0.235 0.02 55 / 0.9) 62%, var(--card)) !important;
+}
+.dark .home-service-card--4 {
+  background: linear-gradient(135deg, oklch(0.28 0.045 300 / 0.62), oklch(0.235 0.02 245 / 0.9) 62%, var(--card)) !important;
+}
+.home-service-title {
+  color: transparent;
+  background-image: linear-gradient(105deg, oklch(0.52 0.16 132) 0%, oklch(0.55 0.14 155) 52%, oklch(0.5 0.12 205) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.dark .home-service-title {
+  background-image: linear-gradient(105deg, oklch(0.88 0.17 128) 0%, oklch(0.82 0.13 155) 52%, oklch(0.8 0.12 195) 100%);
+}
