@@ -115,9 +115,10 @@ export function HomeServices() {
     section.style.setProperty("--service-step-height", `${stepHeight}px`);
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
     const target = sectionTop + index * stepHeight + 2;
-    // Let the scroll observer activate the selected card once the target is reached.
-    // Avoid rendering it immediately and then again when the scroll observer catches up.
+    // Switch the featured card immediately so it is removed from the preview rail
+    // before smooth scrolling begins; the observer then confirms the same index.
     scrollTargetRef.current = target;
+    setActiveIndex(index);
     window.scrollTo({ top: target, behavior: "smooth" });
   };
 
