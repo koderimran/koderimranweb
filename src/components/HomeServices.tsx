@@ -54,7 +54,7 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
           </ul>
         </div>
 
-        <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">
+        <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row">
           <Link to={detailHref} className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
             Explore service <ArrowUpRight className="size-4" aria-hidden="true" />
           </Link>
@@ -125,7 +125,7 @@ export function HomeServices() {
   const activeService = SERVICES[activeIndex];
 
   return (
-    <section ref={sectionRef} className="home-services-story mt-12" aria-label="Our services">
+    <section ref={sectionRef} className="home-services-story mt-5" aria-label="Our services">
       <div className="home-services-sticky">
         <div className="home-services-stage">
           <div className="home-services-featured" aria-live="polite">
