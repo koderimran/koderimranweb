@@ -1231,7 +1231,7 @@ footer a:hover {
   }
 }
 @media (max-height: 760px) and (min-width: 900px) {
-  .home-services-sticky { min-height: calc(100svh - 5.5rem); }
+  .home-services-sticky { min-height: 0; }
   .home-service-active-card > .relative.z-10 { padding: clamp(1rem, 1.8vw, 1.35rem); }
 }
 @media (max-width: 899px) {
