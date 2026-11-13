@@ -1243,7 +1243,26 @@ footer a:hover {
 /* Keep the desktop parallax cards anchored to the intro instead of vertically centering them in a viewport-sized spacer. */
 @media (min-width: 900px) {
   .home-services-sticky {
+    height: calc(100svh - 6rem);
     min-height: 0;
     align-items: flex-start;
+  }
+  .home-services-stage {
+    height: min(43rem, 100%);
+    min-height: 0;
+    align-items: stretch;
+  }
+  .home-services-featured,
+  .home-services-active-wrap,
+  .home-service-active-card {
+    height: 100%;
+    min-height: 0;
+  }
+  .home-service-active-card > .relative.z-10 {
+    height: 100%;
+  }
+  .home-services-rail {
+    height: 100%;
+    align-self: stretch;
   }
 }
