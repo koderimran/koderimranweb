@@ -936,3 +936,120 @@ footer a:hover {
 .dark .home-service-title {
   background-image: linear-gradient(105deg, oklch(0.88 0.17 128) 0%, oklch(0.82 0.13 155) 52%, oklch(0.8 0.12 195) 100%);
 }
+
+
+/* Homepage services: scroll-led sticky showcase with a compact preview rail. */
+.home-services-story {
+  position: relative;
+}
+.home-services-sticky {
+  position: sticky;
+  top: 5rem;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  min-height: 0;
+  height: calc(100svh - 6rem);
+  pointer-events: none;
+}
+.home-services-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(13rem, 3fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 75rem;
+  height: min(43rem, 100%);
+  margin-inline: auto;
+  pointer-events: auto;
+}
+.home-services-featured {
+  min-width: 0;
+  min-height: 0;
+  perspective: 1200px;
+}
+.home-services-active-wrap {
+  height: 100%;
+  animation: service-card-arrive 620ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+.home-service-active-card {
+  min-height: 100%;
+  box-shadow: 0 24px 70px -42px color-mix(in oklab, var(--foreground) 38%, transparent);
+}
+.home-services-rail {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  min-width: 0;
+  min-height: 0;
+}
+.home-service-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(0.9rem, 2vw, 1.5rem);
+  border: 1px solid var(--border);
+  border-radius: 1.35rem;
+  background: var(--card);
+  box-shadow: 0 14px 40px -34px color-mix(in oklab, var(--foreground) 32%, transparent);
+  opacity: 0.78;
+  transform: translateX(0) scale(0.985);
+  transition: opacity 360ms ease, transform 500ms cubic-bezier(0.2, 0.75, 0.25, 1), border-color 300ms ease;
+}
+.home-service-preview:hover {
+  opacity: 1;
+  transform: translateX(-5px) scale(1);
+}
+.home-service-preview-number {
+  color: var(--muted-foreground);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+.home-service-preview-title {
+  max-width: 18rem;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.55vw, 1.45rem);
+  font-weight: 750;
+  line-height: 1.13;
+  letter-spacing: -0.035em;
+  color: var(--foreground);
+  text-wrap: balance;
+}
+.home-services-scroll-track {
+  position: relative;
+  height: 400svh;
+  margin-top: -1px;
+  pointer-events: none;
+}
+.home-services-scroll-step {
+  height: 100svh;
+}
+.home-services-mobile-list {
+  display: none;
+}
+@keyframes service-card-arrive {
+  from { opacity: 0.55; transform: translate3d(0, 28px, -50px) scale(0.975); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@media (max-height: 760px) and (min-width: 900px) {
+  .home-services-stage { height: calc(100% - 0.5rem); }
+  .home-service-active-card .relative.z-10 { padding: 1.35rem; }
+  .home-service-active-card .mt-6 { margin-top: 1rem; }
+  .home-service-active-card .mt-4 { margin-top: 0.75rem; }
+}
+@media (max-width: 899px) {
+  .home-services-sticky,
+  .home-services-scroll-track { display: none; }
+  .home-services-mobile-list {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .home-service-active-card { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-services-active-wrap { animation: none; }
+  .home-service-preview { transition: none; }
+}
