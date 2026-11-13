@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Wallet, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Wallet, ShieldCheck, Check } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 
 const SERVICE_META: Record<string, { audience: string }> = {
@@ -16,7 +16,7 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
 
   return (
     <article className={`home-service-card home-service-card--${index + 1} home-service-active-card group relative isolate h-full overflow-hidden rounded-[1.75rem] border bg-card`}>
-      <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[6rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[7rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+      <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[6rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
       <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
         <div className="home-service-intro">
           <div className="mb-2 inline-flex self-start rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
@@ -41,6 +41,15 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
             <span className="text-sm font-medium">Project-specific deliverables confirmed</span>
           </div>
         </div>
+
+        <ul className="home-service-outcomes mt-5 space-y-2" aria-label="Key outcomes">
+          {service.outcomes.map((outcome) => (
+            <li key={outcome} className="flex items-start gap-2.5 text-sm font-medium leading-snug text-foreground/85">
+              <Check className="mt-0.5 size-4 shrink-0 text-[oklch(0.52_0.13_135)] dark:text-[oklch(0.82_0.16_130)]" strokeWidth={2.5} aria-hidden="true" />
+              <span>{outcome}</span>
+            </li>
+          ))}
+        </ul>
 
         <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">
           <Link to={detailHref} className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
@@ -127,7 +136,6 @@ export function HomeServices() {
                 >
                   <span className="home-service-preview-number">{String(index + 1).padStart(2, "0")}</span>
                   <span className="home-service-preview-title">{service.title}</span>
-                  <span className="home-service-preview-hint">View service <ArrowUpRight /></span>
                 </button>
               );
             })}
