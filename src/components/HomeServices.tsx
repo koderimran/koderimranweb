@@ -87,9 +87,11 @@ export function HomeServices() {
         }
         const section = sectionRef.current;
         if (!section) return;
+        const stepHeight = window.innerHeight;
+        section.style.setProperty("--service-step-height", `${stepHeight}px`);
         const sectionTop = section.getBoundingClientRect().top + window.scrollY;
         const distance = Math.max(0, window.scrollY - sectionTop);
-        const nextIndex = Math.min(SERVICES.length - 1, Math.floor(distance / 800));
+        const nextIndex = Math.min(SERVICES.length - 1, Math.floor(distance / stepHeight));
         setActiveIndex(nextIndex);
       });
     };
@@ -107,8 +109,10 @@ export function HomeServices() {
   const selectService = (index: number) => {
     const section = sectionRef.current;
     if (!section) return;
+    const stepHeight = window.innerHeight;
+    section.style.setProperty("--service-step-height", `${stepHeight}px`);
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const target = sectionTop + index * 800 + 2;
+    const target = sectionTop + index * stepHeight + 2;
     scrollTargetRef.current = target;
     setActiveIndex(index);
     window.scrollTo({ top: target, behavior: "smooth" });
