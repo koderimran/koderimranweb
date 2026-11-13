@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Wallet, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Wallet, ShieldCheck, ChartNoAxesCombined, Megaphone, ShoppingBag, PanelsTopLeft, Sparkles } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 
 const SERVICE_META: Record<string, { audience: string }> = {
@@ -10,26 +10,47 @@ const SERVICE_META: Record<string, { audience: string }> = {
   "wordpress-woocommerce": { audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website." },
 };
 
+const SERVICE_ARTWORK = [
+  { Icon: ChartNoAxesCombined, eyebrow: "MEASURE WHAT MATTERS", motif: "analytics" },
+  { Icon: Megaphone, eyebrow: "REACH THE RIGHT PEOPLE", motif: "campaigns" },
+  { Icon: ShoppingBag, eyebrow: "BUILD YOUR ONLINE STORE", motif: "commerce" },
+  { Icon: PanelsTopLeft, eyebrow: "DESIGN • BUILD • GROW", motif: "websites" },
+];
+
 function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; index: number }) {
   const meta = SERVICE_META[service.slug] ?? SERVICE_META["web-analytics"];
+  const artwork = SERVICE_ARTWORK[index];
+  const Icon = artwork.Icon;
   const detailHref = `/services#service-${service.slug}`;
 
   return (
     <article className={`home-service-card home-service-card--${index + 1} home-service-active-card group relative isolate h-full overflow-hidden rounded-[1.75rem] border bg-card`}>
       <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[6rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[7rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
       <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
-        <div className="mb-3 inline-flex self-start rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
-          3 Flexible Packages Available
+        <div className={`home-service-artwork home-service-artwork--${artwork.motif}`} aria-hidden="true">
+          <div className="home-service-artwork-icon"><Icon strokeWidth={1.55} /></div>
+          <div className="home-service-artwork-copy">
+            <span>0{index + 1} / 04</span>
+            <strong>{artwork.eyebrow}</strong>
+          </div>
+          <div className="home-service-artwork-orbit"><Sparkles /></div>
+          <div className="home-service-artwork-lines"><i /><i /><i /></div>
         </div>
-        <h3 className="home-service-title relative z-10 flex min-h-[4rem] items-start pr-24 text-2xl font-bold leading-tight tracking-tight sm:pr-32 sm:text-[1.7rem]">{service.title}</h3>
-        <p className="mt-3 leading-relaxed text-muted-foreground">{service.short}</p>
+
+        <div className="home-service-intro">
+          <div className="mb-2 inline-flex self-start rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
+            3 Flexible Packages Available
+          </div>
+          <h3 className="home-service-title relative z-10 w-full text-left text-2xl font-bold leading-tight tracking-tight sm:text-[1.7rem]">{service.title}</h3>
+          <p className="mt-2 text-left leading-relaxed text-muted-foreground">{service.short}</p>
+        </div>
 
         <div className="mt-4 rounded-xl border border-[oklch(0.78_0.18_130)]/25 bg-[oklch(0.78_0.18_130)]/[0.07] px-4 py-3.5">
           <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-[oklch(0.52_0.13_135)] dark:text-[oklch(0.82_0.16_130)]">Who it’s for</p>
           <p className="mt-1.5 text-sm font-medium leading-relaxed text-foreground/85">{meta.audience}</p>
         </div>
 
-        <div className="mt-6 space-y-2.5">
+        <div className="mt-5 space-y-2">
           <div className="flex items-center gap-2.5">
             <Wallet className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
             <span className="text-sm font-medium">Scope-based quote</span>
@@ -40,7 +61,7 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
           </div>
         </div>
 
-        <div className="mt-auto flex flex-col gap-3 pt-6 sm:flex-row">
+        <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">
           <Link to={detailHref} className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
             Explore service <ArrowUpRight className="size-4" aria-hidden="true" />
           </Link>
@@ -67,7 +88,8 @@ export function HomeServices() {
       frame = requestAnimationFrame(() => {
         const section = sectionRef.current;
         if (!section) return;
-        const distance = Math.max(0, window.scrollY - (section.getBoundingClientRect().top + window.scrollY));
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const distance = Math.max(0, window.scrollY - sectionTop);
         const nextIndex = Math.min(SERVICES.length - 1, Math.floor(distance / Math.max(1, window.innerHeight)));
         setActiveIndex(nextIndex);
       });
@@ -82,6 +104,14 @@ export function HomeServices() {
       window.removeEventListener("resize", updateActive);
     };
   }, []);
+
+  const selectService = (index: number) => {
+    setActiveIndex(index);
+    const section = sectionRef.current;
+    if (!section) return;
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: sectionTop + index * window.innerHeight + 2, behavior: "smooth" });
+  };
 
   const activeService = SERVICES[activeIndex];
 
@@ -98,10 +128,18 @@ export function HomeServices() {
             {SERVICES.map((service, index) => {
               if (index === activeIndex) return null;
               return (
-                <div key={service.slug} className={`home-service-preview home-service-card--${index + 1}`} aria-label={`Service ${index + 1}: ${service.title}`}>
+                <button
+                  key={service.slug}
+                  type="button"
+                  className={`home-service-preview home-service-card--${index + 1}`}
+                  onClick={() => selectService(index)}
+                  aria-label={`Show service ${index + 1}: ${service.title}`}
+                  aria-current={undefined}
+                >
                   <span className="home-service-preview-number">{String(index + 1).padStart(2, "0")}</span>
                   <span className="home-service-preview-title">{service.title}</span>
-                </div>
+                  <span className="home-service-preview-hint">View service <ArrowUpRight /></span>
+                </button>
               );
             })}
           </aside>
