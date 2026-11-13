@@ -1117,3 +1117,46 @@ footer a:hover {
   .home-service-outcomes { gap: 0.3rem; padding-top: 0.7rem; }
   .home-service-outcomes li { font-size: 0.78rem; }
 }
+
+
+/* Align compact service previews and give their sequence numbers more presence. */
+.home-service-preview {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+}
+.home-service-preview-number {
+  display: block;
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+}
+.home-service-preview-title {
+  text-align: left;
+  align-self: flex-start;
+}
+.home-service-outcomes-wrap {
+  margin-top: auto;
+  padding-top: 1.1rem;
+}
+.home-service-outcomes-heading {
+  margin: 0;
+  color: var(--foreground);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.home-service-outcomes-wrap .home-service-outcomes {
+  margin-top: 0.65rem;
+  padding-top: 0;
+}
+.home-service-active-card .home-service-outcomes-wrap + .mt-auto {
+  margin-top: 0;
+}
+@media (max-height: 760px) and (min-width: 900px) {
+  .home-service-outcomes-wrap { padding-top: 0.7rem; }
+  .home-service-outcomes-wrap .home-service-outcomes { margin-top: 0.45rem; }
+}
