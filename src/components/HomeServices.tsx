@@ -42,14 +42,17 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
           </div>
         </div>
 
-        <ul className="home-service-outcomes mt-5 space-y-2" aria-label="Key outcomes">
+        <div className="home-service-outcomes-wrap">
+          <p className="home-service-outcomes-heading">Expected outcomes</p>
+          <ul className="home-service-outcomes mt-5 space-y-2" aria-label="Expected outcomes">
           {service.outcomes.map((outcome) => (
             <li key={outcome} className="flex items-start gap-2.5 text-sm font-medium leading-snug text-foreground/85">
               <Check className="mt-0.5 size-4 shrink-0 text-[oklch(0.52_0.13_135)] dark:text-[oklch(0.82_0.16_130)]" strokeWidth={2.5} aria-hidden="true" />
               <span>{outcome}</span>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
 
         <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">
           <Link to={detailHref} className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
