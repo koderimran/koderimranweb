@@ -15,9 +15,9 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
   const detailHref = `/services#service-${service.slug}`;
 
   return (
-    <article className={`home-service-card home-service-card--${index + 1} home-service-active-card group relative isolate h-full overflow-hidden rounded-[1.75rem] border bg-card`}>
+    <article className={`home-service-card home-service-card--${index + 1} home-service-active-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card`}>
       <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[6rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-      <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
+      <div className="relative z-10 flex flex-col p-6 sm:p-8">
         <div className="home-service-intro">
           <div className="mb-2 inline-flex self-start rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
             3 Flexible Packages Available
@@ -119,29 +119,30 @@ export function HomeServices() {
   return (
     <section ref={sectionRef} className="home-services-story mt-12" aria-label="Our services">
       <div className="home-services-sticky">
-        <div className="home-services-stage home-services-stack" aria-live="polite">
-          {SERVICES.map((service, index) => {
-            const offset = index - activeIndex;
-            const isPast = offset < 0;
-            const depth = Math.max(0, offset);
-            return (
-              <div
-                key={service.slug}
-                className="home-services-stack-card"
-                aria-hidden={isPast}
-                style={{
-                  zIndex: SERVICES.length - Math.abs(offset),
-                  opacity: isPast ? 0 : 1 - depth * 0.035,
-                  pointerEvents: offset === 0 ? "auto" : "none",
-                  transform: isPast
-                    ? "translate3d(0, -112%, 0) scale(0.96)"
-                    : `translate3d(0, ${depth * 17}px, 0) scale(${1 - depth * 0.035})`,
-                }}
-              >
-                <ServiceCard service={service} index={index} />
-              </div>
-            );
-          })}
+        <div className="home-services-stage">
+          <div className="home-services-featured" aria-live="polite">
+            <div key={activeService.slug} className="home-services-active-wrap">
+              <ServiceCard service={activeService} index={activeIndex} />
+            </div>
+          </div>
+          <aside className="home-services-rail" aria-label="Other services">
+            {SERVICES.map((service, index) => {
+              if (index === activeIndex) return null;
+              return (
+                <button
+                  key={service.slug}
+                  type="button"
+                  className={`home-service-preview home-service-card--${index + 1}`}
+                  onClick={() => selectService(index)}
+                  aria-label={`Show service ${index + 1}: ${service.title}`}
+                  aria-current={undefined}
+                >
+                  <span className="home-service-preview-number">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="home-service-preview-title">{service.title}</span>
+                </button>
+              );
+            })}
+          </aside>
         </div>
       </div>
       <div className="home-services-scroll-track" aria-hidden="true">
