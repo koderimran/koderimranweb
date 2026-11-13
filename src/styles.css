@@ -1262,7 +1262,14 @@ footer a:hover {
     height: 100%;
   }
   .home-services-rail {
+    display: grid;
     height: 100%;
+    min-height: 0;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
     align-self: stretch;
+  }
+  .home-services-rail > .home-service-preview {
+    height: 100%;
+    min-height: 0;
   }
 }
