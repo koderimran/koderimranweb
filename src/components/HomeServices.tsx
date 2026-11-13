@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Wallet, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Wallet, ShieldCheck, Check } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 
-const SERVICE_META: Record<string, { audience: string }> = {
-  "web-analytics": { audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data." },
-  "google-ads": { audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales." },
-  shopify: { audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience." },
-  "wordpress-woocommerce": { audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website." },
+const SERVICE_META: Record<string, { audience: string; benefits: string[] }> = {
+  "web-analytics": { audience: "E-commerce teams, lead-generation businesses and marketers who need trustworthy conversion data.", benefits: ["GA4 & Google Tag Manager setup", "Accurate conversion and e-commerce tracking", "Clear reporting with actionable insights"] },
+  "google-ads": { audience: "Businesses ready to reach high-intent customers, generate qualified leads or grow online sales.", benefits: ["Campaign strategy, setup & optimisation", "Keyword, audience & ad creative planning", "Conversion tracking & performance insights"] },
+  shopify: { audience: "Product brands and retailers launching a Shopify store or improving an existing shopping experience.", benefits: ["Customised, conversion-focused storefront", "Product pages & essential app integrations", "E-commerce tracking & store optimisation"] },
+  "wordpress-woocommerce": { audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website.", benefits: ["Responsive WordPress or WooCommerce website", "Tailored pages & essential integrations", "Analytics, tracking & performance optimisation"] },
 };
 
 function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; index: number }) {
@@ -26,9 +26,21 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
           <p className="mt-2 text-left leading-relaxed text-muted-foreground">{service.short}</p>
         </div>
 
-        <div className="mt-4 rounded-xl border border-[oklch(0.78_0.18_130)]/25 bg-[oklch(0.78_0.18_130)]/[0.07] px-4 py-3.5">
-          <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-[oklch(0.52_0.13_135)] dark:text-[oklch(0.82_0.16_130)]">Who it’s for</p>
-          <p className="mt-1.5 text-sm font-medium leading-relaxed text-foreground/85">{meta.audience}</p>
+        <div className="home-service-benefits mt-4 rounded-xl border border-[oklch(0.78_0.18_130)]/25 bg-[oklch(0.78_0.18_130)]/[0.07] px-4 py-3.5">
+          <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-[oklch(0.52_0.13_135)] dark:text-[oklch(0.82_0.16_130)]">What you’ll get</p>
+          <ul className="mt-2.5 space-y-2">
+            {meta.benefits.map((benefit) => (
+              <li key={benefit} className="flex items-start gap-2.5 text-sm font-medium leading-snug text-foreground/85">
+                <Check className="mt-0.5 size-4 shrink-0 text-[oklch(0.52_0.13_135)] dark:text-[oklch(0.82_0.16_130)]" strokeWidth={2.5} aria-hidden="true" />
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="home-service-audience mt-3">
+          <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-muted-foreground">Who it’s for</p>
+          <p className="mt-1 text-sm leading-relaxed text-foreground/75">{meta.audience}</p>
         </div>
 
         <div className="mt-5 space-y-2">
