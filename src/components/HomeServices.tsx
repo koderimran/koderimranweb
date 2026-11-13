@@ -108,7 +108,7 @@ export function HomeServices() {
         </div>
       </div>
       <div className="home-services-scroll-track" aria-hidden="true">
-        {SERVICES.map((service) => <div key={service.slug} className="home-services-scroll-step" />)}
+        {SERVICES.slice(1).map((service) => <div key={service.slug} className="home-services-scroll-step" />)}
       </div>
       <div className="home-services-mobile-list">
         {SERVICES.map((service, index) => <ServiceCard key={service.slug} service={service} index={index} />)}
