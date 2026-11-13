@@ -54,7 +54,7 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
           </ul>
         </div>
 
-        <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">
+        <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row">
           <Link to={detailHref} className="btn btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-bold">
             Explore service <ArrowUpRight className="size-4" aria-hidden="true" />
           </Link>
@@ -87,9 +87,11 @@ export function HomeServices() {
         }
         const section = sectionRef.current;
         if (!section) return;
+        const stepHeight = window.innerHeight;
+        section.style.setProperty("--service-step-height", `${stepHeight}px`);
         const sectionTop = section.getBoundingClientRect().top + window.scrollY;
         const distance = Math.max(0, window.scrollY - sectionTop);
-        const nextIndex = Math.min(SERVICES.length - 1, Math.floor(distance / Math.max(1, window.innerHeight)));
+        const nextIndex = Math.min(SERVICES.length - 1, Math.floor(distance / stepHeight));
         setActiveIndex(nextIndex);
       });
     };
@@ -105,10 +107,16 @@ export function HomeServices() {
   }, []);
 
   const selectService = (index: number) => {
+    // Ignore repeated clicks while the current smooth-scroll selection is in progress.
+    if (scrollTargetRef.current !== null || index === activeIndex) return;
     const section = sectionRef.current;
     if (!section) return;
+    const stepHeight = window.innerHeight;
+    section.style.setProperty("--service-step-height", `${stepHeight}px`);
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const target = sectionTop + index * window.innerHeight + 2;
+    const target = sectionTop + index * stepHeight + 2;
+    // Switch the featured card immediately so it is removed from the preview rail
+    // before smooth scrolling begins; the observer then confirms the same index.
     scrollTargetRef.current = target;
     setActiveIndex(index);
     window.scrollTo({ top: target, behavior: "smooth" });
@@ -117,7 +125,7 @@ export function HomeServices() {
   const activeService = SERVICES[activeIndex];
 
   return (
-    <section ref={sectionRef} className="home-services-story mt-12" aria-label="Our services">
+    <section ref={sectionRef} className="home-services-story mt-5" aria-label="Our services">
       <div className="home-services-sticky">
         <div className="home-services-stage">
           <div className="home-services-featured" aria-live="polite">

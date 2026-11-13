@@ -1020,12 +1020,12 @@ footer a:hover {
 }
 .home-services-scroll-track {
   position: relative;
-  height: 300svh;
+  height: calc(var(--service-step-height, 100svh) * 4);
   margin-top: -1px;
   pointer-events: none;
 }
 .home-services-scroll-step {
-  height: 100svh;
+  height: var(--service-step-height, 100svh);
 }
 .home-services-mobile-list {
   display: none;
@@ -1192,8 +1192,8 @@ footer a:hover {
 @media (min-width: 900px) {
   .home-services-sticky {
     height: auto;
-    min-height: calc(100svh - 6rem);
-    align-items: center;
+    min-height: 0;
+    align-items: flex-start;
   }
   .home-services-stage {
     grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
@@ -1204,6 +1204,7 @@ footer a:hover {
   .home-services-active-wrap {
     height: auto;
     min-height: 0;
+    animation: none;
   }
   .home-service-active-card {
     height: auto;
@@ -1231,7 +1232,7 @@ footer a:hover {
   }
 }
 @media (max-height: 760px) and (min-width: 900px) {
-  .home-services-sticky { min-height: calc(100svh - 5.5rem); }
+  .home-services-sticky { min-height: 0; }
   .home-service-active-card > .relative.z-10 { padding: clamp(1rem, 1.8vw, 1.35rem); }
 }
 @media (max-width: 899px) {
