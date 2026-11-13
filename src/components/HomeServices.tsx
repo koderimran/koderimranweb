@@ -107,6 +107,8 @@ export function HomeServices() {
   }, []);
 
   const selectService = (index: number) => {
+    // Ignore repeated clicks while the current smooth-scroll selection is in progress.
+    if (scrollTargetRef.current !== null || index === activeIndex) return;
     const section = sectionRef.current;
     if (!section) return;
     const stepHeight = window.innerHeight;
