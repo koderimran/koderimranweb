@@ -1160,3 +1160,81 @@ footer a:hover {
   .home-service-outcomes-wrap { padding-top: 0.7rem; }
   .home-service-outcomes-wrap .home-service-outcomes { margin-top: 0.45rem; }
 }
+
+
+/* Scroll-driven layered service stack: each next card visibly sits behind the active one. */
+@media (min-width: 900px) {
+  .home-services-stack {
+    position: relative;
+    display: block;
+    width: min(100%, 64rem);
+    height: min(43rem, 100%);
+    margin-inline: auto;
+    isolation: isolate;
+  }
+  .home-services-stack-card {
+    position: absolute;
+    inset: 0;
+    transform-origin: center top;
+    transition:
+      transform 720ms cubic-bezier(0.2, 0.75, 0.25, 1),
+      opacity 520ms ease;
+    will-change: transform, opacity;
+  }
+  .home-services-stack-card:not(:first-child) .home-service-active-card {
+    box-shadow: 0 18px 48px -34px color-mix(in oklab, var(--foreground) 42%, transparent);
+  }
+}
+
+
+/* Final requested desktop composition: 70% active card left, 30% previews right.
+   Let card content determine its height at every zoom and viewport size. */
+@media (min-width: 900px) {
+  .home-services-sticky {
+    height: auto;
+    min-height: calc(100svh - 6rem);
+    align-items: center;
+  }
+  .home-services-stage {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+    height: auto;
+    align-items: stretch;
+  }
+  .home-services-featured,
+  .home-services-active-wrap {
+    height: auto;
+    min-height: 0;
+  }
+  .home-service-active-card {
+    height: auto;
+    min-height: 0;
+  }
+  .home-service-active-card > .relative.z-10 {
+    height: auto;
+  }
+  .home-services-rail {
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    align-self: stretch;
+  }
+  .home-service-outcomes-wrap {
+    margin-top: 1.15rem;
+    padding-top: 0;
+  }
+  .home-service-outcomes-wrap .home-service-outcomes {
+    margin-top: 0.65rem;
+  }
+  .home-service-active-card .home-service-outcomes-wrap + .mt-auto {
+    margin-top: 1.15rem;
+  }
+  .home-service-active-card .mt-auto {
+    margin-top: 1.15rem;
+  }
+}
+@media (max-height: 760px) and (min-width: 900px) {
+  .home-services-sticky { min-height: calc(100svh - 5.5rem); }
+  .home-service-active-card > .relative.z-10 { padding: clamp(1rem, 1.8vw, 1.35rem); }
+}
+@media (max-width: 899px) {
+  .home-service-outcomes-wrap { margin-top: 1rem; padding-top: 0; }
+  .home-service-active-card .mt-auto { margin-top: 1rem; }
+}
