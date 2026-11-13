@@ -1020,7 +1020,7 @@ footer a:hover {
 }
 .home-services-scroll-track {
   position: relative;
-  height: calc(var(--service-step-height, 100svh) * 3);
+  height: calc(var(--service-step-height, 100svh) * 4);
   margin-top: -1px;
   pointer-events: none;
 }
@@ -1204,6 +1204,7 @@ footer a:hover {
   .home-services-active-wrap {
     height: auto;
     min-height: 0;
+    animation: none;
   }
   .home-service-active-card {
     height: auto;
