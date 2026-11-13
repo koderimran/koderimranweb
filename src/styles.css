@@ -1160,27 +1160,3 @@ footer a:hover {
   .home-service-outcomes-wrap { padding-top: 0.7rem; }
   .home-service-outcomes-wrap .home-service-outcomes { margin-top: 0.45rem; }
 }
-
-
-/* Service showcase: preview rail on the left, active service on the right. */
-@media (min-width: 900px) {
-  .home-services-stage {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-  }
-  .home-services-rail {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  .home-services-featured {
-    grid-column: 2;
-    grid-row: 1;
-  }
-}
-.home-service-preview-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
-  max-width: 100%;
-}
