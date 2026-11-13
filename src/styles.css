@@ -1020,12 +1020,12 @@ footer a:hover {
 }
 .home-services-scroll-track {
   position: relative;
-  height: 2400px;
+  height: calc(var(--service-step-height, 100svh) * 3);
   margin-top: -1px;
   pointer-events: none;
 }
 .home-services-scroll-step {
-  height: 800px;
+  height: var(--service-step-height, 100svh);
 }
 .home-services-mobile-list {
   display: none;
