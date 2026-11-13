@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Wallet, ShieldCheck, ChartNoAxesCombined, Megaphone, ShoppingBag, PanelsTopLeft, Sparkles } from "lucide-react";
+import { ArrowUpRight, Wallet, ShieldCheck } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 
 const SERVICE_META: Record<string, { audience: string }> = {
@@ -10,33 +10,14 @@ const SERVICE_META: Record<string, { audience: string }> = {
   "wordpress-woocommerce": { audience: "Small businesses, service providers and online sellers who need a flexible WordPress or WooCommerce website." },
 };
 
-const SERVICE_ARTWORK = [
-  { Icon: ChartNoAxesCombined, eyebrow: "MEASURE WHAT MATTERS", motif: "analytics" },
-  { Icon: Megaphone, eyebrow: "REACH THE RIGHT PEOPLE", motif: "campaigns" },
-  { Icon: ShoppingBag, eyebrow: "BUILD YOUR ONLINE STORE", motif: "commerce" },
-  { Icon: PanelsTopLeft, eyebrow: "DESIGN • BUILD • GROW", motif: "websites" },
-];
-
 function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; index: number }) {
   const meta = SERVICE_META[service.slug] ?? SERVICE_META["web-analytics"];
-  const artwork = SERVICE_ARTWORK[index];
-  const Icon = artwork.Icon;
   const detailHref = `/services#service-${service.slug}`;
 
   return (
     <article className={`home-service-card home-service-card--${index + 1} home-service-active-card group relative isolate h-full overflow-hidden rounded-[1.75rem] border bg-card`}>
       <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[6rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[7rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
       <div className="relative z-10 flex h-full flex-col p-6 sm:p-8">
-        <div className={`home-service-artwork home-service-artwork--${artwork.motif}`} aria-hidden="true">
-          <div className="home-service-artwork-icon"><Icon strokeWidth={1.55} /></div>
-          <div className="home-service-artwork-copy">
-            <span>0{index + 1} / 04</span>
-            <strong>{artwork.eyebrow}</strong>
-          </div>
-          <div className="home-service-artwork-orbit"><Sparkles /></div>
-          <div className="home-service-artwork-lines"><i /><i /><i /></div>
-        </div>
-
         <div className="home-service-intro">
           <div className="mb-2 inline-flex self-start rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
             3 Flexible Packages Available
@@ -77,6 +58,7 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
 export function HomeServices() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const scrollTargetRef = useRef<number | null>(null);
 
   useEffect(() => {
     const media = window.matchMedia("(min-width: 900px)");
@@ -86,6 +68,11 @@ export function HomeServices() {
     const updateActive = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
+        const target = scrollTargetRef.current;
+        if (target !== null) {
+          if (Math.abs(window.scrollY - target) > 3) return;
+          scrollTargetRef.current = null;
+        }
         const section = sectionRef.current;
         if (!section) return;
         const sectionTop = section.getBoundingClientRect().top + window.scrollY;
@@ -106,11 +93,13 @@ export function HomeServices() {
   }, []);
 
   const selectService = (index: number) => {
-    setActiveIndex(index);
     const section = sectionRef.current;
     if (!section) return;
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: sectionTop + index * window.innerHeight + 2, behavior: "smooth" });
+    const target = sectionTop + index * window.innerHeight + 2;
+    scrollTargetRef.current = target;
+    setActiveIndex(index);
+    window.scrollTo({ top: target, behavior: "smooth" });
   };
 
   const activeService = SERVICES[activeIndex];
