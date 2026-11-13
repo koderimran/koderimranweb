@@ -88,8 +88,11 @@ export function HomeServices() {
         const section = sectionRef.current;
         if (!section) return;
         const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        const distance = Math.max(0, window.scrollY - sectionTop);
-        const nextIndex = Math.min(SERVICES.length - 1, Math.floor(distance / Math.max(1, window.innerHeight)));
+        const sticky = section.querySelector<HTMLElement>(".home-services-sticky");
+        const stickyTop = sticky ? Number.parseFloat(window.getComputedStyle(sticky).top) || 0 : 0;
+        const scrollStart = sectionTop - stickyTop;
+        const distance = Math.max(0, window.scrollY - scrollStart);
+        const nextIndex = Math.min(SERVICES.length - 1, Math.floor((distance + 2) / Math.max(1, window.innerHeight)));
         setActiveIndex(nextIndex);
       });
     };
@@ -108,7 +111,9 @@ export function HomeServices() {
     const section = sectionRef.current;
     if (!section) return;
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const target = sectionTop + index * window.innerHeight + 2;
+    const sticky = section.querySelector<HTMLElement>(".home-services-sticky");
+    const stickyTop = sticky ? Number.parseFloat(window.getComputedStyle(sticky).top) || 0 : 0;
+    const target = sectionTop - stickyTop + index * window.innerHeight + 2;
     scrollTargetRef.current = target;
     setActiveIndex(index);
     window.scrollTo({ top: target, behavior: "smooth" });
