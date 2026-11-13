@@ -119,30 +119,29 @@ export function HomeServices() {
   return (
     <section ref={sectionRef} className="home-services-story mt-12" aria-label="Our services">
       <div className="home-services-sticky">
-        <div className="home-services-stage">
-          <div className="home-services-featured" aria-live="polite">
-            <div key={activeService.slug} className="home-services-active-wrap">
-              <ServiceCard service={activeService} index={activeIndex} />
-            </div>
-          </div>
-          <aside className="home-services-rail" aria-label="Other services">
-            {SERVICES.map((service, index) => {
-              if (index === activeIndex) return null;
-              return (
-                <button
-                  key={service.slug}
-                  type="button"
-                  className={`home-service-preview home-service-card--${index + 1}`}
-                  onClick={() => selectService(index)}
-                  aria-label={`Show service ${index + 1}: ${service.title}`}
-                  aria-current={undefined}
-                >
-                  <span className="home-service-preview-number">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="home-service-preview-title">{service.title}</span>
-                </button>
-              );
-            })}
-          </aside>
+        <div className="home-services-stage home-services-stack" aria-live="polite">
+          {SERVICES.map((service, index) => {
+            const offset = index - activeIndex;
+            const isPast = offset < 0;
+            const depth = Math.max(0, offset);
+            return (
+              <div
+                key={service.slug}
+                className="home-services-stack-card"
+                aria-hidden={isPast}
+                style={{
+                  zIndex: SERVICES.length - Math.abs(offset),
+                  opacity: isPast ? 0 : 1 - depth * 0.035,
+                  pointerEvents: offset === 0 ? "auto" : "none",
+                  transform: isPast
+                    ? "translate3d(0, -112%, 0) scale(0.96)"
+                    : `translate3d(0, ${depth * 17}px, 0) scale(${1 - depth * 0.035})`,
+                }}
+              >
+                <ServiceCard service={service} index={index} />
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="home-services-scroll-track" aria-hidden="true">
