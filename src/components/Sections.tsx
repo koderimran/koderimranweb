@@ -100,7 +100,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
         </div>
         <h2 className="mt-3 max-w-4xl font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">{service.title}</h2>
       </div>
-      <div aria-hidden="true" className="container-page border-t border-border" />
+      <div aria-hidden="true" className="mx-6 border-t border-border md:mx-9" />
 
       <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
         <div className="min-w-0">
@@ -178,6 +178,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           </div>
         </aside>
       </div>
+      <div aria-hidden="true" className="w-full border-t border-border" />
 
       {compareOpen && createPortal(
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 p-3 backdrop-blur-md sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
