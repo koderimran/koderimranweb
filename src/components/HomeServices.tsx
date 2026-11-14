@@ -83,7 +83,11 @@ export function HomeServices() {
         const target = scrollTargetRef.current;
         if (target !== null) {
           if (Math.abs(window.scrollY - target) > 3) return;
+          // The click handler already selected the requested card. Do not run
+          // the scroll observer again on the arrival frame, or the final step
+          // can briefly calculate the previous index and replay the transition.
           scrollTargetRef.current = null;
+          return;
         }
         const section = sectionRef.current;
         if (!section) return;
