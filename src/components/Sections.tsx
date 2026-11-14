@@ -92,13 +92,13 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
   }, [compareOpen]);
 
   return (
-    <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className="service-detail-card scroll-mt-28 overflow-hidden rounded-3xl border bg-card">
+    <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className="service-detail-section relative scroll-mt-28">
       <div className="border-b px-6 py-6 md:px-9 md:py-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow">Service 0{index + 1}</p>
           <span className="text-xs font-semibold text-muted-foreground">Personalised service · Worldwide</span>
         </div>
-        <h2 className="mt-3 max-w-4xl text-lg font-semibold tracking-tight text-muted-foreground md:text-xl">{service.title}</h2>
+        <h2 className="mt-3 max-w-4xl font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">{service.title}</h2>
       </div>
 
       <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
@@ -233,7 +233,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
 
 export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
   if (detailed) {
-    return <div className="grid gap-7">{SERVICES.map((service, index) => <ServicePackagePanel key={service.slug} service={service} index={index} />)}</div>;
+    return <div className="service-detail-list">{SERVICES.map((service, index) => <ServicePackagePanel key={service.slug} service={service} index={index} />)}</div>;
   }
 
   return (
