@@ -1254,15 +1254,4 @@ footer a:hover {
   border-radius: 0;
   box-shadow: none;
 }
-.service-detail-section > div:first-of-type,
-.service-detail-section > div:nth-of-type(2) {
-  padding-left: clamp(1.5rem, 3vw, 2.5rem);
-  padding-right: clamp(1.5rem, 3vw, 2.5rem);
-}
-@media (min-width: 768px) {
-  .service-detail-section > div:first-of-type,
-  .service-detail-section > div:nth-of-type(2) {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-}
+
