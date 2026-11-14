@@ -1239,3 +1239,28 @@ footer a:hover {
   .home-service-outcomes-wrap { margin-top: 1rem; padding-top: 0; }
   .home-service-active-card .mt-auto { margin-top: 1rem; }
 }
+
+
+/* Services page: stacked service cards reuse the homepage service-card visual system. */
+.service-detail-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+.service-detail-section {
+  min-width: 0;
+  border-color: color-mix(in oklab, var(--border) 85%, transparent);
+  box-shadow: 0 12px 36px -28px oklch(0 0 0 / 0.28);
+}
+.service-detail-section > div:first-of-type,
+.service-detail-section > div:nth-of-type(2) {
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
+  padding-right: clamp(1.5rem, 3vw, 2.5rem);
+}
+@media (min-width: 768px) {
+  .service-detail-section > div:first-of-type,
+  .service-detail-section > div:nth-of-type(2) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
