@@ -13,7 +13,7 @@ const SERVICE_META: Record<string, { audience: string }> = {
 
 export function HomeServices() {
   return (
-    <div className="mt-12 grid gap-5 lg:grid-cols-2">
+    <div className="mt-8 grid gap-5 lg:grid-cols-2">
       {SERVICES.map((service, index) => {
         const meta = SERVICE_META[service.slug] ?? SERVICE_META["web-analytics"];
         const detailHref = `/services#service-${service.slug}`;
