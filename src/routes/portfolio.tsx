@@ -39,14 +39,14 @@ function Portfolio() {
         <div className="container-page py-20 md:py-28">
           <p className="eyebrow animate-rise">Selected work</p>
           <h1 className="page-hero-title animate-rise mt-4 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>
-            Digital experiences built around business goals.
+            Stores, tracking and ads that turn visitors into customers.
           </h1>
           <p className="animate-rise mt-6 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
-            A selection of websites, online stores and digital projects. Explore the work, then see how design,
-            measurement and marketing can work together to support growth.
+            Recent Shopify, WordPress and e-commerce projects. Each one pairs a conversion-focused build with
+            accurate GA4 &amp; GTM tracking and Google Ads campaigns that pay off.
           </p>
           <div className="page-hero-actions animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-            <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Discuss a project</Link>
+            <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Get a Free Audit</Link>
             <Link to="/services" className="btn btn-outline rounded-full px-7 py-4 font-bold">Explore services</Link>
           </div>
         </div>
