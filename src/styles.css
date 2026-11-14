@@ -904,28 +904,28 @@ footer a:hover {
   transition: border-color 240ms ease, box-shadow 240ms ease;
 }
 .home-service-card--1 {
-  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.9 0.17 128) 20%, var(--card)), color-mix(in oklab, oklch(0.82 0.09 165) 11%, var(--card)) 58%, var(--card)) !important;
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.9 0.17 128) 10%, var(--card)), color-mix(in oklab, oklch(0.82 0.09 165) 6%, var(--card)) 58%, var(--card)) !important;
 }
 .home-service-card--2 {
-  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.82 0.09 225) 17%, var(--card)), color-mix(in oklab, oklch(0.86 0.07 250) 10%, var(--card)) 58%, var(--card)) !important;
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.82 0.09 225) 9%, var(--card)), color-mix(in oklab, oklch(0.86 0.07 250) 5%, var(--card)) 58%, var(--card)) !important;
 }
 .home-service-card--3 {
-  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.84 0.11 75) 17%, var(--card)), color-mix(in oklab, oklch(0.86 0.08 45) 10%, var(--card)) 58%, var(--card)) !important;
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.84 0.11 75) 9%, var(--card)), color-mix(in oklab, oklch(0.86 0.08 45) 5%, var(--card)) 58%, var(--card)) !important;
 }
 .home-service-card--4 {
-  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.82 0.09 300) 15%, var(--card)), color-mix(in oklab, oklch(0.84 0.08 220) 10%, var(--card)) 58%, var(--card)) !important;
+  background: linear-gradient(135deg, color-mix(in oklab, oklch(0.82 0.09 300) 8%, var(--card)), color-mix(in oklab, oklch(0.84 0.08 220) 5%, var(--card)) 58%, var(--card)) !important;
 }
 .dark .home-service-card--1 {
-  background: linear-gradient(135deg, oklch(0.29 0.045 135 / 0.72), oklch(0.235 0.018 165 / 0.9) 62%, var(--card)) !important;
+  background: linear-gradient(135deg, oklch(0.26 0.025 135 / 0.55), oklch(0.235 0.012 165 / 0.82) 62%, var(--card)) !important;
 }
 .dark .home-service-card--2 {
-  background: linear-gradient(135deg, oklch(0.28 0.045 230 / 0.68), oklch(0.235 0.02 215 / 0.9) 62%, var(--card)) !important;
+  background: linear-gradient(135deg, oklch(0.255 0.025 230 / 0.52), oklch(0.235 0.012 215 / 0.82) 62%, var(--card)) !important;
 }
 .dark .home-service-card--3 {
-  background: linear-gradient(135deg, oklch(0.29 0.045 75 / 0.62), oklch(0.235 0.02 55 / 0.9) 62%, var(--card)) !important;
+  background: linear-gradient(135deg, oklch(0.26 0.025 75 / 0.5), oklch(0.235 0.012 55 / 0.82) 62%, var(--card)) !important;
 }
 .dark .home-service-card--4 {
-  background: linear-gradient(135deg, oklch(0.28 0.045 300 / 0.62), oklch(0.235 0.02 245 / 0.9) 62%, var(--card)) !important;
+  background: linear-gradient(135deg, oklch(0.255 0.025 300 / 0.5), oklch(0.235 0.012 245 / 0.82) 62%, var(--card)) !important;
 }
 .home-service-title {
   color: transparent;
