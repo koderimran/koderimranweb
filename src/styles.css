@@ -73,15 +73,16 @@
   --header-scrolled-border: color-mix(in oklab, var(--border) 70%, var(--signal));
   --shadow-header: 0 8px 24px -12px color-mix(in oklab, var(--ink) 24%, transparent);
   --hero-surface: var(--background);
-  /* Horizontal, left to right: signal-tinted edge -> soft green -> light teal. */
-  --hero-gradient: linear-gradient(90deg,
-    color-mix(in oklab, var(--signal) 24%, oklch(0.985 0.014 140)) 0%,
-    oklch(0.972 0.018 160) 48%,
-    oklch(0.953 0.025 205) 100%);
+  /* A wide band of colour: deepest in the centre, easing out to both sides, and only slightly
+     lighter toward the top and bottom (the ellipse is much taller than the hero). */
+  --hero-gradient:
+    radial-gradient(ellipse 56% 150% at 50% 50%,
+      color-mix(in oklab, var(--signal) 24%, transparent) 0%,
+      color-mix(in oklab, var(--signal) 12%, transparent) 42%,
+      transparent 100%),
+    linear-gradient(oklch(0.985 0.014 140), oklch(0.985 0.014 140));
   /* Light theme: a wash from the copy side keeps the heading and buttons readable over the photo. */
   --hero-photo-overlay:
-    /* Re-applied above the wash so the signal-coloured left edge is not hidden by it. */
-    linear-gradient(90deg, color-mix(in oklab, var(--signal) 20%, transparent) 0%, transparent 38%),
     linear-gradient(90deg,
     color-mix(in oklab, var(--background) 92%, transparent) 0%,
     color-mix(in oklab, var(--background) 78%, transparent) 42%,
@@ -126,10 +127,12 @@
   --header-scrolled-background: color-mix(in oklab, var(--background) 68%, transparent);
   --header-scrolled-border: color-mix(in oklab, var(--border) 85%, var(--signal));
   --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
-  --hero-gradient: linear-gradient(90deg,
-    color-mix(in oklab, var(--signal) 14%, oklch(0.205 0.03 150)) 0%,
-    oklch(0.215 0.034 175) 48%,
-    oklch(0.265 0.046 215) 100%);
+  --hero-gradient:
+    radial-gradient(ellipse 56% 150% at 50% 50%,
+      color-mix(in oklab, var(--signal) 10%, transparent) 0%,
+      color-mix(in oklab, var(--signal) 5%, transparent) 42%,
+      transparent 100%),
+    linear-gradient(oklch(0.2 0.028 155), oklch(0.2 0.028 155));
   --hero-photo-overlay: none;
   --hero-mobile-overlay: none;
   --hero-badge-glass: color-mix(in oklab, var(--card) 54%, transparent);
