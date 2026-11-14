@@ -99,13 +99,77 @@ export const SERVICES: Service[] = [
   },
 ];
 
-export const WORKS = [
-  { name: "Lulu Teaware", url: "http://luluteaware.com/", tag: "E-commerce", img: "https://koderimran.com/wp-content/uploads/2026/01/Lulu-Teaware-1024x615.png" },
-  { name: "Dutch Giant", url: "http://dutchgiant.com/", tag: "Business website", img: "https://koderimran.com/wp-content/uploads/2026/01/Dutch-Giant-1024x615.png" },
-  { name: "Furniture From Turkey", url: "http://furniturefromturkey.com/", tag: "E-commerce", img: "https://koderimran.com/wp-content/uploads/2026/01/FFT-1024x615.png" },
-  { name: "Emi Code", url: "http://emicode.com/", tag: "Agency website", img: "https://koderimran.com/wp-content/uploads/2026/01/Am-I-Responsive-2-1024x615.png" },
-  { name: "Theme Skills", url: "http://themeskills.com/", tag: "WordPress", img: "https://koderimran.com/wp-content/uploads/2026/01/Theme-Skills-1024x616.png" },
-  { name: "Nova Module", url: "http://novamodule.com/", tag: "Corporate website", img: "https://koderimran.com/wp-content/uploads/2026/01/Nova-Module-1024x615.png" },
+/**
+ * DEMO DATA: নিচের problem, result আর DEMO_STATS-এর সংখ্যাগুলো শুধু layout দেখানোর জন্য বানানো।
+ * আসল তথ্য বসিয়ে SHOW_DEMO_BADGE = false করুন। আসল না হলে এগুলো live site-এ রাখবেন না।
+ */
+export const SHOW_DEMO_BADGE = true;
+
+export type WorkService = "Store Design" | "Tracking" | "Google Ads";
+
+export type Work = {
+  name: string;
+  url: string;
+  tag: string;
+  img: string;
+  /** কোন কোন service-এর কাজ ছিল (filter tab এর জন্য) */
+  services: WorkService[];
+  /** DEMO: ক্লায়েন্টের সমস্যা (১ লাইন) */
+  problem: string;
+  /** DEMO: কাজের ফলাফল (১ লাইন) */
+  result: string;
+};
+
+export const WORKS: Work[] = [
+  {
+    name: "Lulu Teaware", url: "http://luluteaware.com/", tag: "E-commerce",
+    img: "https://koderimran.com/wp-content/uploads/2026/01/Lulu-Teaware-1024x615.png",
+    services: ["Store Design", "Tracking", "Google Ads"],
+    problem: "Traffic was coming in, but few visitors turned into buyers.",
+    result: "Conversion rate grew from 1.1% to 2.6% after the redesign and tracking fixes.",
+  },
+  {
+    name: "Dutch Giant", url: "http://dutchgiant.com/", tag: "Business website",
+    img: "https://koderimran.com/wp-content/uploads/2026/01/Dutch-Giant-1024x615.png",
+    services: ["Store Design", "Tracking"],
+    problem: "The old website looked dated and no enquiries were being measured.",
+    result: "A modern site with full lead tracking, so every enquiry is now counted.",
+  },
+  {
+    name: "Furniture From Turkey", url: "http://furniturefromturkey.com/", tag: "E-commerce",
+    img: "https://koderimran.com/wp-content/uploads/2026/01/FFT-1024x615.png",
+    services: ["Store Design", "Google Ads"],
+    problem: "Ad spend was high while the store struggled to turn clicks into orders.",
+    result: "ROAS improved from 1.8x to 3.4x with a cleaner shopping flow and better campaigns.",
+  },
+  {
+    name: "Emi Code", url: "http://emicode.com/", tag: "Agency website",
+    img: "https://koderimran.com/wp-content/uploads/2026/01/Am-I-Responsive-2-1024x615.png",
+    services: ["Store Design"],
+    problem: "The agency needed a site that explains its services clearly.",
+    result: "A fast, responsive website that presents services and drives contact requests.",
+  },
+  {
+    name: "Theme Skills", url: "http://themeskills.com/", tag: "WordPress",
+    img: "https://koderimran.com/wp-content/uploads/2026/01/Theme-Skills-1024x616.png",
+    services: ["Store Design", "Tracking"],
+    problem: "There was no clear view of which pages brought sign-ups.",
+    result: "GA4 and GTM events now show the full path from visit to sign-up.",
+  },
+  {
+    name: "Nova Module", url: "http://novamodule.com/", tag: "Corporate website",
+    img: "https://koderimran.com/wp-content/uploads/2026/01/Nova-Module-1024x615.png",
+    services: ["Store Design", "Google Ads"],
+    problem: "The company wanted qualified leads, not just website visits.",
+    result: "Cost per lead dropped by 38% with focused Search campaigns and a lead-first site.",
+  },
+];
+
+/** DEMO: আপনার আসল সংখ্যা দিন। সংখ্যা না থাকলে array খালি রাখুন, section লুকিয়ে যাবে। */
+export const DEMO_STATS: { value: string; label: string }[] = [
+  { value: "50+", label: "Websites & stores delivered" },
+  { value: "3x", label: "Average ROAS on managed accounts" },
+  { value: "100%", label: "Tracking QA on every launch" },
 ];
 
 export const REVIEWS = [

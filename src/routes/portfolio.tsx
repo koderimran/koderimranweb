@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, PanelsTopLeft } from "lucide-react";
-import { SITE, WORKS, SERVICES, REVIEWS } from "@/lib/site";
+import { SITE, WORKS, SERVICES, REVIEWS, DEMO_STATS, SHOW_DEMO_BADGE, type WorkService } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
@@ -12,7 +12,7 @@ const DESC = "Explore selected websites and e-commerce projects by Koder Imran, 
 const SERVICE_ICONS = [BarChart3, Megaphone, ShoppingBag, PanelsTopLeft];
 
 const ALL = "All";
-const FILTERS = [ALL, ...Array.from(new Set(WORKS.map((w) => w.tag)))];
+const FILTERS: (typeof ALL | WorkService)[] = [ALL, "Store Design", "Tracking", "Google Ads"];
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -30,8 +30,8 @@ export const Route = createFileRoute("/portfolio")({
 });
 
 function Portfolio() {
-  const [active, setActive] = useState(ALL);
-  const visibleWorks = active === ALL ? WORKS : WORKS.filter((w) => w.tag === active);
+  const [active, setActive] = useState<(typeof FILTERS)[number]>(ALL);
+  const visibleWorks = active === ALL ? WORKS : WORKS.filter((w) => w.services.includes(active as WorkService));
 
   return (
     <>
@@ -99,21 +99,54 @@ function Portfolio() {
                     <ArrowUpRight className="size-5" />
                   </span>
                 </div>
-                <div className="flex items-center justify-between gap-4 p-6">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">0{i + 1} / Featured project</p>
-                    <h3 className="mt-2 text-2xl font-bold">{work.name}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{work.tag}</p>
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">0{i + 1} / Featured project</p>
+                      <h3 className="mt-2 text-2xl font-bold">{work.name}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{work.services.join(" · ")}</p>
+                    </div>
+                    <span className="shrink-0 text-sm font-bold underline decoration-border underline-offset-4 group-hover:decoration-foreground">
+                      View website
+                    </span>
                   </div>
-                  <span className="shrink-0 text-sm font-bold underline decoration-border underline-offset-4 group-hover:decoration-foreground">
-                    View website
-                  </span>
+                  <dl className="mt-5 space-y-2 border-t pt-5 text-sm leading-relaxed">
+                    <div>
+                      <dt className="inline font-semibold">Challenge: </dt>
+                      <dd className="inline text-muted-foreground">{work.problem}</dd>
+                    </div>
+                    <div>
+                      <dt className="inline font-semibold">Result: </dt>
+                      <dd className="inline text-muted-foreground">{work.result}</dd>
+                    </div>
+                  </dl>
+                  {SHOW_DEMO_BADGE && (
+                    <p className="mt-4 inline-block rounded-full border border-dashed px-3 py-1 text-xs text-muted-foreground">
+                      Demo result: replace with real data
+                    </p>
+                  )}
                 </div>
               </a>
             </Reveal>
           ))}
         </div>
       </section>
+
+      {DEMO_STATS.length > 0 && (
+        <section className="container-page pb-20">
+          <div className="grid gap-6 rounded-3xl border bg-card p-8 text-center md:grid-cols-3 md:p-10">
+            {DEMO_STATS.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-4xl font-bold md:text-5xl">{stat.value}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          {SHOW_DEMO_BADGE && (
+            <p className="mt-3 text-center text-xs text-muted-foreground">Demo numbers: replace with real data</p>
+          )}
+        </section>
+      )}
 
       <section className="border-y bg-secondary/50">
         <div className="container-page py-20">
