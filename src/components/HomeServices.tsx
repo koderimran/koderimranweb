@@ -16,7 +16,7 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
 
   return (
     <article className={`home-service-card home-service-card--${index + 1} home-service-active-card group relative isolate overflow-hidden rounded-[1.75rem] border bg-card`}>
-      <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[6rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+      <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[4rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
       <div className="relative z-10 flex flex-col p-6 sm:p-8">
         <div className="home-service-intro">
           <div className="mb-2 inline-flex self-start rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
