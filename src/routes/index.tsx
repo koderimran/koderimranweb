@@ -48,26 +48,26 @@ function Index() {
             <div className="hero-row">
               <div className="hero-copy">
                 <p className="animate-rise inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
-                  <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
+                  <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for select projects
                 </p>
-                <p className="animate-rise mt-5 text-base font-medium text-muted-foreground" style={{ animationDelay: "45ms" }}>Hi, I'm Imran</p>
+                <p className="animate-rise mt-5 text-base font-medium text-muted-foreground" style={{ animationDelay: "45ms" }}>E-commerce growth · Analytics · Web</p>
                 <h1 className="hero-title animate-rise mt-3 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
-                  <span className="hero-title-line">The Right Expertise</span>
-                  <span className="hero-title-line">for Your <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">Next Move.</em></span>
+                  <span className="hero-title-line">Turn More Clicks</span>
+                  <span className="hero-title-line">into Measurable Growth.</span>
                 </h1>
                 <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
-                  I help e-commerce brands scale with high-converting <strong className="text-foreground">Shopify & WordPress</strong> stores, precision <strong className="text-foreground">GA4 & GTM</strong> tracking, and ROI-focused <strong className="text-foreground">Google Ads</strong> campaigns.
+                  I bring your storefront, tracking and advertising together—building better <strong className="text-foreground">Shopify & WordPress</strong> experiences, dependable <strong className="text-foreground">GA4 & GTM</strong> measurement, and performance-led <strong className="text-foreground">Google Ads</strong> campaigns. So you can see what’s working, make smarter decisions and grow with confidence.
                 </p>
                 <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-                  <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Get Free Audit</Link>
-                  <Link to="/portfolio" className="btn btn-outline rounded-full px-7 py-4 font-bold">See my work</Link>
+                  <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Get a Growth Audit</Link>
+                  <Link to="/portfolio" className="btn btn-outline rounded-full px-7 py-4 font-bold">Explore projects</Link>
                 </div>
-                <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Europe</p>
+                <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Working with businesses across the USA, UK & Europe</p>
               </div>
               <div className="hero-specialism animate-rise" style={{ animationDelay: "450ms" }}>
-                <p className="hero-specialism-label">Specialist in</p>
+                <p className="hero-specialism-label">What I bring together</p>
                 <ul className="hero-specialism-list">
-                  {["Google Ads", "GA4 & GTM", "Shopify", "WordPress"].map((t) => <li key={t} className="hero-specialism-chip">{t}</li>)}
+                  {["Paid growth", "Conversion tracking", "Shopify", "WordPress"].map((t) => <li key={t} className="hero-specialism-chip">{t}</li>)}
                 </ul>
               </div>
             </div>
