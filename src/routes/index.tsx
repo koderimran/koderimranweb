@@ -50,7 +50,7 @@ function Index() {
                 <p className="animate-rise inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
                   <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
                 </p>
-                <p className="animate-rise mt-5 text-base font-medium text-muted-foreground" style={{ animationDelay: "45ms" }}>Hi, I'm Imran</p>
+                <p className="animate-rise mt-5 text-4xl font-semibold tracking-tight text-foreground" style={{ animationDelay: "45ms" }}>Hi, I'm <span className="bg-gradient-to-r from-foreground via-signal to-signal bg-clip-text font-bold text-transparent">Imran</span></p>
                 <h1 className="hero-title animate-rise mt-3 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
                   <span className="hero-title-line">The Right Expertise</span>
                   <span className="hero-title-line">for Your <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">Next Move.</em></span>
