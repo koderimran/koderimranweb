@@ -47,8 +47,8 @@ function Index() {
           <div className="container-page hero-content">
             <div className="hero-row">
               <div className="hero-copy">
-                <p className="animate-rise mt-5 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-foreground sm:text-[2.75rem]" style={{ animationDelay: "45ms" }}>Hi, I'm <span className="bg-gradient-to-r from-signal via-[oklch(0.82_0.2_132)] to-[oklch(0.7_0.19_145)] bg-clip-text font-extrabold text-transparent">Imran</span></p>
-                <h1 className="hero-title animate-rise mt-3 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
+                <p className="animate-rise mt-5 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-foreground sm:text-[2.75rem]" style={{ animationDelay: "45ms" }}>Hi, I'm <span className="bg-gradient-to-r from-[oklch(0.46_0.16_137)] via-[oklch(0.54_0.19_132)] to-[oklch(0.42_0.16_148)] bg-clip-text font-extrabold text-transparent dark:from-signal dark:via-[oklch(0.82_0.2_132)] dark:to-[oklch(0.7_0.19_145)]">Imran.</span></p>
+                <h1 className="hero-title animate-rise mt-5 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
                   <span className="hero-title-line">The Right Expertise</span>
                   <span className="hero-title-line">for Your <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">Next Move.</em></span>
                 </h1>
