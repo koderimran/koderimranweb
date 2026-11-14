@@ -1245,7 +1245,7 @@ footer a:hover {
 .service-detail-list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 1.5rem;
+  gap: 0;
 }
 .service-detail-section {
   width: 100%;
