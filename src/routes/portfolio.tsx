@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, PanelsTopLeft } from "lucide-react";
-import { SITE, WORKS, SERVICES, REVIEWS } from "@/lib/site";
+import { SITE, WORKS, SERVICES, REVIEWS, DEMO_STATS, SHOW_DEMO_BADGE, type WorkService } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
@@ -9,6 +10,9 @@ const TITLE = "Portfolio | Websites, E-commerce & Digital Growth Projects | Kode
 const DESC = "Explore selected websites and e-commerce projects by Koder Imran, alongside services in conversion tracking, Google Ads, Shopify and WordPress.";
 
 const SERVICE_ICONS = [BarChart3, Megaphone, ShoppingBag, PanelsTopLeft];
+
+const ALL = "All";
+const FILTERS: (typeof ALL | WorkService)[] = [ALL, "Store Design", "Tracking", "Google Ads"];
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -26,20 +30,23 @@ export const Route = createFileRoute("/portfolio")({
 });
 
 function Portfolio() {
+  const [active, setActive] = useState<(typeof FILTERS)[number]>(ALL);
+  const visibleWorks = active === ALL ? WORKS : WORKS.filter((w) => w.services.includes(active as WorkService));
+
   return (
     <>
       <section className="bg-grid border-b">
         <div className="container-page py-20 md:py-28">
           <p className="eyebrow animate-rise">Selected work</p>
           <h1 className="page-hero-title animate-rise mt-4 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>
-            Digital experiences built around business goals.
+            Stores, tracking and ads that turn visitors into customers.
           </h1>
           <p className="animate-rise mt-6 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
-            A selection of websites, online stores and digital projects. Explore the work, then see how design,
-            measurement and marketing can work together to support growth.
+            Recent Shopify, WordPress and e-commerce projects. Each one pairs a conversion-focused build with
+            accurate GA4 &amp; GTM tracking and Google Ads campaigns that pay off.
           </p>
           <div className="page-hero-actions animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-            <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Discuss a project</Link>
+            <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Get a Free Audit</Link>
             <Link to="/services" className="btn btn-outline rounded-full px-7 py-4 font-bold">Explore services</Link>
           </div>
         </div>
@@ -57,8 +64,25 @@ function Portfolio() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-7 md:grid-cols-2">
-          {WORKS.map((work, i) => (
+        <div className="mt-10 flex gap-2 overflow-x-auto pb-2 md:flex-wrap md:overflow-visible" role="group" aria-label="Filter projects by type">
+          {FILTERS.map((filter) => {
+            const isActive = active === filter;
+            return (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setActive(filter)}
+                aria-pressed={isActive}
+                className={`btn shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-bold ${isActive ? "btn-ink" : "btn-outline"}`}
+              >
+                {filter}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 grid gap-7 md:grid-cols-2">
+          {visibleWorks.map((work, i) => (
             <Reveal key={work.name} delay={i * 70} className="group overflow-hidden rounded-3xl border bg-card">
               <a href={work.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${work.name} website`} className="block">
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted">
@@ -75,21 +99,54 @@ function Portfolio() {
                     <ArrowUpRight className="size-5" />
                   </span>
                 </div>
-                <div className="flex items-center justify-between gap-4 p-6">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">0{i + 1} / Featured project</p>
-                    <h3 className="mt-2 text-2xl font-bold">{work.name}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{work.tag}</p>
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">0{i + 1} / Featured project</p>
+                      <h3 className="mt-2 text-2xl font-bold">{work.name}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{work.services.join(" · ")}</p>
+                    </div>
+                    <span className="shrink-0 text-sm font-bold underline decoration-border underline-offset-4 group-hover:decoration-foreground">
+                      View website
+                    </span>
                   </div>
-                  <span className="shrink-0 text-sm font-bold underline decoration-border underline-offset-4 group-hover:decoration-foreground">
-                    View website
-                  </span>
+                  <dl className="mt-5 space-y-2 border-t pt-5 text-sm leading-relaxed">
+                    <div>
+                      <dt className="inline font-semibold">Challenge: </dt>
+                      <dd className="inline text-muted-foreground">{work.problem}</dd>
+                    </div>
+                    <div>
+                      <dt className="inline font-semibold">Result: </dt>
+                      <dd className="inline text-muted-foreground">{work.result}</dd>
+                    </div>
+                  </dl>
+                  {SHOW_DEMO_BADGE && (
+                    <p className="mt-4 inline-block rounded-full border border-dashed px-3 py-1 text-xs text-muted-foreground">
+                      Demo result: replace with real data
+                    </p>
+                  )}
                 </div>
               </a>
             </Reveal>
           ))}
         </div>
       </section>
+
+      {DEMO_STATS.length > 0 && (
+        <section className="container-page pb-20">
+          <div className="grid gap-6 rounded-3xl border bg-card p-8 text-center md:grid-cols-3 md:p-10">
+            {DEMO_STATS.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-4xl font-bold md:text-5xl">{stat.value}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          {SHOW_DEMO_BADGE && (
+            <p className="mt-3 text-center text-xs text-muted-foreground">Demo numbers: replace with real data</p>
+          )}
+        </section>
+      )}
 
       <section className="border-y bg-secondary/50">
         <div className="container-page py-20">
