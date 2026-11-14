@@ -50,12 +50,13 @@ function Index() {
                 <p className="animate-rise inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm font-semibold">
                   <span className="animate-pulse-dot size-2 rounded-full bg-signal" /> Available for new projects
                 </p>
-                <h1 className="hero-title animate-rise mt-6 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
+                <p className="animate-rise mt-5 text-base font-medium text-muted-foreground" style={{ animationDelay: "45ms" }}>Hi, I'm Imran</p>
+                <h1 className="hero-title animate-rise mt-3 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
                   <span className="hero-title-line">The Right Expertise</span>
                   <span className="hero-title-line">for Your <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">Next Move.</em></span>
                 </h1>
                 <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
-                  I'm <strong className="text-foreground">Imran</strong> — a Google Ads, web analytics, and e-commerce specialist. I build Shopify and WordPress stores, implement precise conversion tracking with GA4 and GTM, and run data-driven ad campaigns that turn clicks into customers.
+                  I help e-commerce brands scale with high-converting <strong className="text-foreground">Shopify & WordPress</strong> stores, precision <strong className="text-foreground">GA4 & GTM</strong> tracking, and ROI-focused <strong className="text-foreground">Google Ads</strong> campaigns.
                 </p>
                 <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
                   <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Get Free Audit</Link>
