@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Wallet, ShieldCheck, Check } from "lucide-react";
 import { SERVICES } from "@/lib/site";
@@ -67,63 +67,139 @@ function ServiceCard({ service, index }: { service: (typeof SERVICES)[number]; i
   );
 }
 
+/**
+ * The pinned, scroll-driven showcase only runs when the screen is wide AND tall enough for the
+ * whole card to stay visible while pinned. Keep this in sync with the media queries in styles.css
+ * (".home-services-sticky" / ".home-services-mobile-list"); below it, the cards are a normal list.
+ */
+const PINNED_QUERY = "(min-width: 900px) and (min-height: 700px)";
+/** Safety net: stop waiting for a programmatic scroll to finish after this long. */
+const SELECT_TIMEOUT_MS = 1500;
+/** Keys that scroll the page; pressing one means the visitor took over from a programmatic scroll. */
+const SCROLL_KEYS = new Set(["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "]);
+/** Trackpad momentum right after a click is not a deliberate takeover; ignore input for this long. */
+const TAKEOVER_GRACE_MS = 250;
+
 export function HomeServices() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  // While a click-triggered smooth scroll is running this holds its destination; scroll-driven
+  // selection is paused so the clicked card is not replaced by the ones scrolled past on the way.
   const scrollTargetRef = useRef<number | null>(null);
+  const releaseTimerRef = useRef(0);
+  const selectedAtRef = useRef(0);
 
-  useEffect(() => {
-    const media = window.matchMedia("(min-width: 900px)");
-    if (!media.matches) return;
-
-    let frame = 0;
-    const updateActive = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const target = scrollTargetRef.current;
-        if (target !== null) {
-          if (Math.abs(window.scrollY - target) > 3) return;
-          // The click handler already selected the requested card. Do not run
-          // the scroll observer again on the arrival frame, or the final step
-          // can briefly calculate the previous index and replay the transition.
-          scrollTargetRef.current = null;
-          return;
-        }
-        const section = sectionRef.current;
-        if (!section) return;
-        const stepHeight = window.innerHeight;
-        section.style.setProperty("--service-step-height", `${stepHeight}px`);
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        const distance = Math.max(0, window.scrollY - sectionTop);
-        const nextIndex = Math.min(SERVICES.length - 1, Math.floor(distance / stepHeight));
-        setActiveIndex(nextIndex);
-      });
-    };
-
-    updateActive();
-    window.addEventListener("scroll", updateActive, { passive: true });
-    window.addEventListener("resize", updateActive);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateActive);
-      window.removeEventListener("resize", updateActive);
-    };
-  }, []);
-
-  const selectService = (index: number) => {
-    // Ignore repeated clicks while the current smooth-scroll selection is in progress.
-    if (scrollTargetRef.current !== null || index === activeIndex) return;
+  const measure = useCallback(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    if (!section) return null;
     const stepHeight = window.innerHeight;
     section.style.setProperty("--service-step-height", `${stepHeight}px`);
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const target = sectionTop + index * stepHeight + 2;
-    // Switch the featured card immediately so it is removed from the preview rail
-    // before smooth scrolling begins; the observer then confirms the same index.
+    return { stepHeight, sectionTop };
+  }, []);
+
+  const syncFromScroll = useCallback(() => {
+    const measured = measure();
+    if (!measured) return;
+    const distance = Math.max(0, window.scrollY - measured.sectionTop);
+    setActiveIndex(Math.min(SERVICES.length - 1, Math.floor(distance / measured.stepHeight)));
+  }, [measure]);
+
+  /**
+   * Ends the "waiting for the smooth scroll" state. `resync` is false when the scroll arrived where
+   * the click sent it (the clicked card is already selected) and true when it was interrupted, so
+   * the card is chosen from where the visitor actually is instead of staying frozen.
+   */
+  const releaseTarget = useCallback((resync: boolean) => {
+    window.clearTimeout(releaseTimerRef.current);
+    if (scrollTargetRef.current === null) return;
+    scrollTargetRef.current = null;
+    if (resync) syncFromScroll();
+  }, [syncFromScroll]);
+
+  useEffect(() => {
+    const media = window.matchMedia(PINNED_QUERY);
+    let frame = 0;
+    let detach: (() => void) | undefined;
+
+    const attach = () => {
+      const onScroll = () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          const target = scrollTargetRef.current;
+          if (target !== null) {
+            // Arrived: the clicked card is already selected, so do not recalculate on this frame
+            // (it could briefly pick the previous card and replay the transition).
+            if (Math.abs(window.scrollY - target) <= 3) releaseTarget(false);
+            return;
+          }
+          syncFromScroll();
+        });
+      };
+      const onScrollEnd = () => {
+        const target = scrollTargetRef.current;
+        if (target !== null) releaseTarget(Math.abs(window.scrollY - target) > 6);
+      };
+      const onUserTakeover = () => {
+        if (performance.now() - selectedAtRef.current > TAKEOVER_GRACE_MS) releaseTarget(true);
+      };
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (SCROLL_KEYS.has(event.key)) onUserTakeover();
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("scrollend", onScrollEnd);
+      window.addEventListener("resize", onScroll);
+      window.addEventListener("wheel", onUserTakeover, { passive: true });
+      window.addEventListener("touchstart", onUserTakeover, { passive: true });
+      window.addEventListener("keydown", onKeyDown);
+      syncFromScroll();
+
+      return () => {
+        cancelAnimationFrame(frame);
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("scrollend", onScrollEnd);
+        window.removeEventListener("resize", onScroll);
+        window.removeEventListener("wheel", onUserTakeover);
+        window.removeEventListener("touchstart", onUserTakeover);
+        window.removeEventListener("keydown", onKeyDown);
+      };
+    };
+
+    // Re-evaluate whenever the screen crosses the breakpoint (resize, rotate, browser zoom).
+    const apply = () => {
+      detach?.();
+      detach = undefined;
+      if (media.matches) {
+        detach = attach();
+      } else {
+        releaseTarget(false);
+      }
+    };
+
+    apply();
+    media.addEventListener("change", apply);
+    return () => {
+      media.removeEventListener("change", apply);
+      detach?.();
+      window.clearTimeout(releaseTimerRef.current);
+    };
+  }, [releaseTarget, syncFromScroll]);
+
+  const selectService = (index: number) => {
+    if (index === activeIndex) return;
+    const measured = measure();
+    if (!measured) return;
+    const target = measured.sectionTop + index * measured.stepHeight + 2;
+    // Switch the featured card immediately so it leaves the preview rail before the scroll starts;
+    // scroll-driven selection stays paused until the scroll arrives, is interrupted, or times out.
+    window.clearTimeout(releaseTimerRef.current);
+    selectedAtRef.current = performance.now();
     scrollTargetRef.current = target;
+    releaseTimerRef.current = window.setTimeout(() => releaseTarget(true), SELECT_TIMEOUT_MS);
     setActiveIndex(index);
-    window.scrollTo({ top: target, behavior: "smooth" });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
   };
 
   const activeService = SERVICES[activeIndex];
@@ -131,8 +207,10 @@ export function HomeServices() {
   return (
     <section ref={sectionRef} className="home-services-story mt-5" aria-label="Our services">
       <div className="home-services-sticky">
+        {/* Announces only the short change, not the whole card, to screen readers. */}
+        <p className="sr-only" role="status">{`Showing service ${activeIndex + 1} of ${SERVICES.length}: ${activeService.title}`}</p>
         <div className="home-services-stage">
-          <div className="home-services-featured" aria-live="polite">
+          <div className="home-services-featured">
             <div key={activeService.slug} className="home-services-active-wrap">
               <ServiceCard service={activeService} index={activeIndex} />
             </div>
@@ -147,7 +225,6 @@ export function HomeServices() {
                   className={`home-service-preview home-service-card--${index + 1}`}
                   onClick={() => selectService(index)}
                   aria-label={`Show service ${index + 1}: ${service.title}`}
-                  aria-current={undefined}
                 >
                   <span className="home-service-preview-number">{String(index + 1).padStart(2, "0")}</span>
                   <span className="home-service-preview-title">{service.title}</span>
