@@ -92,7 +92,7 @@ function Index() {
 
       <section className="border-y bg-secondary/50">
         <div className="container-page py-20">
-          <SectionHead eyebrow="Recent work" title="Websites that look great and sell" />
+          <SectionHead eyebrow="Selected work" title="A closer look at what I build" text="A selection of website projects, from e-commerce storefronts to business websites — designed to create a better experience for the people who use them." />
           <WorkGrid limit={3} />
           <Link to="/portfolio" className="link-arrow mt-8 underline">Browse all projects <span className="btn-arrow">→</span></Link>
         </div>
