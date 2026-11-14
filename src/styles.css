@@ -1248,9 +1248,11 @@ footer a:hover {
   gap: 1.5rem;
 }
 .service-detail-section {
+  width: 100%;
   min-width: 0;
-  border-color: color-mix(in oklab, var(--border) 85%, transparent);
-  box-shadow: 0 12px 36px -28px oklch(0 0 0 / 0.28);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 .service-detail-section > div:first-of-type,
 .service-detail-section > div:nth-of-type(2) {
