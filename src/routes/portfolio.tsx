@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, PanelsTopLeft } from "lucide-react";
-import { SITE, WORKS, SERVICES, REVIEWS, DEMO_STATS, SHOW_DEMO_BADGE, type WorkService } from "@/lib/site";
+import { SITE, WORKS, SERVICES, REVIEWS, DEMO_STATS, SHOW_DEMO_BADGE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
@@ -10,9 +9,6 @@ const TITLE = "Portfolio | Websites, E-commerce & Digital Growth Projects | Kode
 const DESC = "Explore selected websites and e-commerce projects by Koder Imran, alongside services in conversion tracking, Google Ads, Shopify and WordPress.";
 
 const SERVICE_ICONS = [BarChart3, Megaphone, ShoppingBag, PanelsTopLeft];
-
-const ALL = "All";
-const FILTERS: (typeof ALL | WorkService)[] = [ALL, "Store Design", "Tracking", "Google Ads"];
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -30,9 +26,6 @@ export const Route = createFileRoute("/portfolio")({
 });
 
 function Portfolio() {
-  const [active, setActive] = useState<(typeof FILTERS)[number]>(ALL);
-  const visibleWorks = active === ALL ? WORKS : WORKS.filter((w) => w.services.includes(active as WorkService));
-
   return (
     <>
       <section className="bg-grid border-b">
@@ -64,25 +57,8 @@ function Portfolio() {
           </p>
         </div>
 
-        <div className="mt-10 flex gap-2 overflow-x-auto pb-2 md:flex-wrap md:overflow-visible" role="group" aria-label="Filter projects by type">
-          {FILTERS.map((filter) => {
-            const isActive = active === filter;
-            return (
-              <button
-                key={filter}
-                type="button"
-                onClick={() => setActive(filter)}
-                aria-pressed={isActive}
-                className={`btn shrink-0 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-bold ${isActive ? "btn-ink" : "btn-outline"}`}
-              >
-                {filter}
-              </button>
-            );
-          })}
-        </div>
-
         <div className="mt-8 grid gap-7 md:grid-cols-2">
-          {visibleWorks.map((work, i) => (
+          {WORKS.map((work, i) => (
             <Reveal key={work.name} delay={i * 70} className="group overflow-hidden rounded-3xl border bg-card">
               <a href={work.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${work.name} website`} className="block">
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted">
