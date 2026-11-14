@@ -92,7 +92,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
   }, [compareOpen]);
 
   return (
-    <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className={`home-service-card home-service-card--${index + 1} service-detail-section group relative isolate scroll-mt-28 overflow-hidden rounded-[1.75rem] border bg-card`}>
+    <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className={`home-service-card home-service-card--${index + 1} service-detail-section group relative isolate scroll-mt-28 overflow-hidden bg-card`}>
       <div className="border-b px-6 py-6 md:px-9 md:py-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow">Service 0{index + 1}</p>
