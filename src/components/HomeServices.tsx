@@ -129,7 +129,7 @@ export function HomeServices() {
   const activeService = SERVICES[activeIndex];
 
   return (
-    <section ref={sectionRef} className="home-services-story mt-5" aria-label="Our services">
+    <section ref={sectionRef} className="home-services-story mt-8" aria-label="Our services">
       <div className="home-services-sticky">
         <div className="home-services-stage">
           <div className="home-services-featured" aria-live="polite">
