@@ -1249,9 +1249,13 @@ footer a:hover {
 .service-detail-section {
   isolation: isolate;
   overflow: hidden;
-  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
-  border-radius: 1.5rem;
+  border: 0;
+  border-top: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+  border-radius: 0;
   background: var(--service-section-bg, var(--background));
+}
+.service-detail-section:last-child {
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
 }
 .service-detail-section::before {
   content: "";
