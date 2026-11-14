@@ -260,60 +260,24 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
 }
 
 export function WorkGrid({ limit }: { limit?: number }) {
-  const projects = WORKS.slice(0, limit);
   return (
-    <div className="mt-12">
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((w, i) => (
-          <Reveal
-            key={w.name}
-            delay={i * 90}
-            className={`group overflow-hidden rounded-3xl border bg-card transition duration-300 hover:-translate-y-1 hover:shadow-xl ${i === 0 && projects.length > 2 ? "md:col-span-2 lg:col-span-2" : ""}`}
-          >
-            <a href={w.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${w.name} website`} className="block">
-              <div className={`relative overflow-hidden bg-muted ${i === 0 && projects.length > 2 ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
-                <img
-                  src={w.img}
-                  alt={`${w.name} website project`}
-                  loading="lazy"
-                  className="size-full object-cover transition duration-700 group-hover:scale-[1.04]"
-                />
-                <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/55 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
-                  {w.tag}
-                </span>
-                <span className="absolute bottom-4 right-4 grid size-10 place-items-center rounded-full bg-background text-foreground shadow-lg transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-                  <ArrowUpRight className="size-5" aria-hidden="true" />
-                </span>
-              </div>
-              <div className="flex items-center justify-between gap-4 p-5 md:p-6">
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Selected project · 0{i + 1}</p>
-                  <h3 className="mt-2 truncate text-xl font-bold tracking-tight">{w.name}</h3>
-                </div>
-                <span className="shrink-0 text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">View project</span>
-              </div>
-            </a>
-          </Reveal>
-        ))}
-      </div>
-
-      <div className="mt-8 rounded-3xl border bg-secondary/50 p-6 md:p-8">
-        <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
-          <div>
-            <p className="eyebrow">Beyond the website</p>
-            <h3 className="mt-2 max-w-2xl text-xl font-bold md:text-2xl">One specialist across your store, tracking and paid growth.</h3>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">My work also includes Shopify and WordPress builds, GA4 & GTM conversion measurement, and ROI-focused Google Ads management.</p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {["Shopify", "WordPress & WooCommerce", "GA4 & GTM", "Google Ads"].map((item) => (
-                <li key={item} className="rounded-full border bg-card px-3 py-1.5 text-xs font-semibold">{item}</li>
-              ))}
-            </ul>
+    <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {WORKS.slice(0, limit).map((w, i) => (
+        <Reveal key={w.name} delay={i * 90} className="hover-lift overflow-hidden rounded-3xl border bg-card">
+        <a href={w.url} target="_blank" rel="noopener noreferrer" className="group block">
+          <div className="aspect-[16/10] overflow-hidden bg-muted">
+            <img src={w.img} alt={`${w.name} website designed by Imran`} loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-105" />
           </div>
-          <Link to="/services" className="btn btn-ink inline-flex items-center justify-center gap-2 self-start rounded-full px-6 py-3 font-bold md:self-center">
-            Explore services <ArrowUpRight className="size-4" />
-          </Link>
-        </div>
-      </div>
+          <div className="flex items-center justify-between p-5">
+            <div>
+              <h3 className="font-bold">{w.name}</h3>
+              <p className="text-sm text-muted-foreground">{w.tag}</p>
+            </div>
+            <ArrowUpRight className="size-5 transition group-hover:-translate-y-1 group-hover:translate-x-1" />
+          </div>
+        </a>
+        </Reveal>
+      ))}
     </div>
   );
 }
