@@ -35,7 +35,7 @@ export const Route = createFileRoute("/services")({
   }),
   component: () => (
     <>
-      <PageHero eyebrow="Services" title="Websites, Ads & Analytics — All Under One Roof." text="Get professional website design, expert Google Ads management, and accurate analytics and conversion tracking, all delivered by one dedicated specialist to help your business grow." cta="Let’s Get Started" />
+      <PageHero eyebrow="Services" title="Websites, Ads & Analytics — All Under One Roof." text="Get professional website design, expert Google Ads management, and accurate analytics and conversion tracking, all delivered by one dedicated specialist to help your business grow." cta="Let’s Get Started" compact />
       <nav className="service-jump-nav container-page" aria-label="Jump to a service">
         <div className="service-jump-nav__inner">
           <a href="#service-web-analytics">Analytics</a>
