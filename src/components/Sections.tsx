@@ -92,14 +92,15 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
   }, [compareOpen]);
 
   return (
-    <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className={`home-service-card home-service-card--${index + 1} service-detail-section group relative isolate scroll-mt-28 overflow-hidden rounded-[1.75rem] border bg-card`}>
-      <div className="border-b px-6 py-6 md:px-9 md:py-7">
+    <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className={`home-service-card home-service-card--${index + 1} service-detail-section group relative isolate scroll-mt-28 overflow-hidden bg-card`}>
+      <div className="px-6 py-6 md:px-9 md:py-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow">Service 0{index + 1}</p>
           <span className="text-xs font-semibold text-muted-foreground">Personalised service · Worldwide</span>
         </div>
         <h2 className="mt-3 max-w-4xl font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">{service.title}</h2>
       </div>
+      <div aria-hidden="true" className="mx-6 border-t border-border md:mx-9" />
 
       <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
         <div className="min-w-0">
@@ -177,6 +178,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           </div>
         </aside>
       </div>
+      <div aria-hidden="true" className="w-full border-t border-border" />
 
       {compareOpen && createPortal(
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 p-3 backdrop-blur-md sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
