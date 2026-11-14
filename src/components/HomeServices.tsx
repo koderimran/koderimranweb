@@ -13,13 +13,13 @@ const SERVICE_META: Record<string, { audience: string }> = {
 
 export function HomeServices() {
   return (
-    <div className="mt-12 grid gap-5 lg:grid-cols-2">
+    <div className="mt-8 grid gap-5 lg:grid-cols-2">
       {SERVICES.map((service, index) => {
         const meta = SERVICE_META[service.slug] ?? SERVICE_META["web-analytics"];
         const detailHref = `/services#service-${service.slug}`;
         return (
           <Reveal key={service.slug} as="article" delay={index * 85} className={`home-service-card home-service-card--${index + 1} group relative isolate overflow-hidden rounded-[1.75rem] border bg-card`}>
-            <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[7.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[8.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <span className="pointer-events-none absolute right-6 top-5 z-0 select-none text-[6.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[7.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <div className="relative z-10 p-6 sm:p-8">
               <div className="mb-3 inline-flex rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
                 3 Flexible Packages Available
