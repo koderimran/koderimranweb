@@ -94,7 +94,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
 
   return (
     <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className={`home-service-card home-service-card--${index + 1} service-detail-section group relative isolate scroll-mt-28 overflow-hidden bg-card`}>
-      <div className="px-6 py-6 md:px-9 md:py-7">
+      <div className="px-6 pt-6 pb-3 md:px-9 md:pt-7 md:pb-4">
         <div className="flex items-center gap-4 md:gap-5">
           <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 text-[oklch(0.48_0.14_135)] shadow-sm dark:text-[oklch(0.84_0.17_130)] sm:size-16" aria-hidden="true">
             <ServiceIcon className="size-7 sm:size-8" strokeWidth={1.7} />
@@ -109,10 +109,9 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           </div>
         </div>
       </div>
-      <div aria-hidden="true" className="mx-6 border-t border-border md:mx-9" />
-
-      <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
+      <div className="grid gap-8 px-6 pt-3 pb-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:px-9 md:pt-4 md:pb-9 lg:gap-14">
         <div className="min-w-0">
+          <p className="eyebrow mb-2">About the service</p>
           <h3 className="max-w-2xl text-2xl font-bold leading-tight">{service.short}</h3>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{service.answer}</p>
 
