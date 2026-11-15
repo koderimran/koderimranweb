@@ -83,7 +83,15 @@ function Index() {
       </section>
 
       <section className="container-page py-20">
-        <SectionHead eyebrow="Services" title={<>Everything your online business <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">needs to grow.</em></>} text="One specialist for your store, your data and your ads — so nothing gets lost between agencies." />
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow">Services</p>
+            <h2 className="mt-3 text-3xl font-bold md:text-5xl">Everything your online business <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">needs to grow.</em></h2>
+          </div>
+          <p className="max-w-xl text-muted-foreground">
+            One specialist for your store, your data and your ads — so nothing gets lost between agencies.
+          </p>
+        </div>
         <HomeServices />
       </section>
 
