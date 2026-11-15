@@ -108,9 +108,10 @@ function Index() {
         <Process />
       </section>
 
-      <section className="container-page pb-20">
-        <SectionHead eyebrow="Client reviews" title="What clients say" />
-        <Reviews />
+      <section className="testimonial-section overflow-hidden bg-[oklch(97%_0.025_128)] py-20 text-foreground sm:py-24 dark:bg-[oklch(17%_0.035_145)] dark:text-white">
+        <div className="container-page">
+          <Reviews />
+        </div>
       </section>
 
       <section className="container-page pb-4">
