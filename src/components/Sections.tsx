@@ -56,6 +56,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
     ],
   }));
   const comparisonTasks = [...new Set(packages.flatMap((item) => item.features))];
+  const ServiceIcon = ICONS[index] ?? BarChart3;
 
   useEffect(() => {
     if (!compareOpen) return;
@@ -93,21 +94,25 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
 
   return (
     <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className={`home-service-card home-service-card--${index + 1} service-detail-section group relative isolate scroll-mt-28 overflow-hidden bg-card`}>
-      <div className="px-6 py-6 md:px-9 md:py-7">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="eyebrow">Service 0{index + 1}</p>
-          <span className="text-xs font-semibold text-muted-foreground">Personalised service · Worldwide</span>
+      <div className="px-6 pt-6 pb-3 md:px-9 md:pt-7 md:pb-4">
+        <div className="relative flex items-center gap-4 md:gap-5">
+          <span className="pointer-events-none absolute right-0 top-1/2 z-0 -translate-y-1/2 select-none font-display text-[4.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:text-[5.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+          <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 text-[oklch(0.48_0.14_135)] shadow-sm dark:text-[oklch(0.84_0.17_130)] sm:size-16" aria-hidden="true">
+            <ServiceIcon className="size-7 sm:size-8" strokeWidth={1.7} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="mb-1.5 text-xs font-medium text-muted-foreground">Personalised service · Worldwide</p>
+            <h2 className="home-service-title relative z-10 max-w-4xl pr-20 font-display text-3xl font-bold leading-tight tracking-tight sm:pr-28 sm:text-4xl">{service.title}</h2>
+          </div>
         </div>
-        <h2 className="home-service-title mt-3 max-w-4xl font-display text-4xl font-bold tracking-tight">{service.title}</h2>
       </div>
-      <div aria-hidden="true" className="mx-6 border-t border-border md:mx-9" />
-
-      <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
+      <div className="grid gap-8 px-6 pt-3 pb-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:px-9 md:pt-4 md:pb-9 lg:gap-14">
         <div className="min-w-0">
+          <p className="eyebrow mb-2">About the service</p>
           <h3 className="max-w-2xl text-2xl font-bold leading-tight">{service.short}</h3>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{service.answer}</p>
 
-          <div className="mt-8 space-y-7">
+          <div className="mt-7 space-y-6">
             <div>
               <h4 className="text-sm font-bold">What’s included</h4>
               <ul className="mt-4 space-y-3">
@@ -120,7 +125,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               </ul>
             </div>
 
-            <div className="border-t pt-6">
+            <div>
               <h4 className="text-sm font-bold">Expected outcomes</h4>
               <ul className="mt-4 space-y-3">
                 {service.outcomes.map((item) => (
@@ -132,7 +137,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               </ul>
             </div>
 
-            <div className="border-t pt-6">
+            <div>
               <h4 className="text-sm font-bold">Tools & technologies</h4>
               <div className="mt-4 flex flex-wrap gap-2">
                 {service.tools.map((tool) => <span key={tool} className="pill rounded-full px-3 py-1.5 text-xs font-semibold">{tool}</span>)}
@@ -177,7 +182,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           </div>
         </aside>
       </div>
-      <div aria-hidden="true" className="w-full border-t border-border" />
+      <div aria-hidden="true" className={`w-full border-t border-border ${index === 2 ? "border-t-2" : ""}`} />
 
       {compareOpen && createPortal(
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 p-3 backdrop-blur-md sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
