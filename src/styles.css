@@ -1255,3 +1255,46 @@ footer a:hover {
   box-shadow: none;
 }
 
+
+
+/* Homepage testimonials: two independently drifting review lanes. */
+.testimonial-marquee-window {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+.testimonial-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  will-change: transform;
+}
+.testimonial-marquee-track--right {
+  animation: testimonial-drift-right 46s linear infinite;
+}
+.testimonial-marquee-track--left {
+  animation: testimonial-drift-left 52s linear infinite;
+}
+.testimonial-marquee:hover .testimonial-marquee-track,
+.testimonial-marquee:focus-within .testimonial-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes testimonial-drift-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@keyframes testimonial-drift-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee-track--right,
+  .testimonial-marquee-track--left {
+    animation: none;
+  }
+  .testimonial-marquee-window {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+}

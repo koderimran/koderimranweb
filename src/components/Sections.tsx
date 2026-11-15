@@ -292,60 +292,60 @@ export function WorkGrid({ limit }: { limit?: number }) {
 }
 
 export function Reviews() {
-  const [active, setActive] = useState(0);
-  const visibleReviews = Array.from({ length: 3 }, (_, offset) => REVIEWS[(active + offset) % REVIEWS.length]);
-  const move = (direction: number) => setActive((current) => (current + direction + REVIEWS.length) % REVIEWS.length);
+  const topLane = [...REVIEWS, ...REVIEWS];
+  const bottomOrder = [...REVIEWS.slice(2), ...REVIEWS.slice(0, 2)];
+  const bottomLane = [...bottomOrder, ...bottomOrder];
+
+  const reviewCard = (review: (typeof REVIEWS)[number], key: string, duplicate: boolean) => (
+    <figure
+      key={key}
+      aria-hidden={duplicate}
+      className="testimonial-marquee-card flex h-[12.2rem] w-[16.5rem] shrink-0 flex-col rounded-2xl border border-[oklch(0.84_0.025_85)]/80 bg-white/75 p-5 text-foreground shadow-[0_12px_35px_-28px_oklch(0.3_0.2_80/0.24)] backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.065] dark:text-white dark:shadow-[0_18px_45px_-32px_oklch(0_0_0/0.7)] sm:w-[17rem]"
+    >
+      <div className="flex items-center justify-between">
+        <span className="text-[0.9rem] tracking-[0.16em] text-[oklch(0.62_0.16_135)] dark:text-[oklch(0.9_0.17_128)]" aria-label="5 out of 5 stars">★★★★★</span>
+        <span aria-hidden="true" className="font-serif text-3xl leading-none text-[oklch(0.62_0.16_135)]/35 dark:text-[oklch(0.9_0.17_128)]/45">“</span>
+      </div>
+      <blockquote className="mt-3 line-clamp-3 flex-1 text-[0.84rem] leading-[1.55] text-foreground/75 dark:text-white/75">“{review.text}”</blockquote>
+      <figcaption className="mt-3 flex items-center gap-2.5 border-t border-foreground/10 pt-3 dark:border-white/10">
+        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[oklch(0.9_0.17_128)] font-display text-xs font-bold text-[oklch(0.25_0.06_140)]">{review.name.charAt(0).toUpperCase()}</span>
+        <span className="min-w-0">
+          <span className="block truncate font-display text-[0.83rem] font-semibold">{review.name}</span>
+          <span className="mt-0.5 block text-[0.7rem] text-muted-foreground">{review.country}</span>
+        </span>
+      </figcaption>
+    </figure>
+  );
 
   return (
-    <div className="mt-12 grid gap-10 lg:grid-cols-[0.78fr_1.5fr] lg:items-center lg:gap-14">
-      <div className="flex flex-col items-start">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
-          <span className="size-1.5 rounded-full bg-[oklch(0.82_0.18_130)]" /> Client stories
-        </span>
-        <h3 className="mt-6 max-w-sm font-display text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-4xl">
-          Why clients choose <span className="font-serif font-medium italic text-[oklch(0.82_0.18_130)]">to work with me.</span>
-        </h3>
-        <p className="mt-5 max-w-sm text-sm leading-7 text-white/65 sm:text-base">
-          Real feedback from people I’ve worked with — built on clear communication, thoughtful execution and results that matter.
-        </p>
-        <Link to="/contact" className="mt-7 inline-flex items-center gap-3 rounded-full bg-[oklch(0.88_0.17_130)] px-6 py-3.5 text-sm font-bold text-[oklch(0.2_0.035_145)] transition hover:-translate-y-0.5 hover:bg-[oklch(0.92_0.17_130)]">
-          Start a project <ArrowUpRight className="size-4" />
-        </Link>
-        <div className="mt-10 flex items-center gap-4 border-t border-white/15 pt-6">
-          <div className="flex -space-x-2">
-            {REVIEWS.slice(0, 3).map((review) => <span key={review.name} className="grid size-9 place-items-center rounded-full border-2 border-[oklch(0.24_0.035_145)] bg-[oklch(0.82_0.18_130)] font-display text-xs font-bold text-[oklch(0.2_0.035_145)]">{review.name.charAt(0).toUpperCase()}</span>)}
-          </div>
-          <div>
-            <p className="text-sm font-bold text-white">Trusted worldwide</p>
-            <p className="mt-0.5 text-xs text-white/55">Clients across multiple countries</p>
-          </div>
+    <div className="grid items-center gap-12 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
+      <div className="flex min-h-[23rem] flex-col items-start justify-between py-1">
+        <div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.45_0.08_140)]/20 bg-[oklch(0.45_0.08_140)]/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[oklch(0.38_0.07_140)] dark:border-white/20 dark:bg-white/5 dark:text-white/75">
+            <span className="size-1.5 rounded-full bg-[oklch(0.62_0.16_135)] dark:bg-[oklch(0.9_0.17_128)]" /> Testimonials
+          </span>
+          <h3 className="mt-6 max-w-md font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-[oklch(0.16_0.015_65)] dark:text-white sm:text-5xl">
+            Why clients <span className="font-serif font-medium italic text-[oklch(0.58_0.16_135)] dark:text-[oklch(0.9_0.17_128)]">choose</span> to work with me.
+          </h3>
+        </div>
+        <div className="mt-10 max-w-sm">
+          <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-[oklch(0.16_0.015_65)] dark:text-white sm:text-3xl">Ready to be my next happy client?</h4>
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-[oklch(0.42_0.015_65)] dark:text-white/65">Let’s talk about your goals and find the right way to move your project forward.</p>
+          <Link to="/contact" className="mt-6 inline-flex items-center gap-3 rounded-full bg-[oklch(0.9_0.17_128)] px-6 py-3.5 text-sm font-bold text-[oklch(0.22_0.05_140)] shadow-[0_8px_24px_-12px_oklch(0.45_0.16_130/0.5)] transition hover:-translate-y-0.5 hover:bg-[oklch(0.93_0.17_128)]">
+            Start a project <ArrowUpRight className="size-4" />
+          </Link>
         </div>
       </div>
 
-      <div className="min-w-0">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {visibleReviews.map((review, i) => (
-            <Reveal as="figure" key={review.name} delay={i * 90} className="flex min-h-[19rem] flex-col rounded-[1.35rem] border border-white/12 bg-white/[0.07] p-5 text-white shadow-[0_24px_70px_-45px_oklch(0_0_0/0.65)] backdrop-blur-sm sm:p-6">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-sm tracking-[0.15em] text-[oklch(0.82_0.18_130)]" aria-label="5 out of 5 stars">★★★★★</span>
-                <span aria-hidden="true" className="font-serif text-4xl leading-none text-[oklch(0.82_0.18_130)]/70">“</span>
-              </div>
-              <blockquote className="mt-5 flex-1 font-display text-base font-medium leading-relaxed tracking-[-0.015em] sm:text-lg">“{review.text}”</blockquote>
-              <figcaption className="mt-7 flex items-center gap-3 border-t border-white/15 pt-5">
-                <span className="grid size-10 shrink-0 place-items-center rounded-full bg-[oklch(0.82_0.18_130)] font-display text-sm font-bold text-[oklch(0.2_0.035_145)]">{review.name.charAt(0).toUpperCase()}</span>
-                <span className="min-w-0">
-                  <span className="block truncate text-sm font-bold">{review.name}</span>
-                  <span className="mt-0.5 block text-xs text-white/55">{review.country}</span>
-                </span>
-              </figcaption>
-            </Reveal>
-          ))}
+      <div className="testimonial-marquee min-w-0 space-y-4" aria-label="Client testimonials">
+        <div className="testimonial-marquee-window">
+          <div className="testimonial-marquee-track testimonial-marquee-track--right">
+            {topLane.map((review, i) => reviewCard(review, `top-${i}`, i >= REVIEWS.length))}
+          </div>
         </div>
-        <div className="mt-6 flex items-center justify-between">
-          <p className="text-xs font-semibold tracking-[0.16em] text-white/45">0{active + 1} <span className="mx-1 text-white/25">/</span> 0{REVIEWS.length}</p>
-          <div className="flex items-center gap-2">
-            <button type="button" onClick={() => move(-1)} aria-label="Previous testimonials" className="grid size-11 place-items-center rounded-full border border-white/20 text-white transition hover:border-[oklch(0.82_0.18_130)] hover:bg-white/10">←</button>
-            <button type="button" onClick={() => move(1)} aria-label="Next testimonials" className="grid size-11 place-items-center rounded-full bg-[oklch(0.88_0.17_130)] text-[oklch(0.2_0.035_145)] transition hover:-translate-y-0.5 hover:bg-[oklch(0.92_0.17_130)]">→</button>
+        <div className="testimonial-marquee-window">
+          <div className="testimonial-marquee-track testimonial-marquee-track--left">
+            {bottomLane.map((review, i) => reviewCard(review, `bottom-${i}`, i >= bottomOrder.length))}
           </div>
         </div>
       </div>

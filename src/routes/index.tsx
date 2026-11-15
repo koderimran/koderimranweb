@@ -108,7 +108,7 @@ function Index() {
         <Process />
       </section>
 
-      <section className="overflow-hidden bg-[oklch(0.24_0.035_145)] py-20 sm:py-24">
+      <section className="testimonial-section overflow-hidden bg-[oklch(0.965_0.018_85)] py-20 text-foreground sm:py-24 dark:bg-[oklch(0.21_0.035_145)] dark:text-white">
         <div className="container-page">
           <Reviews />
         </div>
