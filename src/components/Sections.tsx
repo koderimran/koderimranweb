@@ -292,26 +292,63 @@ export function WorkGrid({ limit }: { limit?: number }) {
 }
 
 export function Reviews() {
+  const [active, setActive] = useState(0);
+  const visibleReviews = Array.from({ length: 3 }, (_, offset) => REVIEWS[(active + offset) % REVIEWS.length]);
+  const move = (direction: number) => setActive((current) => (current + direction + REVIEWS.length) % REVIEWS.length);
+
   return (
-    <div className="mt-12 grid gap-5 lg:grid-cols-3">
-      {REVIEWS.slice(0, 3).map((r, i) => (
-        <Reveal as="figure" key={r.name} delay={i * 110} className={`relative flex h-full min-h-[17rem] flex-col overflow-hidden rounded-[1.6rem] border border-border/70 bg-card p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_-32px_oklch(0_0_0/0.28)] sm:p-7 ${i === 1 ? "lg:-translate-y-3 lg:bg-secondary/55" : ""}`}>
-          <div className="flex items-center justify-between gap-3">
-            <span className="rounded-full border border-border/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Client feedback</span>
-            <span className="text-sm tracking-[0.16em] text-[oklch(0.68_0.15_85)]" aria-label="5 out of 5 stars">★★★★★</span>
+    <div className="mt-12 grid gap-10 lg:grid-cols-[0.78fr_1.5fr] lg:items-center lg:gap-14">
+      <div className="flex flex-col items-start">
+        <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
+          <span className="size-1.5 rounded-full bg-[oklch(0.82_0.18_130)]" /> Client stories
+        </span>
+        <h3 className="mt-6 max-w-sm font-display text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-4xl">
+          Why clients choose <span className="font-serif font-medium italic text-[oklch(0.82_0.18_130)]">to work with me.</span>
+        </h3>
+        <p className="mt-5 max-w-sm text-sm leading-7 text-white/65 sm:text-base">
+          Real feedback from people I’ve worked with — built on clear communication, thoughtful execution and results that matter.
+        </p>
+        <Link to="/contact" className="mt-7 inline-flex items-center gap-3 rounded-full bg-[oklch(0.88_0.17_130)] px-6 py-3.5 text-sm font-bold text-[oklch(0.2_0.035_145)] transition hover:-translate-y-0.5 hover:bg-[oklch(0.92_0.17_130)]">
+          Start a project <ArrowUpRight className="size-4" />
+        </Link>
+        <div className="mt-10 flex items-center gap-4 border-t border-white/15 pt-6">
+          <div className="flex -space-x-2">
+            {REVIEWS.slice(0, 3).map((review) => <span key={review.name} className="grid size-9 place-items-center rounded-full border-2 border-[oklch(0.24_0.035_145)] bg-[oklch(0.82_0.18_130)] font-display text-xs font-bold text-[oklch(0.2_0.035_145)]">{review.name.charAt(0).toUpperCase()}</span>)}
           </div>
-          <span aria-hidden="true" className="mt-5 font-serif text-5xl leading-[0.7] text-[oklch(0.58_0.16_135)]/65">“</span>
-          <blockquote className="mt-3 flex-1 font-display text-lg font-medium leading-relaxed tracking-[-0.02em] sm:text-xl">“{r.text}”</blockquote>
-          <figcaption className="mt-7 flex items-center gap-3 border-t border-border/70 pt-5">
-            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent/70 font-display text-sm font-bold text-accent-foreground">{r.name.trim().charAt(0).toUpperCase()}</span>
-            <span className="min-w-0">
-              <span className="block truncate text-sm font-bold">{r.name}</span>
-              <span className="mt-0.5 block text-xs text-muted-foreground">{r.country}</span>
-            </span>
-            <span className="ml-auto text-xs font-semibold text-muted-foreground">0{i + 1}</span>
-          </figcaption>
-        </Reveal>
-      ))}
+          <div>
+            <p className="text-sm font-bold text-white">Trusted worldwide</p>
+            <p className="mt-0.5 text-xs text-white/55">Clients across multiple countries</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="min-w-0">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {visibleReviews.map((review, i) => (
+            <Reveal as="figure" key={review.name} delay={i * 90} className="flex min-h-[19rem] flex-col rounded-[1.35rem] border border-white/12 bg-white/[0.07] p-5 text-white shadow-[0_24px_70px_-45px_oklch(0_0_0/0.65)] backdrop-blur-sm sm:p-6">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-sm tracking-[0.15em] text-[oklch(0.82_0.18_130)]" aria-label="5 out of 5 stars">★★★★★</span>
+                <span aria-hidden="true" className="font-serif text-4xl leading-none text-[oklch(0.82_0.18_130)]/70">“</span>
+              </div>
+              <blockquote className="mt-5 flex-1 font-display text-base font-medium leading-relaxed tracking-[-0.015em] sm:text-lg">“{review.text}”</blockquote>
+              <figcaption className="mt-7 flex items-center gap-3 border-t border-white/15 pt-5">
+                <span className="grid size-10 shrink-0 place-items-center rounded-full bg-[oklch(0.82_0.18_130)] font-display text-sm font-bold text-[oklch(0.2_0.035_145)]">{review.name.charAt(0).toUpperCase()}</span>
+                <span className="min-w-0">
+                  <span className="block truncate text-sm font-bold">{review.name}</span>
+                  <span className="mt-0.5 block text-xs text-white/55">{review.country}</span>
+                </span>
+              </figcaption>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-6 flex items-center justify-between">
+          <p className="text-xs font-semibold tracking-[0.16em] text-white/45">0{active + 1} <span className="mx-1 text-white/25">/</span> 0{REVIEWS.length}</p>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={() => move(-1)} aria-label="Previous testimonials" className="grid size-11 place-items-center rounded-full border border-white/20 text-white transition hover:border-[oklch(0.82_0.18_130)] hover:bg-white/10">←</button>
+            <button type="button" onClick={() => move(1)} aria-label="Next testimonials" className="grid size-11 place-items-center rounded-full bg-[oklch(0.88_0.17_130)] text-[oklch(0.2_0.035_145)] transition hover:-translate-y-0.5 hover:bg-[oklch(0.92_0.17_130)]">→</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
