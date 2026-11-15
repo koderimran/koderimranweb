@@ -98,14 +98,13 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           <p className="eyebrow">Service 0{index + 1}</p>
           <span className="text-xs font-semibold text-muted-foreground">Personalised service · Worldwide</span>
         </div>
-        <h2 className="mt-3 max-w-4xl font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">{service.title}</h2>
+        <h2 className="home-service-title mt-3 max-w-4xl font-display text-4xl font-bold tracking-tight">{service.title}</h2>
       </div>
       <div aria-hidden="true" className="mx-6 border-t border-border md:mx-9" />
 
       <div className="grid gap-8 p-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:p-9 lg:gap-14">
         <div className="min-w-0">
-          <p className="eyebrow">The service</p>
-          <h3 className="mt-3 max-w-2xl text-2xl font-bold leading-tight md:text-3xl">{service.short}</h3>
+          <h3 className="max-w-2xl text-2xl font-bold leading-tight">{service.short}</h3>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{service.answer}</p>
 
           <div className="mt-8 space-y-7">
