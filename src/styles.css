@@ -1258,7 +1258,7 @@ footer a:hover {
 
 
 /* Brand-led testimonial marquee: cards gently emerge near the visual centre. */
-.testimonial-marquee-window { position: relative; width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.35) 8%, rgb(0 0 0 / 0.72) 20%, rgb(0 0 0 / 0.92) 34%, #000 45%, #000 55%, rgb(0 0 0 / 0.92) 66%, rgb(0 0 0 / 0.72) 80%, rgb(0 0 0 / 0.35) 92%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.35) 8%, rgb(0 0 0 / 0.72) 20%, rgb(0 0 0 / 0.92) 34%, #000 45%, #000 55%, rgb(0 0 0 / 0.92) 66%, rgb(0 0 0 / 0.72) 80%, rgb(0 0 0 / 0.35) 92%, transparent 100%); }
+.testimonial-marquee-window { position: relative; width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.08) 19%, rgb(0 0 0 / 0.35) 29%, rgb(0 0 0 / 0.88) 40%, #000 50%, rgb(0 0 0 / 0.88) 60%, rgb(0 0 0 / 0.35) 71%, rgb(0 0 0 / 0.08) 81%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.08) 19%, rgb(0 0 0 / 0.35) 29%, rgb(0 0 0 / 0.88) 40%, #000 50%, rgb(0 0 0 / 0.88) 60%, rgb(0 0 0 / 0.35) 71%, rgb(0 0 0 / 0.08) 81%, transparent 100%); }
 .testimonial-marquee-track { display: flex; width: max-content; gap: 1rem; will-change: transform; }
 .testimonial-marquee-track--right { animation: testimonial-drift-right 88s linear infinite; }
 .testimonial-marquee-track--left { animation: testimonial-drift-left 98s linear infinite; }
