@@ -297,62 +297,39 @@ export function Reviews() {
   const bottomLane = [...bottomOrder, ...bottomOrder];
 
   const reviewCard = (review: (typeof REVIEWS)[number], key: string, duplicate: boolean) => (
-    <figure
-      key={key}
-      aria-hidden={duplicate}
-      className="testimonial-marquee-card flex h-[12.2rem] w-[16.5rem] shrink-0 flex-col rounded-2xl border border-[oklch(0.84_0.025_85)]/80 bg-white/75 p-5 text-foreground shadow-[0_12px_35px_-28px_oklch(0.3_0.2_80/0.24)] backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.065] dark:text-white dark:shadow-[0_18px_45px_-32px_oklch(0_0_0/0.7)] sm:w-[17rem]"
-    >
+    <figure key={key} aria-hidden={duplicate} className="testimonial-marquee-card flex h-[12.5rem] w-[17.5rem] shrink-0 flex-col rounded-[1.35rem] border border-foreground/10 bg-white/80 p-5 text-foreground shadow-[0_18px_48px_-34px_oklch(0.25_0.06_145/0.25)] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.055] dark:text-white dark:shadow-[0_20px_55px_-34px_oklch(0_0_0/0.7)] sm:w-[18rem]">
       <div className="flex items-center justify-between">
-        <span className="text-[0.9rem] tracking-[0.16em] text-[oklch(0.62_0.16_135)] dark:text-[oklch(0.9_0.17_128)]" aria-label="5 out of 5 stars">★★★★★</span>
-        <span aria-hidden="true" className="font-serif text-3xl leading-none text-[oklch(0.62_0.16_135)]/35 dark:text-[oklch(0.9_0.17_128)]/45">“</span>
+        <span className="text-sm tracking-[0.16em] text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]" aria-label="5 out of 5 stars">★★★★★</span>
+        <span aria-hidden="true" className="font-serif text-4xl leading-none text-[oklch(90%_0.17_128)]">“</span>
       </div>
-      <blockquote className="mt-3 line-clamp-3 flex-1 text-[0.84rem] leading-[1.55] text-foreground/75 dark:text-white/75">“{review.text}”</blockquote>
-      <figcaption className="mt-3 flex items-center gap-2.5 border-t border-foreground/10 pt-3 dark:border-white/10">
-        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[oklch(0.9_0.17_128)] font-display text-xs font-bold text-[oklch(0.25_0.06_140)]">{review.name.charAt(0).toUpperCase()}</span>
-        <span className="min-w-0">
-          <span className="block truncate font-display text-[0.83rem] font-semibold">{review.name}</span>
-          <span className="mt-0.5 block text-[0.7rem] text-muted-foreground">{review.country}</span>
-        </span>
+      <blockquote className="mt-3 line-clamp-3 flex-1 font-display text-[0.86rem] leading-[1.6] text-foreground/75 dark:text-white/75">“{review.text}”</blockquote>
+      <figcaption className="mt-3 flex items-center gap-3 border-t border-foreground/10 pt-3 dark:border-white/10">
+        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[oklch(90%_0.17_128)] font-display text-xs font-extrabold text-[oklch(23%_0.05_145)]">{review.name.charAt(0).toUpperCase()}</span>
+        <span className="min-w-0"><span className="block truncate font-display text-[0.83rem] font-semibold">{review.name}</span><span className="mt-0.5 block text-[0.7rem] text-muted-foreground">{review.country}</span></span>
       </figcaption>
     </figure>
   );
 
   return (
-    <div className="grid items-center gap-12 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
-      <div className="flex min-h-[23rem] flex-col items-start justify-between py-1">
+    <div className="grid items-center gap-10 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
+      <div className="flex min-h-[25rem] flex-col items-start justify-between py-1">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.45_0.08_140)]/20 bg-[oklch(0.45_0.08_140)]/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[oklch(0.38_0.07_140)] dark:border-white/20 dark:bg-white/5 dark:text-white/75">
-            <span className="size-1.5 rounded-full bg-[oklch(0.62_0.16_135)] dark:bg-[oklch(0.9_0.17_128)]" /> Testimonials
-          </span>
-          <h3 className="mt-6 max-w-md font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-[oklch(0.16_0.015_65)] dark:text-white sm:text-5xl">
-            Why clients <span className="font-serif font-medium italic text-[oklch(0.58_0.16_135)] dark:text-[oklch(0.9_0.17_128)]">choose</span> to work with me.
-          </h3>
+          <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.035] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/75 dark:border-white/15 dark:bg-white/[0.045] dark:text-white/75"><span className="size-1.5 rounded-full bg-[oklch(90%_0.17_128)] shadow-[0_0_10px_oklch(90%_0.17_128/0.75)]" /> Testimonials</span>
+          <h3 className="mt-6 max-w-md font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-foreground sm:text-5xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
         </div>
         <div className="mt-10 max-w-sm">
-          <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-[oklch(0.16_0.015_65)] dark:text-white sm:text-3xl">Ready to be my next happy client?</h4>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-[oklch(0.42_0.015_65)] dark:text-white/65">Let’s talk about your goals and find the right way to move your project forward.</p>
-          <Link to="/contact" className="mt-6 inline-flex items-center gap-3 rounded-full bg-[oklch(0.9_0.17_128)] px-6 py-3.5 text-sm font-bold text-[oklch(0.22_0.05_140)] shadow-[0_8px_24px_-12px_oklch(0.45_0.16_130/0.5)] transition hover:-translate-y-0.5 hover:bg-[oklch(0.93_0.17_128)]">
-            Start a project <ArrowUpRight className="size-4" />
-          </Link>
+          <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-3xl">Ready to be my next happy client?</h4>
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">Let’s talk about your goals and find the right way to move your project forward.</p>
+          <Link to="/contact" className="mt-6 inline-flex items-center gap-3 rounded-full bg-[oklch(90%_0.17_128)] px-6 py-3.5 text-sm font-bold text-[oklch(23%_0.05_145)] shadow-[0_10px_28px_-14px_oklch(65%_0.18_130/0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-12px_oklch(65%_0.18_130/0.7)]">Start a project <ArrowUpRight className="size-4" /></Link>
         </div>
       </div>
-
       <div className="testimonial-marquee min-w-0 space-y-4" aria-label="Client testimonials">
-        <div className="testimonial-marquee-window">
-          <div className="testimonial-marquee-track testimonial-marquee-track--right">
-            {topLane.map((review, i) => reviewCard(review, `top-${i}`, i >= REVIEWS.length))}
-          </div>
-        </div>
-        <div className="testimonial-marquee-window">
-          <div className="testimonial-marquee-track testimonial-marquee-track--left">
-            {bottomLane.map((review, i) => reviewCard(review, `bottom-${i}`, i >= bottomOrder.length))}
-          </div>
-        </div>
+        <div className="testimonial-marquee-window"><div className="testimonial-marquee-track testimonial-marquee-track--right">{topLane.map((review, i) => reviewCard(review, `top-${i}`, i >= REVIEWS.length))}</div></div>
+        <div className="testimonial-marquee-window"><div className="testimonial-marquee-track testimonial-marquee-track--left">{bottomLane.map((review, i) => reviewCard(review, `bottom-${i}`, i >= bottomOrder.length))}</div></div>
       </div>
     </div>
   );
 }
-
 export function Process() {
   return (
     <ol className="relative mt-12 grid gap-4 md:grid-cols-4 md:gap-3">

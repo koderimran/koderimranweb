@@ -1257,44 +1257,14 @@ footer a:hover {
 
 
 
-/* Homepage testimonials: two independently drifting review lanes. */
-.testimonial-marquee-window {
-  width: 100%;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-}
-.testimonial-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 1rem;
-  will-change: transform;
-}
-.testimonial-marquee-track--right {
-  animation: testimonial-drift-right 46s linear infinite;
-}
-.testimonial-marquee-track--left {
-  animation: testimonial-drift-left 52s linear infinite;
-}
-.testimonial-marquee:hover .testimonial-marquee-track,
-.testimonial-marquee:focus-within .testimonial-marquee-track {
-  animation-play-state: paused;
-}
-@keyframes testimonial-drift-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-@keyframes testimonial-drift-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .testimonial-marquee-track--right,
-  .testimonial-marquee-track--left {
-    animation: none;
-  }
-  .testimonial-marquee-window {
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-}
+/* Brand-led testimonial marquee: cards gently emerge near the visual centre. */
+.testimonial-marquee-window { width: 100%; overflow: hidden; -webkit-mask-image: radial-gradient(ellipse 68% 125% at 50% 50%, #000 26%, rgb(0 0 0 / 0.88) 54%, transparent 100%); mask-image: radial-gradient(ellipse 68% 125% at 50% 50%, #000 26%, rgb(0 0 0 / 0.88) 54%, transparent 100%); }
+.testimonial-marquee-track { display: flex; width: max-content; gap: 1rem; will-change: transform; }
+.testimonial-marquee-track--right { animation: testimonial-drift-right 88s linear infinite; }
+.testimonial-marquee-track--left { animation: testimonial-drift-left 98s linear infinite; }
+.testimonial-marquee-card { opacity: 0.76; transform: scale(0.965); transition: opacity 1.8s ease, transform 1.8s ease, box-shadow 1.8s ease; }
+.testimonial-marquee:hover .testimonial-marquee-card { opacity: 0.9; }
+.testimonial-marquee:hover .testimonial-marquee-track, .testimonial-marquee:focus-within .testimonial-marquee-track { animation-play-state: paused; }
+@keyframes testimonial-drift-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes testimonial-drift-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .testimonial-marquee-track--right, .testimonial-marquee-track--left { animation: none; } .testimonial-marquee-window { overflow-x: auto; -webkit-mask-image: none; mask-image: none; scrollbar-width: thin; } .testimonial-marquee-card { opacity: 1; transform: none; } }
