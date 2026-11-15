@@ -94,15 +94,15 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
 
   return (
     <Reveal id={`service-${service.slug}`} as="article" delay={index * 80} className={`home-service-card home-service-card--${index + 1} service-detail-section group relative isolate scroll-mt-28 overflow-hidden bg-card`}>
-      <span className="pointer-events-none absolute right-6 top-5 z-0 select-none font-display text-[6.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:right-8 sm:top-4 sm:text-[7.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+      <span className="pointer-events-none absolute left-6 top-5 z-0 select-none font-display text-[6.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:left-8 sm:top-4 sm:text-[7.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
       <div className="px-6 pt-6 pb-3 md:px-9 md:pt-7 md:pb-4">
         <div className="flex items-center gap-4 md:gap-5">
-          <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 text-[oklch(0.48_0.14_135)] shadow-sm dark:text-[oklch(0.84_0.17_130)] sm:size-16" aria-hidden="true">
-            <ServiceIcon className="size-7 sm:size-8" strokeWidth={1.7} />
-          </div>
           <div className="min-w-0 flex-1">
             <p className="mb-1.5 text-xs font-medium text-muted-foreground">Personalised service · Worldwide</p>
-            <h2 className="home-service-title relative z-10 max-w-4xl pr-20 font-display text-3xl font-bold leading-tight tracking-tight sm:pr-28 sm:text-4xl">{service.title}</h2>
+            <h2 className="home-service-title relative z-10 max-w-4xl pl-20 font-display text-3xl font-bold leading-tight tracking-tight sm:pl-28 sm:text-4xl">{service.title}</h2>
+          </div>
+          <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 text-[oklch(0.48_0.14_135)] shadow-sm dark:text-[oklch(0.84_0.17_130)] sm:size-16" aria-hidden="true">
+            <ServiceIcon className="size-7 sm:size-8" strokeWidth={1.7} />
           </div>
         </div>
       </div>
