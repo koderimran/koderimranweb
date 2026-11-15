@@ -269,19 +269,22 @@ export function WorkGrid({ limit }: { limit?: number }) {
   return (
     <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {WORKS.slice(0, limit).map((w, i) => (
-        <Reveal key={w.name} delay={i * 90} className="hover-lift overflow-hidden rounded-3xl border bg-card">
-        <a href={w.url} target="_blank" rel="noopener noreferrer" className="group block">
-          <div className="aspect-[16/10] overflow-hidden bg-muted">
-            <img src={w.img} alt={`${w.name} website designed by Imran`} loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-105" />
-          </div>
-          <div className="flex items-center justify-between p-5">
-            <div>
-              <h3 className="font-bold">{w.name}</h3>
-              <p className="text-sm text-muted-foreground">{w.tag}</p>
+        <Reveal key={w.name} delay={i * 90} className="group">
+          <a href={w.url} target="_blank" rel="noopener noreferrer" className="block h-full overflow-hidden rounded-[1.6rem] border border-border/70 bg-card transition duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_22px_60px_-30px_oklch(0_0_0/0.28)]">
+            <div className="relative aspect-[16/11] overflow-hidden bg-muted">
+              <img src={w.img} alt={`${w.name} website designed by Imran`} loading="lazy" className="size-full object-cover transition duration-700 group-hover:scale-[1.045]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-70" />
+              <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[11px] font-semibold tracking-[0.14em] text-white backdrop-blur-md">SELECTED WORK · 0{i + 1}</span>
+              <span className="absolute bottom-4 right-4 grid size-10 place-items-center rounded-full border border-white/30 bg-black/25 text-white backdrop-blur-md transition duration-300 group-hover:rotate-45 group-hover:bg-white group-hover:text-black"><ArrowUpRight className="size-5" /></span>
             </div>
-            <ArrowUpRight className="size-5 transition group-hover:-translate-y-1 group-hover:translate-x-1" />
-          </div>
-        </a>
+            <div className="flex items-center justify-between gap-4 px-5 py-5 sm:px-6">
+              <div className="min-w-0">
+                <h3 className="truncate font-display text-lg font-bold tracking-tight">{w.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{w.tag}</p>
+              </div>
+              <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">View project</span>
+            </div>
+          </a>
         </Reveal>
       ))}
     </div>
@@ -290,12 +293,23 @@ export function WorkGrid({ limit }: { limit?: number }) {
 
 export function Reviews() {
   return (
-    <div className="mt-12 grid gap-5 md:grid-cols-3">
+    <div className="mt-12 grid gap-5 lg:grid-cols-3">
       {REVIEWS.slice(0, 3).map((r, i) => (
-        <Reveal as="figure" key={r.name} delay={i * 110} className="hover-lift rounded-3xl border bg-card p-7">
-          <p className="text-signal-foreground dark:text-signal">★★★★★</p>
-          <blockquote className="mt-4 text-lg leading-relaxed">“{r.text}”</blockquote>
-          <figcaption className="mt-6 text-sm font-semibold">{r.name} <span className="font-normal text-muted-foreground">· {r.country}</span></figcaption>
+        <Reveal as="figure" key={r.name} delay={i * 110} className={`relative flex h-full min-h-[17rem] flex-col overflow-hidden rounded-[1.6rem] border border-border/70 bg-card p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_-32px_oklch(0_0_0/0.28)] sm:p-7 ${i === 1 ? "lg:-translate-y-3 lg:bg-secondary/55" : ""}`}>
+          <div className="flex items-center justify-between gap-3">
+            <span className="rounded-full border border-border/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Client feedback</span>
+            <span className="text-sm tracking-[0.16em] text-[oklch(0.68_0.15_85)]" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+          <span aria-hidden="true" className="mt-5 font-serif text-5xl leading-[0.7] text-[oklch(0.58_0.16_135)]/65">“</span>
+          <blockquote className="mt-3 flex-1 font-display text-lg font-medium leading-relaxed tracking-[-0.02em] sm:text-xl">“{r.text}”</blockquote>
+          <figcaption className="mt-7 flex items-center gap-3 border-t border-border/70 pt-5">
+            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent/70 font-display text-sm font-bold text-accent-foreground">{r.name.trim().charAt(0).toUpperCase()}</span>
+            <span className="min-w-0">
+              <span className="block truncate text-sm font-bold">{r.name}</span>
+              <span className="mt-0.5 block text-xs text-muted-foreground">{r.country}</span>
+            </span>
+            <span className="ml-auto text-xs font-semibold text-muted-foreground">0{i + 1}</span>
+          </figcaption>
         </Reveal>
       ))}
     </div>
@@ -304,12 +318,22 @@ export function Reviews() {
 
 export function Process() {
   return (
-    <ol className="mt-12 grid gap-5 md:grid-cols-4">
+    <ol className="relative mt-12 grid gap-4 md:grid-cols-4 md:gap-3">
+      <div aria-hidden="true" className="pointer-events-none absolute left-[8%] right-[8%] top-7 hidden h-px bg-gradient-to-r from-border via-[oklch(0.72_0.16_130)]/70 to-border md:block" />
       {PROCESS.map((p, i) => (
-        <Reveal as="li" key={p.title} delay={i * 100} className="hover-lift rounded-3xl border-t-4 border-ink bg-card p-6">
-          <span className="font-display text-4xl font-bold text-muted-foreground/40">0{i + 1}</span>
-          <h3 className="mt-3 text-lg font-bold">{p.title}</h3>
-          <p className="mt-2 text-sm text-muted-foreground">{p.text}</p>
+        <Reveal as="li" key={p.title} delay={i * 100} className="group relative">
+          <div className="relative flex h-full flex-col rounded-[1.5rem] border border-border/70 bg-card px-5 pb-6 pt-5 transition duration-300 hover:-translate-y-1 hover:border-[oklch(0.72_0.16_130)]/55 hover:shadow-[0_20px_55px_-34px_oklch(0_0_0/0.3)] sm:px-6">
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="grid size-14 place-items-center rounded-2xl border border-[oklch(0.72_0.16_130)]/35 bg-background font-display text-lg font-bold text-foreground shadow-sm transition group-hover:bg-accent">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Step {i + 1}</span>
+            </div>
+            <h3 className="mt-7 font-display text-xl font-bold tracking-tight">{p.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
+            <div className="mt-auto flex items-center gap-2 pt-7">
+              <span className="h-1 w-8 rounded-full bg-[oklch(0.72_0.16_130)] transition-all group-hover:w-12" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">Clear next step</span>
+            </div>
+          </div>
         </Reveal>
       ))}
     </ol>
