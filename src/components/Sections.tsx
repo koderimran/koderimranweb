@@ -322,7 +322,6 @@ export function Reviews() {
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">Let’s talk about your goals and find the right way to move your project forward.</p>
           <Link to="/contact" className="mt-6 inline-flex items-center gap-3 rounded-full bg-[oklch(90%_0.17_128)] px-6 py-3.5 text-sm font-bold text-[oklch(23%_0.05_145)] shadow-[0_10px_28px_-14px_oklch(65%_0.18_130/0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-12px_oklch(65%_0.18_130/0.7)]">Start a project <ArrowUpRight className="size-4" /></Link>
         </div>
-        </div>
         <div className="testimonial-marquee min-w-0 space-y-4" aria-label="Client testimonials">
         <div className="testimonial-marquee-window"><div className="testimonial-marquee-track testimonial-marquee-track--right">{topLane.map((review, i) => reviewCard(review, `top-${i}`, i >= REVIEWS.length))}</div></div>
         <div className="testimonial-marquee-window"><div className="testimonial-marquee-track testimonial-marquee-track--left">{bottomLane.map((review, i) => reviewCard(review, `bottom-${i}`, i >= bottomOrder.length))}</div></div>
