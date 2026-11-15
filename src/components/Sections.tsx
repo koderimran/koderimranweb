@@ -182,7 +182,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           </div>
         </aside>
       </div>
-      <div aria-hidden="true" className="w-full border-t border-border" />
+      <div aria-hidden="true" className={`w-full border-t border-border ${index === 2 ? "border-t-2" : ""}`} />
 
       {compareOpen && createPortal(
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 p-3 backdrop-blur-md sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
