@@ -1258,7 +1258,7 @@ footer a:hover {
 
 
 /* Brand-led testimonial marquee: cards gently emerge near the visual centre. */
-.testimonial-marquee-window { width: 100%; overflow: hidden; -webkit-mask-image: radial-gradient(ellipse 68% 125% at 50% 50%, #000 26%, rgb(0 0 0 / 0.88) 54%, transparent 100%); mask-image: radial-gradient(ellipse 68% 125% at 50% 50%, #000 26%, rgb(0 0 0 / 0.88) 54%, transparent 100%); }
+.testimonial-marquee-window { position: relative; width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%); }
 .testimonial-marquee-track { display: flex; width: max-content; gap: 1rem; will-change: transform; }
 .testimonial-marquee-track--right { animation: testimonial-drift-right 88s linear infinite; }
 .testimonial-marquee-track--left { animation: testimonial-drift-left 98s linear infinite; }

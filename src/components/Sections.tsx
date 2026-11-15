@@ -317,7 +317,7 @@ export function Reviews() {
           <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.035] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/75 dark:border-white/15 dark:bg-white/[0.045] dark:text-white/75"><span className="size-1.5 rounded-full bg-[oklch(90%_0.17_128)] shadow-[0_0_10px_oklch(90%_0.17_128/0.75)]" /> Testimonials</span>
           <h3 className="mt-6 max-w-md font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-foreground sm:text-5xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
         </div>
-        <div className="mt-10 max-w-sm">
+        <div className="mt-0 max-w-sm">
           <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-3xl">Ready to be my next happy client?</h4>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">Let’s talk about your goals and find the right way to move your project forward.</p>
           <Link to="/contact" className="mt-6 inline-flex items-center gap-3 rounded-full bg-[oklch(90%_0.17_128)] px-6 py-3.5 text-sm font-bold text-[oklch(23%_0.05_145)] shadow-[0_10px_28px_-14px_oklch(65%_0.18_130/0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-12px_oklch(65%_0.18_130/0.7)]">Start a project <ArrowUpRight className="size-4" /></Link>
