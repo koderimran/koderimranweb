@@ -1321,7 +1321,7 @@ footer a:hover {
 .hero-service-marquee {
   position: absolute;
   z-index: 3;
-  right: 0;
+  right: 2rem;
   bottom: 2rem;
   width: 45%;
   max-width: 100%;
@@ -1349,7 +1349,7 @@ footer a:hover {
   padding-right: 1.25rem;
   white-space: nowrap;
   font-family: var(--font-display);
-  font-size: clamp(0.62rem, 1.1vw, 0.78rem);
+  font-size: 1.5rem;
   font-weight: 750;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1366,7 +1366,7 @@ footer a:hover {
 .hero-content { z-index: 2; }
 @media (max-width: 767px) {
   .hero-service-marquee {
-    right: 0;
+    right: 2rem;
     bottom: 2rem;
     width: 45%;
     max-width: 100%;
