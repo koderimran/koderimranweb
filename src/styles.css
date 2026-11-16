@@ -199,7 +199,12 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    /* Clip viewport-level overflow (notably 100vw section dividers) without
+       disabling intentional horizontal scrollers inside the page. */
+    overflow-x: clip;
+  }
   body {
     background: var(--outer);
     color: var(--color-foreground);
