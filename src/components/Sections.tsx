@@ -174,7 +174,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               ))}
             </ul>
           </div>
-          <div className="mt-5 grid gap-2 border-t pt-4">
+          <div className="mt-5 grid gap-2 pt-4">
             <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-outline w-full rounded-full px-5 py-3 text-sm font-bold">Compare packages</button>
             <Link to="/contact" className="btn btn-ink flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
               Request a quote <ArrowUpRight className="size-4" aria-hidden="true" />

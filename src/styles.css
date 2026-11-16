@@ -238,8 +238,11 @@
 
 /* One consistent, restrained 1px divider for every homepage section. */
 :root { --home-section-rule: color-mix(in oklab, var(--border) 58%, transparent); }
-.home-section-divider {
+ .home-section-divider {
   position: relative;
+}
+.home-section-divider.home-section-divider--no-bottom-rule::after {
+  content: none;
 }
 .home-section-divider::after {
   content: "";
@@ -1454,8 +1457,7 @@ footer a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid color-mix(in oklab, var(--border) 72%, transparent);
+  padding-bottom: 1.5rem;
 }
 .process-service-tab {
   min-height: 2.75rem;
@@ -1479,7 +1481,7 @@ footer a:hover {
   background: var(--signal);
   box-shadow: 0 7px 22px -15px color-mix(in oklab, var(--signal) 85%, transparent);
 }
-.process-journey {
+ .process-journey {
   position: relative;
   display: grid;
   margin: 0;

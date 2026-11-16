@@ -103,7 +103,7 @@ export function Header() {
 
 export function CtaBand() {
   return (
-    <section className="container-page py-20">
+    <section className="container-page pt-12 pb-20">
       <Reveal className="relative overflow-hidden rounded-3xl border border-[oklch(0.34_0.025_155/0.45)] bg-[oklch(0.235_0.035_155)] px-8 py-12 text-[oklch(0.96_0.008_95)] shadow-[0_24px_60px_-38px_oklch(0.18_0.025_155/0.55)] backdrop-blur-sm dark:border-[oklch(0.82_0.025_145/0.8)] dark:bg-[oklch(0.91_0.025_145)] dark:text-[oklch(0.2_0.02_255)] dark:shadow-[0_24px_60px_-38px_oklch(0.05_0.02_160/0.5)] md:px-14 md:py-14">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_120%_at_0%_0%,oklch(0.9_0.17_128/0.16),transparent_68%),radial-gradient(ellipse_65%_100%_at_100%_100%,oklch(0.62_0.09_205/0.12),transparent_72%)] dark:bg-[radial-gradient(ellipse_75%_120%_at_0%_0%,oklch(0.9_0.17_128/0.3),transparent_68%),radial-gradient(ellipse_65%_100%_at_100%_100%,oklch(0.72_0.07_205/0.13),transparent_72%)]" />
         <div className="relative z-10 grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
