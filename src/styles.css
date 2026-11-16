@@ -1321,11 +1321,12 @@ footer a:hover {
 .hero-service-marquee {
   position: absolute;
   z-index: 3;
+  right: 0;
   left: 50%;
   bottom: 2rem;
-  width: min(100%, 36rem);
+  width: 50%;
   overflow: hidden;
-  transform: translateX(-50%);
+  transform: none;
   pointer-events: none;
   color: var(--foreground);
   opacity: 0.9;
@@ -1364,8 +1365,11 @@ footer a:hover {
 .hero-content { z-index: 2; }
 @media (max-width: 767px) {
   .hero-service-marquee {
+    right: 0;
+    left: 50%;
     bottom: 2rem;
-    width: min(100%, 25rem);
+    width: 50%;
+    transform: none;
   }
   .hero-service-marquee-track span {
     gap: 0.9rem;
