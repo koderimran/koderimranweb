@@ -223,6 +223,22 @@
 @media (min-width: 1200px) { :root { --page-gutter: 1.5rem; } }
 @media (min-width: 1400px) { :root { --page-gutter: 1.25rem; } }
 
+
+/* Homepage section dividers span the viewport, not just the content container. */
+.home-section-divider {
+  position: relative;
+}
+.home-section-divider::after {
+  content: "";
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+  width: 100vw;
+  transform: translateX(50%);
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+  pointer-events: none;
+}
+
 @utility container-page {
   width: 100%;
   max-width: 75rem;
