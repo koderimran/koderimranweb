@@ -109,7 +109,7 @@ function Index() {
           <Process />
         </section>
 
-        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground sm:py-24 dark:bg-[oklch(17%_0.035_145)] dark:text-white">
+        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground sm:py-24 dark:text-white">
           <div className="container-page">
             <Reviews />
           </div>
