@@ -82,7 +82,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="container-page py-20">
+      <section className="home-section-divider container-page py-20">
         <Reveal className="w-full">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="min-w-0">
@@ -95,7 +95,7 @@ function Index() {
         <HomeServices />
       </section>
 
-      <section className="border-y bg-secondary/50">
+      <section className="home-section-divider border-y bg-secondary/50">
         <div className="container-page py-20">
           <SectionHead eyebrow="Recent work" title="Websites that look great and sell" />
           <WorkGrid limit={3} />
@@ -108,13 +108,13 @@ function Index() {
         <Process />
       </section>
 
-      <section className="testimonial-section overflow-hidden bg-[oklch(97%_0.025_128)] py-20 text-foreground sm:py-24 dark:bg-[oklch(17%_0.035_145)] dark:text-white">
+      <section className="home-section-divider testimonial-section overflow-hidden bg-[oklch(97%_0.018_128)] py-20 text-foreground sm:py-24 dark:bg-[oklch(17%_0.035_145)] dark:text-white">
         <div className="container-page">
           <Reviews />
         </div>
       </section>
 
-      <section className="container-page pb-4">
+      <section className="home-section-divider container-page pb-4">
         <SectionHead eyebrow="FAQ" title="Questions clients ask" />
         <Faq />
       </section>
