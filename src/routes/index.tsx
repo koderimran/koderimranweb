@@ -99,7 +99,7 @@ function Index() {
         <div className="container-page py-20">
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div className="min-w-0"><SectionHead eyebrow="Selected work" title={<>Websites and campaigns built for <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">measurable growth.</em></>} /></div>
-            <Link to="/portfolio" className="btn btn-ink mb-1 inline-flex shrink-0 items-center gap-2 self-start rounded-full px-6 py-3 font-bold sm:self-auto">Browse all projects <span className="btn-arrow">→</span></Link>
+            <Link to="/portfolio" className="btn btn-outline mb-1 inline-flex shrink-0 items-center gap-2 self-start rounded-full px-6 py-3 font-bold sm:self-auto">Browse all projects <span className="btn-arrow">→</span></Link>
           </div>
           <WorkGrid limit={3} featured />
         </div>
@@ -107,7 +107,15 @@ function Index() {
 
       <div className="home-proof-atmosphere">
         <section className="home-section-divider container-page py-20">
-          <SectionHead eyebrow="How I work" title="A process built around your service" text="Choose a service to explore the steps, from the first conversation to launch and ongoing improvement." />
+          <Reveal className="w-full">
+            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <div className="min-w-0 w-full md:w-1/2">
+                <p className="eyebrow">How I work</p>
+                <h2 className="mt-3 w-full text-3xl font-bold md:text-5xl">A process built around your service</h2>
+              </div>
+              <p className="max-w-xl text-lg text-muted-foreground md:pb-1">Choose a service to explore the steps, from the first conversation to launch and ongoing improvement.</p>
+            </div>
+          </Reveal>
           <Process />
         </section>
 
