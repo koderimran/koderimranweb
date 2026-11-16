@@ -92,7 +92,7 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="nav-cta mt-4 self-start text-sm font-bold" aria-label="Book a free call"><span className="nav-cta__content"><span>Book a free call</span><ArrowRight className="nav-cta__arrow" size={20} strokeWidth={2.2} aria-hidden="true" /></span></Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="nav-cta mt-4 self-start text-sm font-bold" aria-label="Book a free call"><span className="nav-cta__content"><span className="nav-cta__label">Book a free call</span><span className="nav-cta__icon" aria-hidden="true"><ArrowUpRight className="nav-cta__arrow nav-cta__arrow--default" size={19} strokeWidth={2.2} /><MoveRight className="nav-cta__arrow nav-cta__arrow--hover" size={25} strokeWidth={2.2} /></span></span></Link>
           </nav>
         </div>
       )}
