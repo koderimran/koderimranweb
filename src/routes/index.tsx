@@ -41,15 +41,12 @@ function Index() {
       <section className="overflow-x-clip border-b">
         <div className="hero-backdrop">
           <div className="hero-photo-stage container-page" aria-hidden="true">
-            <svg className="hero-text-path" viewBox="0 0 640 640" role="presentation" focusable="false">
-              <defs>
-                <path id="hero-text-orbit" d="M 320,320 m -270,0 a 270,270 0 1,1 540,0 a 270,270 0 1,1 -540,0" />
-              </defs>
-              <circle className="hero-text-path-guide" cx="320" cy="320" r="270" />
-              <text className="hero-text-path-type">
-                <textPath href="#hero-text-orbit" startOffset="0%">GOOGLE ADS  •  WEB ANALYTICS  •  SHOPIFY  •  WORDPRESS  •  </textPath>
-              </text>
-            </svg>
+            <div className="hero-service-marquee" aria-label="Google Ads, Web Analytics, Shopify and WordPress">
+              <div className="hero-service-marquee-track" aria-hidden="true">
+                <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
+                <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
+              </div>
+            </div>
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
           <div className="hero-photo-blend" aria-hidden="true" />
