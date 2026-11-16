@@ -62,8 +62,18 @@
   --ring: oklch(0.6 0.15 140);
   --ink: oklch(0.19 0.03 255);
   --ink-foreground: oklch(0.96 0.008 95);
+  --btn-primary-bg: var(--signal);
+  --btn-primary-fg: var(--signal-foreground);
+  --btn-primary-hover: color-mix(in oklab, var(--signal) 86%, var(--foreground));
+  --btn-primary-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 70%, transparent);
+  --btn-primary-hover-shadow: 0 22px 42px -16px color-mix(in oklab, var(--signal) 80%, transparent);
   --signal: oklch(0.88 0.19 128);
   --signal-foreground: oklch(0.2 0.04 255);
+  --btn-primary-bg: var(--ink);
+  --btn-primary-fg: var(--ink-foreground);
+  --btn-primary-hover: color-mix(in oklab, var(--ink) 88%, var(--signal));
+  --btn-primary-shadow: 0 12px 26px -18px color-mix(in oklab, var(--ink) 85%, transparent);
+  --btn-primary-hover-shadow: 0 20px 38px -18px color-mix(in oklab, var(--ink) 80%, transparent);
   --shadow-soft: 0 20px 50px -25px oklch(0.24 0.035 255 / 0.35);
   --grid-line: oklch(0.24 0.035 255 / 0.06);
   --outer: var(--background);
@@ -149,11 +159,6 @@
 .theme-toggle svg { transition: transform 240ms ease; }
 .theme-toggle:hover svg { transform: rotate(18deg); }
 .brand-logo { display: block; height: 100%; width: auto; }
-.dark .btn-ink {
-  background-color: var(--signal);
-  color: var(--signal-foreground);
-}
-.dark .btn-ink:hover { background-color: color-mix(in oklab, var(--signal) 85%, var(--foreground)); }
 @media (prefers-reduced-motion: reduce) {
   .theme-toggle svg { transition: none; }
   .theme-toggle:hover svg { transform: none; }
@@ -577,32 +582,35 @@
   text-transform: capitalize;
 }
 
+/* Primary actions adapt to the active theme while keeping one shared hierarchy:
+   deep ink on light surfaces, brand lime on dark surfaces. */
 @utility btn-ink {
-  background-color: var(--color-ink);
-  color: var(--color-ink-foreground);
-  box-shadow: 0 12px 26px -18px color-mix(in oklab, var(--ink) 85%, transparent);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  box-shadow: var(--btn-primary-shadow);
 }
 .btn-ink::before {
   background: linear-gradient(
     105deg,
     transparent 35%,
-    color-mix(in oklab, var(--signal) 65%, transparent) 50%,
+    color-mix(in oklab, var(--signal) 58%, transparent) 50%,
     transparent 65%
   );
 }
 .btn-ink:hover {
-  background-color: color-mix(in oklab, var(--ink) 86%, var(--signal));
-  box-shadow: 0 20px 38px -18px color-mix(in oklab, var(--ink) 80%, transparent);
+  background-color: var(--btn-primary-hover);
+  box-shadow: var(--btn-primary-hover-shadow);
 }
 
+/* Keep the signal CTA class in the same primary tier across both themes. */
 @utility btn-signal {
-  background-color: var(--color-signal);
-  color: var(--color-signal-foreground);
-  box-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 70%, transparent);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  box-shadow: var(--btn-primary-shadow);
 }
 .btn-signal:hover {
-  background-color: color-mix(in oklab, var(--signal) 85%, var(--color-ink-foreground));
-  box-shadow: 0 22px 42px -16px color-mix(in oklab, var(--signal) 80%, transparent);
+  background-color: var(--btn-primary-hover);
+  box-shadow: var(--btn-primary-hover-shadow);
 }
 
 @utility btn-outline {
