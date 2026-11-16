@@ -1312,3 +1312,61 @@ footer a:hover {
 .dark .home-proof-atmosphere .testimonial-section {
   background: transparent;
 }
+
+
+/* Hero text-path orbit: service words circle the portrait without covering the face. */
+.hero-photo-stage { z-index: 1; }
+.hero-background-photo { z-index: 2; }
+.hero-text-path {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -2.25rem;
+  width: min(58%, 40rem);
+  height: auto;
+  overflow: visible;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: color-mix(in oklab, var(--signal) 64%, var(--foreground));
+  opacity: 0.72;
+}
+.hero-text-path-guide {
+  fill: none;
+  stroke: color-mix(in oklab, var(--signal) 28%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 2 9;
+}
+.hero-text-path-type {
+  fill: currentColor;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: 3.4px;
+  text-transform: uppercase;
+}
+.hero-text-path textPath { dominant-baseline: middle; }
+@keyframes hero-text-path-rotate {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+.hero-text-path { animation: hero-text-path-rotate 72s linear infinite; }
+.hero-content { z-index: 2; }
+@media (max-width: 767px) {
+  .hero-text-path {
+    top: clamp(0.25rem, 1.5vw, 0.75rem);
+    right: auto;
+    left: 50%;
+    width: clamp(18rem, 84vw, 23rem);
+    transform: translate(-50%, 0);
+    opacity: 0.78;
+    animation-name: hero-text-path-rotate-mobile;
+  }
+  @keyframes hero-text-path-rotate-mobile {
+    from { transform: translate(-50%, 0) rotate(0deg); }
+    to { transform: translate(-50%, 0) rotate(360deg); }
+  }
+  .hero-background-photo { z-index: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-text-path { animation: none; }
+}
