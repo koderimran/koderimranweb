@@ -41,6 +41,12 @@ function Index() {
       <section className="overflow-x-clip border-b">
         <div className="hero-backdrop">
           <div className="hero-photo-stage container-page" aria-hidden="true">
+            <div className="hero-service-marquee" aria-label="Google Ads, Web Analytics, Shopify and WordPress">
+              <div className="hero-service-marquee-track" aria-hidden="true">
+                <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
+                <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
+              </div>
+            </div>
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
           <div className="hero-photo-blend" aria-hidden="true" />
@@ -60,12 +66,6 @@ function Index() {
                   <Link to="/portfolio" className="btn btn-outline rounded-full px-7 py-4 font-bold">See my work</Link>
                 </div>
                 <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Europe</p>
-              </div>
-              <div className="hero-specialism animate-rise" style={{ animationDelay: "450ms" }}>
-                <p className="hero-specialism-label">Specialist in</p>
-                <ul className="hero-specialism-list">
-                  {["Google Ads", "GA4 & GTM", "Shopify", "WordPress"].map((t) => <li key={t} className="hero-specialism-chip">{t}</li>)}
-                </ul>
               </div>
             </div>
           </div>
