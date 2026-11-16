@@ -1,14 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, PanelsTopLeft } from "lucide-react";
-import { SITE, WORKS, SERVICES, REVIEWS, DEMO_STATS, SHOW_DEMO_BADGE } from "@/lib/site";
+import { ArrowUpRight } from "lucide-react";
+import { SITE, WORKS, DEMO_STATS, SHOW_DEMO_BADGE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
-import { SectionHead } from "@/components/Sections";
+import { Reviews } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
 
 const TITLE = "Portfolio | Websites, E-commerce & Digital Growth Projects | Koder Imran";
 const DESC = "Explore selected websites and e-commerce projects by Koder Imran, alongside services in conversion tracking, Google Ads, Shopify and WordPress.";
 
-const SERVICE_ICONS = [BarChart3, Megaphone, ShoppingBag, PanelsTopLeft];
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -124,48 +123,9 @@ function Portfolio() {
         </section>
       )}
 
-      <section className="border-y bg-secondary/50">
-        <div className="container-page py-20">
-          <SectionHead
-            eyebrow="What I do"
-            title="More than a website. A connected growth setup."
-            text="From accurate measurement to campaign optimisation and conversion-focused stores, get the right expertise across the parts of your digital business."
-          />
-          <div className="mt-12 grid gap-4 md:grid-cols-2">
-            {SERVICES.map((service, i) => {
-              const Icon = SERVICE_ICONS[i] ?? PanelsTopLeft;
-              return (
-                <Reveal key={service.slug} delay={i * 80} className="group rounded-3xl border bg-card p-7 transition-colors hover:border-ring/60 md:p-8">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="grid size-12 place-items-center rounded-2xl bg-accent text-accent-foreground">
-                      <Icon className="size-6" />
-                    </span>
-                    <span className="font-display text-sm text-muted-foreground">0{i + 1}</span>
-                  </div>
-                  <h3 className="mt-6 text-xl font-bold md:text-2xl">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{service.short}</p>
-                  <Link to="/services" className="mt-6 inline-flex items-center gap-2 text-sm font-bold">
-                    Explore service <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="container-page py-20">
-        <SectionHead eyebrow="Client feedback" title="Good work is remembered." text="A few words shared by clients after working together." />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {REVIEWS.slice(0, 3).map((review, i) => (
-            <Reveal as="figure" key={review.name} delay={i * 90} className="rounded-3xl border bg-card p-7">
-              <p className="text-signal-foreground dark:text-signal">★★★★★</p>
-              <blockquote className="mt-4 text-base leading-relaxed">“{review.text}”</blockquote>
-              <figcaption className="mt-6 text-sm font-semibold">
-                {review.name} <span className="font-normal text-muted-foreground">· {review.country}</span>
-              </figcaption>
-            </Reveal>
-          ))}
+      <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground dark:text-white">
+        <div className="container-page">
+          <Reviews />
         </div>
       </section>
 
