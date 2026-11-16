@@ -107,7 +107,7 @@ function Index() {
 
       <div className="home-proof-atmosphere">
         <section className="home-section-divider container-page py-20">
-          <SectionHead eyebrow="How I work" title="A simple, transparent process" />
+          <SectionHead eyebrow="How I work" title="A process built around your service" text="Choose a service to explore the steps, from the first conversation to launch and ongoing improvement." />
           <Process />
         </section>
 
