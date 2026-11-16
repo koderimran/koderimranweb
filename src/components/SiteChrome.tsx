@@ -104,16 +104,15 @@ export function Header() {
 export function CtaBand() {
   return (
     <section className="container-page py-20">
-      <Reveal className="relative overflow-hidden rounded-3xl bg-ink px-8 py-14 text-ink-foreground md:px-14">
-        <div className="absolute inset-0 bg-grid opacity-20" />
-        <div className="relative grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
+      <Reveal className="relative px-0 py-12 text-foreground md:py-14">
+        <div className="grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
           <div>
             <h2 className="w-full text-3xl font-bold md:text-5xl">
-              <span className="block">Power Your Business Growth</span>
-              <span className="text-signal">with Websites Ads and Analytics</span>
+              <span className="block">Power Your Business Growth with</span>
+              <span className="text-[oklch(48%_0.16_135)] dark:text-signal">Websites Ads and Analytics</span>
             </h2>
-            <p className="mt-4 max-w-xl text-ink-foreground/70">
-              Get a free 20-minute audit of your store, tracking or Google Ads account. No obligation.
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              <strong className="font-bold text-foreground">Free 30-Minute Audit</strong> of your website, tracking or Google Ads account — with clear recommendations to help you move forward.
             </p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
