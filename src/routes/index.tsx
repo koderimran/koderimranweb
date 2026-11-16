@@ -70,7 +70,7 @@ function Index() {
             </div>
           </div>
         </div>
-        <div className="border-t">
+        <div className="home-section-top-rule">
           <div className="container-page grid grid-cols-2 gap-6 py-8 text-center md:grid-cols-4">
             {STATS.map((s, i) => (
               <Reveal key={s.v} delay={i * 90}>
