@@ -411,15 +411,7 @@
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }
-.eyebrow::before {
-  content: "";
-  width: 0.38rem;
-  height: 0.38rem;
-  flex: 0 0 auto;
-  border-radius: 999px;
-  background: var(--signal);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 13%, transparent);
-}
+/* Section eyebrows use a clean text-only treatment without a leading marker. */
 
 /* ===== Animations ===== */
 
