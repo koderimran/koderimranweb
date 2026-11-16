@@ -62,11 +62,6 @@
   --ring: oklch(0.6 0.15 140);
   --ink: oklch(0.19 0.03 255);
   --ink-foreground: oklch(0.96 0.008 95);
-  --btn-primary-bg: var(--signal);
-  --btn-primary-fg: var(--signal-foreground);
-  --btn-primary-hover: color-mix(in oklab, var(--signal) 86%, var(--foreground));
-  --btn-primary-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 70%, transparent);
-  --btn-primary-hover-shadow: 0 22px 42px -16px color-mix(in oklab, var(--signal) 80%, transparent);
   --signal: oklch(0.88 0.19 128);
   --signal-foreground: oklch(0.2 0.04 255);
   --btn-primary-bg: var(--ink);
@@ -126,6 +121,13 @@
   --ring: oklch(0.79 0.16 135);
   --ink: oklch(0.13 0.008 160);
   --ink-foreground: oklch(0.96 0.008 95);
+  --signal: oklch(0.88 0.19 128);
+  --signal-foreground: oklch(0.2 0.04 255);
+  --btn-primary-bg: var(--signal);
+  --btn-primary-fg: var(--signal-foreground);
+  --btn-primary-hover: color-mix(in oklab, var(--signal) 86%, var(--foreground));
+  --btn-primary-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 70%, transparent);
+  --btn-primary-hover-shadow: 0 22px 42px -16px color-mix(in oklab, var(--signal) 80%, transparent);
   --outer: var(--background);
   --gradient-page:
     radial-gradient(72rem 44rem at 4% -2%, oklch(0.88 0.19 128 / 0.16), transparent 62%),
