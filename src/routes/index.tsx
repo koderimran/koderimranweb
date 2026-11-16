@@ -97,11 +97,11 @@ function Index() {
 
       <section className="border-y bg-secondary/50">
         <div className="container-page py-20">
-          <div className="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <SectionHead eyebrow="Recent work" title="Websites that look great and sell" />
-            <Link to="/portfolio" className="btn btn-ink inline-flex shrink-0 items-center gap-2 self-start rounded-full px-6 py-3 font-bold sm:self-auto">Browse all projects <span className="btn-arrow">→</span></Link>
+          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div className="min-w-0"><SectionHead eyebrow="Selected work" title={<>Websites and campaigns built for <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">measurable growth.</em></>} /></div>
+            <Link to="/portfolio" className="btn btn-ink mb-1 inline-flex shrink-0 items-center gap-2 self-start rounded-full px-6 py-3 font-bold sm:self-auto">Browse all projects <span className="btn-arrow">→</span></Link>
           </div>
-          <WorkGrid limit={3} />
+          <WorkGrid limit={3} featured />
         </div>
       </section>
 
