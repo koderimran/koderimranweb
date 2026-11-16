@@ -85,9 +85,9 @@ function Index() {
       <section className="home-section-divider container-page py-20">
         <Reveal className="w-full">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div className="min-w-0">
+            <div className="min-w-0 w-full md:w-1/2">
               <p className="eyebrow">Services</p>
-              <h2 className="mt-3 text-3xl font-bold md:text-5xl">Everything your online business <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">needs to grow.</em></h2>
+              <h2 className="mt-3 w-full text-3xl font-bold md:text-5xl">Everything your online business <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">needs to grow.</em></h2>
             </div>
             <p className="max-w-xl text-lg text-muted-foreground md:pb-1">One specialist for your store, your data and your ads — so nothing gets lost between agencies.</p>
           </div>
@@ -109,7 +109,7 @@ function Index() {
           <Process />
         </section>
 
-        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground sm:py-24 dark:bg-[oklch(17%_0.035_145)] dark:text-white">
+        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground sm:py-24 dark:text-white">
           <div className="container-page">
             <Reviews />
           </div>
@@ -119,9 +119,9 @@ function Index() {
           <SectionHead eyebrow="FAQ" title="Questions clients ask" />
           <Faq />
         </section>
-      </div>
 
-      <CtaBand />
+        <CtaBand />
+      </div>
     </>
   );
 }
