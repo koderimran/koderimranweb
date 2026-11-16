@@ -125,7 +125,7 @@ function Index() {
           </div>
         </section>
 
-        <section className="home-section-divider container-page py-20">
+        <section className="home-section-divider home-section-divider--no-bottom-rule container-page py-20">
           <SectionHead eyebrow="FAQ" title="Questions clients ask" />
           <Faq />
         </section>
