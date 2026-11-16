@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
-import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
+import { SERVICES, WORKS, REVIEWS, FAQS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
 const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
