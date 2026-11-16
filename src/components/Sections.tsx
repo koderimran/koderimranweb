@@ -265,14 +265,71 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
   );
 }
 
-export function WorkGrid({ limit }: { limit?: number }) {
+export function WorkGrid({ limit, featured = false }: { limit?: number; featured?: boolean }) {
+  const works = WORKS.slice(0, limit);
+
+  if (featured) {
+    const [lead, ...supporting] = works;
+    return (
+      <div className="mt-12 space-y-6">
+        {lead && (
+          <Reveal className="group">
+            <a href={lead.url} target="_blank" rel="noopener noreferrer" className="grid overflow-hidden rounded-[1.75rem] border border-border/65 bg-card transition duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_24px_70px_-38px_oklch(0_0_0/0.32)] md:grid-cols-[1.18fr_0.82fr]">
+              <div className="relative min-h-[16rem] overflow-hidden bg-muted sm:min-h-[22rem]">
+                <img src={lead.img} alt={`${lead.name} website project by Imran`} loading="lazy" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=85"; }} className="absolute inset-0 size-full object-cover object-top transition duration-700 group-hover:scale-[1.035]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/[0.04]" />
+                <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-md">Featured project</span>
+              </div>
+              <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-11">
+                <div className="flex flex-wrap gap-2">
+                  {lead.services.map((service) => <span key={service} className="rounded-full bg-accent/70 px-3 py-1.5 text-[11px] font-semibold text-accent-foreground">{service}</span>)}
+                </div>
+                <p className="eyebrow mt-7">Selected case study · 01</p>
+                <h3 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{lead.name}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">{lead.problem}</p>
+                <div className="mt-6 border-l-2 border-[oklch(90%_0.17_128)] pl-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Project outcome</p>
+                  <p className="mt-2 text-sm font-semibold leading-relaxed text-foreground sm:text-base">{lead.result}</p>
+                </div>
+                <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold">View live project <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
+              </div>
+            </a>
+          </Reveal>
+        )}
+        {supporting.length > 0 && (
+          <div className="grid gap-6 md:grid-cols-2">
+            {supporting.map((work, i) => (
+              <Reveal key={work.name} delay={i * 90} className="group">
+                <a href={work.url} target="_blank" rel="noopener noreferrer" className="grid h-full overflow-hidden rounded-[1.5rem] border border-border/65 bg-card transition duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_22px_60px_-38px_oklch(0_0_0/0.28)] sm:grid-cols-[0.92fr_1.08fr]">
+                  <div className="relative min-h-[13rem] overflow-hidden bg-muted sm:min-h-[16rem]">
+                    <img src={work.img} alt={`${work.name} website project by Imran`} loading="lazy" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=85"; }} className="absolute inset-0 size-full object-cover object-top transition duration-700 group-hover:scale-[1.045]" />
+                    <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">0{i + 2} / 03</span>
+                  </div>
+                  <div className="flex min-w-0 flex-col justify-center p-5 sm:p-6">
+                    <p className="text-xs font-semibold text-muted-foreground">{work.tag}</p>
+                    <h3 className="mt-2 font-display text-xl font-bold tracking-tight">{work.name}</h3>
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {work.services.map((service) => <span key={service} className="rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold text-muted-foreground">{service}</span>)}
+                    </div>
+                    <p className="mt-4 text-xs leading-relaxed text-muted-foreground">{work.result}</p>
+                    <span className="mt-5 inline-flex items-center gap-2 text-xs font-bold">View project <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
+                  </div>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {WORKS.slice(0, limit).map((w, i) => (
+      {works.map((w, i) => (
         <Reveal key={w.name} delay={i * 90} className="group">
           <a href={w.url} target="_blank" rel="noopener noreferrer" className="block h-full overflow-hidden rounded-[1.6rem] border border-border/70 bg-card transition duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_22px_60px_-30px_oklch(0_0_0/0.28)]">
             <div className="relative aspect-[16/11] overflow-hidden bg-muted">
-              <img src={w.img} alt={`${w.name} website designed by Imran`} loading="lazy" className="size-full object-cover transition duration-700 group-hover:scale-[1.045]" />
+              <img src={w.img} alt={`${w.name} website designed by Imran`} loading="lazy" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=85"; }} className="size-full object-cover transition duration-700 group-hover:scale-[1.045]" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-70" />
               <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-black/35 px-3 py-1.5 text-[11px] font-semibold tracking-[0.14em] text-white backdrop-blur-md">SELECTED WORK · 0{i + 1}</span>
               <span className="absolute bottom-4 right-4 grid size-10 place-items-center rounded-full border border-white/30 bg-black/25 text-white backdrop-blur-md transition duration-300 group-hover:rotate-45 group-hover:bg-white group-hover:text-black"><ArrowUpRight className="size-5" /></span>
@@ -290,7 +347,6 @@ export function WorkGrid({ limit }: { limit?: number }) {
     </div>
   );
 }
-
 export function Reviews() {
   const topLane = [...REVIEWS, ...REVIEWS];
   const bottomOrder = [...REVIEWS.slice(2), ...REVIEWS.slice(0, 2)];
