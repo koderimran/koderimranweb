@@ -615,6 +615,27 @@
   box-shadow: var(--btn-primary-hover-shadow);
 }
 
+/* Explicit theme selectors ensure the primary CTA stays visible and correctly
+   colored even when utility generation/order changes. */
+:root:not(.dark) .btn-ink,
+:root:not(.dark) .btn-signal {
+  background-color: var(--ink);
+  color: var(--ink-foreground);
+}
+:root:not(.dark) .btn-ink:hover,
+:root:not(.dark) .btn-signal:hover {
+  background-color: color-mix(in oklab, var(--ink) 88%, var(--signal));
+}
+:root.dark .btn-ink,
+:root.dark .btn-signal {
+  background-color: var(--signal);
+  color: var(--signal-foreground);
+}
+:root.dark .btn-ink:hover,
+:root.dark .btn-signal:hover {
+  background-color: color-mix(in oklab, var(--signal) 86%, var(--foreground));
+}
+
 @utility btn-outline {
   background-color: var(--color-card);
   color: var(--color-foreground);
