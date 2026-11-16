@@ -38,7 +38,7 @@ const STATS = [
 function Index() {
   return (
     <>
-      <section className="overflow-x-clip border-b">
+      <section className="home-section-divider overflow-x-clip">
         <div className="hero-backdrop">
           <div className="hero-photo-stage container-page" aria-hidden="true">
             <div className="hero-service-marquee" aria-label="Google Ads, Web Analytics, Shopify and WordPress">
@@ -95,7 +95,7 @@ function Index() {
         <HomeServices />
       </section>
 
-      <section className="border-y bg-secondary/50">
+      <section className="home-section-divider bg-secondary/50">
         <div className="container-page py-20">
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div className="min-w-0"><SectionHead eyebrow="Selected work" title={<>Websites and campaigns built for <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">measurable growth.</em></>} /></div>
@@ -111,13 +111,13 @@ function Index() {
           <Process />
         </section>
 
-        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground sm:py-24 dark:text-white">
+        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground dark:text-white">
           <div className="container-page">
             <Reviews />
           </div>
         </section>
 
-        <section className="home-section-divider container-page pb-4">
+        <section className="home-section-divider container-page py-20">
           <SectionHead eyebrow="FAQ" title="Questions clients ask" />
           <Faq />
         </section>
