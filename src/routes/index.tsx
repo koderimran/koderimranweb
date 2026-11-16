@@ -103,21 +103,23 @@ function Index() {
         </div>
       </section>
 
-      <section className="home-section-divider container-page py-20">
-        <SectionHead eyebrow="How I work" title="A simple, transparent process" />
-        <Process />
-      </section>
+      <div className="home-proof-atmosphere">
+        <section className="home-section-divider container-page py-20">
+          <SectionHead eyebrow="How I work" title="A simple, transparent process" />
+          <Process />
+        </section>
 
-      <section className="home-section-divider testimonial-section overflow-hidden bg-[oklch(97%_0.018_128)] py-20 text-foreground sm:py-24 dark:bg-[oklch(17%_0.035_145)] dark:text-white">
-        <div className="container-page">
-          <Reviews />
-        </div>
-      </section>
+        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground sm:py-24 dark:bg-[oklch(17%_0.035_145)] dark:text-white">
+          <div className="container-page">
+            <Reviews />
+          </div>
+        </section>
 
-      <section className="home-section-divider container-page pb-4">
-        <SectionHead eyebrow="FAQ" title="Questions clients ask" />
-        <Faq />
-      </section>
+        <section className="home-section-divider container-page pb-4">
+          <SectionHead eyebrow="FAQ" title="Questions clients ask" />
+          <Faq />
+        </section>
+      </div>
 
       <CtaBand />
     </>
