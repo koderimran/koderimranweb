@@ -224,19 +224,24 @@
 @media (min-width: 1400px) { :root { --page-gutter: 1.25rem; } }
 
 
-/* Homepage section dividers span the viewport, not just the content container. */
+/* One consistent, restrained 1px divider for every homepage section. */
+:root { --home-section-rule: color-mix(in oklab, var(--border) 58%, transparent); }
 .home-section-divider {
   position: relative;
 }
 .home-section-divider::after {
   content: "";
   position: absolute;
+  z-index: 1;
   right: 50%;
   bottom: 0;
   width: 100vw;
   transform: translateX(50%);
-  border-bottom: 1px solid color-mix(in oklab, var(--border) 26%, transparent);
+  border-bottom: 1px solid var(--home-section-rule);
   pointer-events: none;
+}
+.home-section-top-rule {
+  border-top: 1px solid var(--home-section-rule);
 }
 
 @utility container-page {
@@ -1504,11 +1509,15 @@ footer a:hover {
 /* Numbered FAQ: editorial question rows with a restrained lime interaction cue. */
 .faq-numbered {
   overflow: hidden;
-  border-top: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+  margin-top: 2.5rem;
+  padding-block: 0.45rem;
+  border-top: 1px solid var(--home-section-rule);
+  border-bottom: 1px solid var(--home-section-rule);
 }
 .faq-numbered-item {
-  border-bottom: 1px solid color-mix(in oklab, var(--border) 68%, transparent);
+  border-bottom: 1px solid var(--home-section-rule);
 }
+.faq-numbered-item:last-child { border-bottom: 0; }
 .faq-numbered-item summary {
   display: grid;
   grid-template-columns: 3.25rem minmax(0, 1fr) 2.5rem;
