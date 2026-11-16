@@ -1322,7 +1322,6 @@ footer a:hover {
   position: absolute;
   z-index: 3;
   right: 0;
-  left: 50%;
   bottom: 2rem;
   width: 40%;
   overflow: hidden;
@@ -1366,7 +1365,6 @@ footer a:hover {
 @media (max-width: 767px) {
   .hero-service-marquee {
     right: 0;
-    left: 50%;
     bottom: 2rem;
     width: 40%;
     transform: none;
