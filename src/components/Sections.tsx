@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
-import { SERVICES, WORKS, REVIEWS, FAQS, PROCESS } from "@/lib/site";
+import { SERVICES, WORKS, REVIEWS, FAQS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
 const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
@@ -369,14 +369,14 @@ export function Reviews() {
   return (
     <div>
       <div>
-        <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.035] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/75 dark:border-white/15 dark:bg-white/[0.045] dark:text-white/75"><span className="size-1.5 rounded-full bg-[oklch(90%_0.17_128)] shadow-[0_0_10px_oklch(90%_0.17_128/0.75)]" /> Testimonials</span>
+        <p className="eyebrow">Testimonials</p>
         <h3 className="mt-5 w-full max-w-full font-display text-3xl md:max-w-[50%] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground md:text-5xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
       </div>
       <div className="grid items-center gap-9 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
         <div className="max-w-sm">
           <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-3xl">Ready to be my next happy client?</h4>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">Let’s talk about your goals and find the right way to move your project forward.</p>
-          <Link to="/contact" className="mt-6 inline-flex items-center gap-3 rounded-full bg-[oklch(90%_0.17_128)] px-6 py-3.5 text-sm font-bold text-[oklch(23%_0.05_145)] shadow-[0_10px_28px_-14px_oklch(65%_0.18_130/0.65)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-12px_oklch(65%_0.18_130/0.7)]">Start a project <ArrowUpRight className="size-4" /></Link>
+          <Link to="/contact" className="btn btn-signal mt-6 rounded-full px-6 py-3.5 text-sm font-bold">Start a project <ArrowUpRight className="size-4" /></Link>
         </div>
         <div className="testimonial-marquee min-w-0 space-y-4" aria-label="Client testimonials">
         <div className="testimonial-marquee-window"><div className="testimonial-marquee-track testimonial-marquee-track--right">{topLane.map((review, i) => reviewCard(review, `top-${i}`, i >= REVIEWS.length))}</div></div>
@@ -386,40 +386,86 @@ export function Reviews() {
     </div>
   );
 }
+const SERVICE_PROCESSES: Record<string, { title: string; text: string }[]> = {
+  "web-analytics": [
+    { title: "Measurement discovery", text: "We map your business goals, customer journey and the actions that matter across your website or store." },
+    { title: "Tracking plan", text: "I define the GA4 events, conversion actions, parameters and platforms needed for reliable measurement." },
+    { title: "Implementation", text: "I configure GA4, Google Tag Manager and the required advertising pixels or integrations." },
+    { title: "Testing & handover", text: "I validate events and conversion data, resolve issues and document the setup so you can use it confidently." },
+  ],
+  "google-ads": [
+    { title: "Account & goal audit", text: "We review your offer, audience, account history and business goals to understand what needs attention." },
+    { title: "Campaign strategy", text: "I plan the campaign structure, keywords, audiences, budget and messaging around your objectives." },
+    { title: "Build & launch", text: "I set up campaigns, ads, assets and conversion measurement, then check everything before launch." },
+    { title: "Optimise & report", text: "I review search terms and performance data, make informed improvements and share clear reporting." },
+  ],
+  shopify: [
+    { title: "Store discovery", text: "We define your products, audience, store requirements and the shopping experience your customers need." },
+    { title: "Design & development", text: "I shape the storefront, customise the theme and build clear product, collection and content pages." },
+    { title: "Integrations & tracking", text: "I configure essential apps, payment and marketing integrations, plus GA4 and e-commerce tracking where required." },
+    { title: "Testing & launch", text: "I test the shopping journey across devices, check key store functions and prepare the storefront for launch." },
+  ],
+  "wordpress-woocommerce": [
+    { title: "Discovery & planning", text: "We clarify your website goals, audience, content needs and the structure that will support your business." },
+    { title: "Design & development", text: "I create responsive page layouts and build your WordPress website or WooCommerce store around the agreed scope." },
+    { title: "Integrations & tracking", text: "I configure essential plugins and integrations, then implement analytics and conversion tracking as needed." },
+    { title: "Quality check & launch", text: "I test forms, navigation, store functions and responsive layouts before launch and handover." },
+  ],
+};
+
+const SERVICE_PROCESS_LABELS: Record<string, string> = {
+  "web-analytics": "Analytics & Tracking",
+  "google-ads": "Google Ads",
+  shopify: "Shopify",
+  "wordpress-woocommerce": "WordPress",
+};
+
 export function Process() {
+  const [activeService, setActiveService] = useState(SERVICES[0].slug);
+  const steps = SERVICE_PROCESSES[activeService] ?? SERVICE_PROCESSES["web-analytics"];
+
   return (
-    <ol className="relative mt-12 grid gap-4 md:grid-cols-4 md:gap-3">
-      <div aria-hidden="true" className="pointer-events-none absolute left-[8%] right-[8%] top-7 hidden h-px bg-gradient-to-r from-border via-[oklch(0.72_0.16_130)]/70 to-border md:block" />
-      {PROCESS.map((p, i) => (
-        <Reveal as="li" key={p.title} delay={i * 100} className="group relative">
-          <div className="relative flex h-full flex-col rounded-[1.5rem] border border-border/70 bg-card px-5 pb-6 pt-5 transition duration-300 hover:-translate-y-1 hover:border-[oklch(0.72_0.16_130)]/55 hover:shadow-[0_20px_55px_-34px_oklch(0_0_0/0.3)] sm:px-6">
-            <div className="relative z-10 flex items-center justify-between">
-              <span className="grid size-14 place-items-center rounded-2xl border border-[oklch(0.72_0.16_130)]/35 bg-background font-display text-lg font-bold text-foreground shadow-sm transition group-hover:bg-accent">{String(i + 1).padStart(2, "0")}</span>
-              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Step {i + 1}</span>
+    <div className="process-showcase mt-10">
+      <div className="process-service-tabs" role="group" aria-label="Choose a service to view its process">
+        {SERVICES.map((service) => (
+          <button
+            key={service.slug}
+            type="button"
+            aria-pressed={activeService === service.slug}
+            onClick={() => setActiveService(service.slug)}
+            className="process-service-tab"
+          >
+            {SERVICE_PROCESS_LABELS[service.slug] ?? service.title}
+          </button>
+        ))}
+      </div>
+      <ol className="process-journey" aria-live="polite">
+        {steps.map((step, index) => (
+          <li key={`${activeService}-${step.title}`} className="process-journey-step">
+            <span className="process-journey-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <div className="process-journey-copy">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
             </div>
-            <h3 className="mt-7 font-display text-xl font-bold tracking-tight">{p.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
-            <div className="mt-auto flex items-center gap-2 pt-7">
-              <span className="h-1 w-8 rounded-full bg-[oklch(0.72_0.16_130)] transition-all group-hover:w-12" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">Clear next step</span>
-            </div>
-          </div>
-        </Reveal>
-      ))}
-    </ol>
+            <span className="process-journey-phase">PHASE {String(index + 1).padStart(2, "0")}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 
 export function Faq() {
   return (
-    <Reveal className="mt-12 divide-y rounded-3xl border bg-card">
-      {FAQS.map((f) => (
-        <details key={f.q} className="faq-item group p-6">
-          <summary className="flex cursor-pointer list-none items-center justify-between font-display text-lg font-semibold">
-            {f.q}
-            <span className="ml-4 text-2xl transition group-open:rotate-45">+</span>
+    <Reveal className="faq-numbered mt-10">
+      {FAQS.map((f, index) => (
+        <details key={f.q} className="faq-numbered-item group">
+          <summary>
+            <span className="faq-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+            <span className="faq-question">{f.q}</span>
+            <span className="faq-toggle" aria-hidden="true">+</span>
           </summary>
-          <p className="mt-3 text-muted-foreground">{f.a}</p>
+          <div className="faq-answer"><p>{f.a}</p></div>
         </details>
       ))}
     </Reveal>
