@@ -95,7 +95,7 @@ function Index() {
         <HomeServices />
       </section>
 
-      <section className="home-section-divider border-y bg-secondary/50">
+      <section className="border-y bg-secondary/50">
         <div className="container-page py-20">
           <SectionHead eyebrow="Recent work" title="Websites that look great and sell" />
           <WorkGrid limit={3} />
