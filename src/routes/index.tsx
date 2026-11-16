@@ -119,9 +119,9 @@ function Index() {
           <SectionHead eyebrow="FAQ" title="Questions clients ask" />
           <Faq />
         </section>
-      </div>
 
-      <CtaBand />
+        <CtaBand />
+      </div>
     </>
   );
 }
