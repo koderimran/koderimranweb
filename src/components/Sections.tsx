@@ -314,7 +314,7 @@ export function Reviews() {
     <div>
       <div>
         <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/[0.035] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/75 dark:border-white/15 dark:bg-white/[0.045] dark:text-white/75"><span className="size-1.5 rounded-full bg-[oklch(90%_0.17_128)] shadow-[0_0_10px_oklch(90%_0.17_128/0.75)]" /> Testimonials</span>
-        <h3 className="mt-5 max-w-3xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-foreground sm:text-5xl lg:text-6xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
+        <h3 className="mt-5 max-w-3xl font-display text-3xl font-semibold leading-[1.02] tracking-[-0.045em] text-foreground md:text-5xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
       </div>
       <div className="grid items-center gap-9 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
         <div className="max-w-sm">
