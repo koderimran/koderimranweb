@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, Menu, X, Sun, Moon } from "lucide-react";
+import { ArrowUpRight, MoveRight, Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -74,7 +74,7 @@ export function Header() {
         <div className="hidden items-center gap-2 md:flex md:justify-self-end">
           <ThemeToggle />
           <Link to="/contact" className="nav-cta text-sm font-bold" aria-label="Book a free call">
-            <span className="nav-cta__content"><span>Book a free call</span><ArrowRight className="nav-cta__arrow" size={20} strokeWidth={2.2} aria-hidden="true" /></span>
+            <span className="nav-cta__content"><span className="nav-cta__label">Book a free call</span><span className="nav-cta__icon" aria-hidden="true"><ArrowUpRight className="nav-cta__arrow nav-cta__arrow--default" size={19} strokeWidth={2.2} /><MoveRight className="nav-cta__arrow nav-cta__arrow--hover" size={25} strokeWidth={2.2} /></span></span>
           </Link>
         </div>
 
