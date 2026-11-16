@@ -108,8 +108,9 @@ export function CtaBand() {
         <div className="absolute inset-0 bg-grid opacity-20" />
         <div className="relative grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
           <div>
-            <h2 className="w-full text-3xl font-bold md:max-w-[50%] md:text-5xl">
-              Ready for a website and ad account that <span className="text-signal">pays for itself?</span>
+            <h2 className="w-full text-3xl font-bold md:text-5xl">
+              <span className="block">Ready to grow your online business</span>
+              <span className="text-signal">with data-driven decisions?</span>
             </h2>
             <p className="mt-4 max-w-xl text-ink-foreground/70">
               Get a free 20-minute audit of your store, tracking or Google Ads account. No obligation.
