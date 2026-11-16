@@ -1299,5 +1299,5 @@ footer a:hover {
   background: transparent;
 }
 :root:not(.dark) .home-proof-atmosphere .home-section-divider::after {
-  border-bottom-color: color-mix(in oklab, var(--border) 58%, transparent);
+  border-bottom-color: color-mix(in oklab, var(--border) 26%, transparent);
 }
