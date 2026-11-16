@@ -109,8 +109,8 @@ export function CtaBand() {
         <div className="relative grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
           <div>
             <h2 className="w-full text-3xl font-bold md:text-5xl">
-              <span className="block">Ready to grow your online business</span>
-              <span className="text-signal">with data-driven decisions?</span>
+              <span className="block">Power Your Business Growth</span>
+              <span className="text-signal">with Websites Ads and Analytics</span>
             </h2>
             <p className="mt-4 max-w-xl text-ink-foreground/70">
               Get a free 20-minute audit of your store, tracking or Google Ads account. No obligation.
