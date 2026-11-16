@@ -104,8 +104,9 @@ export function Header() {
 export function CtaBand() {
   return (
     <section className="container-page py-20">
-      <Reveal className="relative px-0 py-12 text-foreground md:py-14">
-        <div className="grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
+      <Reveal className="relative overflow-hidden rounded-3xl border border-border/55 bg-background/70 px-8 py-12 text-foreground shadow-sm backdrop-blur-sm md:px-14 md:py-14">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[oklch(90%_0.17_128/0.10)] via-transparent to-sky-500/[0.035] dark:from-[oklch(90%_0.17_128/0.07)] dark:to-sky-400/[0.045]" />
+        <div className="relative z-10 grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
           <div>
             <h2 className="w-full text-3xl font-bold md:text-5xl">
               <span className="block">Power Your Business Growth with</span>
