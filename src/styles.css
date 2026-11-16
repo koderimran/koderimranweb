@@ -636,6 +636,25 @@
   background-color: color-mix(in oklab, var(--signal) 86%, var(--foreground));
 }
 
+/* CTA band buttons contrast with the banner surface in each theme:
+   lime on the dark light-theme banner, deep ink on the light dark-theme banner. */
+:root:not(.dark) .cta-band-button {
+  background-color: var(--signal);
+  color: var(--signal-foreground);
+  box-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 48%, transparent);
+}
+:root:not(.dark) .cta-band-button:hover {
+  background-color: color-mix(in oklab, var(--signal) 88%, white);
+}
+:root.dark .cta-band-button {
+  background-color: var(--ink);
+  color: var(--ink-foreground);
+  box-shadow: 0 12px 28px -16px color-mix(in oklab, var(--ink) 55%, transparent);
+}
+:root.dark .cta-band-button:hover {
+  background-color: color-mix(in oklab, var(--ink) 88%, var(--signal));
+}
+
 @utility btn-outline {
   background-color: var(--color-card);
   color: var(--color-foreground);
