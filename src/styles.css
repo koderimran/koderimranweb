@@ -235,7 +235,7 @@
   bottom: 0;
   width: 100vw;
   transform: translateX(50%);
-  border-bottom: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 26%, transparent);
   pointer-events: none;
 }
 
@@ -1298,6 +1298,17 @@ footer a:hover {
 :root:not(.dark) .home-proof-atmosphere .testimonial-section {
   background: transparent;
 }
-:root:not(.dark) .home-proof-atmosphere .home-section-divider::after {
-  border-bottom-color: color-mix(in oklab, var(--border) 26%, transparent);
+
+/* Dark theme: keep Process, Reviews and FAQ on one continuous surface. */
+.dark .home-proof-atmosphere {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 78% 48% at 8% 2%, oklch(0.34 0.055 135 / 0.24) 0%, transparent 72%),
+    radial-gradient(ellipse 72% 54% at 94% 48%, oklch(0.29 0.035 220 / 0.22) 0%, transparent 74%),
+    radial-gradient(ellipse 80% 46% at 48% 100%, oklch(0.31 0.04 160 / 0.2) 0%, transparent 76%),
+    linear-gradient(115deg, oklch(0.195 0.018 150) 0%, oklch(0.18 0.008 160) 48%, oklch(0.19 0.018 205) 100%);
+}
+.dark .home-proof-atmosphere .testimonial-section {
+  background: transparent;
 }
