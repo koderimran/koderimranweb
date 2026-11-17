@@ -1701,3 +1701,28 @@ footer a:hover {
     transition: none !important;
   }
 }
+
+
+/* Circular arrow badge for the home hero audit CTA. */
+.hero-audit-icon {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--signal);
+  color: var(--signal-foreground);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), background-color 240ms ease, color 240ms ease;
+}
+:root.dark .hero-audit-icon {
+  background: var(--signal-foreground);
+  color: var(--signal);
+}
+.hero-audit-cta:hover .hero-audit-icon {
+  transform: rotate(45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-audit-icon { transition: none; }
+}
