@@ -1703,7 +1703,7 @@ footer a:hover {
 }
 
 
-/* Hero audit CTA: matching expanding hover treatment with a 0.3rem inset. */
+/* Hero audit CTA: preserve its original resting appearance; expand only on hover. */
 .hero-audit-cta {
   position: relative;
   isolation: isolate;
@@ -1734,18 +1734,9 @@ footer a:hover {
   bottom: 0.3rem;
   width: calc(100% - 0.6rem);
 }
-.hero-audit-cta > *,
-.hero-audit-cta .hero-audit-icon {
-  position: relative;
-  z-index: 1;
-}
 .hero-audit-cta:hover,
 .hero-audit-cta:focus-visible {
   color: var(--ink) !important;
-}
-.hero-audit-cta .hero-audit-icon {
-  background: transparent;
-  color: var(--ink);
 }
 :root.dark .hero-audit-cta::after {
   background: var(--signal-foreground);
@@ -1753,9 +1744,6 @@ footer a:hover {
 :root.dark .hero-audit-cta:hover,
 :root.dark .hero-audit-cta:focus-visible {
   color: var(--foreground) !important;
-}
-:root.dark .hero-audit-cta .hero-audit-icon {
-  color: var(--foreground);
 }
 .header-book-call {
   position: relative;
