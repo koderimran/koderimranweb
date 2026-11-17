@@ -1658,3 +1658,140 @@ footer a:hover {
 @media (prefers-reduced-motion: reduce) {
   .process-service-tab, .faq-number, .faq-question, .faq-toggle { transition: none; }
 }
+
+
+/* Purposeful text reveals: reserve the stronger motion for meaningful copy. */
+.text-reveal {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transform: translateY(0.16em);
+  transition:
+    clip-path 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 520ms ease,
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 90ms;
+}
+.reveal.is-visible .text-reveal {
+  clip-path: inset(0);
+  opacity: 1;
+  transform: translateY(0);
+}
+.text-reveal-load {
+  animation: text-reveal-load 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes text-reveal-load {
+  from { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(0.16em); }
+  to { clip-path: inset(0); opacity: 1; transform: translateY(0); }
+}
+.process-step-title {
+  animation: text-reveal-load 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.faq-numbered-item[open] .faq-answer p {
+  animation: text-reveal-load 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .text-reveal,
+  .text-reveal-load,
+  .process-step-title,
+  .faq-numbered-item[open] .faq-answer p {
+    animation: none !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* CTA proportions: text-led pill with a compact, optically balanced icon badge. */
+.hero-audit-cta {
+  gap: 0.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.375rem;
+}
+.header-book-call {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  gap: 0.625rem;
+  padding: 0.3rem;
+  color: var(--btn-primary-fg);
+}
+.header-book-call::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0.3rem;
+  right: 0.3rem;
+  bottom: 0.3rem;
+  width: 2rem;
+  border-radius: 9999px;
+  background: var(--signal);
+  transition:
+    top 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    right 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    bottom 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.header-book-call:hover::after,
+.header-book-call:focus-visible::after {
+  top: 0.2rem;
+  right: 0.2rem;
+  bottom: 0.2rem;
+  width: calc(100% - 0.4rem);
+}
+.header-book-call-label,
+.header-book-call .hero-audit-icon {
+  position: relative;
+  z-index: 1;
+}
+.header-book-call:hover,
+.header-book-call:focus-visible {
+  color: var(--ink) !important;
+}
+.header-book-call .hero-audit-icon {
+  background: transparent;
+  color: var(--ink);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), color 240ms ease;
+}
+.header-book-call:hover .hero-audit-icon,
+.header-book-call:focus-visible .hero-audit-icon {
+  transform: rotate(45deg);
+}
+
+/* Dark theme: expand the dark icon badge and keep the label light. */
+:root.dark .header-book-call::after {
+  background: var(--signal-foreground);
+}
+:root.dark .header-book-call:hover,
+:root.dark .header-book-call:focus-visible {
+  color: var(--foreground) !important;
+}
+:root.dark .header-book-call .hero-audit-icon {
+  color: var(--foreground);
+}
+:root.dark .header-book-call:hover .hero-audit-icon,
+:root.dark .header-book-call:focus-visible .hero-audit-icon {
+  color: var(--foreground);
+}
+.hero-audit-icon {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--signal);
+  color: var(--signal-foreground);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), background-color 240ms ease, color 240ms ease;
+}
+:root.dark .hero-audit-icon {
+  background: var(--signal-foreground);
+  color: var(--signal);
+}
+.hero-audit-cta:hover .hero-audit-icon {
+  transform: rotate(45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-audit-icon { transition: none; }
+}

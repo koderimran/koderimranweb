@@ -12,7 +12,7 @@ export function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: 
   return (
     <Reveal className="w-full md:max-w-[50%]">
       <p className="eyebrow">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-bold md:text-5xl">{title}</h2>
+      <h2 className="text-reveal mt-3 text-3xl font-bold md:text-5xl">{title}</h2>
       {text && <p className="mt-4 text-lg text-muted-foreground">{text}</p>}
     </Reveal>
   );
@@ -102,14 +102,14 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           </div>
           <div className="min-w-0 flex-1">
             <p className="mb-1.5 text-xs font-medium text-muted-foreground">Personalised service · Worldwide</p>
-            <h2 className="home-service-title relative z-10 max-w-4xl pr-20 font-display text-3xl font-bold leading-tight tracking-tight sm:pr-28 sm:text-4xl">{service.title}</h2>
+            <h2 className="home-service-title text-reveal relative z-10 max-w-4xl pr-20 font-display text-3xl font-bold leading-tight tracking-tight sm:pr-28 sm:text-4xl">{service.title}</h2>
           </div>
         </div>
       </div>
       <div className="grid gap-8 px-6 pt-3 pb-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:px-9 md:pt-4 md:pb-9 lg:gap-14">
         <div className="min-w-0">
           <p className="eyebrow mb-2">About the service</p>
-          <h3 className="max-w-2xl text-2xl font-bold leading-tight">{service.short}</h3>
+          <h3 className="text-reveal max-w-2xl text-2xl font-bold leading-tight">{service.short}</h3>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{service.answer}</p>
 
           <div className="mt-7 space-y-6">
@@ -368,10 +368,10 @@ export function Reviews() {
 
   return (
     <div>
-      <div>
+      <Reveal className="w-full">
         <p className="eyebrow">Testimonials</p>
-        <h3 className="mt-5 w-full max-w-full font-display text-3xl md:max-w-[50%] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground md:text-5xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
-      </div>
+        <h3 className="text-reveal mt-5 w-full max-w-full font-display text-3xl md:max-w-[50%] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground md:text-5xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
+      </Reveal>
       <div className="grid items-center gap-9 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
         <div className="max-w-sm">
           <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-3xl">Ready to be my next happy client?</h4>
@@ -444,7 +444,7 @@ export function Process() {
           <li key={`${activeService}-${step.title}`} className="process-journey-step">
             <span className="process-journey-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <div className="process-journey-copy">
-              <h3>{step.title}</h3>
+              <h3 className="process-step-title">{step.title}</h3>
               <p>{step.text}</p>
             </div>
             <span className="process-journey-phase">PHASE {String(index + 1).padStart(2, "0")}</span>
@@ -488,7 +488,7 @@ export function PageHero({ eyebrow, title, text, cta = "Book a free call", compa
     <section className="bg-grid border-b">
       <div className={compact ? "container-page py-12 md:py-16" : "container-page py-20 md:py-28"}>
         <p className="eyebrow animate-rise">{eyebrow}</p>
-        <h1 className="page-hero-title animate-rise mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>{title}</h1>
+        <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>{title}</h1>
         <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
         <Link to="/contact" className="page-hero-cta btn btn-ink animate-rise mt-6 rounded-full px-7 py-3.5 font-bold" style={{ animationDelay: "270ms" }}>
           {cta}

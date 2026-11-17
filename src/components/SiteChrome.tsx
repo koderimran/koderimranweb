@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -73,8 +73,8 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-2 md:flex md:justify-self-end">
           <ThemeToggle />
-          <Link to="/contact" className="btn btn-ink rounded-full px-5 py-2.5 text-sm font-bold">
-            Book a free call
+          <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center rounded-full !p-[0.3rem] !pl-[1.2rem] text-sm font-bold">
+            <span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span>
           </Link>
         </div>
 
@@ -92,7 +92,7 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink mt-4 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call</Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink header-book-call mt-4 inline-flex items-center gap-3 self-start rounded-full !p-[0.3rem] !pl-[1.2rem] text-sm font-bold"><span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
           </nav>
         </div>
       )}
@@ -108,11 +108,11 @@ export function CtaBand() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_120%_at_0%_0%,oklch(0.9_0.17_128/0.16),transparent_68%),radial-gradient(ellipse_65%_100%_at_100%_100%,oklch(0.62_0.09_205/0.12),transparent_72%)] dark:bg-[radial-gradient(ellipse_75%_120%_at_0%_0%,oklch(0.9_0.17_128/0.3),transparent_68%),radial-gradient(ellipse_65%_100%_at_100%_100%,oklch(0.72_0.07_205/0.13),transparent_72%)]" />
         <div className="relative z-10 grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
           <div>
-            <h2 className="w-full text-3xl font-bold md:text-5xl">
+            <h2 className="text-reveal w-full text-3xl font-bold md:text-5xl">
               <span className="block">Power Your Business Growth with</span>
               <span className="text-[oklch(90%_0.17_128)] dark:text-[oklch(0.38_0.11_140)]">Websites Ads and Analytics</span>
             </h2>
-            <p className="mt-4 max-w-xl text-[oklch(0.82_0.012_150)] dark:text-[oklch(0.39_0.025_255)]">
+            <p className="text-reveal mt-4 max-w-xl text-[oklch(0.82_0.012_150)] dark:text-[oklch(0.39_0.025_255)]">
               <strong className="font-bold text-[oklch(0.98_0.006_95)] dark:text-[oklch(0.2_0.02_255)]">Free 30-Minute Audit</strong> of your website, tracking or Google Ads account — with clear recommendations to help you move forward.
             </p>
           </div>
