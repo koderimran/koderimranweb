@@ -1734,10 +1734,10 @@ footer a:hover {
 }
 .header-book-call:hover::after,
 .header-book-call:focus-visible::after {
-  top: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  width: calc(100% - 2rem);
+  top: 0.2rem;
+  right: 0.2rem;
+  bottom: 0.2rem;
+  width: calc(100% - 0.4rem);
 }
 .header-book-call-label,
 .header-book-call .hero-audit-icon {
