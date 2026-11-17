@@ -30,7 +30,7 @@ function Portfolio() {
       <section className="bg-grid border-b">
         <div className="container-page py-12 md:py-16">
           <p className="eyebrow animate-rise">Selected work</p>
-          <h1 className="page-hero-title animate-rise mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>
+          <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>
             Stores, tracking and ads that turn visitors into customers.
           </h1>
           <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
@@ -45,16 +45,18 @@ function Portfolio() {
       </section>
 
       <section className="container-page py-20">
-        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="eyebrow">Project showcase</p>
-            <h2 className="mt-3 text-3xl font-bold md:text-5xl">Selected projects</h2>
+        <Reveal className="w-full">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow">Project showcase</p>
+              <h2 className="text-reveal mt-3 text-3xl font-bold md:text-5xl">Selected projects</h2>
+            </div>
+            <p className="max-w-xl text-muted-foreground">
+              Different businesses need different digital experiences. These selected builds span e-commerce,
+              business websites and agency or corporate platforms.
+            </p>
           </div>
-          <p className="max-w-xl text-muted-foreground">
-            Different businesses need different digital experiences. These selected builds span e-commerce,
-            business websites and agency or corporate platforms.
-          </p>
-        </div>
+        </Reveal>
 
         <div className="mt-8 grid gap-7 md:grid-cols-2">
           {WORKS.map((work, i) => (
@@ -111,10 +113,10 @@ function Portfolio() {
         <section className="container-page pb-20">
           <div className="grid gap-6 rounded-3xl border bg-card p-8 text-center md:grid-cols-3 md:p-10">
             {DEMO_STATS.map((stat) => (
-              <div key={stat.label}>
-                <p className="font-display text-4xl font-bold md:text-5xl">{stat.value}</p>
+              <Reveal key={stat.label}>
+                <p className="text-reveal font-display text-4xl font-bold md:text-5xl">{stat.value}</p>
                 <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
           {SHOW_DEMO_BADGE && (

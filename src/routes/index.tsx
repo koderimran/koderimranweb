@@ -54,7 +54,7 @@ function Index() {
             <div className="hero-row">
               <div className="hero-copy">
                 <p className="animate-rise mt-5 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-foreground sm:text-[2.75rem]" style={{ animationDelay: "45ms" }}>Hi, I'm <span className="bg-gradient-to-r from-[oklch(0.46_0.16_137)] via-[oklch(0.54_0.19_132)] to-[oklch(0.42_0.16_148)] bg-clip-text font-extrabold text-transparent dark:from-signal dark:via-[oklch(0.82_0.2_132)] dark:to-[oklch(0.7_0.19_145)]">Imran.</span></p>
-                <h1 className="hero-title animate-rise mt-5 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
+                <h1 className="hero-title animate-rise text-reveal-load mt-5 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
                   <span className="hero-title-line">The Right Expertise</span>
                   <span className="hero-title-line">for Your <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">Next Move.</em></span>
                 </h1>
@@ -87,7 +87,7 @@ function Index() {
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="min-w-0 w-full md:w-1/2">
               <p className="eyebrow">Services</p>
-              <h2 className="mt-3 w-full text-3xl font-bold md:text-5xl">Everything your online business <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">needs to grow.</em></h2>
+              <h2 className="text-reveal mt-3 w-full text-3xl font-bold md:text-5xl">Everything your online business <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">needs to grow.</em></h2>
             </div>
             <p className="max-w-xl text-lg text-muted-foreground md:pb-1">One specialist for your store, your data and your ads — so nothing gets lost between agencies.</p>
           </div>
