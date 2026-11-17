@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -92,7 +92,7 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink mt-4 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call</Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink mt-4 inline-flex items-center gap-2 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
           </nav>
         </div>
       )}
