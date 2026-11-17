@@ -1748,7 +1748,7 @@ footer a:hover {
 }
 .header-book-call:hover .hero-audit-icon,
 .header-book-call:focus-visible .hero-audit-icon {
-  transform: translateX(0.2rem) rotate(45deg);
+  transform: rotate(45deg);
 }
 
 /* Dark theme: expand the dark icon badge and keep the label light. */
