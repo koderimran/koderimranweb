@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { SectionHead, WorkGrid, Reviews, Process, Faq, faqJsonLd } from "@/components/Sections";
 import { HomeServices } from "@/components/HomeServices";
@@ -62,8 +63,8 @@ function Index() {
                   I help e-commerce brands scale with high-converting <strong className="text-foreground">Shopify & WordPress</strong> stores, precision <strong className="text-foreground">GA4 & GTM</strong> tracking, and ROI-focused <strong className="text-foreground">Google Ads</strong> campaigns.
                 </p>
                 <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-                  <Link to="/contact" className="btn btn-ink rounded-full px-7 py-4 font-bold">Get Free Audit</Link>
-                  <Link to="/portfolio" className="btn btn-outline rounded-full px-7 py-4 font-bold">See my work</Link>
+                  <Link to="/contact" className="btn btn-ink inline-flex items-center gap-2 rounded-full px-7 py-4 font-bold">Get Free Audit <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+                  <Link to="/portfolio" className="btn btn-outline inline-flex items-center gap-2 rounded-full px-7 py-4 font-bold">See my work <span className="btn-arrow">→</span></Link>
                 </div>
                 <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Europe</p>
               </div>
