@@ -1720,9 +1720,9 @@ footer a:hover {
   content: "";
   position: absolute;
   z-index: -1;
-  top: 0.3rem;
-  right: 0.3rem;
-  bottom: 0.3rem;
+  top: 0.1rem;
+  right: 0.1rem;
+  bottom: 0.1rem;
   width: 2rem;
   border-radius: 9999px;
   background: var(--signal);
@@ -1730,7 +1730,7 @@ footer a:hover {
 }
 .header-book-call:hover::after,
 .header-book-call:focus-visible::after {
-  width: calc(100% - 0.6rem);
+  width: calc(100% - 0.2rem);
 }
 .header-book-call-label,
 .header-book-call .hero-audit-icon {
