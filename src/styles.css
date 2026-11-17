@@ -1703,47 +1703,10 @@ footer a:hover {
 }
 
 
-/* Hero audit CTA: preserve its original resting appearance; expand only on hover. */
+/* CTA proportions: text-led pill with a compact, optically balanced icon badge. */
 .hero-audit-cta {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   gap: 0.75rem;
   padding: 0.5rem 0.5rem 0.5rem 1.375rem;
-}
-.hero-audit-cta::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0.5rem;
-  right: 0.5rem;
-  bottom: 0.5rem;
-  width: 2rem;
-  border-radius: 9999px;
-  background: var(--signal);
-  transition:
-    top 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    right 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    bottom 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 420ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hero-audit-cta:hover::after,
-.hero-audit-cta:focus-visible::after {
-  top: 0.3rem;
-  right: 0.3rem;
-  bottom: 0.3rem;
-  width: calc(100% - 0.6rem);
-}
-.hero-audit-cta:hover,
-.hero-audit-cta:focus-visible {
-  color: var(--ink) !important;
-}
-:root.dark .hero-audit-cta::after {
-  background: var(--signal-foreground);
-}
-:root.dark .hero-audit-cta:hover,
-:root.dark .hero-audit-cta:focus-visible {
-  color: var(--foreground) !important;
 }
 .header-book-call {
   position: relative;
