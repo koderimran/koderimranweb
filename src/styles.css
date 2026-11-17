@@ -1750,6 +1750,22 @@ footer a:hover {
 .header-book-call:focus-visible .hero-audit-icon {
   transform: translateX(0.2rem) rotate(45deg);
 }
+
+/* Dark theme: expand the dark icon badge and keep the label light. */
+:root.dark .header-book-call::after {
+  background: var(--signal-foreground);
+}
+:root.dark .header-book-call:hover,
+:root.dark .header-book-call:focus-visible {
+  color: var(--foreground) !important;
+}
+:root.dark .header-book-call .hero-audit-icon {
+  color: var(--foreground);
+}
+:root.dark .header-book-call:hover .hero-audit-icon,
+:root.dark .header-book-call:focus-visible .hero-audit-icon {
+  color: var(--foreground);
+}
 .hero-audit-icon {
   display: inline-flex;
   width: 2rem;
