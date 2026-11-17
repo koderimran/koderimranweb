@@ -73,7 +73,7 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-2 md:flex md:justify-self-end">
           <ThemeToggle />
-          <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center gap-3 rounded-full px-5 py-2.5 text-sm font-bold">
+          <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center rounded-full text-sm font-bold">
             Book a free call <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span>
           </Link>
         </div>
