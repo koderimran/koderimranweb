@@ -73,8 +73,8 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-2 md:flex md:justify-self-end">
           <ThemeToggle />
-          <Link to="/contact" className="btn btn-ink inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold">
-            Book a free call <ArrowUpRight className="size-4" aria-hidden="true" />
+          <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center gap-3 rounded-full px-5 py-2.5 text-sm font-bold">
+            Book a free call <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span>
           </Link>
         </div>
 
@@ -92,7 +92,7 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink mt-4 inline-flex items-center gap-2 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink header-book-call mt-4 inline-flex items-center gap-3 self-start rounded-full px-5 py-2.5 text-sm font-bold">Book a free call <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
           </nav>
         </div>
       )}
