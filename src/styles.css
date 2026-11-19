@@ -2051,9 +2051,9 @@ button {
 :root.dark {
   --home-section-rule: color-mix(in oklab, var(--border) 76%, transparent);
   --hero-gradient:
-    radial-gradient(ellipse 68% 78% at 2% 0%, oklch(0.88 0.19 128 / 0.17) 0%, transparent 70%),
-    radial-gradient(ellipse 62% 76% at 100% 6%, oklch(0.62 0.13 225 / 0.18) 0%, transparent 72%),
-    linear-gradient(112deg, oklch(0.215 0.035 150) 0%, oklch(0.205 0.026 170) 48%, oklch(0.235 0.04 215) 100%);
+    radial-gradient(ellipse 68% 78% at 2% 0%, oklch(0.88 0.19 128 / 0.13) 0%, transparent 72%),
+    radial-gradient(ellipse 62% 76% at 100% 6%, oklch(0.62 0.13 225 / 0.14) 0%, transparent 74%),
+    linear-gradient(112deg, oklch(0.185 0.032 150) 0%, oklch(0.175 0.024 170) 48%, oklch(0.205 0.035 215) 100%);
 }
 
 /* Let the page canvas carry the atmosphere continuously from Hero into Stats.
