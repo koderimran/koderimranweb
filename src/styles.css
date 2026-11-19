@@ -1983,7 +1983,7 @@ button {
     );
   }
 
-  .hero-background-photo:not(:root.dark *) {
+  :root:not(.dark) .hero-background-photo {
     -webkit-mask-image: linear-gradient(
       180deg,
       #000 0%,
