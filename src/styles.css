@@ -1795,3 +1795,149 @@ footer a:hover {
 @media (prefers-reduced-motion: reduce) {
   .hero-audit-icon { transition: none; }
 }
+
+
+/* Responsive hardening: prevent intrinsic content from forcing viewport overflow. */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+:where(main, section, article, aside, header, footer, nav, form, fieldset) {
+  min-width: 0;
+}
+:where(h1, h2, h3, h4, p, li, a, button, label, dt, dd) {
+  overflow-wrap: break-word;
+}
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+.container-page > *,
+.page-frame > *,
+.hero-row > *,
+.home-services-stage > *,
+.process-journey-step > * {
+  min-width: 0;
+}
+.page-hero-actions,
+.page-hero-content > .page-hero-cta {
+  flex-wrap: wrap;
+}
+.contact-link,
+.contact-details a {
+  overflow-wrap: anywhere;
+}
+
+/* Tablet and compact laptop: preserve the full hero copy column and avoid
+   forcing long display-title lines to stay on one line. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-row {
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+  .hero-copy {
+    width: 56%;
+    max-width: none;
+  }
+  .hero-copy .hero-title {
+    font-size: clamp(2rem, 4.2vw, 2.65rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .hero-title-line {
+    white-space: normal;
+  }
+  .hero-background-photo {
+    max-width: 42%;
+  }
+  .hero-specialism {
+    max-width: 42%;
+  }
+}
+
+/* Small screens: use the available width instead of fixed desktop gutters. */
+@media (max-width: 767px) {
+  :root {
+    --page-gutter: clamp(1rem, 4.5vw, 1.25rem);
+  }
+  .container-page {
+    padding-inline: var(--page-gutter);
+  }
+  .hero-copy,
+  .hero-copy .hero-title,
+  .page-hero-title {
+    max-width: 100%;
+  }
+  .hero-copy > div > a,
+  .page-hero-actions > a,
+  .page-hero-content > .page-hero-cta {
+    min-width: 0;
+  }
+  .hero-specialism {
+    max-width: calc(100% - 2 * var(--page-gutter));
+  }
+  .home-service-card,
+  .home-service-active-card,
+  .cta-band-button {
+    min-width: 0;
+  }
+  .cta-band-button {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+  }
+  .faq-numbered-item summary {
+    grid-template-columns: 1.8rem minmax(0, 1fr) 2.25rem;
+  }
+  .faq-answer {
+    grid-template-columns: 1.8rem minmax(0, 1fr) 2.25rem;
+  }
+  .footer a,
+  footer a {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Very narrow phones: keep controls tappable without squeezing text. */
+@media (max-width: 380px) {
+  .hero-content {
+    padding-inline: var(--page-gutter);
+  }
+  .hero-copy .hero-title {
+    font-size: clamp(1.45rem, 7vw, 1.7rem);
+  }
+  .hero-copy > div {
+    gap: 0.65rem;
+  }
+  .hero-copy > div > a {
+    justify-content: center;
+    padding-inline: 1.1rem;
+  }
+  .home-service-card > .relative.z-10 {
+    padding: 1.1rem;
+  }
+  .faq-numbered-item summary,
+  .faq-answer {
+    grid-template-columns: 1.5rem minmax(0, 1fr) 2rem;
+    gap: 0.55rem;
+  }
+  .faq-toggle {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* Respect reduced-motion settings across all responsive interactions. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-service-marquee-track,
+  .testimonial-marquee-track,
+  .home-service-preview,
+  .home-services-stack-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
