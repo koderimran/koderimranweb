@@ -2005,24 +2005,16 @@ button {
   /* In dark mode, keep the hero's own gradient continuous beneath the portrait.
      A solid background endpoint creates the visible horizontal seam seen on mobile. */
   :root.dark .hero-background-photo {
-    /* Keep the portrait centered while softly dissolving every edge into the Hero gradient. */
-    -webkit-mask-image:
-      linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%),
-      linear-gradient(180deg, transparent 0%, #000 5%, #000 48%, color-mix(in srgb, #000 58%, transparent) 72%, transparent 100%);
-    mask-image:
-      linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%),
-      linear-gradient(180deg, transparent 0%, #000 5%, #000 48%, color-mix(in srgb, #000 58%, transparent) 72%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   :root.dark .hero-photo-blend {
-    background: linear-gradient(
-      180deg,
-      transparent 38%,
-      color-mix(in oklab, var(--background) 16%, transparent) 66%,
-      transparent 100%
-    );
+    background:
+      radial-gradient(ellipse 30% 78% at 0% 42%, color-mix(in oklab, oklch(0.18 0.008 160) 76%, transparent) 0%, transparent 100%),
+      radial-gradient(ellipse 30% 78% at 100% 42%, color-mix(in oklab, oklch(0.205 0.03 150) 78%, transparent) 0%, transparent 100%),
+      radial-gradient(ellipse 90% 28% at 50% 0%, color-mix(in oklab, oklch(0.205 0.03 150) 62%, transparent) 0%, transparent 100%),
+      linear-gradient(180deg, transparent 48%, color-mix(in oklab, var(--background) 38%, transparent) 78%, transparent 100%);
   }
 
   /* Match the content start to the taller portrait stage on phones. */
@@ -2051,17 +2043,18 @@ button {
     linear-gradient(112deg, oklch(0.185 0.032 150) 0%, oklch(0.175 0.024 170) 48%, oklch(0.205 0.035 215) 100%);
 }
 
-/* Dark portrait: use a broad elliptical feather rather than straight side fades.
-   This gives the portrait a soft rounded silhouette that dissolves into the Hero wash. */
+/* Dark theme blends the photo's luminance and color with an overlay, not transparency.
+   Keep the full rectangular image intact so no mask boundary can become visible. */
 :root.dark .hero-background-photo {
-  -webkit-mask-image:
-    radial-gradient(ellipse 78% 84% at 58% 46%, #000 48%, color-mix(in srgb, #000 88%, transparent) 66%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, #000 8%, #000 48%, color-mix(in srgb, #000 56%, transparent) 74%, transparent 100%);
-  mask-image:
-    radial-gradient(ellipse 78% 84% at 58% 46%, #000 48%, color-mix(in srgb, #000 88%, transparent) 66%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, #000 8%, #000 48%, color-mix(in srgb, #000 56%, transparent) 74%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+:root.dark .hero-photo-blend {
+  background:
+    radial-gradient(ellipse 24% 82% at 100% 50%, color-mix(in oklab, oklch(0.18 0.008 160) 88%, transparent) 0%, transparent 100%),
+    radial-gradient(ellipse 24% 82% at 54% 50%, color-mix(in oklab, oklch(0.18 0.008 160) 86%, transparent) 0%, transparent 100%),
+    radial-gradient(ellipse 58% 24% at 78% 0%, color-mix(in oklab, oklch(0.205 0.03 150) 72%, transparent) 0%, transparent 100%),
+    radial-gradient(ellipse 62% 28% at 78% 100%, color-mix(in oklab, oklch(0.19 0.022 175) 82%, transparent) 0%, transparent 100%);
 }
 
 /* Let the page canvas carry the atmosphere continuously from Hero into Stats.
