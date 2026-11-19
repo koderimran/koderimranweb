@@ -51,7 +51,7 @@ export function Header() {
 
   return (
     <header data-compact={compact} className="site-header sticky top-0 z-40 border-b backdrop-blur">
-      <div className="site-header-row container-page relative flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
+      <div className="site-header-row container-page relative flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <div className="flex items-center">
           <Link to="/" className="font-display inline-flex items-center text-lg font-bold" aria-label="Koder Imran — home">
             <span className="site-header-logo inline-flex items-center">
@@ -60,18 +60,18 @@ export function Header() {
           </Link>
         </div>
 
-        <span className="theme-toggle-mobile absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden">
+        <span className="theme-toggle-mobile absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:hidden">
           <ThemeToggle />
         </span>
 
-        <nav className="hidden items-center justify-center gap-8 md:flex">
+        <nav className="hidden items-center justify-center gap-8 lg:flex">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className="nav-link text-base font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
               {n.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-2 md:flex md:justify-self-end">
+        <div className="hidden items-center gap-2 md:flex lg:justify-self-end">
           <ThemeToggle />
           <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center rounded-full !p-[0.3rem] !pl-[1.2rem] text-sm font-bold">
             <span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span>
@@ -104,9 +104,9 @@ export function Header() {
 export function CtaBand() {
   return (
     <section className="container-page pt-12 pb-20">
-      <Reveal className="relative overflow-hidden rounded-3xl border border-[oklch(0.34_0.025_155/0.45)] bg-[oklch(0.235_0.035_155)] px-8 py-12 text-[oklch(0.96_0.008_95)] shadow-[0_24px_60px_-38px_oklch(0.18_0.025_155/0.55)] backdrop-blur-sm dark:border-[oklch(0.82_0.025_145/0.8)] dark:bg-[oklch(0.91_0.025_145)] dark:text-[oklch(0.2_0.02_255)] dark:shadow-[0_24px_60px_-38px_oklch(0.05_0.02_160/0.5)] md:px-14 md:py-14">
+      <Reveal className="relative overflow-hidden rounded-3xl border border-[oklch(0.34_0.025_155/0.45)] bg-[oklch(0.235_0.035_155)] px-5 py-9 sm:px-8 sm:py-12 text-[oklch(0.96_0.008_95)] shadow-[0_24px_60px_-38px_oklch(0.18_0.025_155/0.55)] backdrop-blur-sm dark:border-[oklch(0.82_0.025_145/0.8)] dark:bg-[oklch(0.91_0.025_145)] dark:text-[oklch(0.2_0.02_255)] dark:shadow-[0_24px_60px_-38px_oklch(0.05_0.02_160/0.5)] md:px-14 md:py-14">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_120%_at_0%_0%,oklch(0.9_0.17_128/0.16),transparent_68%),radial-gradient(ellipse_65%_100%_at_100%_100%,oklch(0.62_0.09_205/0.12),transparent_72%)] dark:bg-[radial-gradient(ellipse_75%_120%_at_0%_0%,oklch(0.9_0.17_128/0.3),transparent_68%),radial-gradient(ellipse_65%_100%_at_100%_100%,oklch(0.72_0.07_205/0.13),transparent_72%)]" />
-        <div className="relative z-10 grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
+        <div className="relative z-10 grid min-w-0 items-center gap-6 sm:gap-8 md:grid-cols-[1.5fr_1fr]">
           <div>
             <h2 className="text-reveal w-full text-3xl font-bold md:text-5xl">
               <span className="block">Power Your Business Growth with</span>
