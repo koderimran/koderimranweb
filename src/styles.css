@@ -1970,13 +1970,35 @@ button {
     );
   }
 
+  /* Light theme: let the underlying hero gradient show through instead of
+     ending the portrait overlay on a flat background-colour strip. */
   .hero-photo-blend {
     height: 23rem;
     background: linear-gradient(
       180deg,
-      transparent 42%,
-      color-mix(in oklab, var(--background) 38%, transparent) 68%,
-      var(--background) 100%
+      transparent 38%,
+      color-mix(in oklab, var(--background) 22%, transparent) 62%,
+      color-mix(in oklab, var(--background) 10%, transparent) 78%,
+      transparent 100%
+    );
+  }
+
+  .hero-background-photo:not(:root.dark *) {
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      #000 0%,
+      #000 48%,
+      color-mix(in srgb, #000 68%, transparent) 68%,
+      color-mix(in srgb, #000 28%, transparent) 84%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      180deg,
+      #000 0%,
+      #000 48%,
+      color-mix(in srgb, #000 68%, transparent) 68%,
+      color-mix(in srgb, #000 28%, transparent) 84%,
+      transparent 100%
     );
   }
 
