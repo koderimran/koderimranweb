@@ -2051,16 +2051,15 @@ button {
     linear-gradient(112deg, oklch(0.185 0.032 150) 0%, oklch(0.175 0.024 170) 48%, oklch(0.205 0.035 215) 100%);
 }
 
-/* Dark portrait: soften all four edges so the image dissolves into the Hero wash.
-   Keep the top mostly intact; make the lower fade the strongest transition. */
+/* Dark portrait: use a broad elliptical feather rather than straight side fades.
+   This gives the portrait a soft rounded silhouette that dissolves into the Hero wash. */
 :root.dark .hero-background-photo {
-  /* Gentle fade at the top and sides; a longer, stronger dissolve at the bottom. */
   -webkit-mask-image:
-    linear-gradient(90deg, transparent 0%, #000 13%, #000 87%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, #000 9%, #000 48%, color-mix(in srgb, #000 58%, transparent) 72%, transparent 100%);
+    radial-gradient(ellipse 78% 84% at 58% 46%, #000 48%, color-mix(in srgb, #000 88%, transparent) 66%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 8%, #000 48%, color-mix(in srgb, #000 56%, transparent) 74%, transparent 100%);
   mask-image:
-    linear-gradient(90deg, transparent 0%, #000 13%, #000 87%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, #000 9%, #000 48%, color-mix(in srgb, #000 58%, transparent) 72%, transparent 100%);
+    radial-gradient(ellipse 78% 84% at 58% 46%, #000 48%, color-mix(in srgb, #000 88%, transparent) 66%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #000 8%, #000 48%, color-mix(in srgb, #000 56%, transparent) 74%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
