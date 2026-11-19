@@ -1950,10 +1950,10 @@ button {
     right: auto;
     width: 100vw;
     max-width: none;
-    height: 20rem;
+    height: 23rem;
     transform: translateX(-50%);
     object-fit: cover;
-    object-position: center center;
+    object-position: center top;
     -webkit-mask-image: linear-gradient(
       180deg,
       #000 0%,
@@ -1971,7 +1971,7 @@ button {
   }
 
   .hero-photo-blend {
-    height: 20rem;
+    height: 23rem;
     background: linear-gradient(
       180deg,
       transparent 42%,
@@ -2006,5 +2006,10 @@ button {
       color-mix(in oklab, var(--background) 16%, transparent) 66%,
       transparent 100%
     );
+  }
+
+  /* Match the content start to the taller portrait stage on phones. */
+  .hero-content {
+    padding-top: 23rem;
   }
 }
