@@ -71,7 +71,7 @@ function Index() {
             </div>
           </div>
         </div>
-        <div className="home-section-top-rule">
+        <div className="home-section-top-rule home-stats-section">
           <div className="container-page grid grid-cols-2 gap-6 py-8 text-center md:grid-cols-4">
             {STATS.map((s, i) => (
               <Reveal key={s.v} delay={i * 90}>
@@ -83,7 +83,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="home-section-divider container-page py-20">
+      <section className="home-section-divider home-services-section container-page py-20">
         <Reveal className="w-full">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="min-w-0 w-full md:w-1/2">
