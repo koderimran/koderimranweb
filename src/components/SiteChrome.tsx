@@ -71,21 +71,21 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-2 md:flex lg:justify-self-end">
+        <div className="hidden items-center gap-2 lg:flex lg:justify-self-end">
           <ThemeToggle />
           <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center rounded-full !p-[0.3rem] !pl-[1.2rem] text-sm font-bold">
             <span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span>
           </Link>
         </div>
 
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center lg:hidden">
         <Button variant="ghost" size="icon" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </Button>
         </div>
       </div>
       {open && (
-        <div className="animate-menu-in border-t border-border/70 bg-muted/50 md:hidden">
+        <div className="animate-menu-in border-t border-border/70 bg-muted/50 lg:hidden">
           <nav className="container-page flex flex-col items-stretch pb-6 pt-4 text-left">
             {NAV.map((n) => (
               <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="menu-item text-lg font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
