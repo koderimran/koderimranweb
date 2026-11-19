@@ -2035,3 +2035,27 @@ button {
     padding-top: 23rem;
   }
 }
+
+/* Dark desktop: blend hero, stats and services into one continuous surface. */
+@media (min-width: 768px) {
+  :root.dark .home-stats-section {
+    background: linear-gradient(
+      180deg,
+      oklch(0.265 0.046 215 / 0.34) 0%,
+      color-mix(in oklab, var(--background) 94%, oklch(0.265 0.046 215)) 42%,
+      var(--background) 100%
+    );
+    border-top-color: color-mix(in oklab, var(--border) 72%, transparent);
+  }
+
+  :root.dark .home-services-section {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--background) 94%, oklch(0.265 0.046 215)) 0%,
+      var(--background) 38%,
+      color-mix(in oklab, var(--background) 96%, oklch(0.215 0.034 175)) 100%
+    );
+    border-top: 1px solid color-mix(in oklab, var(--border) 68%, transparent);
+  }
+}
+
