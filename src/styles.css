@@ -2069,11 +2069,9 @@ button {
 }
 
 :root.dark .home-services-section {
-  background:
-    radial-gradient(ellipse 78% 62% at 8% 0%, oklch(0.36 0.065 140 / 0.09) 0%, transparent 72%),
-    radial-gradient(ellipse 72% 62% at 96% 8%, oklch(0.34 0.055 220 / 0.10) 0%, transparent 74%),
-    linear-gradient(180deg, color-mix(in oklab, var(--background) 38%, transparent), transparent 72%);
-  border-top: 1px solid color-mix(in oklab, var(--border) 78%, transparent);
+  /* Let the page-level gradient remain continuous through the Services section. */
+  background: transparent;
+  border-top: 0;
 }
 
 :root.dark .home-section-divider.bg-secondary\/50 {
