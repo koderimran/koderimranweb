@@ -60,10 +60,6 @@ export function Header() {
           </Link>
         </div>
 
-        <span className="theme-toggle-mobile absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:hidden">
-          <ThemeToggle />
-        </span>
-
         <nav className="hidden items-center justify-center gap-8 lg:flex">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className="nav-link text-base font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
@@ -78,10 +74,11 @@ export function Header() {
           </Link>
         </div>
 
-        <div className="flex items-center lg:hidden">
-        <Button variant="ghost" size="icon" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
-          {open ? <X /> : <Menu />}
-        </Button>
+        <div className="flex items-center gap-1 lg:hidden">
+          <ThemeToggle />
+          <Button variant="ghost" size="icon" aria-label="Toggle menu" aria-expanded={open} onClick={() => setOpen(!open)}>
+            {open ? <X /> : <Menu />}
+          </Button>
         </div>
       </div>
       {open && (

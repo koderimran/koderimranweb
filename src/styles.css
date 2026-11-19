@@ -1941,3 +1941,19 @@ button {
     transition: none !important;
   }
 }
+
+
+/* Mobile hero portrait: extend the image edge-to-edge across the viewport. */
+@media (max-width: 767px) {
+  .hero-background-photo {
+    left: calc(-1 * var(--page-gutter));
+    right: auto;
+    width: 100vw;
+    max-width: none;
+    height: 20rem;
+    object-fit: cover;
+    object-position: center 18%;
+    -webkit-mask-image: linear-gradient(180deg, #000 68%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 68%, transparent 100%);
+  }
+}
