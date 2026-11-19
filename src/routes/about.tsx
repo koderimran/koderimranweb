@@ -30,8 +30,8 @@ function About() {
   return (
     <>
       <section className="bg-grid border-b">
-        <div className="container-page grid items-center gap-12 py-20 md:grid-cols-[1fr_1.3fr]">
-          <Portrait alt="Portrait of Imran" className="animate-rise aspect-[4/5] w-full max-w-sm rounded-[2rem] bg-muted shadow-soft" />
+        <div className="container-page grid items-center gap-8 py-12 sm:gap-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:py-20">
+          <Portrait alt="Portrait of Imran" className="animate-rise mx-auto aspect-[4/5] w-full max-w-sm lg:mx-0 rounded-[2rem] bg-muted shadow-soft" />
           <div>
             <p className="eyebrow animate-rise">About me</p>
             <h1 className="page-hero-title animate-rise text-reveal-load mt-4 font-bold" style={{ animationDelay: "90ms" }}>Hi, I'm Imran.</h1>
