@@ -35,18 +35,18 @@ function Contact() {
   const field = "w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-ring";
   return (
     <section className="bg-grid">
-      <div className="container-page grid gap-12 py-20 md:grid-cols-[1fr_1.2fr]">
+      <div className="container-page grid gap-8 py-12 sm:gap-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-12 lg:py-20">
         <div>
           <p className="eyebrow animate-rise">Contact</p>
           <h1 className="page-hero-title animate-rise text-reveal-load mt-4 font-bold" style={{ animationDelay: "90ms" }}>Let's grow your business.</h1>
           <p className="animate-rise mt-6 text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>Tell me about your project. I usually reply within 24 hours with next steps and a free quick audit.</p>
           <ul className="mt-10 space-y-5">
-            <li><a href={`mailto:${SITE.email}`} className="flex items-center gap-4 font-semibold"><span className="grid size-11 place-items-center rounded-xl bg-accent"><Mail className="size-5" /></span>{SITE.email}</a></li>
-            <li><a href={`tel:${SITE.phone}`} className="flex items-center gap-4 font-semibold"><span className="grid size-11 place-items-center rounded-xl bg-accent"><Phone className="size-5" /></span>{SITE.phone}</a></li>
+            <li><a href={`mailto:${SITE.email}`} className="flex min-w-0 items-center gap-3 font-semibold"><span className="grid size-11 place-items-center rounded-xl bg-accent"><Mail className="size-5" /></span><span className="min-w-0 break-all">{SITE.email}</span></a></li>
+            <li><a href={`tel:${SITE.phone}`} className="flex items-center gap-4 font-semibold"><span className="grid size-11 place-items-center rounded-xl bg-accent"><Phone className="size-5" /></span><span className="min-w-0 break-words">{SITE.phone}</span></a></li>
             <li className="flex items-center gap-4 font-semibold"><span className="grid size-11 place-items-center rounded-xl bg-accent"><MapPin className="size-5" /></span>{SITE.location}</li>
           </ul>
         </div>
-        <form onSubmit={submit} className="animate-rise space-y-4 rounded-3xl border bg-card p-8 shadow-soft" style={{ animationDelay: "180ms" }}>
+        <form onSubmit={submit} className="animate-rise min-w-0 space-y-4 rounded-3xl border bg-card p-5 shadow-soft sm:p-7 lg:p-8" style={{ animationDelay: "180ms" }}>
           <div>
             <p className="mb-3 text-sm font-semibold">What do you need help with?</p>
             <div className="flex flex-wrap gap-2">
