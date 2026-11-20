@@ -1950,7 +1950,7 @@ button {
 @media (max-width: 767px) {
   :root {
     /* Scale the portrait stage with viewport width so the copy follows it naturally. */
-    --hero-mobile-photo-height: clamp(21rem, 75vw, 29rem);
+    --hero-mobile-photo-height: clamp(22rem, 75vw, 31rem);
   }
 
   .hero-background-photo {
