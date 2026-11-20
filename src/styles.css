@@ -1995,38 +1995,6 @@ button {
     );
   }
 
-  :root:not(.dark) .hero-background-photo {
-    /* Light theme mobile: soften the portrait perimeter without hazing the face. */
-    -webkit-mask-image: radial-gradient(
-      ellipse 90% 80% at 50% 35%,
-      #000 0%,
-      #000 43%,
-      rgb(0 0 0 / 0.94) 58%,
-      rgb(0 0 0 / 0.68) 77%,
-      rgb(0 0 0 / 0.28) 92%,
-      transparent 100%
-    );
-    mask-image: radial-gradient(
-      ellipse 90% 80% at 50% 35%,
-      #000 0%,
-      #000 43%,
-      rgb(0 0 0 / 0.94) 58%,
-      rgb(0 0 0 / 0.68) 77%,
-      rgb(0 0 0 / 0.28) 92%,
-      transparent 100%
-    );
-  }
-
-  /* In dark mode, keep the hero's own gradient continuous beneath the portrait.
-     A solid background endpoint creates the visible horizontal seam seen on mobile. */
-  :root.dark .hero-background-photo {
-    /* Keep the face fully clear; feather all four photo edges into the backdrop. */
-    -webkit-mask-image: radial-gradient(ellipse 82% 72% at 50% 32%,
-      #000 0%, #000 43%, rgb(0 0 0 / 0.9) 59%, rgb(0 0 0 / 0.5) 79%, transparent 100%);
-    mask-image: radial-gradient(ellipse 82% 72% at 50% 32%,
-      #000 0%, #000 43%, rgb(0 0 0 / 0.9) 59%, rgb(0 0 0 / 0.5) 79%, transparent 100%);
-  }
-
   :root.dark .hero-photo-blend {
     /* No overlay over the portrait on mobile either. */
     background: none;
@@ -2046,8 +2014,7 @@ button {
   }
 }
 
-/* Desktop Light theme: retain the existing upper/side softness and gently feather
-   the lower-left and lower-right corners into the hero backdrop. */
+/* Desktop Light theme uses the same radial mask system and values as Dark theme. */
 @media (min-width: 1024px) {
   :root:not(.dark) .hero-background-photo {
     /* Match the dark theme's desktop radial mask; only the theme backdrop color differs. */
@@ -2206,8 +2173,7 @@ button {
     linear-gradient(115deg, color-mix(in oklab, oklch(0.195 0.018 150) 62%, transparent) 0%, transparent 48%, color-mix(in oklab, oklch(0.19 0.018 205) 60%, transparent) 100%);
 }
 
-/* Mobile hero portrait: light theme uses one radial feather and retains
-   enough lower opacity for clothing detail to remain visible. */
+/* Mobile hero portrait: both themes use the same bottom-only linear mask. */
 @media (max-width: 767px) {
   :root:not(.dark) .hero-background-photo {
     /* Match the dark theme's mobile mask system; only the theme backdrop color differs. */
