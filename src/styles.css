@@ -1992,20 +1992,21 @@ button {
   }
 
   :root:not(.dark) .hero-background-photo {
+    /* Keep the portrait fully crisp; feather only the final lower edge. */
     -webkit-mask-image: linear-gradient(
       180deg,
       #000 0%,
-      #000 48%,
-      color-mix(in srgb, #000 68%, transparent) 68%,
-      color-mix(in srgb, #000 28%, transparent) 84%,
+      #000 86%,
+      rgb(0 0 0 / 0.88) 93%,
+      rgb(0 0 0 / 0.48) 98%,
       transparent 100%
     );
     mask-image: linear-gradient(
       180deg,
       #000 0%,
-      #000 48%,
-      color-mix(in srgb, #000 68%, transparent) 68%,
-      color-mix(in srgb, #000 28%, transparent) 84%,
+      #000 86%,
+      rgb(0 0 0 / 0.88) 93%,
+      rgb(0 0 0 / 0.48) 98%,
       transparent 100%
     );
   }
@@ -2196,12 +2197,14 @@ button {
     background: none;
   }
 
-  .hero-content {
+  :root:not(.dark) .hero-content {
+    /* Keep the face area clear; blend the copy backdrop in only near the photo's bottom. */
     background: linear-gradient(
       180deg,
       transparent 0,
-      transparent calc(var(--hero-mobile-photo-height) * 0.66),
-      color-mix(in oklab, var(--background) 38%, transparent) calc(var(--hero-mobile-photo-height) * 0.82),
+      transparent calc(var(--hero-mobile-photo-height) * 0.82),
+      color-mix(in oklab, var(--background) 12%, transparent) calc(var(--hero-mobile-photo-height) * 0.90),
+      color-mix(in oklab, var(--background) 42%, transparent) calc(var(--hero-mobile-photo-height) * 0.96),
       var(--background) var(--hero-mobile-photo-height),
       var(--background) 100%
     );
