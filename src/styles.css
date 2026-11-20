@@ -2242,98 +2242,28 @@ button {
   }
 }
 
-/* Light theme hero portrait: preserve the face, then dissolve the photo into
-   the actual hero canvas. Intersecting radial + vertical masks removes the
-   rectangular perimeter while keeping the lower transition gradual. */
-:root:not(.dark) .hero-photo-blend {
-  background: none;
-}
-
-:root:not(.dark) .hero-background-photo {
-  -webkit-mask-image:
-    radial-gradient(
-      ellipse 112% 112% at 53% 25%,
-      #000 0%,
-      #000 40%,
-      rgb(0 0 0 / 0.94) 54%,
-      rgb(0 0 0 / 0.72) 72%,
-      rgb(0 0 0 / 0.30) 90%,
-      transparent 100%
-    ),
-    linear-gradient(
-      180deg,
-      #000 0%,
-      #000 50%,
-      rgb(0 0 0 / 0.94) 62%,
-      rgb(0 0 0 / 0.70) 78%,
-      rgb(0 0 0 / 0.28) 92%,
-      transparent 100%
-    );
-  mask-image:
-    radial-gradient(
-      ellipse 112% 112% at 53% 25%,
-      #000 0%,
-      #000 40%,
-      rgb(0 0 0 / 0.94) 54%,
-      rgb(0 0 0 / 0.72) 72%,
-      rgb(0 0 0 / 0.30) 90%,
-      transparent 100%
-    ),
-    linear-gradient(
-      180deg,
-      #000 0%,
-      #000 50%,
-      rgb(0 0 0 / 0.94) 62%,
-      rgb(0 0 0 / 0.70) 78%,
-      rgb(0 0 0 / 0.28) 92%,
-      transparent 100%
-    );
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-
-@media (max-width: 767px) {
+/* Light theme desktop portrait: keep the face as the clear focal point.
+   Let the hero canvas colour dissolve inward across the surrounding photo so
+   the image perimeter never reads as a rectangular edge. */
+@media (min-width: 1024px) {
   :root:not(.dark) .hero-background-photo {
-    -webkit-mask-image:
-      radial-gradient(
-        ellipse 122% 108% at 50% 24%,
-        #000 0%,
-        #000 42%,
-        rgb(0 0 0 / 0.94) 57%,
-        rgb(0 0 0 / 0.68) 76%,
-        rgb(0 0 0 / 0.26) 92%,
-        transparent 100%
-      ),
-      linear-gradient(
-        180deg,
-        #000 0%,
-        #000 47%,
-        rgb(0 0 0 / 0.94) 60%,
-        rgb(0 0 0 / 0.68) 77%,
-        rgb(0 0 0 / 0.24) 93%,
-        transparent 100%
-      );
-    mask-image:
-      radial-gradient(
-        ellipse 122% 108% at 50% 24%,
-        #000 0%,
-        #000 42%,
-        rgb(0 0 0 / 0.94) 57%,
-        rgb(0 0 0 / 0.68) 76%,
-        rgb(0 0 0 / 0.26) 92%,
-        transparent 100%
-      ),
-      linear-gradient(
-        180deg,
-        #000 0%,
-        #000 47%,
-        rgb(0 0 0 / 0.94) 60%,
-        rgb(0 0 0 / 0.68) 77%,
-        rgb(0 0 0 / 0.24) 93%,
-        transparent 100%
-      );
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    -webkit-mask-image: radial-gradient(
+      ellipse 50% 58% at 53% 33%,
+      #000 0%,
+      #000 24%,
+      rgb(0 0 0 / 0.96) 40%,
+      rgb(0 0 0 / 0.82) 60%,
+      rgb(0 0 0 / 0.46) 82%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 50% 58% at 53% 33%,
+      #000 0%,
+      #000 24%,
+      rgb(0 0 0 / 0.96) 40%,
+      rgb(0 0 0 / 0.82) 60%,
+      rgb(0 0 0 / 0.46) 82%,
+      transparent 100%
+    );
   }
 }
-
