@@ -150,6 +150,28 @@
   --hero-badge-border: color-mix(in oklab, var(--foreground) 24%, transparent);
 }
 
+/* Light theme desktop: carry the page tint toward the portrait so both surfaces
+   meet through a broad, low-contrast color transition. */
+@media (min-width: 1024px) {
+  :root:not(.dark) {
+    --hero-gradient:
+      radial-gradient(ellipse 76% 90% at 78% 48%,
+        oklch(0.965 0.014 175 / 0.76) 0%,
+        oklch(0.972 0.012 185 / 0.42) 42%,
+        oklch(0.978 0.011 190 / 0.14) 72%,
+        transparent 100%),
+      radial-gradient(ellipse 70% 85% at 100% 0%,
+        oklch(0.988 0.009 140) 0%,
+        color-mix(in oklab, oklch(0.988 0.009 140) 55%, transparent) 45%,
+        transparent 100%),
+      var(--hero-corner-glow),
+      linear-gradient(110deg,
+        oklch(0.988 0.009 140) 0%,
+        oklch(0.978 0.011 160) 48%,
+        oklch(0.955 0.012 205) 100%);
+  }
+}
+
 .theme-toggle { border-radius: 999px; }
 /* Mobile: the theme button keeps a visible theme-tinted fill even before hover. */
 .theme-toggle-mobile .theme-toggle {
