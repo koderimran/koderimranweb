@@ -2027,7 +2027,13 @@ button {
 
   /* Match the content start to the taller portrait stage on phones. */
   .hero-content {
-    padding-top: var(--hero-mobile-photo-height);
+    padding-top: calc(var(--hero-mobile-photo-height) + 2.5rem);
+  }
+
+  /* Match the mobile CTA height while preserving its horizontal padding and icon badge. */
+  .hero-audit-cta {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
 
