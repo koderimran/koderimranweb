@@ -2026,6 +2026,18 @@ button {
   }
 }
 
+/* Mid-size phones: keep portrait height and content start in sync as the image scales. */
+@media (min-width: 431px) and (max-width: 767px) {
+  .hero-background-photo,
+  .hero-photo-blend {
+    height: clamp(23rem, 60vw, 29rem);
+  }
+
+  .hero-content {
+    padding-top: clamp(23rem, 60vw, 29rem);
+  }
+}
+
 /* Dark theme atmosphere: a restrained, continuous gradient across every viewport. */
 :root.dark .page-frame {
   min-height: 100vh;
