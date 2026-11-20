@@ -1949,7 +1949,8 @@ button {
 /* Mobile hero portrait: full-bleed, centered, and softly blended into either theme. */
 @media (max-width: 767px) {
   :root {
-    --hero-mobile-photo-height: 23rem;
+    /* Scale the portrait stage with viewport width so the copy follows it naturally. */
+    --hero-mobile-photo-height: clamp(21rem, 75vw, 29rem);
   }
 
   .hero-background-photo {
@@ -2027,13 +2028,6 @@ button {
   /* Match the content start to the taller portrait stage on phones. */
   .hero-content {
     padding-top: var(--hero-mobile-photo-height);
-  }
-}
-
-/* Mid-size phones: scale the portrait stage and content start together. */
-@media (min-width: 431px) and (max-width: 767px) {
-  :root {
-    --hero-mobile-photo-height: clamp(23rem, 60vw, 29rem);
   }
 }
 
