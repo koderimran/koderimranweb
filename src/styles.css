@@ -1948,12 +1948,16 @@ button {
 
 /* Mobile hero portrait: full-bleed, centered, and softly blended into either theme. */
 @media (max-width: 767px) {
+  :root {
+    --hero-mobile-photo-height: 23rem;
+  }
+
   .hero-background-photo {
     left: 50%;
     right: auto;
     width: 100vw;
     max-width: none;
-    height: 23rem;
+    height: var(--hero-mobile-photo-height);
     transform: translateX(-50%);
     object-fit: cover;
     object-position: center top;
@@ -1976,7 +1980,7 @@ button {
   /* Light theme: let the underlying hero gradient show through instead of
      ending the portrait overlay on a flat background-colour strip. */
   .hero-photo-blend {
-    height: 23rem;
+    height: var(--hero-mobile-photo-height);
     background: linear-gradient(
       180deg,
       transparent 38%,
@@ -2022,19 +2026,65 @@ button {
 
   /* Match the content start to the taller portrait stage on phones. */
   .hero-content {
-    padding-top: 23rem;
+    padding-top: var(--hero-mobile-photo-height);
   }
 }
 
-/* Mid-size phones: keep portrait height and content start in sync as the image scales. */
+/* Mid-size phones: scale the portrait stage and content start together. */
 @media (min-width: 431px) and (max-width: 767px) {
-  .hero-background-photo,
-  .hero-photo-blend {
-    height: clamp(23rem, 60vw, 29rem);
+  :root {
+    --hero-mobile-photo-height: clamp(23rem, 60vw, 29rem);
+  }
+}
+
+/* Home hero responsive sizing: preserve the existing desktop/tablet breakpoints. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-content {
+    min-height: 34rem;
+    padding-block: 3.5rem 10rem;
   }
 
+  .hero-background-photo {
+    height: 100%;
+    max-height: 34rem;
+    max-width: 42%;
+  }
+
+  .hero-copy .hero-title {
+    font-size: clamp(2.5rem, 4.4vw, 3rem);
+  }
+
+  .hero-copy > p:first-child {
+    font-size: clamp(2.25rem, 4vw, 2.75rem);
+  }
+
+  .hero-copy > p:nth-of-type(2) {
+    font-size: clamp(1rem, 1.35vw, 1.125rem);
+  }
+}
+
+@media (min-width: 1024px) {
   .hero-content {
-    padding-top: clamp(23rem, 60vw, 29rem);
+    min-height: clamp(34rem, calc(8.93vw + 28.29rem), 39rem);
+    padding-block: 4rem;
+  }
+
+  .hero-background-photo {
+    height: 100%;
+    max-height: 39rem;
+    max-width: 46%;
+  }
+
+  .hero-copy .hero-title {
+    font-size: clamp(3rem, 4.34vw, 3.25rem);
+  }
+
+  .hero-copy > p:first-child {
+    font-size: clamp(2.25rem, 3.6vw, 2.75rem);
+  }
+
+  .hero-copy > p:nth-of-type(2) {
+    font-size: clamp(1rem, 1.25vw, 1.125rem);
   }
 }
 
