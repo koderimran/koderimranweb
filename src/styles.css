@@ -2030,10 +2030,12 @@ button {
     padding-top: calc(var(--hero-mobile-photo-height) + 2.5rem);
   }
 
-  /* Match the mobile CTA height while preserving its horizontal padding and icon badge. */
-  .hero-audit-cta {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  /* Keep both mobile hero CTAs at the same rendered height. */
+  .hero-copy > div > a {
+    height: 3.5rem;
+    min-height: 3.5rem;
+    box-sizing: border-box;
+    padding-block: 0;
   }
 }
 
