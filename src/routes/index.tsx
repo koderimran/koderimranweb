@@ -50,6 +50,12 @@ function Index() {
             </div>
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
+          <div className="hero-service-marquee hero-service-marquee-mobile" aria-hidden="true">
+            <div className="hero-service-marquee-track">
+              <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
+              <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
+            </div>
+          </div>
           <div className="hero-photo-blend" aria-hidden="true" />
           <div className="container-page hero-content">
             <div className="hero-row">
