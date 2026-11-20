@@ -2005,8 +2005,11 @@ button {
   /* In dark mode, keep the hero's own gradient continuous beneath the portrait.
      A solid background endpoint creates the visible horizontal seam seen on mobile. */
   :root.dark .hero-background-photo {
-    -webkit-mask-image: none;
-    mask-image: none;
+    /* Keep the face fully clear; feather all four photo edges into the backdrop. */
+    -webkit-mask-image: radial-gradient(ellipse 82% 72% at 50% 32%,
+      #000 0%, #000 43%, rgb(0 0 0 / 0.9) 59%, rgb(0 0 0 / 0.5) 79%, transparent 100%);
+    mask-image: radial-gradient(ellipse 82% 72% at 50% 32%,
+      #000 0%, #000 43%, rgb(0 0 0 / 0.9) 59%, rgb(0 0 0 / 0.5) 79%, transparent 100%);
   }
 
   :root.dark .hero-photo-blend {
@@ -2041,11 +2044,13 @@ button {
     linear-gradient(112deg, oklch(0.185 0.032 150) 0%, oklch(0.175 0.024 170) 48%, oklch(0.205 0.035 215) 100%);
 }
 
-/* Dark theme blends the photo's luminance and color with an overlay, not transparency.
-   Keep the full rectangular image intact so no mask boundary can become visible. */
+/* Dark theme: preserve the face as the opaque focal area, then feather the
+   portrait perimeter into the hero gradient so the rectangular image edge disappears. */
 :root.dark .hero-background-photo {
-  -webkit-mask-image: none;
-  mask-image: none;
+  -webkit-mask-image: radial-gradient(ellipse 70% 76% at 54% 38%,
+    #000 0%, #000 42%, rgb(0 0 0 / 0.88) 57%, rgb(0 0 0 / 0.48) 76%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 76% at 54% 38%,
+    #000 0%, #000 42%, rgb(0 0 0 / 0.88) 57%, rgb(0 0 0 / 0.48) 76%, transparent 100%);
 }
 :root.dark .hero-photo-blend {
   /* Keep the portrait pixels untouched; the transition lives in the hero backdrop. */
