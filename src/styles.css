@@ -2044,13 +2044,24 @@ button {
     linear-gradient(112deg, oklch(0.185 0.032 150) 0%, oklch(0.175 0.024 170) 48%, oklch(0.205 0.035 215) 100%);
 }
 
-/* Dark theme: preserve the face as the opaque focal area, then feather the
-   portrait perimeter into the hero gradient so the rectangular image edge disappears. */
+/* Dark theme: keep the facial focal area clear while extending the feather
+   across the wide, illuminated side-background so no vertical photo edge remains. */
 :root.dark .hero-background-photo {
-  -webkit-mask-image: radial-gradient(ellipse 70% 76% at 54% 38%,
-    #000 0%, #000 42%, rgb(0 0 0 / 0.88) 57%, rgb(0 0 0 / 0.48) 76%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 76% at 54% 38%,
-    #000 0%, #000 42%, rgb(0 0 0 / 0.88) 57%, rgb(0 0 0 / 0.48) 76%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 59% 78% at 55% 39%,
+    #000 0%, #000 30%, rgb(0 0 0 / 0.88) 43%, rgb(0 0 0 / 0.52) 62%, rgb(0 0 0 / 0.18) 82%, transparent 100%);
+  mask-image: radial-gradient(ellipse 59% 78% at 55% 39%,
+    #000 0%, #000 30%, rgb(0 0 0 / 0.88) 43%, rgb(0 0 0 / 0.52) 62%, rgb(0 0 0 / 0.18) 82%, transparent 100%);
+}
+
+/* On phones the portrait is cropped differently, so use a broader vertical
+   feather while retaining a stronger fade on both horizontal edges. */
+@media (max-width: 767px) {
+  :root.dark .hero-background-photo {
+    -webkit-mask-image: radial-gradient(ellipse 76% 69% at 50% 34%,
+      #000 0%, #000 29%, rgb(0 0 0 / 0.86) 44%, rgb(0 0 0 / 0.48) 65%, rgb(0 0 0 / 0.16) 84%, transparent 100%);
+    mask-image: radial-gradient(ellipse 76% 69% at 50% 34%,
+      #000 0%, #000 29%, rgb(0 0 0 / 0.86) 44%, rgb(0 0 0 / 0.48) 65%, rgb(0 0 0 / 0.16) 84%, transparent 100%);
+  }
 }
 :root.dark .hero-photo-blend {
   /* Keep the portrait pixels untouched; the transition lives in the hero backdrop. */
