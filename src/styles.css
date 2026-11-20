@@ -82,7 +82,7 @@
     /* A restrained lime-to-cool-neutral wash that stays close to the existing palette. */
     radial-gradient(ellipse 70% 85% at 100% 0%, oklch(0.988 0.009 140) 0%, color-mix(in oklab, oklch(0.988 0.009 140) 55%, transparent) 45%, transparent 100%),
     var(--hero-corner-glow),
-    linear-gradient(110deg, oklch(0.988 0.009 140) 0%, oklch(0.978 0.011 160) 48%, oklch(0.968 0.012 205) 100%);
+    linear-gradient(110deg, oklch(0.988 0.009 140) 0%, oklch(0.978 0.011 160) 48%, oklch(0.955 0.012 205) 100%);
   /* Signal-colour glow in the top-left corner, deep enough to read as a tint. */
   --hero-corner-glow: radial-gradient(ellipse 60% 75% at 0% 0%, color-mix(in oklab, var(--signal) 28%, transparent) 0%, color-mix(in oklab, var(--signal) 12%, transparent) 42%, transparent 100%);
   /* Light theme: a wash from the copy side keeps the heading and buttons readable over the photo. */
