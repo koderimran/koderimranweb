@@ -79,7 +79,8 @@
   --shadow-header: 0 8px 24px -12px color-mix(in oklab, var(--ink) 24%, transparent);
   --hero-surface: var(--background);
   --hero-gradient:
-    /* A restrained lime-to-cool-neutral wash that stays close to the existing palette. */
+    /* Soft, overlapping washes let the portrait perimeter dissolve into the page surface. */
+    radial-gradient(ellipse 66% 82% at 57% 48%, oklch(0.965 0.014 175 / 0.72) 0%, oklch(0.972 0.012 185 / 0.32) 46%, transparent 100%),
     radial-gradient(ellipse 70% 85% at 100% 0%, oklch(0.988 0.009 140) 0%, color-mix(in oklab, oklch(0.988 0.009 140) 55%, transparent) 45%, transparent 100%),
     var(--hero-corner-glow),
     linear-gradient(110deg, oklch(0.988 0.009 140) 0%, oklch(0.978 0.011 160) 48%, oklch(0.955 0.012 205) 100%);
