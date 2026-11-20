@@ -2031,6 +2031,15 @@ button {
   }
 }
 
+
+/* 430–767px: give the portrait more vertical room so the face stays clear
+   before the hero copy begins. The same variable drives photo and copy spacing. */
+@media (min-width: 430px) and (max-width: 767px) {
+  :root {
+    --hero-mobile-photo-height: clamp(24rem, 75vw, 29rem);
+  }
+}
+
 /* Home hero responsive sizing: preserve the existing desktop/tablet breakpoints. */
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero-content {
