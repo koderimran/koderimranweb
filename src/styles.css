@@ -2027,7 +2027,7 @@ button {
 
   /* Match the content start to the taller portrait stage on phones. */
   .hero-content {
-    padding-top: calc(var(--hero-mobile-photo-height) + 2.5rem);
+    padding-top: var(--hero-mobile-photo-height);
   }
 
   /* Keep both mobile hero CTAs at the same rendered height. */
