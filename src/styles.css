@@ -2065,7 +2065,7 @@ button {
 
 @media (min-width: 1024px) {
   .hero-content {
-    min-height: clamp(34rem, calc(45.45vw + 4.9rem), 39rem);
+    min-height: clamp(34rem, calc(8.93vw + 28.29rem), 39rem);
     padding-block: 4rem;
   }
 
