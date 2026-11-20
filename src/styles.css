@@ -1433,10 +1433,10 @@ footer a:hover {
 .hero-content { z-index: 2; }
 @media (max-width: 767px) {
   .hero-service-marquee {
-    left: 0;
-    right: 0;
-    bottom: 2rem;
-    width: 100%;
+    left: var(--page-gutter);
+    right: var(--page-gutter);
+    bottom: 3rem;
+    width: auto;
     max-width: none;
     transform: none;
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.25rem, #000 calc(100% - 2.25rem), transparent 100%);
