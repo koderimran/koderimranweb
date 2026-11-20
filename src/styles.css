@@ -1996,21 +1996,23 @@ button {
   }
 
   :root:not(.dark) .hero-background-photo {
-    /* Keep the portrait fully crisp; feather only the final lower edge. */
-    -webkit-mask-image: linear-gradient(
-      180deg,
+    /* Light theme mobile: soften the portrait perimeter without hazing the face. */
+    -webkit-mask-image: radial-gradient(
+      ellipse 90% 80% at 50% 35%,
       #000 0%,
-      #000 86%,
-      rgb(0 0 0 / 0.88) 93%,
-      rgb(0 0 0 / 0.48) 98%,
+      #000 43%,
+      rgb(0 0 0 / 0.94) 58%,
+      rgb(0 0 0 / 0.68) 77%,
+      rgb(0 0 0 / 0.28) 92%,
       transparent 100%
     );
-    mask-image: linear-gradient(
-      180deg,
+    mask-image: radial-gradient(
+      ellipse 90% 80% at 50% 35%,
       #000 0%,
-      #000 86%,
-      rgb(0 0 0 / 0.88) 93%,
-      rgb(0 0 0 / 0.48) 98%,
+      #000 43%,
+      rgb(0 0 0 / 0.94) 58%,
+      rgb(0 0 0 / 0.68) 77%,
+      rgb(0 0 0 / 0.28) 92%,
       transparent 100%
     );
   }
@@ -2041,6 +2043,31 @@ button {
     min-height: 3.5rem;
     box-sizing: border-box;
     padding-block: 0;
+  }
+}
+
+/* Desktop Light theme: retain the existing upper/side softness and gently feather
+   the lower-left and lower-right corners into the hero backdrop. */
+@media (min-width: 1024px) {
+  :root:not(.dark) .hero-background-photo {
+    -webkit-mask-image: radial-gradient(
+      ellipse 68% 88% at 53% 38%,
+      #000 0%,
+      #000 52%,
+      rgb(0 0 0 / 0.96) 66%,
+      rgb(0 0 0 / 0.78) 82%,
+      rgb(0 0 0 / 0.42) 94%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 68% 88% at 53% 38%,
+      #000 0%,
+      #000 52%,
+      rgb(0 0 0 / 0.96) 66%,
+      rgb(0 0 0 / 0.78) 82%,
+      rgb(0 0 0 / 0.42) 94%,
+      transparent 100%
+    );
   }
 }
 
