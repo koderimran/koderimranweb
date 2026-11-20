@@ -1432,7 +1432,11 @@ footer a:hover {
 }
 .hero-content { z-index: 2; }
 @media (max-width: 767px) {
-  .hero-service-marquee {
+  /* Mobile ticker sits outside the photo-stage stacking context. */
+  .hero-photo-stage .hero-service-marquee { display: none; }
+  .hero-service-marquee-mobile {
+    display: block;
+    z-index: 3;
     left: var(--page-gutter);
     right: var(--page-gutter);
     bottom: 3rem;
@@ -1442,7 +1446,7 @@ footer a:hover {
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.25rem, #000 calc(100% - 2.25rem), transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 2.25rem, #000 calc(100% - 2.25rem), transparent 100%);
   }
-  .hero-service-marquee-track span {
+  .hero-service-marquee-mobile .hero-service-marquee-track span {
     gap: 0.7rem;
     padding-right: 0.7rem;
     font-size: 0.66rem;
@@ -1950,7 +1954,7 @@ button {
 @media (max-width: 767px) {
   :root {
     /* Scale the portrait stage with viewport width so the copy follows it naturally. */
-    --hero-mobile-photo-height: clamp(22rem, 75vw, 31rem);
+    --hero-mobile-photo-height: clamp(23rem, 75vw, 30rem);
   }
 
   .hero-background-photo {
