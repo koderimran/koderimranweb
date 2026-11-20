@@ -2173,49 +2173,25 @@ button {
     linear-gradient(115deg, color-mix(in oklab, oklch(0.195 0.018 150) 62%, transparent) 0%, transparent 48%, color-mix(in oklab, oklch(0.19 0.018 205) 60%, transparent) 100%);
 }
 
-/* Mobile hero background + portrait blend: theme-specific, mobile-only tuning. */
+/* Mobile hero portrait: keep the full image clear and soften only its bottom edge. */
 @media (max-width: 767px) {
-  /* Keep the portrait crisp through the face; feather mainly near its lower edge. */
-  :root:not(.dark) .hero-background-photo {
+  .hero-background-photo {
     -webkit-mask-image: linear-gradient(
       180deg,
       #000 0%,
-      #000 64%,
-      rgb(0 0 0 / 0.88) 76%,
-      rgb(0 0 0 / 0.42) 90%,
-      transparent 100%
+      #000 88%,
+      rgb(0 0 0 / 0.9) 95%,
+      rgb(0 0 0 / 0.76) 100%
     );
     mask-image: linear-gradient(
       180deg,
       #000 0%,
-      #000 64%,
-      rgb(0 0 0 / 0.88) 76%,
-      rgb(0 0 0 / 0.42) 90%,
-      transparent 100%
+      #000 88%,
+      rgb(0 0 0 / 0.9) 95%,
+      rgb(0 0 0 / 0.76) 100%
     );
   }
 
-  :root.dark .hero-background-photo {
-    -webkit-mask-image: radial-gradient(
-      ellipse 88% 82% at 50% 34%,
-      #000 0%,
-      #000 54%,
-      rgb(0 0 0 / 0.82) 70%,
-      rgb(0 0 0 / 0.38) 88%,
-      transparent 100%
-    );
-    mask-image: radial-gradient(
-      ellipse 88% 82% at 50% 34%,
-      #000 0%,
-      #000 54%,
-      rgb(0 0 0 / 0.82) 70%,
-      rgb(0 0 0 / 0.38) 88%,
-      transparent 100%
-    );
-  }
-
-  /* The photo blend stays clear over the face; the lower fade is handled by
-     the portrait mask and the content surface below. */
   .hero-photo-blend {
     background: none;
   }
