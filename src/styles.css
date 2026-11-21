@@ -2275,3 +2275,29 @@ button {
     );
   }
 }
+
+/* Dark theme desktop: bias the radial feather slightly left so the right photo edge
+   dissolves further into the hero backdrop without changing the face or mobile mask. */
+@media (min-width: 1024px) {
+  :root.dark .hero-background-photo {
+    -webkit-mask-image: radial-gradient(
+      ellipse 59% 78% at 51% 39%,
+      #000 0%,
+      #000 30%,
+      rgb(0 0 0 / 0.88) 43%,
+      rgb(0 0 0 / 0.52) 62%,
+      rgb(0 0 0 / 0.18) 82%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 59% 78% at 51% 39%,
+      #000 0%,
+      #000 30%,
+      rgb(0 0 0 / 0.88) 43%,
+      rgb(0 0 0 / 0.52) 62%,
+      rgb(0 0 0 / 0.18) 82%,
+      transparent 100%
+    );
+  }
+}
+
