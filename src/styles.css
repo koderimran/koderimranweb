@@ -2452,7 +2452,7 @@ button {
   background: var(--accent);
   color: var(--accent-foreground);
 }
-:root:not(.dark) .service-detail-section .border-[oklch\(0\.78_0\.18_130\)] {
+:root:not(.dark) .service-detail-section [class*="border-[oklch(0.78_0.18_130)]"] {
   border-color: oklch(0.86 0.035 140);
 }
 :root:not(.dark) .service-detail-section .bg-accent\/50,
