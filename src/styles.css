@@ -2307,3 +2307,225 @@ button {
     );
   }
 }
+
+
+/* ==========================================================================
+   LIGHT THEME COLOR SYSTEM — unified neutral / sage / brand-lime hierarchy
+   60% primary canvas · 30% secondary surfaces · 10% controlled brand accent
+   Dark theme declarations and component geometry remain intentionally intact.
+   ========================================================================== */
+:root:not(.dark) {
+  color-scheme: light;
+
+  /* 60% — calm, low-chroma page canvas */
+  --background: oklch(0.985 0.006 130);
+  --foreground: oklch(0.22 0.025 255);
+  --outer: var(--background);
+
+  /* 30% — restrained sage surfaces */
+  --card: oklch(0.998 0.003 130);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --secondary: oklch(0.955 0.014 135);
+  --secondary-foreground: oklch(0.27 0.035 150);
+  --muted: oklch(0.955 0.009 135);
+  --muted-foreground: oklch(0.46 0.022 255);
+
+  /* 10% — brand color is retained, but its filled surfaces are softened */
+  --accent: oklch(0.94 0.035 132);
+  --accent-foreground: oklch(0.29 0.045 145);
+  --signal: oklch(0.90 0.17 128);
+  --signal-foreground: oklch(0.20 0.035 255);
+
+  /* Accessible structure and interaction */
+  --primary: oklch(0.24 0.035 255);
+  --primary-foreground: oklch(0.985 0.006 130);
+  --border: oklch(0.89 0.012 145);
+  --input: oklch(0.86 0.014 145);
+  --ring: oklch(0.43 0.09 145);
+  --ink: oklch(0.20 0.03 255);
+  --ink-foreground: oklch(0.985 0.006 130);
+
+  --btn-primary-bg: var(--ink);
+  --btn-primary-fg: var(--ink-foreground);
+  --btn-primary-hover: oklch(0.29 0.045 150);
+  --btn-primary-shadow: 0 12px 26px -18px oklch(0.20 0.03 255 / 0.32);
+  --btn-primary-hover-shadow: 0 20px 38px -18px oklch(0.20 0.03 255 / 0.38);
+  --shadow-soft: 0 20px 50px -28px oklch(0.22 0.025 255 / 0.22);
+  --grid-line: oklch(0.30 0.025 150 / 0.045);
+  --gradient-page: linear-gradient(160deg,
+    oklch(0.99 0.008 130) 0%,
+    oklch(0.985 0.006 130) 52%,
+    oklch(0.978 0.009 155) 100%);
+  --header-background: color-mix(in oklab, var(--background) 91%, transparent);
+  --header-scrolled-background: color-mix(in oklab, var(--background) 88%, transparent);
+  --header-scrolled-border: color-mix(in oklab, var(--border) 90%, var(--secondary));
+  --shadow-header: 0 8px 24px -14px oklch(0.22 0.025 255 / 0.22);
+
+  /* Hero uses the same neutral canvas; only a quiet sage wash supports the portrait. */
+  --hero-surface: var(--background);
+  --hero-gradient:
+    radial-gradient(ellipse 64% 78% at 58% 45%,
+      oklch(0.955 0.018 155 / 0.55) 0%,
+      oklch(0.972 0.012 155 / 0.22) 48%,
+      transparent 100%),
+    radial-gradient(ellipse 68% 82% at 100% 0%,
+      oklch(0.975 0.018 135 / 0.58) 0%,
+      transparent 75%),
+    linear-gradient(110deg,
+      oklch(0.99 0.008 130) 0%,
+      oklch(0.985 0.006 140) 52%,
+      oklch(0.975 0.01 175) 100%);
+  --hero-corner-glow: radial-gradient(ellipse 60% 75% at 0% 0%,
+    oklch(0.90 0.17 128 / 0.12) 0%,
+    transparent 100%);
+  --hero-photo-overlay:
+    linear-gradient(90deg,
+      color-mix(in oklab, var(--background) 94%, transparent) 0%,
+      color-mix(in oklab, var(--background) 82%, transparent) 42%,
+      color-mix(in oklab, var(--background) 20%, transparent) 64%,
+      transparent 80%);
+  --hero-mobile-overlay: none;
+}
+
+/* Remove the former multi-hue desktop hero wash in favor of the shared palette. */
+@media (min-width: 1024px) {
+  :root:not(.dark) {
+    --hero-gradient:
+      radial-gradient(ellipse 58% 68% at 78% 40%,
+        oklch(0.955 0.016 175 / 0.58) 0%,
+        oklch(0.97 0.012 175 / 0.28) 48%,
+        transparent 100%),
+      radial-gradient(ellipse 70% 85% at 100% 0%,
+        oklch(0.975 0.018 135 / 0.55) 0%,
+        transparent 75%),
+      var(--hero-corner-glow),
+      linear-gradient(110deg,
+        oklch(0.99 0.008 130) 0%,
+        oklch(0.985 0.006 140) 52%,
+        oklch(0.975 0.01 175) 100%);
+  }
+}
+
+/* Header, separators and page-level surfaces use the same neutral family. */
+:root:not(.dark) .site-header { border-color: var(--border); }
+:root:not(.dark) .home-section-divider,
+:root:not(.dark) .home-section-top-rule { --home-section-rule: oklch(0.86 0.012 145 / 0.72); }
+:root:not(.dark) .home-section-divider.bg-secondary\/50 { background-color: var(--secondary); }
+:root:not(.dark) .bg-grid { background-color: transparent; }
+
+/* Services: remove the unrelated blue, amber and purple card tints. */
+:root:not(.dark) .home-service-card,
+:root:not(.dark) .home-service-card--1,
+:root:not(.dark) .home-service-card--2,
+:root:not(.dark) .home-service-card--3,
+:root:not(.dark) .home-service-card--4 {
+  background: linear-gradient(145deg,
+    color-mix(in oklab, var(--card) 96%, var(--secondary)) 0%,
+    var(--card) 72%) !important;
+  border-color: var(--border);
+  box-shadow: 0 14px 38px -30px oklch(0.22 0.025 255 / 0.28);
+}
+:root:not(.dark) .home-service-title {
+  color: oklch(0.29 0.055 145);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+:root:not(.dark) .home-service-card .flow-root > .inline-flex {
+  color: oklch(0.34 0.055 145);
+  background: oklch(0.95 0.025 135);
+  border-color: oklch(0.86 0.035 140);
+}
+:root:not(.dark) .home-service-card .mt-4.rounded-xl {
+  background: oklch(0.965 0.018 140);
+  border-color: oklch(0.89 0.025 140);
+}
+:root:not(.dark) .home-service-card .mt-4.rounded-xl > p:first-child {
+  color: oklch(0.39 0.075 145);
+}
+
+/* Service detail icons and package labels: soft sage, never high-saturation lime. */
+:root:not(.dark) .service-detail-section .bg-accent,
+:root:not(.dark) .contact-details .bg-accent,
+:root:not(.dark) .contact-link .bg-accent {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+:root:not(.dark) .service-detail-section .border-[oklch\(0\.78_0\.18_130\)] {
+  border-color: oklch(0.86 0.035 140);
+}
+:root:not(.dark) .service-detail-section .bg-accent\/50,
+:root:not(.dark) .service-detail-section .bg-accent\/20 {
+  background-color: color-mix(in oklab, var(--accent) 58%, var(--card));
+}
+
+/* Portfolio and case-study surfaces share the same card, border and badge system. */
+:root:not(.dark) .home-proof-atmosphere {
+  background: linear-gradient(180deg,
+    oklch(0.978 0.012 140) 0%,
+    var(--background) 46%,
+    oklch(0.975 0.01 150) 100%);
+}
+:root:not(.dark) .home-proof-atmosphere .testimonial-section { background: transparent; }
+:root:not(.dark) .home-proof-atmosphere .testimonial-marquee-card {
+  background: color-mix(in oklab, var(--card) 96%, var(--secondary));
+  color: var(--foreground);
+  border-color: var(--border);
+  box-shadow: 0 14px 38px -30px oklch(0.22 0.025 255 / 0.28);
+}
+:root:not(.dark) .testimonial-marquee-card [aria-label="5 out of 5 stars"] {
+  color: oklch(0.43 0.085 145);
+}
+:root:not(.dark) .testimonial-marquee-card .rounded-full.bg-\[oklch\(90\%_0\.17_128\)\] {
+  background: var(--accent);
+  color: oklch(0.30 0.05 145);
+}
+:root:not(.dark) .home-proof-atmosphere .rounded-full.bg-accent\/70 {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+:root:not(.dark) .process-service-tab {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--muted-foreground);
+}
+:root:not(.dark) .process-service-tab:hover {
+  background: oklch(0.97 0.018 140);
+  border-color: oklch(0.80 0.055 140);
+  color: oklch(0.29 0.045 150);
+}
+:root:not(.dark) .process-service-tab[aria-pressed="true"] {
+  color: oklch(0.29 0.045 150);
+  border-color: oklch(0.82 0.055 140);
+  background: oklch(0.94 0.035 132);
+  box-shadow: 0 6px 18px -14px oklch(0.35 0.07 145 / 0.35);
+}
+:root:not(.dark) .process-journey::before {
+  background: linear-gradient(to bottom, oklch(0.78 0.07 140), var(--border) 72%, transparent);
+}
+:root:not(.dark) .process-journey-number {
+  border-color: oklch(0.85 0.035 140);
+  background: var(--card);
+  color: oklch(0.34 0.055 145);
+}
+:root:not(.dark) .faq-numbered-item[open] .faq-toggle {
+  color: oklch(0.29 0.045 150);
+  border-color: oklch(0.82 0.055 140);
+  background: oklch(0.94 0.035 132);
+}
+
+/* Brand accents remain visible in small, intentional roles. */
+:root:not(.dark) .process-journey-phase,
+:root:not(.dark) .faq-numbered-item[open] .faq-number {
+  color: oklch(0.42 0.07 145);
+}
+:root:not(.dark) .portfolio-project-card,
+:root:not(.dark) .service-detail-section { border-color: var(--border); }
+:root:not(.dark) .contact-details a:hover { color: oklch(0.34 0.07 145); }
+
+/* Keep the dark CTA band as a deliberate high-contrast conversion focal point. */
+:root:not(.dark) .cta-band-button {
+  background: var(--signal);
+  color: var(--signal-foreground);
+}
