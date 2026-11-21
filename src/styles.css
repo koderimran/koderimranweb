@@ -2247,50 +2247,61 @@ button {
   }
 }
 
-/* Final mobile hero blend: identical feathering in light and dark themes. */
+/* Mobile hero: responsive portrait height and seamless image-to-canvas blending
+   shared by light and dark themes. */
 @media (max-width: 767px) {
+  :root {
+    --hero-mobile-photo-height: clamp(26rem, 82vw, 32rem);
+  }
+
   .hero-background-photo,
   :root.dark .hero-background-photo,
   :root:not(.dark) .hero-background-photo {
+    left: 50%;
+    right: auto;
     width: 100vw;
     max-width: none;
+    height: var(--hero-mobile-photo-height);
+    transform: translateX(-50%);
+    object-fit: cover;
+    object-position: center top;
+    /* Wider feather at the perimeter dissolves the photo boundary into the hero canvas. */
     -webkit-mask-image: radial-gradient(
-      ellipse 98% 78% at 50% 35%,
+      ellipse 74% 84% at 50% 34%,
       #000 0%,
       #000 30%,
-      rgb(0 0 0 / 0.92) 43%,
-      rgb(0 0 0 / 0.68) 60%,
-      rgb(0 0 0 / 0.32) 79%,
+      rgb(0 0 0 / 0.90) 44%,
+      rgb(0 0 0 / 0.62) 62%,
+      rgb(0 0 0 / 0.28) 82%,
       transparent 100%
     );
     mask-image: radial-gradient(
-      ellipse 98% 78% at 50% 35%,
+      ellipse 74% 84% at 50% 34%,
       #000 0%,
       #000 30%,
-      rgb(0 0 0 / 0.92) 43%,
-      rgb(0 0 0 / 0.68) 60%,
-      rgb(0 0 0 / 0.32) 79%,
+      rgb(0 0 0 / 0.90) 44%,
+      rgb(0 0 0 / 0.62) 62%,
+      rgb(0 0 0 / 0.28) 82%,
       transparent 100%
     );
   }
 
-  .hero-photo-blend,
-  .hero-content {
+  /* Apply the canvas-colored wash only over the photo stage, not behind the copy. */
+  .hero-photo-blend {
+    height: var(--hero-mobile-photo-height);
     background: linear-gradient(
       180deg,
       transparent 0%,
-      transparent 68%,
-      color-mix(in oklab, var(--background) 16%, transparent) 78%,
-      color-mix(in oklab, var(--background) 54%, transparent) 90%,
+      transparent 46%,
+      color-mix(in oklab, var(--background) 10%, transparent) 60%,
+      color-mix(in oklab, var(--background) 38%, transparent) 76%,
+      color-mix(in oklab, var(--background) 76%, transparent) 90%,
       var(--background) 100%
     );
   }
 
-  .hero-photo-blend {
-    height: var(--hero-mobile-photo-height);
-  }
-
   .hero-content {
     padding-top: var(--hero-mobile-photo-height);
+    background: transparent;
   }
 }
