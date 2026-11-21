@@ -1983,7 +1983,7 @@ button {
   .hero-background-photo {
     left: 50%;
     right: auto;
-    width: 100vw;
+    width: 90vw;
     max-width: none;
     height: var(--hero-mobile-photo-height);
     transform: translateX(-50%);
