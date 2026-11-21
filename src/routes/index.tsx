@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/site";
-import { SectionHead, WorkGrid, Reviews, Process, Faq, faqJsonLd } from "@/components/Sections";
+import { SectionHead, SectionIntro, WorkGrid, Reviews, Process, Faq, faqJsonLd } from "@/components/Sections";
 import { HomeServices } from "@/components/HomeServices";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/SiteChrome";
@@ -90,39 +90,33 @@ function Index() {
       </section>
 
       <section className="home-section-divider home-services-section container-page py-20">
-        <Reveal className="w-full">
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div className="min-w-0 w-full md:w-1/2">
-              <p className="eyebrow">Services</p>
-              <h2 className="text-reveal mt-3 w-full text-3xl font-bold md:text-5xl">Everything your online business <em className="accent-text font-serif font-medium italic">needs to grow.</em></h2>
-            </div>
-            <p className="max-w-xl text-lg text-muted-foreground md:pb-1">One specialist for your store, your data and your ads — so nothing gets lost between agencies.</p>
-          </div>
-        </Reveal>
+        <SectionIntro
+          eyebrow="Services"
+          title={<>Everything your online business <em className="accent-text font-serif font-medium italic">needs to grow.</em></>}
+          text="One specialist for your store, your data and your ads — so nothing gets lost between agencies."
+        />
         <HomeServices />
       </section>
 
       <section className="home-section-divider bg-secondary/50">
         <div className="container-page py-20">
-          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <div className="min-w-0"><SectionHead eyebrow="Selected work" title={<>Websites and campaigns built for <em className="accent-text font-serif font-medium italic">measurable growth.</em></>} /></div>
-            <Link to="/portfolio" className="btn btn-lg btn-outline mb-1 inline-flex shrink-0 items-center gap-2 self-start rounded-full font-bold sm:self-auto">Browse all projects <span className="btn-arrow">→</span></Link>
-          </div>
+          <SectionIntro
+            eyebrow="Selected work"
+            title={<>Websites and campaigns built for <em className="accent-text font-serif font-medium italic">measurable growth.</em></>}
+            text="A selection of recent websites, stores and campaigns, each built to look sharp and to be measured properly."
+          />
           <WorkGrid limit={3} featured />
+          <Link to="/portfolio" className="btn btn-lg btn-outline mt-8 inline-flex items-center gap-2 rounded-full font-bold">Browse all projects <span className="btn-arrow">→</span></Link>
         </div>
       </section>
 
       <div className="home-proof-atmosphere">
         <section className="home-section-divider container-page py-20">
-          <Reveal className="w-full">
-            <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <div className="min-w-0 w-full md:w-1/2">
-                <p className="eyebrow">How I work</p>
-                <h2 className="mt-3 w-full text-3xl font-bold md:text-5xl">A process built around your service</h2>
-              </div>
-              <p className="max-w-xl text-lg text-muted-foreground md:pb-1">Choose a service to explore the steps, from the first conversation to launch and ongoing improvement.</p>
-            </div>
-          </Reveal>
+          <SectionIntro
+            eyebrow="How I work"
+            title="A process built around your service"
+            text="Choose a service to explore the steps, from the first conversation to launch and ongoing improvement."
+          />
           <Process />
         </section>
 

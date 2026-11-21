@@ -1067,15 +1067,10 @@ footer a:hover {
 .dark .home-service-card--4 {
   background: linear-gradient(135deg, oklch(0.26 0.025 145 / 0.55), oklch(0.235 0.012 160 / 0.82) 62%, var(--card)) !important;
 }
-.home-service-title {
-  color: transparent;
-  background-image: linear-gradient(105deg, oklch(0.52 0.16 132) 0%, oklch(0.55 0.14 155) 52%, oklch(0.5 0.12 205) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-.dark .home-service-title {
-  background-image: linear-gradient(105deg, oklch(0.88 0.17 128) 0%, oklch(0.82 0.13 155) 52%, oklch(0.8 0.12 195) 100%);
-}
+/* Plain title in both themes: the gradient ended in teal (outside the palette) and
+   repeated the lime accent on every card, so the accent stays for the one main CTA. */
+.home-service-title { color: oklch(0.29 0.055 145); }
+.dark .home-service-title { color: var(--foreground); }
 
 
 /* Homepage services: scroll-led sticky showcase with a compact preview rail. */
@@ -2354,11 +2349,6 @@ button {
   border-color: var(--border);
   box-shadow: 0 14px 38px -30px oklch(0.22 0.025 255 / 0.28);
 }
-:root:not(.dark) .home-service-title {
-  color: oklch(0.29 0.055 145);
-  background: none;
-  -webkit-text-fill-color: currentColor;
-}
 
 /* ==========================================================================
    Accent surfaces — named components instead of utility-class selectors.
@@ -2422,6 +2412,31 @@ button {
 }
 .dark .name-gradient {
   background-image: linear-gradient(to right, var(--signal), oklch(0.82 0.2 132), oklch(0.7 0.19 145));
+}
+
+/* Home section headers: title 50% / description 50% on every device. */
+.section-intro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1rem;
+  align-items: end;
+}
+.section-intro-title { min-width: 0; }
+.section-intro-title h2 { font-size: 1.375rem; line-height: 1.12; overflow-wrap: anywhere; }
+.section-intro-text { min-width: 0; font-size: 0.875rem; line-height: 1.6; padding-bottom: 0.25rem; }
+@media (min-width: 480px) {
+  .section-intro-title h2 { font-size: 1.75rem; }
+  .section-intro-text { font-size: 0.9375rem; }
+}
+@media (min-width: 640px) {
+  .section-intro { column-gap: 2rem; }
+  .section-intro-title h2 { font-size: 2.25rem; }
+  .section-intro-text { font-size: 1rem; }
+}
+@media (min-width: 768px) {
+  .section-intro { column-gap: 3rem; }
+  .section-intro-title h2 { font-size: 3rem; line-height: 1.05; }
+  .section-intro-text { font-size: 1.125rem; padding-bottom: 0.4rem; }
 }
 
 /* Service detail icons and package labels: soft sage, never high-saturation lime. */
