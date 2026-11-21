@@ -98,7 +98,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
       <div className="service-detail-header px-6 pt-6 pb-3 md:px-9 md:pt-7 md:pb-4">
         <div className="relative flex items-center gap-4 md:gap-5">
           <span className="pointer-events-none absolute right-0 top-1/2 z-0 hidden -translate-y-1/2 select-none font-display text-[4.5rem] font-black leading-none tracking-[-0.09em] text-foreground/[0.055] sm:block sm:text-[5.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-          <div className="hidden size-14 shrink-0 items-center justify-center rounded-2xl border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 text-[oklch(0.48_0.14_135)] shadow-sm dark:text-[oklch(0.84_0.17_130)] sm:flex sm:size-16" aria-hidden="true">
+          <div className="service-icon-tile hidden size-14 shrink-0 items-center justify-center rounded-2xl border shadow-sm sm:flex sm:size-16" aria-hidden="true">
             <ServiceIcon className="size-7 sm:size-8" strokeWidth={1.7} />
           </div>
           <div className="min-w-0 flex-1">
@@ -176,8 +176,8 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
             </ul>
           </div>
           <div className="mt-5 grid gap-2 pt-4">
-            <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-outline w-full rounded-full px-5 py-3 text-sm font-bold">Compare packages</button>
-            <Link to="/contact" className="btn btn-ink flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
+            <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-lg btn-outline w-full rounded-full font-bold">Compare packages</button>
+            <Link to="/contact" className="btn btn-lg btn-ink flex w-full items-center justify-center gap-2 rounded-full font-bold">
               Request a quote <ArrowUpRight className="size-4" aria-hidden="true" />
             </Link>
           </div>
@@ -227,8 +227,8 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               <p id={`compare-description-${service.slug}`} className="mt-3 text-xs leading-relaxed text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
             </div>
             <div className="flex shrink-0 flex-col-reverse gap-2 border-t bg-card px-5 py-4 sm:flex-row sm:justify-end sm:px-7">
-              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-outline rounded-full px-5 py-2.5 text-sm font-bold">Close</button>
-              <Link to="/contact" className="btn btn-ink inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
+              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-sm btn-outline rounded-full font-bold">Close</button>
+              <Link to="/contact" className="btn btn-sm btn-ink inline-flex items-center justify-center gap-2 rounded-full font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
             </div>
           </section>
         </div>,
@@ -283,7 +283,7 @@ export function WorkGrid({ limit, featured = false }: { limit?: number; featured
               </div>
               <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-11">
                 <div className="flex flex-wrap gap-2">
-                  {lead.services.map((service) => <span key={service} className="rounded-full bg-accent/70 px-3 py-1.5 text-[11px] font-semibold text-accent-foreground">{service}</span>)}
+                  {lead.services.map((service) => <span key={service} className="work-tag rounded-full px-3 py-1.5 text-[11px] font-semibold">{service}</span>)}
                 </div>
                 <p className="eyebrow mt-7">Selected case study · 01</p>
                 <h3 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{lead.name}</h3>
@@ -359,10 +359,10 @@ export function Reviews() {
         <span className="text-sm tracking-[0.16em] text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]" aria-label="5 out of 5 stars">★★★★★</span>
         <span aria-hidden="true" className="font-serif text-4xl leading-none text-[oklch(90%_0.17_128)]">“</span>
       </div>
-      <blockquote className="mt-3 line-clamp-3 flex-1 font-display text-[0.86rem] leading-[1.6] text-foreground/75 dark:text-white/75">“{review.text}”</blockquote>
+      <blockquote className="mt-3 line-clamp-3 flex-1 font-display text-sm leading-[1.6] text-foreground/75 dark:text-white/75">“{review.text}”</blockquote>
       <figcaption className="mt-3 flex items-center gap-3 border-t border-foreground/10 pt-3 dark:border-white/10">
-        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[oklch(90%_0.17_128)] font-display text-xs font-extrabold text-[oklch(23%_0.05_145)]">{review.name.charAt(0).toUpperCase()}</span>
-        <span className="min-w-0"><span className="block truncate font-display text-[0.83rem] font-semibold">{review.name}</span><span className="mt-0.5 block text-[0.7rem] text-muted-foreground">{review.country}</span></span>
+        <span className="grid size-9 shrink-0 place-items-center rounded-full font-display text-xs font-extrabold review-avatar">{review.name.charAt(0).toUpperCase()}</span>
+        <span className="min-w-0"><span className="block truncate font-display text-sm font-semibold">{review.name}</span><span className="mt-0.5 block text-xs text-muted-foreground">{review.country}</span></span>
       </figcaption>
     </figure>
   );
@@ -377,7 +377,7 @@ export function Reviews() {
         <div className="max-w-sm">
           <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-3xl">Ready to be my next happy client?</h4>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">Let’s talk about your goals and find the right way to move your project forward.</p>
-          <Link to="/contact" className="btn btn-signal mt-6 rounded-full px-6 py-3.5 text-sm font-bold">Start a project <ArrowUpRight className="size-4" /></Link>
+          <Link to="/contact" className="btn btn-lg btn-signal mt-6 rounded-full font-bold">Start a project <ArrowUpRight className="size-4" /></Link>
         </div>
         <div className="testimonial-marquee min-w-0 space-y-4" aria-label="Client testimonials">
         <div className="testimonial-marquee-window"><div className="testimonial-marquee-track testimonial-marquee-track--right">{topLane.map((review, i) => reviewCard(review, `top-${i}`, i >= REVIEWS.length))}</div></div>
@@ -491,7 +491,7 @@ export function PageHero({ eyebrow, title, text, cta = "Book a free call", compa
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>{title}</h1>
         <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
-        <Link to="/contact" className="page-hero-cta btn btn-ink animate-rise mt-6 rounded-full px-7 py-3.5 font-bold" style={{ animationDelay: "270ms" }}>
+        <Link to="/contact" className="page-hero-cta btn btn-lg btn-ink animate-rise mt-6 rounded-full font-bold" style={{ animationDelay: "270ms" }}>
           {cta}
         </Link>
       </div>

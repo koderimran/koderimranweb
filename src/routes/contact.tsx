@@ -32,7 +32,7 @@ function Contact() {
     const body = `Name: ${f.get("name")}\nEmail: ${f.get("email")}\nWebsite: ${f.get("website")}\nService: ${need}\n\n${f.get("message")}`;
     window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(`Project inquiry: ${need}`)}&body=${encodeURIComponent(body)}`;
   }
-  const field = "w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-ring";
+  const field = "w-full rounded-xl border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-ring";
   return (
     <section className="bg-grid">
       <div className="container-page grid gap-8 py-12 sm:gap-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-12 lg:py-20">
@@ -62,7 +62,7 @@ function Contact() {
           </div>
           <input name="website" placeholder="Website URL (optional)" className={field} maxLength={255} />
           <textarea required name="message" rows={5} placeholder="Tell me about your goals, budget and timeline" className={field} maxLength={2000} />
-          <button className="btn btn-signal w-full rounded-full py-4 font-bold">Send message</button>
+          <button className="btn btn-lg btn-signal w-full rounded-full font-bold">Send message</button>
         </form>
       </div>
     </section>
