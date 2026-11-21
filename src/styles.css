@@ -2042,7 +2042,7 @@ button {
   :root:not(.dark) .hero-background-photo {
     /* Match the dark theme's desktop radial mask; only the theme backdrop color differs. */
     -webkit-mask-image: radial-gradient(
-      ellipse 59% 78% at 55% 39%,
+      ellipse 55% 78% at 48% 39%,
       #000 0%,
       #000 30%,
       rgb(0 0 0 / 0.88) 43%,
@@ -2051,7 +2051,7 @@ button {
       transparent 100%
     );
     mask-image: radial-gradient(
-      ellipse 59% 78% at 55% 39%,
+      ellipse 55% 78% at 48% 39%,
       #000 0%,
       #000 30%,
       rgb(0 0 0 / 0.88) 43%,
@@ -2256,7 +2256,7 @@ button {
 @media (min-width: 1024px) {
   :root:not(.dark) .hero-background-photo {
     -webkit-mask-image: radial-gradient(
-      ellipse 59% 78% at 55% 39%,
+      ellipse 55% 78% at 48% 39%,
       #000 0%,
       #000 30%,
       rgb(0 0 0 / 0.88) 43%,
@@ -2265,7 +2265,7 @@ button {
       transparent 100%
     );
     mask-image: radial-gradient(
-      ellipse 59% 78% at 55% 39%,
+      ellipse 55% 78% at 48% 39%,
       #000 0%,
       #000 30%,
       rgb(0 0 0 / 0.88) 43%,
