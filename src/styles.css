@@ -1847,6 +1847,22 @@ footer a:hover {
   background: var(--signal-foreground);
   color: var(--signal);
 }
+/* Full-width variant (mobile menu): label and icon sit side by side, centred.
+   The icon carries its own badge colour, and on hover the fill spreads across
+   the whole pill instead of growing from the right edge. */
+.header-book-call--block { justify-content: center; }
+.header-book-call--block::after {
+  top: 0.2rem;
+  right: 0.2rem;
+  bottom: 0.2rem;
+  width: calc(100% - 0.4rem);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+.header-book-call--block:hover::after,
+.header-book-call--block:focus-visible::after { opacity: 1; }
+.header-book-call--block .hero-audit-icon { background: var(--signal); }
+
 .hero-audit-cta:hover .hero-audit-icon {
   transform: rotate(45deg);
 }
