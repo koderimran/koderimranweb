@@ -155,7 +155,7 @@
 @media (min-width: 1024px) {
   :root:not(.dark) {
     --hero-gradient:
-      radial-gradient(ellipse 76% 90% at 78% 39%,
+      radial-gradient(ellipse 55% 65% at 78% 39%,
         oklch(0.958 0.012 190 / 0.78) 0%,
         oklch(0.966 0.010 198 / 0.44) 42%,
         oklch(0.976 0.009 205 / 0.16) 72%,
