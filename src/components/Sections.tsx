@@ -354,13 +354,13 @@ export function Reviews() {
   const bottomLane = [...bottomOrder, ...bottomOrder];
 
   const reviewCard = (review: (typeof REVIEWS)[number], key: string, duplicate: boolean) => (
-    <figure key={key} aria-hidden={duplicate} className="testimonial-marquee-card flex h-[12.5rem] w-[17.5rem] shrink-0 flex-col rounded-[1.35rem] border border-foreground/10 bg-white/80 p-5 text-foreground shadow-[0_18px_48px_-34px_oklch(0.25_0.06_145/0.25)] backdrop-blur-md dark:border-white/10 dark:bg-white/[0.055] dark:text-white dark:shadow-[0_20px_55px_-34px_oklch(0_0_0/0.7)] sm:w-[18rem]">
+    <figure key={key} aria-hidden={duplicate} className="testimonial-marquee-card flex h-[12.5rem] w-[17.5rem] shrink-0 flex-col rounded-[1.35rem] border border-foreground/10 bg-white/80 p-5 text-foreground shadow-[0_18px_48px_-34px_oklch(0.25_0.06_145/0.25)] backdrop-blur-md dark:bg-white/[0.055] dark:shadow-[0_20px_55px_-34px_oklch(0_0_0/0.7)] sm:w-[18rem]">
       <div className="flex items-center justify-between">
-        <span className="text-sm tracking-[0.16em] text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]" aria-label="5 out of 5 stars">★★★★★</span>
+        <span className="review-stars text-sm tracking-[0.16em]" aria-label="5 out of 5 stars">★★★★★</span>
         <span aria-hidden="true" className="font-serif text-4xl leading-none text-[oklch(90%_0.17_128)]">“</span>
       </div>
-      <blockquote className="mt-3 line-clamp-3 flex-1 font-display text-sm leading-[1.6] text-foreground/75 dark:text-white/75">“{review.text}”</blockquote>
-      <figcaption className="mt-3 flex items-center gap-3 border-t border-foreground/10 pt-3 dark:border-white/10">
+      <blockquote className="mt-3 line-clamp-3 flex-1 font-display text-sm leading-[1.6] text-foreground/75">“{review.text}”</blockquote>
+      <figcaption className="mt-3 flex items-center gap-3 border-t border-foreground/10 pt-3">
         <span className="grid size-9 shrink-0 place-items-center rounded-full font-display text-xs font-extrabold review-avatar">{review.name.charAt(0).toUpperCase()}</span>
         <span className="min-w-0"><span className="block truncate font-display text-sm font-semibold">{review.name}</span><span className="mt-0.5 block text-xs text-muted-foreground">{review.country}</span></span>
       </figcaption>
@@ -371,7 +371,7 @@ export function Reviews() {
     <div>
       <Reveal className="w-full">
         <p className="eyebrow">Testimonials</p>
-        <h3 className="text-reveal mt-5 w-full max-w-full font-display text-3xl md:max-w-[50%] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground md:text-5xl">Why clients <span className="font-serif font-medium italic text-[oklch(48%_0.16_135)] dark:text-[oklch(90%_0.17_128)]">choose</span> to work with me.</h3>
+        <h3 className="text-reveal mt-5 w-full max-w-full font-display text-3xl md:max-w-[50%] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground md:text-5xl">Why clients <span className="accent-text-soft font-serif font-medium italic">choose</span> to work with me.</h3>
       </Reveal>
       <div className="grid items-center gap-9 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
         <div className="max-w-sm">

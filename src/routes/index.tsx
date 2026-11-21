@@ -60,16 +60,16 @@ function Index() {
           <div className="container-page hero-content">
             <div className="hero-row">
               <div className="hero-copy">
-                <p className="animate-rise mt-5 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-foreground sm:text-[2.75rem]" style={{ animationDelay: "45ms" }}>Hi, I'm <span className="bg-gradient-to-r from-[oklch(0.46_0.16_137)] via-[oklch(0.54_0.19_132)] to-[oklch(0.42_0.16_148)] bg-clip-text font-extrabold text-transparent dark:from-signal dark:via-[oklch(0.82_0.2_132)] dark:to-[oklch(0.7_0.19_145)]">Imran.</span></p>
+                <p className="animate-rise mt-5 font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-foreground sm:text-[2.75rem]" style={{ animationDelay: "45ms" }}>Hi, I'm <span className="name-gradient font-extrabold">Imran.</span></p>
                 <h1 className="hero-title animate-rise text-reveal-load mt-5 text-4xl font-bold leading-[1.05] tracking-tight lg:text-6xl" style={{ animationDelay: "90ms" }}>
                   <span className="hero-title-line">The Right Expertise</span>
-                  <span className="hero-title-line">For Your <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">Next Move.</em></span>
+                  <span className="hero-title-line">For Your <em className="accent-text font-serif font-medium italic">Next Move.</em></span>
                 </h1>
                 <p className="animate-rise mt-6 max-w-xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
                   I help e-commerce brands scale with high-converting <strong className="text-foreground">Shopify & WordPress</strong> stores, precision <strong className="text-foreground">GA4 & GTM</strong> tracking, and ROI-focused <strong className="text-foreground">Google Ads</strong> campaigns.
                 </p>
                 <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-                  <Link to="/contact" className="btn btn-ink hero-audit-cta inline-flex items-center rounded-full font-bold">Get Free Audit <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
+                  <Link to="/contact" className="btn btn-signal hero-audit-cta inline-flex items-center rounded-full font-bold">Get Free Audit <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
                   <Link to="/portfolio" className="btn btn-lg btn-outline inline-flex items-center gap-2 rounded-full font-bold">See my work <span className="btn-arrow">→</span></Link>
                 </div>
                 <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Europe</p>
@@ -94,7 +94,7 @@ function Index() {
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="min-w-0 w-full md:w-1/2">
               <p className="eyebrow">Services</p>
-              <h2 className="text-reveal mt-3 w-full text-3xl font-bold md:text-5xl">Everything your online business <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">needs to grow.</em></h2>
+              <h2 className="text-reveal mt-3 w-full text-3xl font-bold md:text-5xl">Everything your online business <em className="accent-text font-serif font-medium italic">needs to grow.</em></h2>
             </div>
             <p className="max-w-xl text-lg text-muted-foreground md:pb-1">One specialist for your store, your data and your ads — so nothing gets lost between agencies.</p>
           </div>
@@ -105,7 +105,7 @@ function Index() {
       <section className="home-section-divider bg-secondary/50">
         <div className="container-page py-20">
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <div className="min-w-0"><SectionHead eyebrow="Selected work" title={<>Websites and campaigns built for <em className="font-serif font-medium italic text-[oklch(0.36_0.105_140)] dark:text-signal">measurable growth.</em></>} /></div>
+            <div className="min-w-0"><SectionHead eyebrow="Selected work" title={<>Websites and campaigns built for <em className="accent-text font-serif font-medium italic">measurable growth.</em></>} /></div>
             <Link to="/portfolio" className="btn btn-lg btn-outline mb-1 inline-flex shrink-0 items-center gap-2 self-start rounded-full font-bold sm:self-auto">Browse all projects <span className="btn-arrow">→</span></Link>
           </div>
           <WorkGrid limit={3} featured />
@@ -126,7 +126,7 @@ function Index() {
           <Process />
         </section>
 
-        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground dark:text-white">
+        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground">
           <div className="container-page">
             <Reviews />
           </div>
