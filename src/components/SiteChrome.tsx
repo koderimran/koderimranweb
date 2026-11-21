@@ -114,7 +114,7 @@ export function CtaBand() {
             </p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
-            <Link to="/contact" className="btn btn-signal cta-band-button rounded-full px-7 py-4 text-center font-bold">
+            <Link to="/contact" className="btn btn-lg btn-signal cta-band-button rounded-full text-center font-bold">
               Get my free audit <span className="btn-arrow">→</span>
             </Link>
           </div>
