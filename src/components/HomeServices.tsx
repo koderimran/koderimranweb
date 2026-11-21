@@ -20,14 +20,12 @@ export function HomeServices() {
         return (
           <Reveal key={service.slug} as="article" delay={index * 85} className={`home-service-card home-service-card--${index + 1} group relative isolate overflow-hidden rounded-[1.75rem] border bg-card`}>
             <div className="relative z-10 p-6 sm:p-8">
-              <div className="grid grid-cols-[minmax(0,1fr)_3.5rem] items-start gap-x-3 sm:grid-cols-[minmax(0,1fr)_5.5rem]">
-                <div className="min-w-0">
-                  <div className="inline-flex rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
-                    3 Flexible Packages Available
-                  </div>
-                  <h3 className="home-service-title text-reveal mt-2 text-2xl font-bold leading-tight tracking-tight sm:text-[1.7rem]">{service.title}</h3>
+              <div className="flow-root">
+                <span className="home-service-watermark float-right ml-3 select-none text-right text-[3.5rem] font-black leading-[0.85] tracking-[-0.09em] text-foreground/[0.055] sm:text-[5.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <div className="inline-flex rounded-full border border-[oklch(0.78_0.18_130)]/35 bg-[oklch(0.78_0.18_130)]/10 px-3 py-1.5 text-xs font-semibold text-foreground">
+                  3 Flexible Packages Available
                 </div>
-                <span className="pointer-events-none select-none text-right text-[3.5rem] font-black leading-[0.85] tracking-[-0.09em] text-foreground/[0.055] sm:text-[5.5rem]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="home-service-title text-reveal mt-2 text-2xl font-bold leading-tight tracking-tight sm:text-[1.7rem]">{service.title}</h3>
               </div>
               <p className="mt-3 leading-relaxed text-muted-foreground">{service.short}</p>
 
