@@ -8,6 +8,21 @@ import { Reveal } from "@/components/Reveal";
 
 const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
 
+/** Home-page section header: title in the left 50%, description in the right 50%, on every screen size. */
+export function SectionIntro({ eyebrow, title, text }: { eyebrow: string; title: ReactNode; text: string }) {
+  return (
+    <Reveal className="w-full">
+      <div className="section-intro">
+        <div className="section-intro-title">
+          <p className="eyebrow">{eyebrow}</p>
+          <h2 className="text-reveal mt-3 font-bold">{title}</h2>
+        </div>
+        <p className="section-intro-text text-muted-foreground">{text}</p>
+      </div>
+    </Reveal>
+  );
+}
+
 export function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: ReactNode; text?: string }) {
   return (
     <Reveal className="w-full md:max-w-[50%]">

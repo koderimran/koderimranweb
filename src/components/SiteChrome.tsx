@@ -89,7 +89,7 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink header-book-call mt-4 inline-flex items-center gap-3 self-start rounded-full !p-[0.3rem] !pl-[1.2rem] text-sm font-bold"><span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink header-book-call header-book-call--block mt-4 flex w-full items-center justify-center gap-3 rounded-full !p-[0.3rem] text-sm font-bold"><span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
           </nav>
         </div>
       )}
