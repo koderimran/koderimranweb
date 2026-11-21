@@ -1977,13 +1977,13 @@ button {
 @media (max-width: 767px) {
   :root {
     /* Scale the portrait stage with viewport width so the copy follows it naturally. */
-    --hero-mobile-photo-height: clamp(26rem, 82vw, 34rem);
+    --hero-mobile-photo-height: 24rem;
   }
 
   .hero-background-photo {
     left: 50%;
     right: auto;
-    width: 90vw;
+    width: 100vw;
     max-width: none;
     height: var(--hero-mobile-photo-height);
     transform: translateX(-50%);
@@ -2247,3 +2247,50 @@ button {
   }
 }
 
+/* Final mobile hero blend: identical feathering in light and dark themes. */
+@media (max-width: 767px) {
+  .hero-background-photo,
+  :root.dark .hero-background-photo,
+  :root:not(.dark) .hero-background-photo {
+    width: 100vw;
+    max-width: none;
+    -webkit-mask-image: radial-gradient(
+      ellipse 98% 78% at 50% 35%,
+      #000 0%,
+      #000 30%,
+      rgb(0 0 0 / 0.92) 43%,
+      rgb(0 0 0 / 0.68) 60%,
+      rgb(0 0 0 / 0.32) 79%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 98% 78% at 50% 35%,
+      #000 0%,
+      #000 30%,
+      rgb(0 0 0 / 0.92) 43%,
+      rgb(0 0 0 / 0.68) 60%,
+      rgb(0 0 0 / 0.32) 79%,
+      transparent 100%
+    );
+  }
+
+  .hero-photo-blend,
+  .hero-content {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 68%,
+      color-mix(in oklab, var(--background) 16%, transparent) 78%,
+      color-mix(in oklab, var(--background) 54%, transparent) 90%,
+      var(--background) 100%
+    );
+  }
+
+  .hero-photo-blend {
+    height: var(--hero-mobile-photo-height);
+  }
+
+  .hero-content {
+    padding-top: var(--hero-mobile-photo-height);
+  }
+}
