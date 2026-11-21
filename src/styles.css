@@ -2196,60 +2196,6 @@ button {
     linear-gradient(115deg, color-mix(in oklab, oklch(0.195 0.018 150) 62%, transparent) 0%, transparent 48%, color-mix(in oklab, oklch(0.19 0.018 205) 60%, transparent) 100%);
 }
 
-/* Mobile hero portrait: both themes use the same bottom-only linear mask. */
-@media (max-width: 767px) {
-  :root:not(.dark) .hero-background-photo {
-    /* Match the dark theme's mobile mask system; only the theme backdrop color differs. */
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 88%,
-      rgb(0 0 0 / 0.9) 95%,
-      rgb(0 0 0 / 0.76) 100%
-    );
-    mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 88%,
-      rgb(0 0 0 / 0.9) 95%,
-      rgb(0 0 0 / 0.76) 100%
-    );
-  }
-
-  :root.dark .hero-background-photo {
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 88%,
-      rgb(0 0 0 / 0.9) 95%,
-      rgb(0 0 0 / 0.76) 100%
-    );
-    mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 88%,
-      rgb(0 0 0 / 0.9) 95%,
-      rgb(0 0 0 / 0.76) 100%
-    );
-  }
-
-  .hero-photo-blend {
-    background: none;
-  }
-
-  :root:not(.dark) .hero-content {
-    /* Keep the face area clear; blend the copy backdrop in only near the photo's bottom. */
-    background: linear-gradient(
-      180deg,
-      transparent 0,
-      transparent calc(var(--hero-mobile-photo-height) * 0.82),
-      color-mix(in oklab, var(--background) 12%, transparent) calc(var(--hero-mobile-photo-height) * 0.90),
-      color-mix(in oklab, var(--background) 42%, transparent) calc(var(--hero-mobile-photo-height) * 0.96),
-      var(--background) var(--hero-mobile-photo-height),
-      var(--background) 100%
-    );
-  }
-}
 
 /* Light theme desktop portrait: one radial mask keeps the face clear,
    softly blends the perimeter, and retains visible detail in the clothing below. */
