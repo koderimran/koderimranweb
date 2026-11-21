@@ -133,7 +133,8 @@
   --accent: oklch(0.33 0.065 140);
   --accent-foreground: oklch(0.91 0.12 128);
   --border: oklch(0.35 0.014 160);
-  --input: var(--border);
+  /* Form-field outline: ~3.9:1 on the canvas (WCAG 1.4.11 asks for 3:1). */
+  --input: oklch(0.55 0.02 160);
   --ring: oklch(0.79 0.16 135);
   --ink: oklch(0.13 0.008 160);
   --ink-foreground: oklch(0.96 0.008 95);
@@ -146,19 +147,22 @@
   --btn-primary-hover-shadow: 0 22px 42px -16px color-mix(in oklab, var(--signal) 80%, transparent);
   --outer: var(--background);
   --gradient-page:
-    radial-gradient(72rem 44rem at 4% -2%, oklch(0.88 0.19 128 / 0.16), transparent 62%),
-    radial-gradient(60rem 40rem at 100% 8%, oklch(0.62 0.13 225 / 0.18), transparent 60%),
-    radial-gradient(84rem 52rem at 50% calc(100% - 30rem), oklch(0.88 0.19 128 / 0.12), transparent 66%),
-    linear-gradient(160deg, oklch(0.215 0.04 150) 0%, oklch(0.175 0.012 165) 34%, oklch(0.19 0.028 215) 68%, oklch(0.225 0.05 155) 100%);
+    radial-gradient(ellipse 82rem 54rem at 5% 0%, oklch(0.34 0.075 142 / 0.17) 0%, transparent 68%),
+    radial-gradient(ellipse 76rem 58rem at 100% 18%, oklch(0.31 0.065 220 / 0.16) 0%, transparent 70%),
+    radial-gradient(ellipse 90rem 60rem at 48% 72%, oklch(0.28 0.045 175 / 0.12) 0%, transparent 72%),
+    linear-gradient(155deg, oklch(0.205 0.026 155) 0%, oklch(0.17 0.012 165) 38%, oklch(0.185 0.022 210) 72%, oklch(0.205 0.03 160) 100%);
   --grid-line: oklch(0.9 0.015 150 / 0.045);
   --shadow-soft: 0 20px 50px -25px oklch(0.05 0 0 / 0.7);
   --header-background: color-mix(in oklab, var(--background) 92%, transparent);
   --header-scrolled-background: color-mix(in oklab, var(--background) 68%, transparent);
   --header-scrolled-border: color-mix(in oklab, var(--border) 85%, var(--signal));
   --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
+  --home-section-rule: color-mix(in oklab, var(--border) 76%, transparent);
   --hero-gradient:
-    radial-gradient(ellipse 60% 75% at 0% 0%, color-mix(in oklab, var(--signal) 24%, transparent) 0%, color-mix(in oklab, var(--signal) 9%, transparent) 42%, transparent 100%),
-    linear-gradient(110deg, oklch(0.205 0.03 150) 0%, oklch(0.215 0.034 175) 48%, oklch(0.265 0.046 215) 100%);
+    radial-gradient(ellipse 68% 78% at 2% 0%, oklch(0.88 0.19 128 / 0.13) 0%, transparent 72%),
+    radial-gradient(ellipse 66% 82% at 57% 48%, oklch(0.235 0.035 172 / 0.72) 0%, oklch(0.205 0.03 180 / 0.34) 46%, transparent 100%),
+    radial-gradient(ellipse 62% 76% at 100% 6%, oklch(0.62 0.13 225 / 0.14) 0%, transparent 74%),
+    linear-gradient(112deg, oklch(0.185 0.032 150) 0%, oklch(0.175 0.024 170) 48%, oklch(0.205 0.035 215) 100%);
   --hero-photo-overlay: none;
   --hero-mobile-overlay: none;
   --hero-badge-glass: color-mix(in oklab, var(--card) 54%, transparent);
@@ -691,18 +695,27 @@
 :root:not(.dark) .btn-signal:hover {
   background-color: var(--btn-primary-hover);
 }
-:root.dark .btn-ink,
+/* Dark: lime is the 10% signal, so only the one main CTA per view (btn-signal) is lime.
+   Everyday primary actions (btn-ink) are a soft off-white, mirroring the light theme's ink. */
 :root.dark .btn-signal {
   background-color: var(--signal);
   color: var(--signal-foreground);
 }
-:root.dark .btn-ink:hover,
 :root.dark .btn-signal:hover {
   background-color: color-mix(in oklab, var(--signal) 86%, var(--foreground));
 }
+:root.dark .btn-ink {
+  background-color: oklch(0.94 0.008 120);
+  color: oklch(0.18 0.012 160);
+  box-shadow: 0 12px 28px -18px oklch(0.02 0.01 160 / 0.8);
+}
+:root.dark .btn-ink:hover {
+  background-color: oklch(0.88 0.012 125);
+  box-shadow: 0 20px 38px -18px oklch(0.02 0.01 160 / 0.85);
+}
 
-/* CTA band buttons contrast with the banner surface in each theme:
-   lime on the dark light-theme banner, deep ink on the light dark-theme banner. */
+/* The CTA band is deep green in both themes, so its button is lime in both
+   (dark theme gets that from .btn-signal). */
 :root:not(.dark) .cta-band-button {
   background-color: var(--signal);
   color: var(--signal-foreground);
@@ -710,14 +723,6 @@
 }
 :root:not(.dark) .cta-band-button:hover {
   background-color: color-mix(in oklab, var(--signal) 88%, white);
-}
-:root.dark .cta-band-button {
-  background-color: var(--ink);
-  color: var(--ink-foreground);
-  box-shadow: 0 12px 28px -16px color-mix(in oklab, var(--ink) 55%, transparent);
-}
-:root.dark .cta-band-button:hover {
-  background-color: color-mix(in oklab, var(--ink) 88%, var(--signal));
 }
 
 @utility btn-outline {
@@ -1055,17 +1060,12 @@ footer a:hover {
 .home-service-card--4 {
   background: linear-gradient(135deg, color-mix(in oklab, oklch(0.82 0.09 300) 8%, var(--card)), color-mix(in oklab, oklch(0.84 0.08 220) 5%, var(--card)) 58%, var(--card)) !important;
 }
-.dark .home-service-card--1 {
-  background: linear-gradient(135deg, oklch(0.26 0.025 135 / 0.55), oklch(0.235 0.012 165 / 0.82) 62%, var(--card)) !important;
-}
-.dark .home-service-card--2 {
-  background: linear-gradient(135deg, oklch(0.255 0.025 230 / 0.52), oklch(0.235 0.012 215 / 0.82) 62%, var(--card)) !important;
-}
-.dark .home-service-card--3 {
-  background: linear-gradient(135deg, oklch(0.26 0.025 75 / 0.5), oklch(0.235 0.012 55 / 0.82) 62%, var(--card)) !important;
-}
+/* One shared sage tint for every card (the four-hue set clashed with the light theme). */
+.dark .home-service-card--1,
+.dark .home-service-card--2,
+.dark .home-service-card--3,
 .dark .home-service-card--4 {
-  background: linear-gradient(135deg, oklch(0.255 0.025 300 / 0.5), oklch(0.235 0.012 245 / 0.82) 62%, var(--card)) !important;
+  background: linear-gradient(135deg, oklch(0.26 0.025 145 / 0.55), oklch(0.235 0.012 160 / 0.82) 62%, var(--card)) !important;
 }
 .home-service-title {
   color: transparent;
@@ -2149,22 +2149,9 @@ button {
 /* Dark theme atmosphere: a restrained, continuous gradient across every viewport. */
 :root.dark .page-frame {
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse 82rem 54rem at 5% 0%, oklch(0.34 0.075 142 / 0.17) 0%, transparent 68%),
-    radial-gradient(ellipse 76rem 58rem at 100% 18%, oklch(0.31 0.065 220 / 0.16) 0%, transparent 70%),
-    radial-gradient(ellipse 90rem 60rem at 48% 72%, oklch(0.28 0.045 175 / 0.12) 0%, transparent 72%),
-    linear-gradient(155deg, oklch(0.205 0.026 155) 0%, oklch(0.17 0.012 165) 38%, oklch(0.185 0.022 210) 72%, oklch(0.205 0.03 160) 100%);
+  /* The gradient itself lives in the --gradient-page token. */
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-:root.dark {
-  --home-section-rule: color-mix(in oklab, var(--border) 76%, transparent);
-  --hero-gradient:
-    radial-gradient(ellipse 68% 78% at 2% 0%, oklch(0.88 0.19 128 / 0.13) 0%, transparent 72%),
-    radial-gradient(ellipse 66% 82% at 57% 48%, oklch(0.235 0.035 172 / 0.72) 0%, oklch(0.205 0.03 180 / 0.34) 46%, transparent 100%),
-    radial-gradient(ellipse 62% 76% at 100% 6%, oklch(0.62 0.13 225 / 0.14) 0%, transparent 74%),
-    linear-gradient(112deg, oklch(0.185 0.032 150) 0%, oklch(0.175 0.024 170) 48%, oklch(0.205 0.035 215) 100%);
 }
 
 /* Dark theme: keep the facial focal area clear while extending the feather
@@ -2420,6 +2407,23 @@ button {
   color: oklch(23% 0.05 145);
 }
 
+/* Accent text and brand gradient: one named class per role, both themes in one place. */
+.accent-text { color: oklch(0.36 0.105 140); }
+.dark .accent-text { color: var(--signal); }
+.accent-text-soft { color: oklch(48% 0.16 135); }
+.dark .accent-text-soft { color: oklch(90% 0.17 128); }
+.review-stars { color: oklch(0.43 0.085 145); }
+.dark .review-stars { color: oklch(90% 0.17 128); }
+.name-gradient {
+  background-image: linear-gradient(to right, oklch(0.46 0.16 137), oklch(0.54 0.19 132), oklch(0.42 0.16 148));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dark .name-gradient {
+  background-image: linear-gradient(to right, var(--signal), oklch(0.82 0.2 132), oklch(0.7 0.19 145));
+}
+
 /* Service detail icons and package labels: soft sage, never high-saturation lime. */
 :root:not(.dark) .service-detail-section .bg-accent,
 :root:not(.dark) .contact-details .bg-accent,
@@ -2445,9 +2449,6 @@ button {
   color: var(--foreground);
   border-color: var(--border);
   box-shadow: 0 14px 38px -30px oklch(0.22 0.025 255 / 0.28);
-}
-:root:not(.dark) .testimonial-marquee-card [aria-label="5 out of 5 stars"] {
-  color: oklch(0.43 0.085 145);
 }
 :root:not(.dark) .process-service-tab {
   background: var(--card);

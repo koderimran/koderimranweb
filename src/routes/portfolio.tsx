@@ -125,7 +125,7 @@ function Portfolio() {
         </section>
       )}
 
-      <section className="home-section-divider home-section-divider--no-bottom-rule testimonial-section overflow-hidden py-20 text-foreground dark:text-white">
+      <section className="home-section-divider home-section-divider--no-bottom-rule testimonial-section overflow-hidden py-20 text-foreground">
         <div className="container-page">
           <Reviews />
         </div>
