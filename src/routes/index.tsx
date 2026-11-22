@@ -7,6 +7,8 @@ import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/SiteChrome";
 import { Portrait } from "@/components/Portrait";
 
+const HERO_MARQUEE = ["Google Ads", "Web Analytics", "Shopify", "WordPress"];
+
 const TITLE = "Imran | Google Ads, GA4 Tracking, Shopify & WordPress Expert";
 const DESC =
   "Imran (Koder Imran) helps e-commerce brands grow with Google Ads management, GA4 & GTM tracking, Shopify stores and WordPress/WooCommerce websites.";
@@ -42,18 +44,21 @@ function Index() {
       <section className="home-section-divider overflow-x-clip">
         <div className="hero-backdrop">
           <div className="hero-photo-stage container-page" aria-hidden="true">
-            <div className="hero-service-marquee" aria-label="Google Ads, Web Analytics, Shopify and WordPress">
-              <div className="hero-service-marquee-track" aria-hidden="true">
-                <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
-                <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
-              </div>
-            </div>
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
-          <div className="hero-service-marquee hero-service-marquee-mobile" aria-hidden="true">
-            <div className="hero-service-marquee-track">
-              <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
-              <span>GOOGLE ADS <i>✳</i> WEB ANALYTICS <i>✳</i> SHOPIFY <i>✳</i> WORDPRESS <i>✳</i> </span>
+          <div className="container-page hero-marquee-stage" aria-hidden="true">
+            <div className="hero-service-marquee">
+              <div className="hero-service-marquee-track">
+                {/* One span; labels repeat 4x so each half is wider than the ticker and the -50% loop never shows a gap. */}
+                <span>
+                  {[0, 1, 2, 3].flatMap((copy) =>
+                    HERO_MARQUEE.flatMap((label) => [
+                      <b key={`${copy}-${label}`}>{label}</b>,
+                      <i key={`${copy}-${label}-dot`}>✳</i>,
+                    ]),
+                  )}
+                </span>
+              </div>
             </div>
           </div>
           <div className="hero-photo-blend" aria-hidden="true" />
