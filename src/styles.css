@@ -1502,7 +1502,6 @@ footer a:hover {
 @media (prefers-reduced-motion: reduce) {
   .hero-service-marquee-track { animation: none; }
 }
-}
 
 
 /* Service-specific vertical journey: one shared design language, tailored steps. */
