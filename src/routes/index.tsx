@@ -108,10 +108,11 @@ function Index() {
           <SectionIntro
             eyebrow="Selected work"
             title={<>Websites and campaigns built for <em className="accent-text font-serif font-medium italic">measurable growth.</em></>}
-            text="A selection of recent websites, stores and campaigns, each built to look sharp and to be measured properly."
+            action={
+              <Link to="/portfolio" className="btn btn-lg btn-outline inline-flex items-center gap-2 rounded-full font-bold">Browse all projects <span className="btn-arrow" aria-hidden="true">→</span></Link>
+            }
           />
           <WorkGrid limit={3} featured />
-          <Link to="/portfolio" className="btn btn-lg btn-outline mt-8 inline-flex items-center gap-2 rounded-full font-bold">Browse all projects <span className="btn-arrow">→</span></Link>
         </div>
       </section>
 
