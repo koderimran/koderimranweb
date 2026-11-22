@@ -50,9 +50,6 @@ export function HomeServices() {
                 <Link to={detailHref} className="btn btn-lg btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full font-bold">
                   Explore service <ArrowUpRight className="size-4" aria-hidden="true" />
                 </Link>
-                <Link to="/contact" className="btn btn-lg btn-outline inline-flex flex-1 items-center justify-center gap-2 rounded-full font-bold">
-                  Discuss your project <span className="btn-arrow" aria-hidden="true">→</span>
-                </Link>
               </div>
             </div>
           </Reveal>

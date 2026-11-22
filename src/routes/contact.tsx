@@ -62,7 +62,7 @@ function Contact() {
           </div>
           <input name="website" placeholder="Website URL (optional)" className={field} maxLength={255} />
           <textarea required name="message" rows={5} placeholder="Tell me about your goals, budget and timeline" className={field} maxLength={2000} />
-          <button className="btn btn-lg btn-signal w-full rounded-full font-bold">Send message</button>
+          <button className="btn btn-lg btn-signal inline-flex w-full items-center justify-center gap-2 rounded-full font-bold">Send message <span className="btn-arrow" aria-hidden="true">→</span></button>
         </form>
       </div>
     </section>
