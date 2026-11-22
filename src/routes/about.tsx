@@ -29,7 +29,7 @@ const SKILLS = ["Google Ads", "Performance Max", "Merchant Center", "GA4", "Goog
 function About() {
   return (
     <>
-      <section className="bg-grid border-b">
+      <section className="bg-grid rule-b">
         <div className="container-page grid items-center gap-8 py-12 sm:gap-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:py-20">
           <Portrait alt="Portrait of Imran" className="animate-rise mx-auto aspect-[4/5] w-full max-w-sm lg:mx-0 rounded-[2rem] bg-muted shadow-soft" />
           <div>

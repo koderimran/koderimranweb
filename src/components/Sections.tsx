@@ -198,7 +198,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
           </div>
         </aside>
       </div>
-      <div aria-hidden="true" className={`w-full border-t border-border ${index === 2 ? "border-t-2" : ""}`} />
+      <div aria-hidden="true" className="rule-t w-full" />
 
       {compareOpen && createPortal(
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 p-3 backdrop-blur-md sm:p-5" onMouseDown={(event) => { if (event.target === event.currentTarget) setCompareOpen(false); }}>
@@ -501,7 +501,7 @@ export function faqJsonLd() {
 
 export function PageHero({ eyebrow, title, text, cta = "Book a free call", compact = false }: { eyebrow: string; title: string; text: string; cta?: string; compact?: boolean }) {
   return (
-    <section className="bg-grid border-b">
+    <section className="bg-grid rule-b">
       <div className={compact ? "container-page py-12 md:py-16" : "container-page py-20 md:py-28"}>
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>{title}</h1>

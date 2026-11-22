@@ -50,7 +50,7 @@ export function Header() {
   }, []);
 
   return (
-    <header data-compact={compact} className="site-header sticky top-0 z-40 border-b backdrop-blur">
+    <header data-compact={compact} className="site-header rule-b sticky top-0 z-40 backdrop-blur">
       <div className="site-header-row container-page relative flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <div className="flex items-center">
           <Link to="/" className="font-display inline-flex items-center text-lg font-bold" aria-label="Koder Imran — home">
@@ -82,7 +82,7 @@ export function Header() {
         </div>
       </div>
       {open && (
-        <div className="animate-menu-in border-t border-border/70 bg-muted/50 lg:hidden">
+        <div className="animate-menu-in rule-t bg-muted/50 lg:hidden">
           <nav className="container-page flex flex-col items-stretch pb-6 pt-4 text-left">
             {NAV.map((n) => (
               <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="menu-item text-lg font-semibold text-muted-foreground hover:text-foreground" activeProps={{ className: "text-foreground" }}>
@@ -126,7 +126,7 @@ export function CtaBand() {
 
 export function Footer() {
   return (
-    <footer className="border-t">
+    <footer className="rule-t">
       <div className="container-page grid gap-10 py-14 md:grid-cols-12">
         <div className="md:col-span-12 lg:col-span-5">
           <p className="font-display text-xl font-bold">
@@ -161,7 +161,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t">
+      <div className="rule-t">
         <p className="container-page py-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </p>

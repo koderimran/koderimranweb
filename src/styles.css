@@ -62,6 +62,8 @@
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.89 0.012 145);
+  /* Structural rules (page outline, section dividers, header/footer): ~1.3:1 on the canvas, tinted to the page hue. */
+  --rule: oklch(0.905 0.01 135);
   /* Form-field outline: ~3.5:1 on the canvas (WCAG 1.4.11 asks for 3:1). */
   --input: oklch(0.62 0.02 150);
   --ring: oklch(0.43 0.09 145);
@@ -83,7 +85,7 @@
     oklch(0.978 0.009 155) 100%);
   --header-background: color-mix(in oklab, var(--background) 91%, transparent);
   --header-scrolled-background: color-mix(in oklab, var(--background) 88%, transparent);
-  --header-scrolled-border: color-mix(in oklab, var(--border) 90%, var(--secondary));
+  --header-scrolled-border: var(--rule);
   --shadow-header: 0 8px 24px -14px oklch(0.22 0.025 255 / 0.22);
   /* Hero uses the same neutral canvas; only a quiet sage wash supports the portrait. */
   --hero-surface: var(--background);
@@ -133,6 +135,7 @@
   --accent: oklch(0.33 0.065 140);
   --accent-foreground: oklch(0.91 0.12 128);
   --border: oklch(0.35 0.014 160);
+  --rule: oklch(0.28 0.01 160);
   /* Form-field outline: ~3.9:1 on the canvas (WCAG 1.4.11 asks for 3:1). */
   --input: oklch(0.55 0.02 160);
   --ring: oklch(0.79 0.16 135);
@@ -155,9 +158,8 @@
   --shadow-soft: 0 20px 50px -25px oklch(0.05 0 0 / 0.7);
   --header-background: color-mix(in oklab, var(--background) 92%, transparent);
   --header-scrolled-background: color-mix(in oklab, var(--background) 68%, transparent);
-  --header-scrolled-border: color-mix(in oklab, var(--border) 85%, var(--signal));
+  --header-scrolled-border: var(--rule);
   --shadow-header: 0 8px 24px -12px oklch(0.05 0 0 / 0.8);
-  --home-section-rule: color-mix(in oklab, var(--border) 76%, transparent);
   --hero-gradient:
     radial-gradient(ellipse 68% 78% at 2% 0%, oklch(0.88 0.19 128 / 0.13) 0%, transparent 72%),
     radial-gradient(ellipse 66% 82% at 57% 48%, oklch(0.235 0.035 172 / 0.72) 0%, oklch(0.205 0.03 180 / 0.34) 46%, transparent 100%),
@@ -270,12 +272,11 @@
   background: var(--gradient-page);
   /* Laptop & small desktop */
   @media (min-width: 1024px) { max-width: 100%; }
-  /* Standard desktop */
-  @media (min-width: 1200px) { max-width: 77.5rem; }
-  /* Large / ultra-wide */
-  @media (min-width: 1400px) {
+  /* Standard desktop and wider: fixed-width frame with a side outline.
+     Clipping here also keeps the 100vw section dividers inside the frame. */
+  @media (min-width: 1200px) {
     max-width: 77.5rem;
-    border: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
+    border-inline: var(--rule-width) solid var(--rule);
     overflow: clip;
   }
 }
@@ -286,8 +287,10 @@
 @media (min-width: 1400px) { :root { --page-gutter: 1.25rem; } }
 
 
-/* One consistent, restrained 1px divider for every homepage section. */
-:root { --home-section-rule: color-mix(in oklab, var(--border) 58%, transparent); }
+/* One divider system: same 1px thickness in both themes, colour comes from --rule. */
+:root { --rule-width: 1px; }
+@utility rule-t { border-top: var(--rule-width) solid var(--rule); }
+@utility rule-b { border-bottom: var(--rule-width) solid var(--rule); }
  .home-section-divider {
   position: relative;
 }
@@ -302,11 +305,11 @@
   bottom: 0;
   width: 100vw;
   transform: translateX(50%);
-  border-bottom: 1px solid var(--home-section-rule);
+  border-bottom: var(--rule-width) solid var(--rule);
   pointer-events: none;
 }
 .home-section-top-rule {
-  border-top: 1px solid var(--home-section-rule);
+  border-top: var(--rule-width) solid var(--rule);
 }
 
 @utility container-page {
@@ -1626,11 +1629,11 @@ footer a:hover {
   overflow: hidden;
   margin-top: 2.5rem;
   padding-block: 0.45rem;
-  border-top: 1px solid var(--home-section-rule);
-  border-bottom: 1px solid var(--home-section-rule);
+  border-top: var(--rule-width) solid var(--rule);
+  border-bottom: var(--rule-width) solid var(--rule);
 }
 .faq-numbered-item {
-  border-bottom: 1px solid var(--home-section-rule);
+  border-bottom: var(--rule-width) solid var(--rule);
 }
 .faq-numbered-item:last-child { border-bottom: 0; }
 .faq-numbered-item summary {
@@ -2342,9 +2345,7 @@ button {
    ========================================================================== */
 
 /* Header, separators and page-level surfaces use the same neutral family. */
-:root:not(.dark) .site-header { border-color: var(--border); }
-:root:not(.dark) .home-section-divider,
-:root:not(.dark) .home-section-top-rule { --home-section-rule: oklch(0.86 0.012 145 / 0.72); }
+:root:not(.dark) .site-header { border-color: var(--rule); }
 :root:not(.dark) .home-section-divider.bg-secondary\/50 { background-color: var(--secondary); }
 :root:not(.dark) .bg-grid { background-color: transparent; }
 
