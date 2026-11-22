@@ -215,7 +215,7 @@
 
 .site-header {
   background: var(--header-background);
-  transition: background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  transition: background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease, margin-bottom 240ms ease;
 }
 .site-header-row {
   height: 4.5rem;
@@ -238,6 +238,9 @@
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
 }
+/* The header is sticky and in flow: give back the height it loses when compact so the page
+   below does not jump while scrolling (4.5rem -> 3rem on desktop, -> 3.75rem on phones). */
+.site-header[data-compact="true"] { margin-bottom: 1.5rem; }
 .site-header[data-compact="true"] .site-header-row { height: 3rem; }
 .site-header[data-compact="true"] .site-header-logo { height: 1.75rem; }
 @media (prefers-reduced-motion: reduce) {
@@ -495,6 +498,8 @@
   transform: translateY(26px);
   will-change: opacity, transform;
 }
+/* A block whose heading has its own text reveal only fades: no double slide-up. */
+.js .reveal:not(.is-visible):has(.text-reveal) { transform: none; }
 
 /* Hero entrance */
 @keyframes rise-in {
@@ -1000,6 +1005,7 @@ footer a:hover {
   .site-header-row { min-height: 3.75rem; }
   .site-header-logo { height: 2.15rem; }
   .site-header[data-compact="true"] .site-header-logo { height: 1.6rem; }
+  .site-header[data-compact="true"] { margin-bottom: 0.75rem; }
   .site-header-row > div:last-child { margin-left: auto; }
   .site-header .btn { white-space: nowrap; }
   .page-frame { overflow-x: clip; }
@@ -1464,6 +1470,7 @@ footer a:hover {
   animation: hero-service-marquee-scroll 32s linear infinite;
   will-change: transform;
 }
+.hero-marquee-stage[data-paused="true"] .hero-service-marquee-track { animation-play-state: paused; }
 /* Spacing is margin (not gap) so the two label sets are exactly equal halves. */
 .hero-service-marquee-track span {
   display: flex;
@@ -1786,24 +1793,16 @@ footer a:hover {
   content: "";
   position: absolute;
   z-index: -1;
-  top: 0.3rem;
-  right: 0.3rem;
-  bottom: 0.3rem;
-  width: 2rem;
-  border-radius: 9999px;
+  inset: 0.2rem;
   background: var(--signal);
-  transition:
-    top 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    right 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    bottom 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* Resting: the 2rem badge circle at 0.3rem from the edges. Hover: the full pill.
+     clip-path animates without re-laying-out the button (top/right/width did). */
+  clip-path: inset(0.1rem 0.1rem 0.1rem calc(100% - 2.1rem) round 9999px);
+  transition: clip-path 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .header-book-call:hover::after,
 .header-book-call:focus-visible::after {
-  top: 0.2rem;
-  right: 0.2rem;
-  bottom: 0.2rem;
-  width: calc(100% - 0.4rem);
+  clip-path: inset(0 0 0 0 round 9999px);
 }
 .header-book-call-label,
 .header-book-call .hero-audit-icon {

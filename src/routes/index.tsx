@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/site";
@@ -39,6 +40,18 @@ const STATS = [
 ];
 
 function Index() {
+  const marqueeStage = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    // Pause the hero ticker while the hero is scrolled out of view.
+    const el = marqueeStage.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([entry]) => {
+      el.dataset.paused = entry.isIntersecting ? "false" : "true";
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <>
       <section className="home-section-divider overflow-x-clip">
@@ -46,7 +59,7 @@ function Index() {
           <div className="hero-photo-stage container-page" aria-hidden="true">
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
-          <div className="container-page hero-marquee-stage" aria-hidden="true">
+          <div ref={marqueeStage} className="container-page hero-marquee-stage" aria-hidden="true">
             <div className="hero-service-marquee">
               <div className="hero-service-marquee-track">
                 {/* One span; labels repeat 4x so each half is wider than the ticker and the -50% loop never shows a gap. */}
