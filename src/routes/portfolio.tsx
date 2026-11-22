@@ -27,7 +27,7 @@ export const Route = createFileRoute("/portfolio")({
 function Portfolio() {
   return (
     <>
-      <section className="bg-grid border-b">
+      <section className="bg-grid rule-b">
         <div className="container-page py-12 md:py-16">
           <p className="eyebrow animate-rise">Selected work</p>
           <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>
