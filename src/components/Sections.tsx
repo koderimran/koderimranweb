@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check } from "lucide-react";
+import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check, ListChecks, X } from "lucide-react";
 import { SERVICES, WORKS, REVIEWS, FAQS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
@@ -191,7 +191,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
             </ul>
           </div>
           <div className="mt-5 grid gap-2 pt-4">
-            <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-lg btn-outline w-full rounded-full font-bold">Compare packages</button>
+            <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-lg btn-outline inline-flex w-full items-center justify-center gap-2 rounded-full font-bold">Compare packages <ListChecks className="size-4" aria-hidden="true" /></button>
             <Link to="/contact" className="btn btn-lg btn-ink flex w-full items-center justify-center gap-2 rounded-full font-bold">
               Request a quote <ArrowUpRight className="size-4" aria-hidden="true" />
             </Link>
@@ -242,7 +242,7 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               <p id={`compare-description-${service.slug}`} className="mt-3 text-xs leading-relaxed text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
             </div>
             <div className="flex shrink-0 flex-col-reverse gap-2 border-t bg-card px-5 py-4 sm:flex-row sm:justify-end sm:px-7">
-              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-sm btn-outline rounded-full font-bold">Close</button>
+              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-sm btn-outline inline-flex items-center justify-center gap-2 rounded-full font-bold">Close <X className="size-4" aria-hidden="true" /></button>
               <Link to="/contact" className="btn btn-sm btn-ink inline-flex items-center justify-center gap-2 rounded-full font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
             </div>
           </section>
@@ -506,8 +506,8 @@ export function PageHero({ eyebrow, title, text, cta = "Book a free call", compa
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>{title}</h1>
         <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
-        <Link to="/contact" className="page-hero-cta btn btn-lg btn-ink animate-rise mt-6 rounded-full font-bold" style={{ animationDelay: "270ms" }}>
-          {cta}
+        <Link to="/contact" className="page-hero-cta btn btn-lg btn-ink animate-rise mt-6 inline-flex items-center justify-center gap-2 rounded-full font-bold" style={{ animationDelay: "270ms" }}>
+          {cta} <ArrowUpRight className="size-4" aria-hidden="true" />
         </Link>
       </div>
     </section>

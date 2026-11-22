@@ -38,8 +38,8 @@ function Portfolio() {
             accurate GA4 &amp; GTM tracking and Google Ads campaigns that pay off.
           </p>
           <div className="page-hero-actions animate-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-            <Link to="/contact" className="btn btn-lg btn-ink rounded-full font-bold">Get a Free Audit</Link>
-            <Link to="/services" className="btn btn-lg btn-outline rounded-full font-bold">Explore services</Link>
+            <Link to="/contact" className="btn btn-lg btn-ink inline-flex items-center justify-center gap-2 rounded-full font-bold">Get a Free Audit <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+            <Link to="/services" className="btn btn-lg btn-outline inline-flex items-center justify-center gap-2 rounded-full font-bold">Explore services <span className="btn-arrow" aria-hidden="true">→</span></Link>
           </div>
         </div>
       </section>
