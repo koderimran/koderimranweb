@@ -388,7 +388,7 @@ export function Reviews() {
         <p className="eyebrow">Testimonials</p>
         <h3 className="text-reveal mt-5 w-full max-w-full font-display text-3xl md:max-w-[50%] font-semibold leading-[1.02] tracking-[-0.045em] text-foreground md:text-5xl">Why clients <span className="accent-text-soft font-serif font-medium italic">choose</span> to work with me.</h3>
       </Reveal>
-      <div className="grid items-center gap-9 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
+      <div className="mt-9 grid items-center gap-9 lg:mt-4 lg:grid-cols-[minmax(17rem,0.78fr)_minmax(0,1.55fr)] lg:gap-14">
         <div className="max-w-sm">
           <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-3xl">Ready to be my next happy client?</h4>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">Let’s talk about your goals and find the right way to move your project forward.</p>
