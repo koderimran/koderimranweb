@@ -30,7 +30,7 @@ function Portfolio() {
       <section className="bg-grid rule-b">
         <div className="container-page py-12 md:py-16">
           <p className="eyebrow animate-rise">Selected work</p>
-          <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>
+          <h1 className="page-hero-title title-settle mt-3 max-w-4xl font-bold">
             Stores, tracking and ads that turn visitors into customers.
           </h1>
           <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>

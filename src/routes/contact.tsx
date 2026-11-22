@@ -38,7 +38,7 @@ function Contact() {
       <div className="container-page grid gap-8 py-12 sm:gap-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-12 lg:py-20">
         <div>
           <p className="eyebrow animate-rise">Contact</p>
-          <h1 className="page-hero-title animate-rise text-reveal-load mt-4 font-bold" style={{ animationDelay: "90ms" }}>Let's grow your business.</h1>
+          <h1 className="page-hero-title title-settle mt-4 font-bold">Let's grow your business.</h1>
           <p className="animate-rise mt-6 text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>Tell me about your project. I usually reply within 24 hours with next steps and a free quick audit.</p>
           <ul className="mt-10 space-y-5">
             <li><a href={`mailto:${SITE.email}`} className="flex min-w-0 items-center gap-3 font-semibold"><span className="grid size-11 place-items-center rounded-xl bg-accent"><Mail className="size-5" /></span><span className="min-w-0 break-all">{SITE.email}</span></a></li>

@@ -97,6 +97,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Manrope:wght@400..800&display=swap" },
     ],
     scripts: [
+      // Scroll-reveal content is only hidden when JS runs; without it everything stays visible.
+      { children: "document.documentElement.classList.add('js')" },
       {
         type: "application/ld+json",
         children: JSON.stringify({

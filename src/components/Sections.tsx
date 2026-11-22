@@ -505,7 +505,7 @@ export function PageHero({ eyebrow, title, text, cta = "Book a free call", compa
     <section className="bg-grid rule-b">
       <div className={compact ? "container-page py-12 md:py-16" : "container-page py-20 md:py-28"}>
         <p className="eyebrow animate-rise">{eyebrow}</p>
-        <h1 className="page-hero-title animate-rise text-reveal-load mt-3 max-w-4xl font-bold" style={{ animationDelay: "90ms" }}>{title}</h1>
+        <h1 className="page-hero-title title-settle mt-3 max-w-4xl font-bold">{title}</h1>
         <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
         <Link to="/contact" className="page-hero-cta btn btn-lg btn-ink animate-rise mt-6 inline-flex items-center justify-center gap-2 rounded-full font-bold" style={{ animationDelay: "270ms" }}>
           {cta} <ArrowUpRight className="size-4" aria-hidden="true" />
