@@ -1070,10 +1070,10 @@ footer a:hover {
 .dark .home-service-card--4 {
   background: linear-gradient(135deg, oklch(0.26 0.025 145 / 0.55), oklch(0.235 0.012 160 / 0.82) 62%, var(--card)) !important;
 }
-/* Plain title in both themes: the gradient ended in teal (outside the palette) and
-   repeated the lime accent on every card, so the accent stays for the one main CTA. */
-.home-service-title { color: oklch(0.29 0.055 145); }
-.dark .home-service-title { color: var(--foreground); }
+/* Plain title in both themes, on the same --foreground as every other heading.
+   Hierarchy against the description comes from --muted-foreground, size and weight,
+   not from a separate hue; the lime accent stays for the one main CTA. */
+.home-service-title { color: var(--foreground); }
 
 
 /* Homepage services: scroll-led sticky showcase with a compact preview rail. */
