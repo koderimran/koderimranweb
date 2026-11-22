@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+/** Later items in long grids are already on screen; cap the stagger so none of them lag. */
+const MAX_STAGGER_MS = 270;
+
 type RevealProps = {
   children: ReactNode;
   className?: string;
@@ -43,7 +46,7 @@ export function Reveal({ children, className = "", delay = 0, as: Tag = "div" }:
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       className={`reveal ${visible ? "is-visible" : ""} ${className}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={delay ? { transitionDelay: `${Math.min(delay, MAX_STAGGER_MS)}ms` } : undefined}
     >
       {children}
     </Tag>
