@@ -34,8 +34,7 @@ function Portfolio() {
             Stores, tracking and ads that turn visitors into customers.
           </h1>
           <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
-            Recent Shopify, WordPress and e-commerce projects. Each one pairs a conversion-focused build with
-            accurate GA4 &amp; GTM tracking and Google Ads campaigns that pay off.
+            A selection of recent websites, stores and campaigns, each built to look sharp and to be measured properly.
           </p>
           <div className="page-hero-actions animate-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
             <Link to="/contact" className="btn btn-lg btn-ink inline-flex items-center justify-center gap-2 rounded-full font-bold">Get a Free Audit <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
