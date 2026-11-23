@@ -76,6 +76,7 @@
   --btn-primary-hover: oklch(0.29 0.035 255);
   --btn-primary-shadow: 0 12px 26px -18px oklch(0.20 0.03 255 / 0.32);
   --btn-primary-hover-shadow: 0 20px 38px -18px oklch(0.20 0.03 255 / 0.38);
+  --btn-outline-line: oklch(0.74 0.02 145); /* ~2:1 on the card, so the button reads without hover */
   --shadow-soft: 0 20px 50px -28px oklch(0.22 0.025 255 / 0.22);
   --grid-line: oklch(0.30 0.025 150 / 0.045);
   --outer: var(--background);
@@ -148,6 +149,7 @@
   --btn-primary-hover: color-mix(in oklab, var(--signal) 86%, var(--foreground));
   --btn-primary-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 70%, transparent);
   --btn-primary-hover-shadow: 0 22px 42px -16px color-mix(in oklab, var(--signal) 80%, transparent);
+  --btn-outline-line: oklch(0.50 0.02 160);
   --outer: var(--background);
   --gradient-page:
     radial-gradient(ellipse 82rem 54rem at 5% 0%, oklch(0.34 0.075 142 / 0.17) 0%, transparent 68%),
@@ -582,18 +584,20 @@
   box-shadow: var(--shadow-soft);
 }
 
-@utility btn-press {
-  transition:
-    transform var(--dur-fast) ease,
-    opacity var(--dur-fast) ease,
-    background-color var(--dur-fast) ease;
-}
-.btn-press:active {
-  transform: scale(0.97);
-}
-
-/* ===== Buttons ===== */
+/* ===== Buttons =====
+   One system. Shape, weight, size and motion live in .btn; a variant only sets colours.
+   Motion (the signature): on hover a colour wipe slides in from the left, the icon nudges,
+   and a press squeezes the button. Hover motion is limited to devices that can hover, so a
+   tap on a phone never leaves a button stuck in its hover state. */
 @utility btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--ink-foreground);
+  --btn-fill: var(--signal);
+  --btn-fg-hover: var(--signal-foreground);
+  --btn-border: transparent;
+  --btn-border-hover: var(--btn-fill);
+  --btn-shadow: none;
+  --btn-shadow-hover: none;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -602,45 +606,72 @@
   overflow: hidden;
   isolation: isolate;
   cursor: pointer;
-  text-transform: capitalize;
+  border: 1px solid var(--btn-border);
+  border-radius: 9999px;
+  background-color: var(--btn-bg);
+  color: var(--btn-fg);
+  box-shadow: var(--btn-shadow);
+  font-weight: 700;
+  text-decoration: none;
   transition:
-    transform var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out),
-    background-color var(--dur-fast) ease,
-    border-color var(--dur-fast) ease,
-    color var(--dur-fast) ease;
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
 }
+/* The wipe: a pill of the hover colour that slides in behind the label. */
 .btn::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -1px;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    transparent 35%,
-    color-mix(in oklab, var(--color-ink-foreground) 45%, transparent) 50%,
-    transparent 65%
-  );
-  transform: translateX(-130%);
-  transition: transform var(--dur-enter) var(--ease-out);
-}
-.btn:hover {
-  transform: translateY(-2px);
-}
-.btn:hover::before {
-  transform: translateX(130%);
+  border-radius: inherit;
+  background: var(--btn-fill);
+  transform: translateX(-102%);
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 .btn:active {
-  transform: translateY(0) scale(0.97);
+  transform: scale(0.97);
+}
+.btn:active::before,
+.btn:focus-visible::before {
+  transform: none;
 }
 .btn:focus-visible {
+  color: var(--btn-fg-hover);
+  border-color: var(--btn-border-hover);
   outline: 2px solid var(--ring);
   outline-offset: 3px;
 }
+@media (hover: hover) {
+  .btn:hover {
+    color: var(--btn-fg-hover);
+    border-color: var(--btn-border-hover);
+    box-shadow: var(--btn-shadow-hover);
+  }
+  .btn:hover::before {
+    transform: none;
+  }
+}
+/* Loading: set data-loading="true" and put <span class="btn-spinner"> inside. */
+.btn[data-loading="true"] {
+  pointer-events: none;
+}
+.btn-spinner {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: btn-spin 800ms linear infinite;
+}
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
 
-/* Two button sizes: large (page and card actions) and small (compact toolbars).
-   Height comes from min-height so every button in a row lines up. */
+/* Two sizes. Height comes from min-height so every button in a row lines up;
+   the compact size grows to a 44px touch target on touch screens. */
 .btn-lg {
   min-height: 3rem;
   padding-inline: 1.5rem;
@@ -653,105 +684,92 @@
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+@media (pointer: coarse) {
+  .btn-sm { min-height: 2.75rem; }
+}
 
-/* Primary actions adapt to the active theme while keeping one shared hierarchy:
-   deep ink on light surfaces, brand lime on dark surfaces. */
+/* Variants set colours only. Primary: ink fills with lime on hover. In dark, the everyday
+   primary (btn-ink) is soft off-white and fills with lime; the one main CTA (btn-signal) is
+   lime and fills with off-white. Lime is the hover payoff, not resting decoration. */
 @utility btn-ink {
-  background-color: var(--btn-primary-bg);
-  color: var(--btn-primary-fg);
-  box-shadow: var(--btn-primary-shadow);
+  --btn-bg: var(--ink);
+  --btn-fg: var(--ink-foreground);
+  --btn-fill: var(--signal);
+  --btn-fg-hover: var(--signal-foreground);
+  --btn-shadow: 0 10px 24px -16px oklch(0.20 0.03 255 / 0.4);
+  --btn-shadow-hover: 0 16px 30px -16px color-mix(in oklab, var(--signal) 70%, transparent);
 }
-.btn-ink::before {
-  background: linear-gradient(
-    105deg,
-    transparent 35%,
-    color-mix(in oklab, var(--signal) 58%, transparent) 50%,
-    transparent 65%
-  );
-}
-.btn-ink:hover {
-  background-color: var(--btn-primary-hover);
-  box-shadow: var(--btn-primary-hover-shadow);
-}
-
-/* Keep the signal CTA class in the same primary tier across both themes. */
 @utility btn-signal {
-  background-color: var(--btn-primary-bg);
-  color: var(--btn-primary-fg);
-  box-shadow: var(--btn-primary-shadow);
+  --btn-bg: var(--ink);
+  --btn-fg: var(--ink-foreground);
+  --btn-fill: var(--signal);
+  --btn-fg-hover: var(--signal-foreground);
+  --btn-shadow: 0 10px 24px -16px oklch(0.20 0.03 255 / 0.4);
+  --btn-shadow-hover: 0 16px 30px -16px color-mix(in oklab, var(--signal) 70%, transparent);
 }
-.btn-signal:hover {
-  background-color: var(--btn-primary-hover);
-  box-shadow: var(--btn-primary-hover-shadow);
-}
-
-/* Explicit theme selectors ensure the primary CTA stays visible and correctly
-   colored even when utility generation/order changes. */
-:root:not(.dark) .btn-ink,
-:root:not(.dark) .btn-signal {
-  background-color: var(--ink);
-  color: var(--ink-foreground);
-}
-:root:not(.dark) .btn-ink:hover,
-:root:not(.dark) .btn-signal:hover {
-  background-color: var(--btn-primary-hover);
-}
-/* Dark: lime is the 10% signal, so only the one main CTA per view (btn-signal) is lime.
-   Everyday primary actions (btn-ink) are a soft off-white, mirroring the light theme's ink. */
-:root.dark .btn-signal {
-  background-color: var(--signal);
-  color: var(--signal-foreground);
-}
-:root.dark .btn-signal:hover {
-  background-color: color-mix(in oklab, var(--signal) 86%, var(--foreground));
+@utility btn-outline {
+  --btn-bg: var(--color-card);
+  --btn-fg: var(--color-foreground);
+  --btn-border: var(--btn-outline-line);
+  --btn-fill: var(--color-muted);
+  --btn-fg-hover: var(--color-foreground);
+  --btn-border-hover: var(--color-foreground);
+  --btn-shadow: none;
+  --btn-shadow-hover: 0 14px 28px -20px color-mix(in oklab, var(--ink) 55%, transparent);
 }
 :root.dark .btn-ink {
-  background-color: oklch(0.94 0.008 120);
-  color: oklch(0.18 0.012 160);
-  box-shadow: 0 12px 28px -18px oklch(0.02 0.01 160 / 0.8);
+  --btn-bg: oklch(0.94 0.008 120);
+  --btn-fg: oklch(0.18 0.012 160);
+  --btn-shadow: 0 12px 28px -18px oklch(0.02 0.01 160 / 0.8);
+  --btn-shadow-hover: 0 16px 34px -16px color-mix(in oklab, var(--signal) 55%, transparent);
 }
-:root.dark .btn-ink:hover {
-  background-color: oklch(0.88 0.012 125);
-  box-shadow: 0 20px 38px -18px oklch(0.02 0.01 160 / 0.85);
+:root.dark .btn-signal {
+  --btn-bg: var(--signal);
+  --btn-fg: var(--signal-foreground);
+  --btn-fill: oklch(0.96 0.006 95);
+  --btn-fg-hover: oklch(0.18 0.012 160);
+  --btn-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 70%, transparent);
+  --btn-shadow-hover: 0 16px 34px -16px oklch(0.96 0.006 95 / 0.4);
 }
-
-/* The CTA band is deep green in both themes, so its button is lime in both
-   (dark theme gets that from .btn-signal). */
-:root:not(.dark) .cta-band-button {
-  background-color: var(--signal);
-  color: var(--signal-foreground);
-  box-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 48%, transparent);
-}
-:root:not(.dark) .cta-band-button:hover {
-  background-color: color-mix(in oklab, var(--signal) 88%, white);
-}
-
-@utility btn-outline {
-  background-color: var(--color-card);
-  color: var(--color-foreground);
-  border: 1px solid var(--color-border);
-}
-.btn-outline::before {
-  background: linear-gradient(
-    105deg,
-    transparent 35%,
-    color-mix(in oklab, var(--ring) 22%, transparent) 50%,
-    transparent 65%
-  );
-}
-.btn-outline:hover {
-  background-color: var(--color-muted);
-  border-color: color-mix(in oklab, var(--border) 55%, var(--ring));
-  box-shadow: 0 16px 30px -20px color-mix(in oklab, var(--ink) 60%, transparent);
+/* The CTA band is deep green in both themes: lime button, light fill on hover. */
+.cta-band-button {
+  --btn-bg: var(--signal);
+  --btn-fg: var(--signal-foreground);
+  --btn-fill: oklch(0.97 0.03 128);
+  --btn-fg-hover: var(--signal-foreground);
+  --btn-shadow: 0 12px 28px -16px color-mix(in oklab, var(--signal) 55%, transparent);
+  --btn-shadow-hover: 0 16px 34px -16px oklch(0.97 0.03 128 / 0.45);
 }
 
-/* Arrow / icon nudge inside buttons and links */
-.btn-arrow {
-  transition: transform var(--dur-fast) var(--ease-out);
+/* Disabled sits after the variants (and outranks the dark overrides) so it always wins. */
+:root .btn:disabled,
+:root .btn[aria-disabled="true"] {
+  --btn-bg: var(--muted);
+  --btn-fg: var(--muted-foreground);
+  --btn-border: var(--border);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
 }
-.btn:hover .btn-arrow,
+:root .btn:disabled::before,
+:root .btn[aria-disabled="true"]::before {
+  display: none;
+}
+/* Icon nudge inside buttons and links: arrows travel along their own direction. */
+.btn-arrow,
+.btn-arrow-up {
+  flex: none;
+  transition: transform var(--dur-base) var(--ease-out);
+}
 .link-arrow:hover .btn-arrow {
-  transform: translateX(4px);
+  transform: translateX(3px);
+}
+.link-arrow:hover .btn-arrow-up {
+  transform: translate(2px, -2px);
+}
+@media (hover: hover) {
+  .btn:hover .btn-arrow { transform: translateX(3px); }
+  .btn:hover .btn-arrow-up { transform: translate(2px, -2px); }
 }
 
 /* Underlined call-to-action link */
@@ -893,16 +911,19 @@ footer a:hover {
     transition: none;
   }
   .btn::before {
-    display: none;
+    transition: none;
   }
-  .btn:hover,
   .btn:active,
   .chip:hover,
   .chip:active,
   .pill:hover,
-  .btn-arrow {
+  .btn-arrow,
+  .btn-arrow-up,
+  .btn:hover .btn-arrow,
+  .btn:hover .btn-arrow-up {
     transform: none;
   }
+  .btn-spinner { animation-duration: 2400ms; }
 }
 
 
@@ -1475,6 +1496,11 @@ footer a:hover {
   gap: 0.75rem;
   padding: 0.5rem 0.5rem 0.5rem 1.375rem;
 }
+/* The header pill has its own icon-fill motion, so it skips the generic wipe. */
+.header-book-call::before { display: none; }
+/* Pill buttons size themselves from their badge, so they carry no border. */
+.header-book-call,
+.hero-audit-cta { border-width: 0; }
 .header-book-call {
   position: relative;
   isolation: isolate;
@@ -1566,6 +1592,10 @@ footer a:hover {
 
 .hero-audit-cta:hover .hero-audit-icon {
   transform: rotate(45deg);
+}
+:root:not(.dark) .hero-audit-cta:hover .hero-audit-icon {
+  background: var(--ink);
+  color: var(--signal);
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-audit-icon { transition: none; }
@@ -2221,8 +2251,4 @@ button {
 :root:not(.dark) .service-detail-section { border-color: var(--border); }
 :root:not(.dark) .contact-details a:hover { color: oklch(0.34 0.07 145); }
 
-/* Keep the dark CTA band as a deliberate high-contrast conversion focal point. */
-:root:not(.dark) .cta-band-button {
-  background: var(--signal);
-  color: var(--signal-foreground);
-}
+

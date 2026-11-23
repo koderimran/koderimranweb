@@ -47,10 +47,10 @@ export function HomeServices() {
 
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Link to={detailHref} className="btn btn-lg btn-ink inline-flex flex-1 items-center justify-center gap-2 rounded-full font-bold">
-                  Explore service <ArrowUpRight className="size-4" aria-hidden="true" />
+                <Link to={detailHref} className="btn btn-lg btn-ink flex-1">
+                  Explore service <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" />
                 </Link>
-                <Link to="/contact" className="btn btn-lg btn-outline inline-flex flex-1 items-center justify-center rounded-full font-bold">
+                <Link to="/contact" className="btn btn-lg btn-outline flex-1">
                   Discuss your project
                 </Link>
               </div>

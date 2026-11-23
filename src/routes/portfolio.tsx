@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SITE, WORKS, DEMO_STATS, SHOW_DEMO_BADGE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { Reviews } from "@/components/Sections";
@@ -37,8 +37,8 @@ function Portfolio() {
             A selection of recent websites, stores and campaigns, each built to look sharp and to be measured properly.
           </p>
           <div className="page-hero-actions animate-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-            <Link to="/contact" className="btn btn-lg btn-ink inline-flex items-center justify-center gap-2 rounded-full font-bold">Get a Free Audit <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
-            <Link to="/services" className="btn btn-lg btn-outline inline-flex items-center justify-center gap-2 rounded-full font-bold">Explore services <span className="btn-arrow" aria-hidden="true">→</span></Link>
+            <Link to="/contact" className="btn btn-lg btn-ink">Get a free audit <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" /></Link>
+            <Link to="/services" className="btn btn-lg btn-outline">Explore services <ArrowRight className="btn-arrow size-4" aria-hidden="true" /></Link>
           </div>
         </div>
       </section>

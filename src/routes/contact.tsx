@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
@@ -62,7 +62,7 @@ function Contact() {
           </div>
           <input name="website" placeholder="Website URL (optional)" className={field} maxLength={255} />
           <textarea required name="message" rows={5} placeholder="Tell me about your goals, budget and timeline" className={field} maxLength={2000} />
-          <button className="btn btn-lg btn-signal inline-flex w-full items-center justify-center gap-2 rounded-full font-bold">Send message <span className="btn-arrow" aria-hidden="true">→</span></button>
+          <button type="submit" className="btn btn-lg btn-signal w-full">Send message <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" /></button>
         </form>
       </div>
     </section>
