@@ -23,8 +23,20 @@ function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
   const label = theme === "light" ? "Switch to dark theme" : "Switch to light theme";
   return (
-    <Button variant="ghost" size="icon" className="theme-toggle shrink-0" onClick={toggleTheme} aria-label={label} title={label}>
-      {theme === "light" ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
+    <Button
+      variant="ghost"
+      size="icon"
+      className="theme-toggle shrink-0"
+      onClick={(event) => {
+        const box = event.currentTarget.getBoundingClientRect();
+        toggleTheme({ x: box.left + box.width / 2, y: box.top + box.height / 2 });
+      }}
+      aria-label={label}
+      title={label}
+    >
+      {/* Both icons stay mounted; CSS swaps them with a turn, so the change animates. */}
+      <Moon className="theme-icon theme-icon-moon" aria-hidden="true" />
+      <Sun className="theme-icon theme-icon-sun" aria-hidden="true" />
     </Button>
   );
 }

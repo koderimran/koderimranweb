@@ -207,12 +207,40 @@
 .theme-toggle-mobile .theme-toggle:hover {
   background-color: color-mix(in oklab, var(--muted) 80%, var(--foreground));
 }
-.theme-toggle svg { transition: transform var(--dur-base) ease; }
-.theme-toggle:hover svg { transform: rotate(18deg); }
+/* Toggle icon: the outgoing icon turns away and shrinks while the incoming one turns in.
+   The page itself changes with a circular reveal (see ThemeProvider and the
+   view-transition rules below). */
+.theme-toggle { position: relative; }
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transition:
+    transform var(--dur-slow) var(--ease-out),
+    opacity var(--dur-base) ease;
+}
+:root:not(.dark) .theme-icon-sun { opacity: 0; transform: rotate(90deg) scale(0.4); }
+:root:not(.dark) .theme-icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+:root.dark .theme-icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.4); }
+:root.dark .theme-icon-sun { opacity: 1; transform: rotate(0) scale(1); }
+@media (hover: hover) {
+  :root:not(.dark) .theme-toggle:hover .theme-icon-moon { transform: rotate(-16deg) scale(1); }
+  :root.dark .theme-toggle:hover .theme-icon-sun { transform: rotate(45deg) scale(1); }
+}
+/* Theme switch: the page animation is driven from JS (clip-path circle on the new view);
+   the browser's default cross-fade is turned off so the two themes never blend. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
 .brand-logo { display: block; height: 100%; width: auto; }
 @media (prefers-reduced-motion: reduce) {
-  .theme-toggle svg { transition: none; }
-  .theme-toggle:hover svg { transform: none; }
+  .theme-icon { transition: none; }
+  :root:not(.dark) .theme-toggle:hover .theme-icon-moon,
+  :root.dark .theme-toggle:hover .theme-icon-sun { transform: none; }
 }
 
 .site-header {
