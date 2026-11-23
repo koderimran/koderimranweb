@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
+import { Menu, X, Sun, Moon, ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
@@ -114,8 +114,8 @@ export function CtaBand() {
             </p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
-            <Link to="/contact" className="btn btn-lg btn-signal cta-band-button rounded-full text-center font-bold">
-              Get my free audit <span className="btn-arrow">→</span>
+            <Link to="/contact" className="btn btn-lg btn-signal cta-band-button text-center">
+              Get a free audit <ArrowRight className="btn-arrow size-4" aria-hidden="true" />
             </Link>
           </div>
         </div>

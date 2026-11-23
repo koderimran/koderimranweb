@@ -192,9 +192,9 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
             </ul>
           </div>
           <div className="mt-5 grid gap-2 pt-4">
-            <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-lg btn-outline inline-flex w-full items-center justify-center gap-2 rounded-full font-bold">Compare packages <ListChecks className="size-4" aria-hidden="true" /></button>
-            <Link to="/contact" className="btn btn-lg btn-ink flex w-full items-center justify-center gap-2 rounded-full font-bold">
-              Request a quote <ArrowUpRight className="size-4" aria-hidden="true" />
+            <button ref={compareButtonRef} type="button" onClick={() => setCompareOpen(true)} aria-haspopup="dialog" aria-expanded={compareOpen} className="btn btn-lg btn-outline w-full">Compare packages <ListChecks className="size-4" aria-hidden="true" /></button>
+            <Link to="/contact" className="btn btn-lg btn-ink w-full">
+              Request a quote <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" />
             </Link>
           </div>
         </aside>
@@ -243,8 +243,8 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
               <p id={`compare-description-${service.slug}`} className="mt-3 text-xs leading-relaxed text-muted-foreground">Every project is scoped around your goals and requirements. Final deliverables and pricing are confirmed in your quote.</p>
             </div>
             <div className="flex shrink-0 flex-col-reverse gap-2 border-t bg-card px-5 py-4 sm:flex-row sm:justify-end sm:px-7">
-              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-sm btn-outline inline-flex items-center justify-center gap-2 rounded-full font-bold">Close <X className="size-4" aria-hidden="true" /></button>
-              <Link to="/contact" className="btn btn-sm btn-ink inline-flex items-center justify-center gap-2 rounded-full font-bold">Request a quote <ArrowUpRight className="size-4" /></Link>
+              <button type="button" onClick={() => setCompareOpen(false)} className="btn btn-sm btn-outline">Close <X className="size-4" aria-hidden="true" /></button>
+              <Link to="/contact" className="btn btn-sm btn-ink">Request a quote <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" /></Link>
             </div>
           </section>
         </div>,
@@ -274,7 +274,7 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
             <ul className="mt-5 flex flex-wrap gap-2">
               {s.outcomes.map((outcome) => <li key={outcome} className="pill rounded-full px-3 py-1 text-xs font-semibold">{outcome}</li>)}
             </ul>
-            <Link to="/services" className="link-arrow mt-6">Explore service <ArrowUpRight className="size-4" /></Link>
+            <Link to="/services" className="link-arrow mt-6">Explore service <ArrowUpRight className="btn-arrow-up size-4" /></Link>
           </Reveal>
         );
       })}
@@ -393,7 +393,7 @@ export function Reviews() {
         <div className="max-w-sm">
           <h4 className="font-display text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-3xl">Ready to be my next happy client?</h4>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">Let’s talk about your goals and find the right way to move your project forward.</p>
-          <Link to="/contact" className="btn btn-lg btn-signal mt-6 rounded-full font-bold">Start a project <ArrowUpRight className="size-4" /></Link>
+          <Link to="/contact" className="btn btn-lg btn-signal mt-6">Start a project <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" /></Link>
         </div>
         <div className="testimonial-marquee min-w-0 space-y-4" aria-label="Client testimonials">
         <div className="testimonial-marquee-window"><div className="testimonial-marquee-track testimonial-marquee-track--right">{topLane.map((review, i) => reviewCard(review, `top-${i}`, i >= REVIEWS.length))}</div></div>
@@ -507,8 +507,8 @@ export function PageHero({ eyebrow, title, text, cta = "Book a free call", compa
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="page-hero-title title-settle mt-3 max-w-4xl font-bold">{title}</h1>
         <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
-        <Link to="/contact" className="page-hero-cta btn btn-lg btn-ink animate-rise mt-6 inline-flex items-center justify-center gap-2 rounded-full font-bold" style={{ animationDelay: "270ms" }}>
-          {cta} <ArrowUpRight className="size-4" aria-hidden="true" />
+        <Link to="/contact" className="page-hero-cta btn btn-lg btn-ink animate-rise mt-6" style={{ animationDelay: "270ms" }}>
+          {cta} <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" />
         </Link>
       </div>
     </section>

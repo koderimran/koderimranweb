@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { SectionHead, SectionIntro, WorkGrid, Reviews, Process, Faq, faqJsonLd } from "@/components/Sections";
 import { HomeServices } from "@/components/HomeServices";
@@ -87,8 +87,8 @@ function Index() {
                   I help e-commerce brands scale with high-converting <strong className="text-foreground">Shopify & WordPress</strong> stores, precision <strong className="text-foreground">GA4 & GTM</strong> tracking, and ROI-focused <strong className="text-foreground">Google Ads</strong> campaigns.
                 </p>
                 <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-                  <Link to="/contact" className="btn btn-signal hero-audit-cta inline-flex items-center rounded-full font-bold">Get Free Audit <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
-                  <Link to="/portfolio" className="btn btn-lg btn-outline inline-flex items-center gap-2 rounded-full font-bold">See my work <span className="btn-arrow">→</span></Link>
+                  <Link to="/contact" className="btn btn-signal hero-audit-cta">Get a free audit <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
+                  <Link to="/portfolio" className="btn btn-lg btn-outline">See my work <ArrowRight className="btn-arrow size-4" aria-hidden="true" /></Link>
                 </div>
                 <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Europe</p>
               </div>
@@ -122,7 +122,7 @@ function Index() {
             eyebrow="Selected work"
             title={<>Websites and campaigns built for <em className="accent-text font-serif font-medium italic">measurable growth.</em></>}
             action={
-              <Link to="/portfolio" className="btn btn-lg btn-outline inline-flex items-center gap-2 rounded-full font-bold">Browse all projects <span className="btn-arrow" aria-hidden="true">→</span></Link>
+              <Link to="/portfolio" className="btn btn-lg btn-outline">Browse all projects <ArrowRight className="btn-arrow size-4" aria-hidden="true" /></Link>
             }
           />
           <WorkGrid limit={3} featured />
