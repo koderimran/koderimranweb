@@ -405,6 +405,15 @@
   mask-image: linear-gradient(90deg, transparent, #000 18%, #000 88%, transparent), linear-gradient(180deg, #000 76%, transparent);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
+  /* Enters by sliding in from the right. Movement only: the photo is visible from the first
+     frame (it can be the LCP element) and its pixels are never filtered or altered. */
+  animation: hero-photo-enter var(--dur-enter) var(--ease-out) both;
+}
+/* The individual `translate` property, not `transform`: on phones the photo is centred with
+   transform: translateX(-50%), and the two properties combine instead of overriding. */
+@keyframes hero-photo-enter {
+  from { translate: 1.5rem 0; }
+  to { translate: 0 0; }
 }
 .hero-photo-blend {
   position: absolute;
@@ -927,7 +936,8 @@ footer a:hover {
     transition: none;
   }
   .animate-rise,
-  .animate-menu-in {
+  .animate-menu-in,
+  .hero-background-photo {
     animation: none;
   }
   .hover-lift,
