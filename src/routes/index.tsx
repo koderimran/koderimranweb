@@ -6,6 +6,7 @@ import { SectionHead, SectionIntro, WorkGrid, Reviews, Process, Faq, faqJsonLd }
 import { HomeServices } from "@/components/HomeServices";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/SiteChrome";
+import { AmbientGlow, AmbientGrid } from "@/components/Ambient";
 import { Portrait } from "@/components/Portrait";
 
 const HERO_MARQUEE = ["Google Ads", "Web Analytics", "Shopify", "WordPress"];
@@ -56,6 +57,7 @@ function Index() {
     <>
       <section className="home-section-divider overflow-x-clip">
         <div className="hero-backdrop">
+          <AmbientGlow />
           <div className="hero-photo-stage container-page" aria-hidden="true">
             <Portrait alt="Imran, Google Ads and e-commerce web specialist" className="hero-background-photo" />
           </div>
@@ -130,7 +132,8 @@ function Index() {
       </section>
 
       <div className="home-proof-atmosphere">
-        <section className="home-section-divider container-page py-20">
+        <section className="home-section-divider ambient-grid-host container-page py-20">
+          <AmbientGrid />
           <SectionIntro
             eyebrow="How I work"
             title="A process built around your service"
@@ -139,7 +142,8 @@ function Index() {
           <Process />
         </section>
 
-        <section className="home-section-divider testimonial-section overflow-hidden py-20 text-foreground">
+        <section className="home-section-divider ambient-host testimonial-section overflow-hidden py-20 text-foreground">
+          <AmbientGlow variant="proof" />
           <div className="container-page">
             <Reviews />
           </div>

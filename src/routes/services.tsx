@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SITE, SERVICES } from "@/lib/site";
 import { PageHero, ServiceGrid, Process, SectionHead } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
+import { AmbientGrid } from "@/components/Ambient";
 
 const TITLE = "Services: Conversion Tracking, Google Ads, Shopify & WordPress | Koder Imran";
 const DESC = "Web analytics and conversion tracking, Google Ads management, Shopify store design and growth, and WordPress website design and tracking by Koder Imran.";
@@ -37,7 +38,8 @@ export const Route = createFileRoute("/services")({
     <>
       <PageHero eyebrow="Services" title="Websites, Ads & Analytics — All Under One Roof." text="Get professional website design, expert Google Ads management, and accurate analytics and conversion tracking, all delivered by one dedicated specialist to help your business grow." cta="Let’s Get Started" compact />
       <section className="pb-14 md:pb-20"><ServiceGrid detailed /></section>
-      <section className="container-page pb-6 md:pb-10">
+      <section className="ambient-grid-host container-page pb-6 md:pb-10">
+        <AmbientGrid />
         <SectionHead eyebrow="Process" title="From first call to growth" />
         <Process />
       </section>

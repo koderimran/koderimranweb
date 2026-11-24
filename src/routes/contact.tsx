@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
+import { AmbientGlow } from "@/components/Ambient";
 
 const TITLE = "Contact Imran | Free Website, GA4 or Google Ads Audit";
 const DESC = "Book a free call or audit with Imran for Google Ads, GA4 tracking, Shopify or WordPress/WooCommerce projects. Fast replies, worldwide.";
@@ -34,7 +35,8 @@ function Contact() {
   }
   const field = "w-full rounded-xl border border-input bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-ring";
   return (
-    <section className="bg-grid">
+    <section className="bg-grid ambient-host">
+      <AmbientGlow />
       <div className="container-page grid gap-8 py-12 sm:gap-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-12 lg:py-20">
         <div>
           <p className="eyebrow animate-rise">Contact</p>
