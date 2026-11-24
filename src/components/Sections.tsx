@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { ArrowUpRight, BarChart3, Megaphone, ShoppingBag, LayoutTemplate, Check, ListChecks, X } from "lucide-react";
 import { SERVICES, WORKS, REVIEWS, FAQS } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
+import { AmbientGlow } from "@/components/Ambient";
 
 const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
 
@@ -502,7 +503,8 @@ export function faqJsonLd() {
 
 export function PageHero({ eyebrow, title, text, cta = "Book a free call", compact = false }: { eyebrow: string; title: string; text: string; cta?: string; compact?: boolean }) {
   return (
-    <section className="bg-grid rule-b">
+    <section className="bg-grid rule-b ambient-host">
+      <AmbientGlow />
       <div className={compact ? "container-page py-12 md:py-16" : "container-page py-20 md:py-28"}>
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="page-hero-title title-settle mt-3 max-w-4xl font-bold">{title}</h1>

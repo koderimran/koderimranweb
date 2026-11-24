@@ -4,6 +4,7 @@ import { SITE, WORKS, DEMO_STATS, SHOW_DEMO_BADGE } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { Reviews } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
+import { AmbientGlow } from "@/components/Ambient";
 
 const TITLE = "Portfolio | Websites, E-commerce & Digital Growth Projects | Koder Imran";
 const DESC = "Explore selected websites and e-commerce projects by Koder Imran, alongside services in conversion tracking, Google Ads, Shopify and WordPress.";
@@ -27,7 +28,8 @@ export const Route = createFileRoute("/portfolio")({
 function Portfolio() {
   return (
     <>
-      <section className="bg-grid rule-b">
+      <section className="bg-grid rule-b ambient-host">
+        <AmbientGlow />
         <div className="container-page py-12 md:py-16">
           <p className="eyebrow animate-rise">Selected work</p>
           <h1 className="page-hero-title title-settle mt-3 max-w-4xl font-bold">
@@ -124,7 +126,8 @@ function Portfolio() {
         </section>
       )}
 
-      <section className="home-section-divider home-section-divider--no-bottom-rule testimonial-section overflow-hidden py-20 text-foreground">
+      <section className="home-section-divider home-section-divider--no-bottom-rule ambient-host testimonial-section overflow-hidden py-20 text-foreground">
+        <AmbientGlow variant="proof" />
         <div className="container-page">
           <Reviews />
         </div>

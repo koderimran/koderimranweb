@@ -2290,3 +2290,123 @@ button {
 :root:not(.dark) .contact-details a:hover { color: oklch(0.34 0.07 145); }
 
 
+
+/* ===== Ambient background motion =====
+   Slow, decorative layers behind the content: glows drift (Hero, page heroes, Reviews), a faint
+   grid slides (Process), a light bar sweeps across the CTA band. Only transform and opacity
+   animate. Phones keep just the hero breathe and the CTA sweep; reduced motion stops every loop. */
+:root {
+  --amb-k: 0.75; /* travel distance: light surfaces move less so white never looks dirty */
+  --amb-glow-1: oklch(0.88 0.09 140 / 0.5);
+  --amb-glow-2: oklch(0.9 0.06 215 / 0.42);
+  --amb-glow-lime: oklch(0.9 0.15 128 / 0.26);
+  --amb-grid: oklch(0.5 0.03 150 / 0.06);
+  --amb-sweep: oklch(0.9 0.17 128 / 0.26); /* the band is the same deep green in both themes */
+}
+:root.dark {
+  --amb-k: 1;
+  --amb-glow-1: oklch(0.34 0.075 142 / 0.55);
+  --amb-glow-2: oklch(0.36 0.08 220 / 0.6);
+  --amb-glow-lime: oklch(0.88 0.19 128 / 0.22);
+  --amb-grid: oklch(0.85 0.05 130 / 0.09);
+}
+.ambient-host,
+.ambient-grid-host {
+  position: relative;
+  isolation: isolate;
+}
+.ambient-host { overflow: hidden; }
+.ambient-grid-host { overflow-y: clip; }
+
+.ambient-glows {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+.ambient-glow-a {
+  width: 70%; height: 90%; left: -12%; top: -30%;
+  background: radial-gradient(closest-side, var(--amb-glow-1), transparent);
+  animation: amb-drift-a 36s ease-in-out infinite alternate;
+}
+.ambient-glow-b {
+  width: 62%; height: 90%; right: -14%; top: -20%;
+  background: radial-gradient(closest-side, var(--amb-glow-2), transparent);
+  animation: amb-drift-b 36s ease-in-out infinite alternate;
+}
+.ambient-glow-c {
+  width: 46%; height: 70%; left: -8%; top: -24%;
+  opacity: 0.8;
+  background: radial-gradient(closest-side, var(--amb-glow-lime), transparent);
+  animation: amb-breathe 14s ease-in-out infinite alternate;
+}
+/* Reviews: the two glows travel the other way and a little further, with no breathe (the marquee already moves). */
+.ambient-glows--proof .ambient-glow-a {
+  width: 60%; height: 100%; left: -10%; top: -10%;
+  animation: amb-proof-a 44s ease-in-out infinite alternate;
+}
+.ambient-glows--proof .ambient-glow-b {
+  width: 58%; height: 100%; right: -12%; top: auto; bottom: -20%;
+  animation: amb-proof-b 44s ease-in-out infinite alternate;
+}
+@keyframes amb-drift-a { to { transform: translate(calc(24px * var(--amb-k)), calc(16px * var(--amb-k))); } }
+@keyframes amb-drift-b { to { transform: translate(calc(-24px * var(--amb-k)), calc(-14px * var(--amb-k))); } }
+@keyframes amb-proof-a { to { transform: translate(calc(32px * var(--amb-k)), calc(-12px * var(--amb-k))); } }
+@keyframes amb-proof-b { to { transform: translate(calc(-32px * var(--amb-k)), calc(12px * var(--amb-k))); } }
+@keyframes amb-breathe { from { opacity: 0.55; } to { opacity: 1; } }
+
+/* Process grid: full-bleed like the section rules; one cell per loop so it repeats seamlessly. */
+.ambient-grid {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: -48px;
+  bottom: -48px;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background-image:
+    linear-gradient(var(--amb-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--amb-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, #000 30%, transparent 100%);
+  will-change: transform;
+  animation: amb-grid 40s linear infinite;
+}
+@keyframes amb-grid { to { transform: translate(48px, 48px); } }
+
+/* CTA band: a light bar crosses in about 1.5s, then rests until the next loop (8.2s). The layer is
+   3x the band wide so the percentages in the keyframes scale with the band; the bar starts and ends
+   fully outside it, even skewed. */
+.cta-sweep {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -100%;
+  width: 300%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent calc(50% - 70px), var(--amb-sweep) 50%, transparent calc(50% + 70px));
+  transform: translateX(-37%) skewX(-24deg);
+  will-change: transform;
+  animation: amb-sweep 8.2s ease-out infinite;
+}
+@keyframes amb-sweep {
+  0% { transform: translateX(-37%) skewX(-24deg); }
+  18%, 100% { transform: translateX(37%) skewX(-24deg); }
+}
+
+@media (max-width: 767px) {
+  .ambient-glow-a,
+  .ambient-glow-b,
+  .ambient-grid { animation: none; will-change: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow,
+  .ambient-grid { animation: none; will-change: auto; }
+  .cta-sweep { display: none; }
+}

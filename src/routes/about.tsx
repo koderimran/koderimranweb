@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SITE } from "@/lib/site";
 import { SectionHead, Faq, faqJsonLd } from "@/components/Sections";
 import { CtaBand } from "@/components/SiteChrome";
+import { AmbientGlow } from "@/components/Ambient";
 import { Reveal } from "@/components/Reveal";
 import { Portrait } from "@/components/Portrait";
 
@@ -29,7 +30,8 @@ const SKILLS = ["Google Ads", "Performance Max", "Merchant Center", "GA4", "Goog
 function About() {
   return (
     <>
-      <section className="bg-grid rule-b">
+      <section className="bg-grid rule-b ambient-host">
+        <AmbientGlow />
         <div className="container-page grid items-center gap-8 py-12 sm:gap-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-12 lg:py-20">
           <Portrait alt="Portrait of Imran" className="animate-rise mx-auto aspect-[4/5] w-full max-w-sm lg:mx-0 rounded-[2rem] bg-muted shadow-soft" />
           <div>
