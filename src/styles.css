@@ -1529,16 +1529,10 @@ footer a:hover {
 }
 
 
-/* CTA proportions: text-led pill with a compact, optically balanced icon badge. */
-.hero-audit-cta {
-  gap: 0.75rem;
-  padding: 0.5rem 0.5rem 0.5rem 1.375rem;
-}
 /* The header pill has its own icon-fill motion, so it skips the generic wipe. */
 .header-book-call::before { display: none; }
-/* Pill buttons size themselves from their badge, so they carry no border. */
-.header-book-call,
-.hero-audit-cta { border-width: 0; }
+/* The header pill sizes itself from its badge, so it carries no border. */
+.header-book-call { border-width: 0; }
 .header-book-call {
   position: relative;
   isolation: isolate;
@@ -1628,13 +1622,6 @@ footer a:hover {
 .header-book-call--block:focus-visible::after { opacity: 1; }
 .header-book-call--block .hero-audit-icon { background: var(--signal); }
 
-.hero-audit-cta:hover .hero-audit-icon {
-  transform: rotate(45deg);
-}
-:root:not(.dark) .hero-audit-cta:hover .hero-audit-icon {
-  background: var(--ink);
-  color: var(--signal);
-}
 @media (prefers-reduced-motion: reduce) {
   .hero-audit-icon { transition: none; }
 }
