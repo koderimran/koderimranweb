@@ -89,7 +89,7 @@ function Index() {
                   I help e-commerce brands scale with high-converting <strong className="text-foreground">Shopify & WordPress</strong> stores, precision <strong className="text-foreground">GA4 & GTM</strong> tracking, and ROI-focused <strong className="text-foreground">Google Ads</strong> campaigns.
                 </p>
                 <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
-                  <Link to="/contact" className="btn btn-signal hero-audit-cta">Get a free audit <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
+                  <Link to="/contact" className="btn btn-lg btn-signal">Get a free audit <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" /></Link>
                   <Link to="/portfolio" className="btn btn-lg btn-outline">See my work <ArrowRight className="btn-arrow size-4" aria-hidden="true" /></Link>
                 </div>
                 <p className="animate-rise mt-6 text-sm text-muted-foreground" style={{ animationDelay: "360ms" }}>Trusted by clients in the USA, UK & Europe</p>
