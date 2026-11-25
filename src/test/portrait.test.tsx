@@ -16,7 +16,7 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("Owner portrait", () => {
-  it("shows the light photo in light theme and the original photo in dark theme", async () => {
+  it("uses the same transparent photo in light and dark theme", async () => {
     render(
       <ThemeProvider>
         <Toggle />
@@ -25,7 +25,7 @@ describe("Owner portrait", () => {
     );
 
     const img = screen.getByAltText("Imran");
-    expect(img.getAttribute("src")).toBe(SITE.portraitLight);
+    expect(img.getAttribute("src")).toBe(SITE.portrait);
 
     fireEvent.click(screen.getByRole("button", { name: "light" }));
     await waitFor(() => expect(document.documentElement.classList.contains("dark")).toBe(true));

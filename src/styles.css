@@ -2411,55 +2411,79 @@ button {
   .cta-sweep { display: none; }
 }
 
-/* ===== Light theme hero: a cleaner lower edge for the portrait =====
-   The suit fades out through a long band of partial opacity, which on a white canvas reads as grey
-   smoke under the photo. A second mask layer (intersected with the existing radial feather, see
-   mask-composite on .hero-background-photo) lets the lowest part dissolve sooner, so the portrait
-   ends in clean canvas instead of haze. The face sits near the top and is untouched. Only the mask
-   changes; the photo's pixels are never filtered. Dark theme keeps its own masks. */
-:root:not(.dark) {
-  --hero-photo-bottom-fade: linear-gradient(180deg, #000 0%, #000 67%, rgb(0 0 0 / 0.5) 80%, transparent 95%);
-}
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Tablets keep their side feather and bottom fade; a third layer removes the grey arc under the shoulders. */
-  :root:not(.dark) {
-    --hero-photo-bottom-fade: linear-gradient(180deg, #000 0%, #000 76%, rgb(0 0 0 / 0.5) 86%, transparent 97%);
-  }
-  :root:not(.dark) .hero-background-photo {
-    -webkit-mask-image:
-      linear-gradient(90deg, transparent, #000 18%, #000 88%, transparent),
-      linear-gradient(180deg, #000 76%, transparent),
-      var(--hero-photo-bottom-fade);
-    mask-image:
-      linear-gradient(90deg, transparent, #000 18%, #000 88%, transparent),
-      linear-gradient(180deg, #000 76%, transparent),
-      var(--hero-photo-bottom-fade);
-  }
-}
-@media (min-width: 1024px) {
-  :root:not(.dark) .hero-background-photo {
-    -webkit-mask-image:
-      radial-gradient(ellipse 55% 78% at 48% 39%, #000 0%, #000 30%, rgb(0 0 0 / 0.88) 43%, rgb(0 0 0 / 0.52) 62%, rgb(0 0 0 / 0.18) 82%, transparent 100%),
-      var(--hero-photo-bottom-fade);
-    mask-image:
-      radial-gradient(ellipse 55% 78% at 48% 39%, #000 0%, #000 30%, rgb(0 0 0 / 0.88) 43%, rgb(0 0 0 / 0.52) 62%, rgb(0 0 0 / 0.18) 82%, transparent 100%),
-      var(--hero-photo-bottom-fade);
-  }
-}
-@media (max-width: 767px) {
-  /* On phones the portrait is shorter, so the beard sits lower in the frame: start the dissolve later. */
-  :root:not(.dark) {
-    --hero-photo-bottom-fade: linear-gradient(180deg, #000 0%, #000 78%, rgb(0 0 0 / 0.5) 89%, transparent 100%);
-  }
-  :root:not(.dark) .hero-background-photo {
-    -webkit-mask-image:
-      radial-gradient(ellipse 74% 84% at 50% 34%, #000 0%, #000 30%, rgb(0 0 0 / 0.90) 44%, rgb(0 0 0 / 0.62) 62%, rgb(0 0 0 / 0.28) 82%, transparent 100%),
-      var(--hero-photo-bottom-fade);
-    mask-image:
-      radial-gradient(ellipse 74% 84% at 50% 34%, #000 0%, #000 30%, rgb(0 0 0 / 0.90) 44%, rgb(0 0 0 / 0.62) 62%, rgb(0 0 0 / 0.28) 82%, transparent 100%),
-      var(--hero-photo-bottom-fade);
-  }
-}
 /* The hero glows sit behind the portrait; on white they pooled green and blue around it. Keep them lighter in the light theme. */
 :root:not(.dark) .hero-backdrop .ambient-glow-a { opacity: 0.6; }
 :root:not(.dark) .hero-backdrop .ambient-glow-b { opacity: 0.35; }
+
+
+/* ===== Hero portrait: one transparent cut-out for both themes =====
+   The photo is a head-and-shoulders cut-out with a black suit. A black edge that fades through partial
+   opacity reads as grey smoke on a light canvas, so the blend is one smooth round fade that only starts
+   below the shoulders: the face, hair and shoulders stay fully clear and the suit dissolves downwards
+   and rounds off from the shoulder tips. Light keeps ~85% of the frame clear, dark ~80%. Only the mask
+   changes; the photo is never filtered. The mask is in element coordinates, so every breakpoint shares it.
+   The second layer (intersected, see mask-composite on .hero-background-photo) only softens the last 5% at
+   each side, where the cropped box would otherwise leave a short vertical edge at the shoulder tips. */
+:root:not(.dark) {
+  --hero-portrait-mask: radial-gradient(ellipse 80% 64% at 50% 36%,
+    #000 0%, #000 76.0%,
+    rgb(0 0 0 / 0.957) 79.0%,
+    rgb(0 0 0 / 0.844) 82.0%,
+    rgb(0 0 0 / 0.684) 85.0%,
+    rgb(0 0 0 / 0.500) 88.0%,
+    rgb(0 0 0 / 0.316) 91.0%,
+    rgb(0 0 0 / 0.156) 94.0%,
+    rgb(0 0 0 / 0.043) 97.0%,
+    transparent 100.0%),
+    linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+:root.dark {
+  --hero-portrait-mask: radial-gradient(ellipse 80% 64% at 50% 36%,
+    #000 0%, #000 68.0%,
+    rgb(0 0 0 / 0.957) 72.0%,
+    rgb(0 0 0 / 0.844) 76.0%,
+    rgb(0 0 0 / 0.684) 80.0%,
+    rgb(0 0 0 / 0.500) 84.0%,
+    rgb(0 0 0 / 0.316) 88.0%,
+    rgb(0 0 0 / 0.156) 92.0%,
+    rgb(0 0 0 / 0.043) 96.0%,
+    transparent 100.0%),
+    linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+:root:not(.dark) .hero-background-photo,
+:root.dark .hero-background-photo {
+  -webkit-mask-image: var(--hero-portrait-mask);
+  mask-image: var(--hero-portrait-mask);
+}
+/* On phones the portrait is a square so the whole bust shows and the fade starts at the shoulders at every width. */
+@media (max-width: 767px) {
+  :root { --hero-mobile-photo-height: min(100vw, 34rem); }
+  .hero-background-photo,
+  :root.dark .hero-background-photo,
+  :root:not(.dark) .hero-background-photo {
+    width: var(--hero-mobile-photo-height);
+  }
+}
+/* Dark theme: a soft green light behind the head separates black hair and suit from the dark canvas.
+   It is CSS behind the photo, not an effect on it. */
+:root.dark .hero-photo-stage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: var(--page-gutter);
+  width: 46%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 55% at 50% 38%, oklch(0.45 0.09 150 / 0.5), transparent 70%);
+}
+@media (max-width: 767px) {
+  :root.dark .hero-photo-stage::before {
+    top: 0;
+    bottom: auto;
+    right: auto;
+    left: 50%;
+    width: var(--hero-mobile-photo-height);
+    height: var(--hero-mobile-photo-height);
+    transform: translateX(-50%);
+  }
+}

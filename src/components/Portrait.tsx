@@ -1,8 +1,6 @@
 import { SITE } from "@/lib/site";
-import { useTheme } from "@/components/ThemeProvider";
 
+/** The owner photo: one transparent cut-out, the same in every theme (the hero blends it per theme in CSS). */
 export function Portrait({ alt, className }: { alt: string; className: string }) {
-  const { theme } = useTheme();
-  const src = theme === "dark" ? SITE.portrait : SITE.portraitLight;
-  return <img src={src} alt={alt} className={`${className} object-cover`} />;
+  return <img src={SITE.portrait} alt={alt} className={`${className} object-cover`} />;
 }

@@ -1,15 +1,20 @@
-import photo from "@/assets/koder-imran.png.asset.json";
-import photoLight from "@/assets/koder-imran-light.png.asset.json";
+import portrait from "@/assets/koder-imran-portrait.png";
+
+const SITE_URL = "https://koderimran.com";
+/** Social cards need an absolute URL; the bundled image path is relative. */
+const absolute = (path: string) => (/^https?:/.test(path) ? path : `${SITE_URL}${path}`);
+
 export const SITE = {
   name: "Imran",
   brand: "Koder Imran",
-  url: "https://koderimran.com",
+  url: SITE_URL,
   role: "Google Ads, Web Analytics & E-commerce Web Specialist",
   email: "koderimran@gmail.com",
   phone: "+8801737919566",
   location: "Khilkhet, Dhaka, Bangladesh",
-  portrait: photo.url,
-  portraitLight: photoLight.url,
+  /** One transparent cut-out for both themes; the hero blends it with a mask per theme. */
+  portrait,
+  portraitUrl: absolute(portrait),
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/koderimran/" },
     { label: "Facebook", href: "https://www.facebook.com/koderimran" },
