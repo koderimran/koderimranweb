@@ -4367,3 +4367,20 @@ body.intro-active .site-header { display: none; }
     font-size: clamp(1.65rem, 7vw, 2.8rem) !important;
   }
 }
+
+
+/* Requested intro brand-color hierarchy */
+.intro-page-frame .cinematic-intro-greeting,
+.intro-page-frame .cinematic-intro-greeting span {
+  color: #f5f5f2 !important;
+}
+.intro-page-frame .cinematic-intro-greeting .intro-greeting-accent {
+  color: #83ff00 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  color: #f5f5f2 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  color: #83ff00 !important;
+  font-style: italic !important;
+}
