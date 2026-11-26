@@ -48,7 +48,7 @@ export function CinematicIntro() {
   const contentGutter = Math.max(24, Math.min(viewportWidth * 0.04, 80));
   const contentInset = Math.max(0, (viewportWidth - 1920) / 2) + contentGutter;
   const availableContentWidth = Math.max(0, viewportWidth - contentInset * 2);
-  const copyStartWidth = availableContentWidth * 0.5;
+  const copyStartWidth = availableContentWidth * 0.45;
   const copyEndWidth = availableContentWidth;
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
   // Keep the description's left edge anchored while its container expands.
@@ -137,7 +137,7 @@ export function CinematicIntro() {
         <div className="cinematic-intro-bottom">
           <div className="cinematic-intro-location">
             <i aria-hidden="true" />
-            <span>BASED IN DHAKA</span>
+            <span>BASED IN DHAKA, BANGLADESH</span>
           </div>
         </div>
         <span className="cinematic-intro-watermark" aria-hidden="true">IMRAN</span>
