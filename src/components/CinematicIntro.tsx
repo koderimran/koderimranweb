@@ -9,27 +9,29 @@ export function CinematicIntro() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState(1440);
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let frame = 0;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const update = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.max(1, section.offsetHeight - window.innerHeight);
-        setProgress(clamp(-rect.top / distance));
-      });
+      setViewportWidth(window.innerWidth);
+      if (reducedMotion || !section) return;
+      const rect = section.getBoundingClientRect();
+      const distance = Math.max(1, section.offsetHeight - window.innerHeight);
+      setProgress(clamp(-rect.top / distance));
     };
-
     update();
-    window.addEventListener("scroll", update, { passive: true });
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", update);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", update);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", update);
     };
   }, []);
@@ -40,7 +42,12 @@ export function CinematicIntro() {
     return () => document.body.classList.remove("intro-active");
   }, [progress]);
 
-  const style = { "--intro-progress": progress } as CSSProperties;
+  const initialPortraitSize = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.78 : viewportWidth <= 900 ? 0.58 : 0.49), 730);
+  const portraitSize = initialPortraitSize + (75 - initialPortraitSize) * progress;
+  const style = {
+    "--intro-progress": progress,
+    "--intro-portrait-size": `${portraitSize}px`,
+  } as CSSProperties;
 
   return (
     <section ref={sectionRef} className="cinematic-intro" style={style} aria-label="Introduction">
@@ -62,10 +69,9 @@ export function CinematicIntro() {
             KODER<span>IMRAN</span><i>.</i>
           </Link>
 
-          <div className="cinematic-intro-location">
-            <i aria-hidden="true" />
-            <span>BASED IN DHAKA</span>
-          </div>
+          <Link to="/portfolio" className="cinematic-intro-portfolio">
+            VIEW PORTFOLIO <ArrowUpRight aria-hidden="true" />
+          </Link>
 
           <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen}>
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
@@ -77,7 +83,16 @@ export function CinematicIntro() {
         </header>
 
         <div className="cinematic-intro-copy">
-          <h1>WEBSITE <span>DESIGN</span><br />ANALYTICS &amp; TRACKING<br />AND <span>GOOGLE ADS</span><b className="intro-period">.</b></h1>
+          <h1>FULL STACK<br /><span>BUSINESS GROWTH</span><br />ENGINEER<b className="intro-period">.</b></h1>
+        </div>
+
+        <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left">
+          <span className="cinematic-intro-side-index">01 / DIGITAL EXPERIENCE</span>
+          <p>Website design &amp; development<br />Built for clarity, speed and conversion.</p>
+        </div>
+        <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-right">
+          <span className="cinematic-intro-side-index">02 / PERFORMANCE MARKETING</span>
+          <p>Google Ads, analytics &amp; tracking<br />Turning data into measurable growth.</p>
         </div>
 
         <div className="cinematic-intro-portrait" aria-hidden="true">
@@ -87,9 +102,10 @@ export function CinematicIntro() {
         </div>
 
         <div className="cinematic-intro-bottom">
-          <Link id="intro-contact" to="/contact" className="cinematic-intro-cta">
-            LET'S WORK TOGETHER <ArrowUpRight aria-hidden="true" />
-          </Link>
+          <div className="cinematic-intro-location">
+            <i aria-hidden="true" />
+            <span>BASED IN DHAKA</span>
+          </div>
         </div>
         <span className="cinematic-intro-watermark" aria-hidden="true">IMRAN</span>
       </div>
