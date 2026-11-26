@@ -1213,22 +1213,48 @@ footer a:hover {
   z-index: 1;
   pointer-events: none;
 }
+:root { --hero-photo-max-h: 39rem; --hero-photo-max-w: 46%; }
+.hero-marquee-stage { container-type: size; }
 .hero-service-marquee {
+  /* Same width as the portrait box (its limits are --hero-photo-max-h / -w, set with the hero
+     sizing below), so the middle of the ticker is the middle of the face: the face sits on the
+     photo's centre line. The first width is the fallback for browsers without container units. */
   position: absolute;
-  right: 2rem;
+  right: var(--page-gutter);
   bottom: 2rem;
-  width: 45%;
+  width: var(--hero-photo-max-w);
+  width: min(100cqh, var(--hero-photo-max-h), var(--hero-photo-max-w));
   max-width: 100%;
   overflow: hidden;
   color: var(--foreground);
-  opacity: 0.78;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 3rem, #000 calc(100% - 3rem), transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 3rem, #000 calc(100% - 3rem), transparent 100%);
+  /* Words are fully clear within 5rem of the face's centre line on each side, then fade out smoothly
+     (smoothstep) until they disappear into the background at both ends. */
+  --hero-marquee-mask: linear-gradient(90deg,
+      transparent 0%,
+      rgb(0 0 0 / 0.043) calc(50% - 5rem - 0.875 * (50% - 5rem)),
+      rgb(0 0 0 / 0.156) calc(50% - 5rem - 0.750 * (50% - 5rem)),
+      rgb(0 0 0 / 0.316) calc(50% - 5rem - 0.625 * (50% - 5rem)),
+      rgb(0 0 0 / 0.500) calc(50% - 5rem - 0.500 * (50% - 5rem)),
+      rgb(0 0 0 / 0.684) calc(50% - 5rem - 0.375 * (50% - 5rem)),
+      rgb(0 0 0 / 0.844) calc(50% - 5rem - 0.250 * (50% - 5rem)),
+      rgb(0 0 0 / 0.957) calc(50% - 5rem - 0.125 * (50% - 5rem)),
+      rgb(0 0 0 / 1.000) calc(50% - 5rem),
+      rgb(0 0 0 / 1.000) calc(50% + 5rem),
+      rgb(0 0 0 / 0.957) calc(50% + 5rem + 0.125 * (50% - 5rem)),
+      rgb(0 0 0 / 0.844) calc(50% + 5rem + 0.250 * (50% - 5rem)),
+      rgb(0 0 0 / 0.684) calc(50% + 5rem + 0.375 * (50% - 5rem)),
+      rgb(0 0 0 / 0.500) calc(50% + 5rem + 0.500 * (50% - 5rem)),
+      rgb(0 0 0 / 0.316) calc(50% + 5rem + 0.625 * (50% - 5rem)),
+      rgb(0 0 0 / 0.156) calc(50% + 5rem + 0.750 * (50% - 5rem)),
+      rgb(0 0 0 / 0.043) calc(50% + 5rem + 0.875 * (50% - 5rem)),
+      transparent 100%);
+  -webkit-mask-image: var(--hero-marquee-mask);
+  mask-image: var(--hero-marquee-mask);
 }
 .hero-service-marquee-track {
   display: flex;
   width: max-content;
-  animation: hero-service-marquee-scroll 32s linear infinite;
+  animation: hero-service-marquee-scroll 70s linear infinite;
   will-change: transform;
 }
 .hero-marquee-stage[data-paused="true"] .hero-service-marquee-track { animation-play-state: paused; }
@@ -1263,8 +1289,6 @@ footer a:hover {
     bottom: 3rem;
     width: auto;
     max-width: none;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.25rem, #000 calc(100% - 2.25rem), transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0, #000 2.25rem, #000 calc(100% - 2.25rem), transparent 100%);
   }
   .hero-service-marquee-track span { font-size: 0.66rem; letter-spacing: 0.1em; }
   .hero-service-marquee-track b,
@@ -1874,10 +1898,11 @@ button {
     padding-block: 3.5rem 10rem;
   }
 
+  :root { --hero-photo-max-h: 34rem; --hero-photo-max-w: 42%; }
   .hero-background-photo {
     height: 100%;
-    max-height: 34rem;
-    max-width: 42%;
+    max-height: var(--hero-photo-max-h);
+    max-width: var(--hero-photo-max-w);
   }
 
   .hero-copy .hero-title {
@@ -1899,10 +1924,11 @@ button {
     padding-block: 4rem;
   }
 
+  :root { --hero-photo-max-h: 39rem; --hero-photo-max-w: 46%; }
   .hero-background-photo {
     height: 100%;
-    max-height: 39rem;
-    max-width: 46%;
+    max-height: var(--hero-photo-max-h);
+    max-width: var(--hero-photo-max-w);
   }
 
   .hero-copy .hero-title {
