@@ -154,7 +154,7 @@ export function CinematicIntro() {
 
 
 
-          <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={progress >= 0.96 || menuOpen}>
+          <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={progress >= 0.96}>
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
             <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
