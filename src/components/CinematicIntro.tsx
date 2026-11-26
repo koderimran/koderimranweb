@@ -80,13 +80,18 @@ export function CinematicIntro() {
     event.currentTarget.style.setProperty("--intro-highlight-x", "0px");
     event.currentTarget.style.setProperty("--intro-highlight-y", "0px");
   };
+  const greetingStartSize = viewportWidth <= 640
+    ? Math.max(1.8, Math.min(viewportWidth * 0.075 / 16, 2.8))
+    : Math.max(2, Math.min(viewportWidth * 0.038 / 16, 3.8));
+  const greetingSize = greetingStartSize + (2 - greetingStartSize) * progress;
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
     "--intro-copy-y": `${copyY}px`,
     "--intro-copy-width": `${copyWidth}px`,
-    "--intro-title-width": `${titleWidth}px`,
     "--intro-copy-size": `${1 + progress}rem`,
     "--intro-copy-progress": progress,
+    "--intro-greeting-size": `${greetingSize}rem`,
+    "--intro-menu-travel": `${Math.max(0, viewportHeight - 120)}px`,
     textAlign: "left",
   } as CSSProperties;
   const initialPortraitWidth = Math.min(
