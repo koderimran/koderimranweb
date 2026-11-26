@@ -4320,3 +4320,14 @@ body.intro-active .site-header { display: none; }
   text-wrap: initial !important;
   overflow-wrap: normal;
 }
+
+
+/* Intro greeting above the main title */
+.intro-page-frame .cinematic-intro-greeting {
+  margin: 0 0 clamp(12px, 1.4vw, 22px);
+  color: #83ff00;
+  font-size: clamp(.85rem, 1.1vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 1.2;
+}
