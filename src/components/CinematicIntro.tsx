@@ -34,7 +34,7 @@ export function CinematicIntro() {
     };
   }, []);
 
-  const style = { "--intro-progress": progress } as CSSProperties;
+  useEffect(() => {\n    document.body.classList.toggle("intro-active", progress < 1);\n    return () => document.body.classList.remove("intro-active");\n  }, [progress]);\n\n  const style = { "--intro-progress": progress } as CSSProperties;
 
   return (
     <section ref={sectionRef} className="cinematic-intro" style={style} aria-label="Introduction">
