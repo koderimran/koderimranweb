@@ -51,7 +51,10 @@ export function CinematicIntro() {
   const copyStartWidth = availableContentWidth * 0.5;
   const copyEndWidth = availableContentWidth;
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
-  const titleWidth = availableContentWidth * 0.5;
+  // Keep the title inside the left-side safe area so it never collides with the portrait.
+  const titleWidth = viewportWidth > 900
+    ? Math.min(availableContentWidth * 0.5, viewportWidth * 0.36)
+    : availableContentWidth * 0.5;
   // Keep the description's left edge anchored while its container expands.
   const copyLeft = contentInset;
   const copyX = copyLeft + copyWidth / 2;
