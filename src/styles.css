@@ -4396,3 +4396,21 @@ body.intro-active .site-header { display: none; }
   font-style: italic !important;
   font-weight: 800 !important;
 }
+
+
+/* Final portrait edge integration: feather the left shoulder into the stage,
+   with a deeper lower-left falloff. Keep the face and right silhouette intact. */
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  -webkit-mask-image:
+    radial-gradient(ellipse 92% 86% at 0% 66%, transparent 0%, rgb(0 0 0 / .08) 18%, rgb(0 0 0 / .42) 42%, #000 76%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 7%, rgb(0 0 0 / .28) 18%, rgb(0 0 0 / .78) 34%, #000 49%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 92% 86% at 0% 66%, transparent 0%, rgb(0 0 0 / .08) 18%, rgb(0 0 0 / .42) 42%, #000 76%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 7%, rgb(0 0 0 / .28) 18%, rgb(0 0 0 / .78) 34%, #000 49%);
+  mask-composite: intersect;
+  mask-mode: alpha;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
