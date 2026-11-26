@@ -658,7 +658,8 @@
     color var(--dur-base) var(--ease-out),
     border-color var(--dur-base) var(--ease-out),
     box-shadow var(--dur-base) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out);
+    transform var(--dur-fast) var(--ease-out),
+    background-color 0s linear;
 }
 /* The wipe: a pill of the hover colour that slides in behind the label. */
 .btn::before {
@@ -682,6 +683,13 @@
 .btn:focus-visible {
   color: var(--btn-fg-hover);
   border-color: var(--btn-border-hover);
+  /* Once the wipe has all but arrived (it is ~99% done at 300ms) the button's own colour is
+     swapped for the fill colour. Without this the dark base colour sits under the wipe, and
+     where the rounded edge is anti-aliased it shows through as a faint dark outline around the
+     lime pill. The swap is instant and happens under the wipe, so nothing visibly changes. The
+     last entry of transition-delay belongs to background-color (see the transition list). */
+  background-color: var(--btn-fill);
+  transition-delay: 0s, 0s, 0s, 0s, 300ms;
   outline: 2px solid var(--ring);
   outline-offset: 3px;
 }
@@ -690,6 +698,8 @@
     color: var(--btn-fg-hover);
     border-color: var(--btn-border-hover);
     box-shadow: var(--btn-shadow-hover);
+    background-color: var(--btn-fill);
+    transition-delay: 0s, 0s, 0s, 0s, 300ms;
   }
   .btn:hover::before {
     transform: none;
@@ -792,6 +802,7 @@
   --btn-bg: var(--muted);
   --btn-fg: var(--muted-foreground);
   --btn-border: var(--border);
+  background-color: var(--btn-bg);
   box-shadow: none;
   cursor: not-allowed;
   pointer-events: none;
@@ -1576,6 +1587,8 @@ footer a:hover {
 .header-book-call:hover,
 .header-book-call:focus-visible {
   color: var(--ink) !important;
+  /* The pill keeps its dark ring on hover, so it opts out of the generic background swap. */
+  background-color: var(--btn-bg);
 }
 .header-book-call .hero-audit-icon {
   background: transparent;
