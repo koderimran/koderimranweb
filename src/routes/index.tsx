@@ -54,7 +54,10 @@ function Index() {
     return () => io.disconnect();
   }, []);
 
-  return (\n    <>\n      <CinematicIntro />\n      <section className="home-section-divider overflow-x-clip">
+  return (
+    <>
+      <CinematicIntro />
+      <section className="home-section-divider overflow-x-clip">
         <div className="hero-backdrop">
           <AmbientGlow />
           <div className="hero-photo-stage container-page" aria-hidden="true">
