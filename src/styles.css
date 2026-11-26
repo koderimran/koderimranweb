@@ -4384,3 +4384,15 @@ body.intro-active .site-header { display: none; }
   color: #83ff00 !important;
   font-style: italic !important;
 }
+
+
+/* Explicitly keep GROWTH light while ENGINEER remains the lime italic accent. */
+.intro-page-frame .cinematic-intro-copy h1 .intro-growth-light {
+  color: #f5f5f2 !important;
+  font-style: normal !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  color: #83ff00 !important;
+  font-style: italic !important;
+  font-weight: 800 !important;
+}
