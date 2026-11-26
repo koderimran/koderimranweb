@@ -4620,3 +4620,26 @@ body.intro-active .site-header { display: none; }
 /* Brand mark fades with the same scroll timeline without affecting header layout. */
 .intro-page-frame .cinematic-intro-header .cinematic-intro-brand { opacity:clamp(0,calc(1 - var(--intro-progress,0) * 1.65),1) !important; transition:none !important; will-change:opacity; }
 @media(prefers-reduced-motion:reduce){.intro-page-frame .cinematic-intro-greeting{font-size:var(--intro-greeting-size)!important}.intro-page-frame .cinematic-intro-header .cinematic-intro-menu{transform:none!important}.intro-page-frame .cinematic-intro-header .cinematic-intro-brand{opacity:1!important}}
+
+
+/* Pin the menu control to the viewport and interpolate its top edge to 24px above the bottom. */
+.intro-page-frame .cinematic-intro-header {
+  transform: none !important;
+  left: max(var(--intro-content-gutter), calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))) !important;
+  right: auto !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: fixed !important;
+  top: var(--intro-menu-top, 24px) !important;
+  left: max(var(--intro-content-gutter), calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))) !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: top;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    left: var(--intro-content-gutter) !important;
+  }
+}
