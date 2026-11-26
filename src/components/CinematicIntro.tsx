@@ -114,6 +114,7 @@ export function CinematicIntro() {
     "--intro-portrait-height": `${portraitHeight}px`,
     "--intro-portrait-top": `${portraitTop}px`,
     "--intro-title-top": `${titleTop}px`,
+    "--intro-title-width": `${titleWidth}px`,
     "--intro-portrait-radius": `${progress * 50}%`,
     "--intro-portrait-image-scale": 1,
     "--intro-portrait-progress": portraitProgress,
