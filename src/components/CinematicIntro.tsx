@@ -87,12 +87,8 @@ export function CinematicIntro() {
         </div>
 
         <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left">
-          <span className="cinematic-intro-side-index">01 / DIGITAL EXPERIENCE</span>
-          <p>Website design &amp; development<br />Built for clarity, speed and conversion.</p>
-        </div>
-        <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-right">
-          <span className="cinematic-intro-side-index">02 / PERFORMANCE MARKETING</span>
-          <p>Google Ads, analytics &amp; tracking<br />Turning data into measurable growth.</p>
+          <span className="cinematic-intro-side-index">DIGITAL EXPERIENCE / PERFORMANCE</span>
+          <p>Website design, analytics &amp; growth strategy<br />Built for clarity, speed and conversion.</p>
         </div>
 
         <div className="cinematic-intro-portrait" aria-hidden="true">
