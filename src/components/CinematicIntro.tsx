@@ -49,8 +49,9 @@ export function CinematicIntro() {
   const copyStartWidth = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.78 : 0.34), viewportWidth <= 640 ? 330 : 390);
   const copyEndWidth = Math.min(viewportWidth * 0.82, 980);
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
-  const copyStartX = Math.max(20, viewportWidth * 0.055) + copyStartWidth / 2;
-  const copyX = copyStartX + (viewportWidth / 2 - copyStartX) * progress;
+  // Keep the copy's left edge anchored while its text container expands on scroll.
+  const copyLeft = Math.max(20, viewportWidth * 0.055);
+  const copyX = copyLeft + copyWidth / 2;
   const copyBottom = viewportHeight * (viewportWidth <= 640 ? 0.07 : 0.07);
   const copyStartY = viewportHeight - copyBottom - 48;
   const copyY = copyStartY + (viewportHeight / 2 - copyStartY) * progress;
@@ -60,7 +61,7 @@ export function CinematicIntro() {
     "--intro-copy-width": `${copyWidth}px`,
     "--intro-copy-size": `${1 + progress * 1.55}rem`,
     "--intro-copy-progress": progress,
-    textAlign: progress > 0.42 ? "center" : "left",
+    textAlign: "left",
   } as CSSProperties;
   const style = {
     "--intro-progress": progress,
