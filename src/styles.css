@@ -3740,7 +3740,6 @@ body.intro-active .site-header { display: none; }
 }
 .intro-page-frame .cinematic-intro-image {
   filter: grayscale(1) contrast(1.04) !important;
-  drop-shadow: none;
 }
 .intro-page-frame .cinematic-intro-bottom {
   position: absolute;
