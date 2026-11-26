@@ -4294,3 +4294,21 @@ body.intro-active .site-header { display: none; }
     transition: none !important;
   }
 }
+
+
+/* Title width follows the same scroll progress as the description: 50% → 100%. */
+.intro-page-frame .cinematic-intro-copy {
+  width: var(--intro-title-width) !important;
+  max-width: var(--intro-title-width) !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: var(--intro-title-width) !important;
+    max-width: var(--intro-title-width) !important;
+  }
+}
