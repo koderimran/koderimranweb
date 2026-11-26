@@ -46,6 +46,22 @@ export function CinematicIntro() {
 
   const initialPortraitWidth = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52), 730);
   const portraitScale = 1 - progress * (1 - 75 / initialPortraitWidth);
+  const copyStartWidth = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.78 : 0.34), viewportWidth <= 640 ? 330 : 390);
+  const copyEndWidth = Math.min(viewportWidth * 0.82, 980);
+  const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
+  const copyStartX = Math.max(20, viewportWidth * 0.055) + copyStartWidth / 2;
+  const copyX = copyStartX + (viewportWidth / 2 - copyStartX) * progress;
+  const copyBottom = viewportHeight * (viewportWidth <= 640 ? 0.07 : 0.07);
+  const copyStartY = viewportHeight - copyBottom - 48;
+  const copyY = copyStartY + (viewportHeight / 2 - copyStartY) * progress;
+  const copyStyle = {
+    "--intro-copy-x": `${copyX}px`,
+    "--intro-copy-y": `${copyY}px`,
+    "--intro-copy-width": `${copyWidth}px`,
+    "--intro-copy-size": `${1 + progress * 1.55}rem`,
+    "--intro-copy-progress": progress,
+    textAlign: progress > 0.42 ? "center" : "left",
+  } as CSSProperties;
   const style = {
     "--intro-progress": progress,
     "--intro-portrait-scale": portraitScale,
@@ -88,8 +104,7 @@ export function CinematicIntro() {
           <h1>FULL STACK<br /><span>BUSINESS GROWTH</span><br />ENGINEER<b className="intro-period">.</b></h1>
         </div>
 
-        <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left">
-          <span className="cinematic-intro-side-index">DIGITAL EXPERIENCE / PERFORMANCE</span>
+        <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left cinematic-intro-scroll-copy" style={copyStyle}>
           <p>Website design, analytics &amp; growth strategy<br />Built for clarity, speed and conversion.</p>
         </div>
 
