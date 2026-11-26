@@ -4074,3 +4074,63 @@ body.intro-active .site-header { display: none; }
       );
   }
 }
+
+
+/* Clean portrait presentation: no backing shape, no crop, fade the cut-out itself into the page. */
+.intro-page-frame .cinematic-intro-portrait {
+  right: 0 !important;
+  left: auto !important;
+  bottom: 0 !important;
+  top: auto !important;
+  width: var(--intro-portrait-width);
+  height: var(--intro-portrait-height);
+  overflow: visible !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+.intro-page-frame .cinematic-intro-image-tint {
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-orbit,
+.intro-page-frame .cinematic-intro-portrait::before,
+.intro-page-frame .cinematic-intro-portrait::after {
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: right bottom !important;
+  transform-origin: right bottom !important;
+  filter: grayscale(1) contrast(1.04) !important;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .12) 12%,
+    rgb(0 0 0 / .48) 27%,
+    #000 48%,
+    #000 100%
+  ) !important;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .12) 12%,
+    rgb(0 0 0 / .48) 27%,
+    #000 48%,
+    #000 100%
+  ) !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .25) 18%, #000 52%) !important;
+    mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .25) 18%, #000 52%) !important;
+  }
+}
