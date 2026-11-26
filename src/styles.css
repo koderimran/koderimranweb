@@ -4649,13 +4649,15 @@ body.intro-active .site-header { display: none; }
 /* Unified scroll timing: logo and menu fade on the exact same progress curve. */
 .intro-page-frame .cinematic-intro-header .cinematic-intro-brand,
 .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
-  opacity: clamp(0, calc(1 - var(--intro-progress, 0)), 1) !important;
+  /* Both elements use one accelerated curve and start fading on the first scroll pixel. */
+  opacity: clamp(0, calc(1 - clamp(0, var(--intro-progress, 0), 1) * 2.5), 1) !important;
   transition: none !important;
   will-change: opacity;
 }
 /* The parent copy moves with the title (155px → 80px); this additional 60px
    lift places the greeting at exactly 20px from the viewport top at progress 1. */
 .intro-page-frame .cinematic-intro-greeting {
-  transform: translate3d(0, calc(var(--intro-progress, 0) * -60px), 0) !important;
+  /* Parent title anchor moves 155px → 80px; this 56px lift lands at 24px. */
+  transform: translate3d(0, calc(clamp(0, var(--intro-progress, 0), 1) * -56px), 0) !important;
   will-change: font-size, transform;
 }
