@@ -4151,3 +4151,69 @@ body.intro-active .site-header { display: none; }
     letter-spacing: .1em !important;
   }
 }
+
+
+/* 2.5D portrait depth: restrained perspective, layered extrusion and pointer-reactive light. */
+.intro-page-frame .cinematic-intro-stage {
+  perspective: 1500px;
+  perspective-origin: 72% 44%;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  transform: perspective(1500px) rotateX(var(--intro-tilt-x, 0deg)) rotateY(var(--intro-tilt-y, 0deg)) !important;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 650ms cubic-bezier(.2,.75,.25,1);
+}
+.intro-page-frame .cinematic-intro-depth-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: right bottom !important;
+  transform: translate3d(0, 0, -24px) scale(1.018);
+  transform-origin: right bottom;
+  filter: grayscale(1) brightness(.52) blur(1.2px) !important;
+  opacity: .42;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 12%, rgb(0 0 0 / .48) 27%, #000 48%, #000 100%) !important;
+  mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 12%, rgb(0 0 0 / .48) 27%, #000 48%, #000 100%) !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  position: relative;
+  z-index: 1;
+  transform: translate3d(0, 0, 18px) scale(var(--intro-portrait-image-scale)) !important;
+  backface-visibility: hidden;
+}
+.intro-page-frame .cinematic-intro-portrait::before {
+  content: "";
+  display: block !important;
+  position: absolute;
+  inset: 8% 0 12% 18%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .34;
+  background: radial-gradient(ellipse at var(--intro-pointer-x, 72%) var(--intro-pointer-y, 42%), rgb(210 255 166 / .22), transparent 42%);
+  mix-blend-mode: screen;
+  transform: translateZ(30px);
+  transition: opacity 500ms ease;
+}
+@media (hover: none), (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    transform: none !important;
+    transition: none;
+  }
+  .intro-page-frame .cinematic-intro-depth-layer { opacity: .24; }
+  .intro-page-frame .cinematic-intro-portrait::before { opacity: .16; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-portrait,
+  .intro-page-frame .cinematic-intro-depth-layer,
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-portrait::before {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
