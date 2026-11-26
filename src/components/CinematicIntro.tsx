@@ -46,7 +46,7 @@ export function CinematicIntro() {
 
   const initialPortraitWidth = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52), 730);
   const portraitScale = 1 - progress * (1 - 75 / initialPortraitWidth);
-  const copyStartWidth = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.78 : 0.34), viewportWidth <= 640 ? 330 : 390);
+  const copyStartWidth = Math.min(viewportWidth * 0.78, viewportWidth <= 640 ? 340 : 760);
   const copyEndWidth = Math.min(viewportWidth * 0.82, 980);
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
   // Keep the copy's left edge anchored while its text container expands on scroll.
@@ -108,7 +108,7 @@ export function CinematicIntro() {
         </div>
 
         <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left cinematic-intro-scroll-copy" style={copyStyle}>
-          <p>Website design, analytics &amp; growth strategy<br />Built for clarity, speed and conversion.</p>
+          <p>I help e-commerce brands and service businesses scale with high-converting <strong>Shopify &amp; WordPress</strong> websites, precision <strong>GA4 &amp; GTM</strong> tracking, and ROI-focused <strong>Google Ads</strong> campaigns.</p>
         </div>
 
         <div className="cinematic-intro-portrait" aria-hidden="true">
