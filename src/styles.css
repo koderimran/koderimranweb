@@ -4331,3 +4331,15 @@ body.intro-active .site-header { display: none; }
   letter-spacing: .08em;
   line-height: 1.2;
 }
+
+
+/* Typography hierarchy: prominent greeting, medium-weight main title */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  margin-bottom: clamp(10px, 1vw, 16px);
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  font-weight: 600;
+}
