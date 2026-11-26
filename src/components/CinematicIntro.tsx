@@ -61,7 +61,7 @@ export function CinematicIntro() {
     "--intro-copy-x": `${copyX}px`,
     "--intro-copy-y": `${copyY}px`,
     "--intro-copy-width": `${copyWidth}px`,
-    "--intro-copy-size": `${1 + progress * 1.55}rem`,
+    "--intro-copy-size": `${1.25 + progress * 1.75}rem`,
     "--intro-copy-progress": progress,
     textAlign: "left",
   } as CSSProperties;
@@ -105,6 +105,10 @@ export function CinematicIntro() {
             KODER<span>IMRAN</span><i>.</i>
           </Link>
 
+          <Link to="/portfolio" className="cinematic-intro-portfolio cinematic-intro-header-portfolio">
+            VIEW PORTFOLIO <ArrowUpRight aria-hidden="true" />
+          </Link>
+
 
 
           <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen}>
@@ -128,9 +132,6 @@ export function CinematicIntro() {
 
         <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left cinematic-intro-scroll-copy" style={copyStyle}>
           <p>I help e-commerce brands and service businesses scale with high-converting <strong>Shopify &amp; WordPress</strong> websites, precision <strong>GA4 &amp; GTM</strong> tracking, and ROI-focused <strong>Google Ads</strong> campaigns.</p>
-          <Link to="/portfolio" className="cinematic-intro-portfolio cinematic-intro-copy-portfolio">
-            VIEW PORTFOLIO <ArrowUpRight aria-hidden="true" />
-          </Link>
         </div>
 
         <div className="cinematic-intro-bottom">
