@@ -107,7 +107,7 @@ export function CinematicIntro() {
   const portraitSize = initialPortraitWidth + (64 - initialPortraitWidth) * portraitProgress;
   const portraitHeight = initialPortraitHeight + (64 - initialPortraitHeight) * portraitProgress;
   const portraitTop = 100 + (32 - 100) * portraitProgress;
-  const titleTop = 155 + (80 - 155) * progress;
+  const titleTop = 155 + (100 - 155) * progress;
   const style = {
     "--intro-progress": progress,
     "--intro-portrait-width": `${portraitSize}px`,
