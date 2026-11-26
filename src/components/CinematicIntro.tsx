@@ -81,7 +81,8 @@ export function CinematicIntro() {
     event.currentTarget.style.setProperty("--intro-highlight-y", "0px");
   };
   const greetingStartSize = 3;
-  const greetingSize = greetingStartSize + (1 - greetingStartSize) * progress;
+  const greetingEndSize = 1.5;
+  const greetingSize = greetingStartSize + (greetingEndSize - greetingStartSize) * progress;
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
     "--intro-copy-y": `${copyY}px`,
