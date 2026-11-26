@@ -3402,3 +3402,65 @@ body.intro-active .site-header { display: none; }
     transform-origin: top right;
   }
 }
+
+
+/* Intro typography and controls share a 1920px content grid.
+   The background and portrait remain viewport-bleed. */
+.intro-page-frame {
+  --intro-content-max: 1920px;
+  --intro-content-gutter: clamp(24px, 4vw, 80px);
+}
+.intro-page-frame .cinematic-intro-header {
+  left: 50%;
+  right: auto;
+  width: min(calc(100% - 2 * var(--intro-content-gutter)), var(--intro-content-max));
+  max-width: var(--intro-content-max);
+  padding-inline: 0;
+  transform: translateX(-50%);
+}
+.intro-page-frame .cinematic-intro-copy {
+  left: max(
+    var(--intro-content-gutter),
+    calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))
+  ) !important;
+  width: min(
+    calc(100vw - 2 * max(var(--intro-content-gutter), (100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))),
+    1080px
+  );
+  max-width: 1080px;
+  text-align: left;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  transform-origin: left top !important;
+}
+.intro-page-frame .cinematic-intro-bottom {
+  left: 50%;
+  right: auto;
+  width: min(calc(100% - 2 * var(--intro-content-gutter)), var(--intro-content-max));
+  transform: translateX(-50%);
+  padding: 0;
+}
+.intro-page-frame .cinematic-intro-nav {
+  left: 0;
+}
+.intro-page-frame .cinematic-intro-sidecopy-left.cinematic-intro-scroll-copy {
+  left: var(--intro-copy-x);
+  text-align: left !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header {
+    width: calc(100% - 2 * var(--intro-content-gutter));
+  }
+  .intro-page-frame .cinematic-intro-copy {
+    left: var(--intro-content-gutter) !important;
+    width: calc(100% - 2 * var(--intro-content-gutter));
+    max-width: none;
+  }
+  .intro-page-frame .cinematic-intro-bottom {
+    width: calc(100% - 2 * var(--intro-content-gutter));
+  }
+}
