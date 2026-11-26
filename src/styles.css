@@ -4618,7 +4618,7 @@ body.intro-active .site-header { display: none; }
 /* Menu travels down the viewport in direct proportion to the section scroll progress. */
 .intro-page-frame .cinematic-intro-header .cinematic-intro-menu { position:relative !important; z-index:30 !important; transform:translate3d(0,calc(var(--intro-progress,0) * var(--intro-menu-travel,0px)),0) !important; transition:none !important; will-change:transform; }
 /* Brand mark fades with the same scroll timeline without affecting header layout. */
-.intro-page-frame .cinematic-intro-header .cinematic-intro-brand { opacity:clamp(0,calc(1 - var(--intro-progress,0) * 1.65),1) !important; transition:none !important; will-change:opacity; }
+.intro-page-frame .cinematic-intro-header .cinematic-intro-brand { opacity:clamp(0,calc(1 - var(--intro-progress,0)),1) !important; transition:none !important; will-change:opacity; }
 @media(prefers-reduced-motion:reduce){.intro-page-frame .cinematic-intro-greeting{font-size:var(--intro-greeting-size)!important}.intro-page-frame .cinematic-intro-header .cinematic-intro-menu{transform:none!important}.intro-page-frame .cinematic-intro-header .cinematic-intro-brand{opacity:1!important}}
 
 
@@ -4643,4 +4643,19 @@ body.intro-active .site-header { display: none; }
   .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
     left: var(--intro-content-gutter) !important;
   }
+}
+
+
+/* Unified scroll timing: logo and menu fade on the exact same progress curve. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-brand,
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  opacity: clamp(0, calc(1 - var(--intro-progress, 0)), 1) !important;
+  transition: none !important;
+  will-change: opacity;
+}
+/* The parent copy moves with the title (155px → 80px); this additional 60px
+   lift places the greeting at exactly 20px from the viewport top at progress 1. */
+.intro-page-frame .cinematic-intro-greeting {
+  transform: translate3d(0, calc(var(--intro-progress, 0) * -60px), 0) !important;
+  will-change: font-size, transform;
 }
