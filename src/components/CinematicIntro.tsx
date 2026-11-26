@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import { Portrait } from "@/components/Portrait";
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
@@ -137,9 +136,10 @@ export function CinematicIntro() {
             KODER<span>IMRAN</span><i>.</i>
           </Link>
 
-          <Link to="/portfolio" className="cinematic-intro-portfolio cinematic-intro-header-portfolio">
-            VIEW PORTFOLIO <ArrowUpRight aria-hidden="true" />
-          </Link>
+          <div className="cinematic-intro-location cinematic-intro-header-location">
+            <i aria-hidden="true" />
+            <span>DHAKA, BANGLADESH</span>
+          </div>
 
 
 
@@ -168,12 +168,7 @@ export function CinematicIntro() {
           <p>I help e-commerce brands and service businesses scale with high-converting <strong>Shopify &amp; WordPress</strong> websites, precision <strong>GA4 &amp; GTM</strong> tracking, and ROI-focused <strong>Google Ads</strong> campaigns.</p>
         </div>
 
-        <div className="cinematic-intro-bottom">
-          <div className="cinematic-intro-location">
-            <i aria-hidden="true" />
-            <span>BASED IN DHAKA, BANGLADESH</span>
-          </div>
-        </div>
+
         <span className="cinematic-intro-watermark" aria-hidden="true">IMRAN</span>
       </div>
     </section>
