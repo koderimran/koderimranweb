@@ -3065,3 +3065,128 @@ body.intro-active .site-header { display: none; }
   .cinematic-intro-sidecopy p { transform: none; }
   .cinematic-intro-location i::after { animation: none; }
 }
+
+
+
+/* Final visual pass: full-frame lighting, portrait breathing room and display typography */
+.cinematic-intro-stage {
+  position: sticky;
+  isolation: isolate;
+  background: #050605;
+}
+.cinematic-intro-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 82% at 72% 42%, rgb(131 255 0 / .105), transparent 72%),
+    radial-gradient(ellipse 48% 58% at 15% 88%, rgb(131 255 0 / .065), transparent 75%),
+    radial-gradient(ellipse 85% 95% at 50% 48%, rgb(34 48 28 / .18), transparent 78%),
+    linear-gradient(135deg, #080a07 0%, #050605 48%, #080a07 100%);
+}
+.cinematic-intro-noise { z-index: 0; }
+.cinematic-intro-header,
+.cinematic-intro-copy,
+.cinematic-intro-sidecopy,
+.cinematic-intro-portrait,
+.cinematic-intro-bottom,
+.cinematic-intro-watermark { z-index: 2; }
+.cinematic-intro-copy h1 {
+  font-family: var(--font-display), "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  letter-spacing: -.075em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.cinematic-intro-portrait {
+  top: 100px;
+  right: max(4vw, calc((100vw - 1440px) / 2));
+  bottom: auto;
+  width: min(52vw, 730px);
+  height: calc(100svh - 100px);
+  max-width: none;
+  aspect-ratio: auto;
+  overflow: visible;
+  border-radius: 0;
+  transform: scale(var(--intro-portrait-scale));
+  transform-origin: top right;
+  filter: drop-shadow(0 0 48px rgb(131 255 0 / .08));
+}
+.cinematic-intro-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center bottom;
+  filter: grayscale(1) contrast(1.04);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.cinematic-intro-image-tint {
+  inset: 0;
+  opacity: .14;
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(90deg, transparent 55%, rgb(131 255 0 / .12)),
+    radial-gradient(ellipse at 65% 55%, rgb(131 255 0 / .2), transparent 70%);
+}
+.cinematic-intro-orbit { display: none; }
+.cinematic-intro-sidecopy-left {
+  left: var(--page-gutter);
+  right: auto;
+  bottom: clamp(28px, 7vh, 76px);
+  width: min(34vw, 390px);
+  transform-origin: bottom left;
+}
+.cinematic-intro-sidecopy-left p {
+  transform-origin: left bottom;
+}
+.cinematic-intro-sidecopy-right { display: none !important; }
+.cinematic-intro-bottom {
+  bottom: clamp(22px, 4vh, 42px);
+  justify-content: flex-end;
+}
+@media (max-width: 900px) {
+  .cinematic-intro-portrait {
+    top: 100px;
+    right: 2vw;
+    width: 62vw;
+    height: calc(100svh - 100px);
+  }
+  .cinematic-intro-sidecopy-left {
+    bottom: clamp(24px, 6vh, 58px);
+    width: min(42vw, 360px);
+  }
+}
+@media (max-width: 640px) {
+  .cinematic-intro-portrait {
+    top: 100px;
+    right: 50%;
+    width: 88vw;
+    height: calc(100svh - 100px);
+    transform: translateX(50%) scale(var(--intro-portrait-scale));
+    transform-origin: top center;
+  }
+  .cinematic-intro-copy h1 {
+    font-family: var(--font-display), "Bricolage Grotesque", sans-serif;
+    letter-spacing: -.065em;
+    line-height: .94;
+  }
+  .cinematic-intro-sidecopy-left {
+    left: var(--page-gutter);
+    bottom: 7%;
+    width: min(78vw, 330px);
+    padding: 10px 12px;
+  }
+  .cinematic-intro-sidecopy-left p {
+    font-size: .58rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-portrait { transform: none; }
+  .cinematic-intro-stage::before { background: #080a07; }
+}
