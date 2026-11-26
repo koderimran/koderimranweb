@@ -9,13 +9,15 @@ export function CinematicIntro() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [viewportWidth, setViewportWidth] = useState(1440);\n  const [viewportHeight, setViewportHeight] = useState(900);
+  const [viewportWidth, setViewportWidth] = useState(1440);
+  const [viewportHeight, setViewportHeight] = useState(900);
 
   useEffect(() => {
     const section = sectionRef.current;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const update = () => {
-      setViewportWidth(window.innerWidth);\n      setViewportHeight(window.innerHeight);
+      setViewportWidth(window.innerWidth);
+      setViewportHeight(window.innerHeight);
       if (reducedMotion || !section) return;
       const rect = section.getBoundingClientRect();
       const distance = Math.max(1, section.offsetHeight - window.innerHeight);
