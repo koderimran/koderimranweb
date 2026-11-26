@@ -85,7 +85,7 @@ export function CinematicIntro() {
     "--intro-copy-y": `${copyY}px`,
     "--intro-copy-width": `${copyWidth}px`,
     "--intro-title-width": `${titleWidth}px`,
-    "--intro-copy-size": `${1.25 + progress * 1.75}rem`,
+    "--intro-copy-size": `${1 + progress * 2}rem`,
     "--intro-copy-progress": progress,
     textAlign: "left",
   } as CSSProperties;
@@ -152,7 +152,7 @@ export function CinematicIntro() {
         </header>
 
         <div className="cinematic-intro-copy">
-          <h1>FULL STACK BUSINESS<br /><span>GROWTH ENGINEER</span><b className="intro-period">.</b></h1>
+          <h1>FULL STACK BUSINESS <span>GROWTH ENGINEER</span><b className="intro-period">.</b></h1>
         </div>
 
         <div className="cinematic-intro-portrait" aria-hidden="true">
