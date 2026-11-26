@@ -635,6 +635,10 @@
   --btn-border-hover: var(--btn-fill);
   --btn-shadow: none;
   --btn-shadow-hover: none;
+  /* Border width. Only the outline variant draws a border; the filled variants set 0 so the
+     hover wipe can cover the whole pill (a border would ring the wipe in a different colour
+     until it arrives). The sizes add the missing pixel back, so every box stays the same size. */
+  --btn-bw: 1px;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -643,7 +647,7 @@
   overflow: hidden;
   isolation: isolate;
   cursor: pointer;
-  border: 1px solid var(--btn-border);
+  border: var(--btn-bw) solid var(--btn-border);
   border-radius: 9999px;
   background-color: var(--btn-bg);
   color: var(--btn-fg);
@@ -660,7 +664,7 @@
 .btn::before {
   content: "";
   position: absolute;
-  inset: -1px;
+  inset: calc(var(--btn-bw) * -1);
   z-index: -1;
   pointer-events: none;
   border-radius: inherit;
@@ -711,13 +715,13 @@
    the compact size grows to a 44px touch target on touch screens. */
 .btn-lg {
   min-height: 3rem;
-  padding-inline: 1.5rem;
+  padding: calc(1px - var(--btn-bw)) calc(1.5rem + 1px - var(--btn-bw));
   font-size: 0.9375rem;
   line-height: 1.25rem;
 }
 .btn-sm {
   min-height: 2.5rem;
-  padding-inline: 1.25rem;
+  padding: calc(1px - var(--btn-bw)) calc(1.25rem + 1px - var(--btn-bw));
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
@@ -729,6 +733,7 @@
    primary (btn-ink) is soft off-white and fills with lime; the one main CTA (btn-signal) is
    lime and fills with off-white. Lime is the hover payoff, not resting decoration. */
 @utility btn-ink {
+  --btn-bw: 0px;
   --btn-bg: var(--ink);
   --btn-fg: var(--ink-foreground);
   --btn-fill: var(--signal);
@@ -737,6 +742,7 @@
   --btn-shadow-hover: 0 16px 30px -16px color-mix(in oklab, var(--signal) 70%, transparent);
 }
 @utility btn-signal {
+  --btn-bw: 0px;
   --btn-bg: var(--ink);
   --btn-fg: var(--ink-foreground);
   --btn-fill: var(--signal);
@@ -770,6 +776,7 @@
 }
 /* The CTA band is deep green in both themes: lime button, light fill on hover. */
 .cta-band-button {
+  --btn-bw: 0px;
   --btn-bg: var(--signal);
   --btn-fg: var(--signal-foreground);
   --btn-fill: oklch(0.97 0.03 128);
@@ -781,6 +788,7 @@
 /* Disabled sits after the variants (and outranks the dark overrides) so it always wins. */
 :root .btn:disabled,
 :root .btn[aria-disabled="true"] {
+  --btn-bw: 1px;
   --btn-bg: var(--muted);
   --btn-fg: var(--muted-foreground);
   --btn-border: var(--border);
@@ -1531,25 +1539,29 @@ footer a:hover {
 
 /* The header pill has its own icon-fill motion, so it skips the generic wipe. */
 .header-book-call::before { display: none; }
-/* The header pill sizes itself from its badge, so it carries no border. */
+/* The header pill sizes itself from its badge, so it carries no border. All of its measures are
+   whole pixels (2rem badge + 0.25rem ring on each side = 40px, the same as .btn-sm), so the edges
+   land on the pixel grid and stay crisp. */
 .header-book-call { border-width: 0; }
 .header-book-call {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   gap: 0.625rem;
-  padding: 0.3rem;
+  padding: 0.25rem 0.25rem 0.25rem 1.25rem;
   color: var(--btn-primary-fg);
 }
 .header-book-call::after {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 0.2rem;
+  /* The fill lives in the 0.25rem ring around the badge, exactly where the badge sits. */
+  inset: 0.25rem;
   background: var(--signal);
-  /* Resting: the 2rem badge circle at 0.3rem from the edges. Hover: the full pill.
-     clip-path animates without re-laying-out the button (top/right/width did). */
-  clip-path: inset(0.1rem 0.1rem 0.1rem calc(100% - 2.1rem) round 9999px);
+  /* Resting: only the 2rem badge circle at the right end. Hover: the whole inner pill. The
+     height never changes, the circle just stretches left. clip-path animates without
+     re-laying-out the button. */
+  clip-path: inset(0 0 0 calc(100% - 2rem) round 9999px);
   transition: clip-path var(--dur-slow) var(--ease-out);
 }
 .header-book-call:hover::after,
@@ -1609,12 +1621,9 @@ footer a:hover {
 /* Full-width variant (mobile menu): label and icon sit side by side, centred.
    The icon carries its own badge colour, and on hover the fill spreads across
    the whole pill instead of growing from the right edge. */
-.header-book-call--block { justify-content: center; }
+.header-book-call--block { justify-content: center; padding: 0.25rem; }
 .header-book-call--block::after {
-  top: 0.2rem;
-  right: 0.2rem;
-  bottom: 0.2rem;
-  width: calc(100% - 0.4rem);
+  clip-path: inset(0 0 0 0 round 9999px);
   opacity: 0;
   transition: opacity var(--dur-base) ease;
 }
