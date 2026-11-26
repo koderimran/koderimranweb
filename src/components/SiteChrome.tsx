@@ -81,7 +81,7 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-2 lg:flex lg:justify-self-end">
           <ThemeToggle />
-          <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center rounded-full !p-[0.3rem] !pl-[1.2rem] text-sm font-bold">
+          <Link to="/contact" className="btn btn-ink header-book-call inline-flex items-center rounded-full !p-1 !pl-5 text-sm font-bold">
             <span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span>
           </Link>
         </div>
@@ -101,7 +101,7 @@ export function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink header-book-call header-book-call--block mt-4 flex w-full items-center justify-center gap-3 rounded-full !p-[0.3rem] text-sm font-bold"><span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn btn-ink header-book-call header-book-call--block mt-4 flex w-full items-center justify-center gap-3 rounded-full !p-1 text-sm font-bold"><span className="header-book-call-label">Book a free call</span> <span className="hero-audit-icon" aria-hidden="true"><ArrowUpRight className="size-4" /></span></Link>
           </nav>
         </div>
       )}
