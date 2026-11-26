@@ -3947,3 +3947,66 @@ body.intro-active .site-header { display: none; }
       linear-gradient(to top, #050605 0%, transparent 20%);
   }
 }
+
+
+/* Shoulder-to-bottom blend: fade in at shoulder height, then feather the left contour to the base. */
+.intro-page-frame .cinematic-intro-image-tint {
+  inset: 0 !important;
+  opacity: 1 !important;
+  background:
+    radial-gradient(
+      ellipse 72% 88% at 0% 56%,
+      #050605 0%,
+      rgb(5 6 5 / .96) 22%,
+      rgb(5 6 5 / .76) 42%,
+      rgb(5 6 5 / .3) 64%,
+      transparent 84%
+    ),
+    radial-gradient(
+      ellipse 92% 42% at 0% 100%,
+      #050605 0%,
+      rgb(5 6 5 / .88) 34%,
+      rgb(5 6 5 / .42) 60%,
+      transparent 100%
+    );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 34%,
+    rgb(0 0 0 / .08) 42%,
+    rgb(0 0 0 / .55) 54%,
+    #000 68%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 34%,
+    rgb(0 0 0 / .08) 42%,
+    rgb(0 0 0 / .55) 54%,
+    #000 68%,
+    #000 100%
+  );
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image-tint {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 32%,
+      rgb(0 0 0 / .12) 43%,
+      rgb(0 0 0 / .62) 57%,
+      #000 70%,
+      #000 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 32%,
+      rgb(0 0 0 / .12) 43%,
+      rgb(0 0 0 / .62) 57%,
+      #000 70%,
+      #000 100%
+    );
+  }
+}
