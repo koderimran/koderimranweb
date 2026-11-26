@@ -94,9 +94,12 @@ export function CinematicIntro() {
     730,
   );
   const initialPortraitHeight = Math.max(180, viewportHeight - 100);
-  const portraitSize = initialPortraitWidth + (64 - initialPortraitWidth) * progress;
-  const portraitHeight = initialPortraitHeight + (64 - initialPortraitHeight) * progress;
-  const portraitTop = 100 + (32 - 100) * progress;
+  // Portrait choreography is intentionally faster than the long-form copy reveal:
+  // the first scroll movement immediately contracts the rendered image dimensions.
+  const portraitProgress = clamp((-((sectionRef.current?.getBoundingClientRect().top) ?? 0)) / Math.max(1, viewportHeight * 0.72));
+  const portraitSize = initialPortraitWidth + (64 - initialPortraitWidth) * portraitProgress;
+  const portraitHeight = initialPortraitHeight + (64 - initialPortraitHeight) * portraitProgress;
+  const portraitTop = 100 + (32 - 100) * portraitProgress;
   const titleTop = 155 + (80 - 155) * progress;
   const style = {
     "--intro-progress": progress,
@@ -105,7 +108,8 @@ export function CinematicIntro() {
     "--intro-portrait-top": `${portraitTop}px`,
     "--intro-title-top": `${titleTop}px`,
     "--intro-portrait-radius": `${progress * 50}%`,
-    "--intro-portrait-image-scale": 1 + progress * 1.35,
+    "--intro-portrait-image-scale": 1,
+    "--intro-portrait-progress": portraitProgress,
     "--intro-portrait-fit": progress > 0.82 ? "cover" : "contain",
   } as CSSProperties;
 
