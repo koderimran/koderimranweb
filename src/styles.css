@@ -3813,3 +3813,43 @@ body.intro-active .site-header { display: none; }
     bottom: 20px !important;
   }
 }
+
+
+/* Right-edge portrait alignment with a soft shoulder-side alpha blend. */
+.intro-page-frame .cinematic-intro-portrait {
+  right: 0 !important;
+  left: auto !important;
+  margin-right: 0 !important;
+  transform: none !important;
+  overflow: hidden;
+}
+.intro-page-frame .cinematic-intro-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 0 0 auto !important;
+  object-fit: var(--intro-portrait-fit) !important;
+  object-position: right bottom !important;
+  transform-origin: right bottom !important;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .18) 12%,
+    #000 34%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .18) 12%,
+    #000 34%,
+    #000 100%
+  );
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-image {
+    object-position: right bottom !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+  }
+}
