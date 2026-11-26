@@ -48,9 +48,10 @@ export function CinematicIntro() {
   const contentGutter = Math.max(24, Math.min(viewportWidth * 0.04, 80));
   const contentInset = Math.max(0, (viewportWidth - 1920) / 2) + contentGutter;
   const availableContentWidth = Math.max(0, viewportWidth - contentInset * 2);
-  const copyStartWidth = availableContentWidth * 0.45;
+  const copyStartWidth = availableContentWidth * 0.5;
   const copyEndWidth = availableContentWidth;
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
+  const titleWidth = availableContentWidth * (0.5 + 0.5 * progress);
   // Keep the description's left edge anchored while its container expands.
   const copyLeft = contentInset;
   const copyX = copyLeft + copyWidth / 2;
@@ -83,6 +84,7 @@ export function CinematicIntro() {
     "--intro-copy-x": `${copyX}px`,
     "--intro-copy-y": `${copyY}px`,
     "--intro-copy-width": `${copyWidth}px`,
+    "--intro-title-width": `${titleWidth}px`,
     "--intro-copy-size": `${1.25 + progress * 1.75}rem`,
     "--intro-copy-progress": progress,
     textAlign: "left",
