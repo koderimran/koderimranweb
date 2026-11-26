@@ -4312,3 +4312,11 @@ body.intro-active .site-header { display: none; }
     max-width: var(--intro-title-width) !important;
   }
 }
+
+
+/* Let the title wrap naturally from its animated container width. */
+.intro-page-frame .cinematic-intro-copy h1 {
+  white-space: normal !important;
+  text-wrap: initial !important;
+  overflow-wrap: normal;
+}
