@@ -1551,7 +1551,7 @@ footer a:hover {
 /* The header pill has its own icon-fill motion, so it skips the generic wipe. */
 .header-book-call::before { display: none; }
 /* The header pill sizes itself from its badge, so it carries no border. All of its measures are
-   whole pixels (2rem badge + 0.25rem on each side = 40px, the same as .btn-sm), so the edges
+   whole pixels (2rem badge + 0.25rem ring on each side = 40px, the same as .btn-sm), so the edges
    land on the pixel grid and stay crisp. */
 .header-book-call { border-width: 0; }
 .header-book-call {
@@ -1566,12 +1566,13 @@ footer a:hover {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 0;
+  /* The fill lives in the 0.25rem ring around the badge, exactly where the badge sits. */
+  inset: 0.25rem;
   background: var(--signal);
-  /* Resting: only the 2rem badge circle, 0.25rem from the right, top and bottom edges. Hover:
-     the whole pill, so no dark ring is left around the lime. clip-path animates without
+  /* Resting: only the 2rem badge circle at the right end. Hover: the whole inner pill. The
+     height never changes, the circle just stretches left. clip-path animates without
      re-laying-out the button. */
-  clip-path: inset(0.25rem 0.25rem 0.25rem calc(100% - 2.25rem) round 9999px);
+  clip-path: inset(0 0 0 calc(100% - 2rem) round 9999px);
   transition: clip-path var(--dur-slow) var(--ease-out);
 }
 .header-book-call:hover::after,
@@ -1586,6 +1587,8 @@ footer a:hover {
 .header-book-call:hover,
 .header-book-call:focus-visible {
   color: var(--ink) !important;
+  /* The pill keeps its dark ring on hover, so it opts out of the generic background swap. */
+  background-color: var(--btn-bg);
 }
 .header-book-call .hero-audit-icon {
   background: transparent;
@@ -1604,7 +1607,6 @@ footer a:hover {
 :root.dark .header-book-call:hover,
 :root.dark .header-book-call:focus-visible {
   color: var(--foreground) !important;
-  background-color: var(--signal-foreground);
 }
 :root.dark .header-book-call .hero-audit-icon {
   color: var(--foreground);
