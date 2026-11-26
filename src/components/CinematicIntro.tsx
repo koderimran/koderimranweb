@@ -64,12 +64,20 @@ export function CinematicIntro() {
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     event.currentTarget.style.setProperty("--intro-tilt-x", `${-y * 3.2}deg`);
     event.currentTarget.style.setProperty("--intro-tilt-y", `${x * 4.2}deg`);
+    event.currentTarget.style.setProperty("--intro-depth-x", `${x * -9}px`);
+    event.currentTarget.style.setProperty("--intro-depth-y", `${y * -7}px`);
+    event.currentTarget.style.setProperty("--intro-highlight-x", `${x * 5}px`);
+    event.currentTarget.style.setProperty("--intro-highlight-y", `${y * 4}px`);
     event.currentTarget.style.setProperty("--intro-pointer-x", `${(x + 0.5) * 100}%`);
     event.currentTarget.style.setProperty("--intro-pointer-y", `${(y + 0.5) * 100}%`);
   };
   const handlePortraitPointerLeave = (event: React.PointerEvent<HTMLElement>) => {
     event.currentTarget.style.setProperty("--intro-tilt-x", "0deg");
     event.currentTarget.style.setProperty("--intro-tilt-y", "0deg");
+    event.currentTarget.style.setProperty("--intro-depth-x", "0px");
+    event.currentTarget.style.setProperty("--intro-depth-y", "0px");
+    event.currentTarget.style.setProperty("--intro-highlight-x", "0px");
+    event.currentTarget.style.setProperty("--intro-highlight-y", "0px");
   };
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
