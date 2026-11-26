@@ -4134,3 +4134,20 @@ body.intro-active .site-header { display: none; }
     mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .25) 18%, #000 52%) !important;
   }
 }
+
+
+/* Final intro detail refinements: 45% initial copy width and clearer location label. */
+.intro-page-frame .cinematic-intro-location {
+  gap: 10px;
+}
+.intro-page-frame .cinematic-intro-location span {
+  font-size: clamp(.72rem, .82vw, .9rem) !important;
+  letter-spacing: .13em !important;
+  font-weight: 600 !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-location span {
+    font-size: .68rem !important;
+    letter-spacing: .1em !important;
+  }
+}
