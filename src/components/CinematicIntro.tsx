@@ -51,7 +51,7 @@ export function CinematicIntro() {
   const copyStartWidth = availableContentWidth * 0.5;
   const copyEndWidth = availableContentWidth;
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
-  const titleWidth = availableContentWidth * (0.5 + 0.5 * progress);
+  const titleWidth = availableContentWidth * 0.5;
   // Keep the description's left edge anchored while its container expands.
   const copyLeft = contentInset;
   const copyX = copyLeft + copyWidth / 2;
