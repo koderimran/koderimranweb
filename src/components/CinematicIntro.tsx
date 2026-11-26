@@ -80,9 +80,7 @@ export function CinematicIntro() {
     event.currentTarget.style.setProperty("--intro-highlight-x", "0px");
     event.currentTarget.style.setProperty("--intro-highlight-y", "0px");
   };
-  const greetingStartSize = viewportWidth <= 640
-    ? Math.max(1.8, Math.min(viewportWidth * 0.075 / 16, 2.8))
-    : Math.max(2, Math.min(viewportWidth * 0.038 / 16, 3.8));
+  const greetingStartSize = 3;
   const greetingSize = greetingStartSize + (1 - greetingStartSize) * progress;
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
