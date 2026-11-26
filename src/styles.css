@@ -4849,3 +4849,36 @@ body.intro-active .site-header { display: none; }
     opacity: 1 !important;
   }
 }
+
+
+/* Pixel-locked title and greeting choreography: shared vertical anchor, independent scale/fade. */
+.intro-page-frame .cinematic-intro-copy {
+  top: var(--intro-title-top, 155px) !important;
+  width: var(--intro-title-width, 50%) !important;
+  max-width: var(--intro-title-width, 50%) !important;
+  transform: none !important;
+}
+.intro-page-frame .cinematic-intro-greeting {
+  margin-top: 0 !important;
+  font-size: var(--intro-greeting-size, 1rem) !important;
+  line-height: 1.04 !important;
+  transform: none !important;
+  opacity: 1 !important;
+  transform-origin: left top !important;
+  will-change: font-size;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  opacity: clamp(0, calc(1 - var(--intro-progress, 0)), 1) !important;
+  transform: scale(calc(1 - var(--intro-progress, 0) * .38)) !important;
+  transform-origin: left top !important;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: var(--intro-greeting-size, 1rem) !important;
+  }
+}
