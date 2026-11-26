@@ -44,14 +44,14 @@ export function CinematicIntro() {
     return () => document.body.classList.remove("intro-active");
   }, [progress]);
 
-  const initialPortraitWidth = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52), 730);
-  const portraitScale = 1 - progress * (1 - 75 / initialPortraitWidth);
-  const copyStartWidth = Math.min(viewportWidth * 0.78, viewportWidth <= 640 ? 340 : 760);
-  const copyEndWidth = Math.min(viewportWidth * 0.82, 980);
-  const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
-  // Keep the copy's left edge anchored while its text container expands on scroll.
+  // The description grows from half to the full shared content grid as the intro scrolls.
   const contentGutter = Math.max(24, Math.min(viewportWidth * 0.04, 80));
   const contentInset = Math.max(0, (viewportWidth - 1920) / 2) + contentGutter;
+  const availableContentWidth = Math.max(0, viewportWidth - contentInset * 2);
+  const copyStartWidth = availableContentWidth * 0.5;
+  const copyEndWidth = availableContentWidth;
+  const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
+  // Keep the description's left edge anchored while its container expands.
   const copyLeft = contentInset;
   const copyX = copyLeft + copyWidth / 2;
   const copyBottom = viewportHeight * (viewportWidth <= 640 ? 0.07 : 0.07);
@@ -67,7 +67,6 @@ export function CinematicIntro() {
   } as CSSProperties;
   const style = {
     "--intro-progress": progress,
-    "--intro-portrait-scale": portraitScale,
   } as CSSProperties;
 
   return (
@@ -90,9 +89,9 @@ export function CinematicIntro() {
             KODER<span>IMRAN</span><i>.</i>
           </Link>
 
-          <Link to="/portfolio" className="cinematic-intro-portfolio">
-            VIEW PORTFOLIO <ArrowUpRight aria-hidden="true" />
-          </Link>
+          <div className="cinematic-intro-header-profile">
+            <Portrait alt="Imran" className="cinematic-intro-avatar-image" />
+          </div>
 
           <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen}>
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
@@ -109,12 +108,9 @@ export function CinematicIntro() {
 
         <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left cinematic-intro-scroll-copy" style={copyStyle}>
           <p>I help e-commerce brands and service businesses scale with high-converting <strong>Shopify &amp; WordPress</strong> websites, precision <strong>GA4 &amp; GTM</strong> tracking, and ROI-focused <strong>Google Ads</strong> campaigns.</p>
-        </div>
-
-        <div className="cinematic-intro-portrait" aria-hidden="true">
-          <div className="cinematic-intro-orbit" />
-          <Portrait alt="" className="cinematic-intro-image" />
-          <div className="cinematic-intro-image-tint" />
+          <Link to="/portfolio" className="cinematic-intro-portfolio cinematic-intro-copy-portfolio">
+            VIEW PORTFOLIO <ArrowUpRight aria-hidden="true" />
+          </Link>
         </div>
 
         <div className="cinematic-intro-bottom">
