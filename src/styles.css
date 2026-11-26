@@ -3772,3 +3772,44 @@ body.intro-active .site-header { display: none; }
     bottom: 20px !important;
   }
 }
+
+
+/* Keep the Dhaka status pinned to the viewport for the entire intro scroll. */
+.page-frame.intro-page-frame {
+  overflow: visible !important;
+}
+.intro-page-frame .cinematic-intro-bottom {
+  position: fixed !important;
+  z-index: 100 !important;
+  top: auto !important;
+  left: auto !important;
+  right: max(
+    var(--intro-content-gutter),
+    calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))
+  ) !important;
+  bottom: clamp(22px, 4vh, 42px) !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none;
+}
+.intro-page-frame .cinematic-intro-location {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: rgb(245 246 242 / .72) !important;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-bottom {
+    right: var(--intro-content-gutter) !important;
+    bottom: 20px !important;
+  }
+}
