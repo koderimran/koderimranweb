@@ -4767,3 +4767,11 @@ body.intro-active .site-header { display: none; }
     transition: none !important;
   }
 }
+
+/* Ensure every navigation destination remains visible in the mobile dock. */
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav a:nth-child(2),
+  .intro-page-frame .cinematic-intro-nav a:nth-child(3) {
+    display: grid !important;
+  }
+}
