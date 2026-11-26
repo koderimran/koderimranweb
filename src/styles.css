@@ -3353,3 +3353,52 @@ body.intro-active .site-header { display: none; }
     text-align: center;
   }
 }
+
+
+/* Intro route: true viewport bleed, edge-pinned portrait, anchored left copy. */
+.page-frame.intro-page-frame {
+  width: 100vw !important;
+  max-width: none !important;
+  min-height: 100svh;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: clip;
+}
+.page-frame.intro-page-frame > main {
+  width: 100%;
+  max-width: none;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+}
+.intro-page-frame .cinematic-intro,
+.intro-page-frame .cinematic-intro-stage {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  left: auto !important;
+  right: 0 !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  object-position: right bottom !important;
+}
+.intro-page-frame .cinematic-intro-sidecopy-left.cinematic-intro-scroll-copy {
+  text-align: left !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    right: 0 !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    left: auto !important;
+    right: 0 !important;
+    width: 88vw;
+    transform: scale(var(--intro-portrait-scale));
+    transform-origin: top right;
+  }
+}
