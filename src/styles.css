@@ -4661,3 +4661,12 @@ body.intro-active .site-header { display: none; }
   transform: translate3d(0, calc(clamp(0, var(--intro-progress, 0), 1) * -8px), 0) !important;
   will-change: font-size, transform;
 }
+
+
+/* Greeting final choreography: preserve its initial anchor, settle 100px below viewport top. */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: var(--intro-greeting-size, clamp(2rem, 3.8vw, 3.8rem)) !important;
+  transform: translate3d(0, calc(clamp(0, var(--intro-progress, 0), 1) * 20px), 0) !important;
+  transform-origin: left top !important;
+  will-change: font-size, transform;
+}
