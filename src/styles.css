@@ -3560,7 +3560,7 @@ body.intro-active .site-header { display: none; }
 }
 .intro-page-frame .cinematic-intro-copy {
   top: clamp(155px, 20vh, 205px);
-  width: min(50%, calc(100vw - 2 * var(--intro-content-gutter))) !important;
+  width: calc(40% + var(--intro-progress) * 10%) !important;
   max-width: 50% !important;
 }
 .intro-page-frame .cinematic-intro-copy h1 {
@@ -3570,7 +3570,7 @@ body.intro-active .site-header { display: none; }
 }
 .intro-page-frame .cinematic-intro-scroll-copy {
   width: min(var(--intro-copy-width), calc(100vw - 2 * var(--intro-content-gutter)));
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 }
 .intro-page-frame .cinematic-intro-copy-portfolio {
   display: inline-flex;
