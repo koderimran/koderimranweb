@@ -35,6 +35,7 @@ export function CinematicIntro() {
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     document.body.classList.toggle("intro-active", progress < 1);
     return () => document.body.classList.remove("intro-active");
   }, [progress]);
