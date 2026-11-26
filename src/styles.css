@@ -4414,3 +4414,78 @@ body.intro-active .site-header { display: none; }
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
 }
+
+
+/* Cinematic intro art-direction pass — one shared portrait alpha field.
+   Previous per-layer multi-mask intersections created inconsistent edge falloff.
+   Mask the portrait stage once so both image pixels and silhouette feather together. */
+.intro-page-frame .cinematic-intro-stage {
+  background:
+    radial-gradient(ellipse 58% 78% at 83% 54%, rgb(131 255 0 / .075) 0%, rgb(131 255 0 / .025) 44%, transparent 76%),
+    radial-gradient(ellipse 90% 110% at 100% 100%, rgb(255 255 255 / .025) 0%, transparent 68%),
+    linear-gradient(115deg, #050605 0%, #080a07 54%, #050605 100%) !important;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  -webkit-mask-image: radial-gradient(ellipse 79% 150% at 100% 60%,
+    #000 0%,
+    #000 49%,
+    rgb(0 0 0 / .97) 57%,
+    rgb(0 0 0 / .86) 65%,
+    rgb(0 0 0 / .62) 73%,
+    rgb(0 0 0 / .30) 82%,
+    rgb(0 0 0 / .08) 91%,
+    transparent 100%) !important;
+  mask-image: radial-gradient(ellipse 79% 150% at 100% 60%,
+    #000 0%,
+    #000 49%,
+    rgb(0 0 0 / .97) 57%,
+    rgb(0 0 0 / .86) 65%,
+    rgb(0 0 0 / .62) 73%,
+    rgb(0 0 0 / .30) 82%,
+    rgb(0 0 0 / .08) 91%,
+    transparent 100%) !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+  -webkit-mask-size: 100% 100% !important;
+  mask-size: 100% 100% !important;
+  filter: none !important;
+  isolation: isolate;
+}
+/* Do not stack multiple independently feathered cut-outs: it creates a ghost edge. */
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  -webkit-mask-composite: source-over !important;
+  mask-composite: add !important;
+}
+.intro-page-frame .cinematic-intro-depth-layer {
+  opacity: .10 !important;
+  filter: grayscale(1) brightness(.42) blur(3px) !important;
+  transform: translate3d(var(--intro-depth-x, 0px), var(--intro-depth-y, 0px), -24px) scale(1.025) !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  filter: grayscale(1) contrast(1.035) !important;
+  backface-visibility: hidden;
+}
+/* Keep the shoulder fade wide and organic on smaller screens too. */
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    -webkit-mask-image: radial-gradient(ellipse 92% 150% at 100% 60%,
+      #000 0%, #000 42%, rgb(0 0 0 / .92) 57%, rgb(0 0 0 / .68) 70%,
+      rgb(0 0 0 / .30) 84%, transparent 100%) !important;
+    mask-image: radial-gradient(ellipse 92% 150% at 100% 60%,
+      #000 0%, #000 42%, rgb(0 0 0 / .92) 57%, rgb(0 0 0 / .68) 70%,
+      rgb(0 0 0 / .30) 84%, transparent 100%) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    -webkit-mask-image: radial-gradient(ellipse 112% 150% at 100% 60%,
+      #000 0%, #000 38%, rgb(0 0 0 / .90) 55%, rgb(0 0 0 / .62) 72%,
+      rgb(0 0 0 / .24) 88%, transparent 100%) !important;
+    mask-image: radial-gradient(ellipse 112% 150% at 100% 60%,
+      #000 0%, #000 38%, rgb(0 0 0 / .90) 55%, rgb(0 0 0 / .62) 72%,
+      rgb(0 0 0 / .24) 88%, transparent 100%) !important;
+  }
+}
