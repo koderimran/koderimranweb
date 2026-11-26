@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { Portrait } from "@/components/Portrait";
@@ -57,7 +57,7 @@ export function CinematicIntro() {
   const copyBottom = viewportHeight * (viewportWidth <= 640 ? 0.07 : 0.07);
   const copyStartY = viewportHeight - copyBottom - 48;
   const copyY = copyStartY + (viewportHeight / 2 - copyStartY) * progress;
-  const handlePortraitPointerMove = (event: React.PointerEvent<HTMLElement>) => {
+  const handlePortraitPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
     if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
