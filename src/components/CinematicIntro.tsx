@@ -44,8 +44,8 @@ export function CinematicIntro() {
     return () => document.body.classList.remove("intro-active");
   }, [progress]);
 
-  const initialPortraitSize = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.78 : viewportWidth <= 900 ? 0.58 : 0.49), 730);
-  const portraitSize = initialPortraitSize + (75 - initialPortraitSize) * progress;
+  const initialPortraitWidth = Math.min(viewportWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52), 730);
+  const portraitScale = 1 - progress * (1 - 75 / initialPortraitWidth);
   const style = {
     "--intro-progress": progress,
     "--intro-portrait-scale": portraitScale,
