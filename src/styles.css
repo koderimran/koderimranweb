@@ -4614,7 +4614,7 @@ body.intro-active .site-header { display: none; }
 
 
 /* Scroll choreography: preserve greeting anchor while reducing type to 2rem. */
-.intro-page-frame .cinematic-intro-greeting { font-size:var(--intro-greeting-size,clamp(2rem,3.8vw,3.8rem)) !important; line-height:1.04 !important; transform:none !important; transform-origin:left top !important; will-change:font-size; }
+.intro-page-frame .cinematic-intro-greeting { font-size:var(--intro-greeting-size,clamp(2rem,3.8vw,3.8rem)) !important; line-height:1.04 !important; transform:translate3d(0,calc(var(--intro-progress,0) * 75px),0) !important; transform-origin:left top !important; will-change:font-size,transform; }
 /* Menu travels down the viewport in direct proportion to the section scroll progress. */
 .intro-page-frame .cinematic-intro-header .cinematic-intro-menu { position:relative !important; z-index:30 !important; transform:translate3d(0,calc(var(--intro-progress,0) * var(--intro-menu-travel,0px)),0) !important; transition:none !important; will-change:transform; }
 /* Brand mark fades with the same scroll timeline without affecting header layout. */
