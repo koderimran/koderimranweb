@@ -4542,3 +4542,31 @@ body.intro-active .site-header { display: none; }
     padding: 14px 16px !important;
   }
 }
+
+
+/* Scroll choreography: portrait contracts and fades from the first scroll movement;
+   headline fades independently while the supporting copy remains readable. */
+.intro-page-frame .cinematic-intro-portrait {
+  opacity: calc(1 - var(--intro-progress) * 1.18) !important;
+  transform:
+    perspective(1500px)
+    rotateX(var(--intro-tilt-x, 0deg))
+    rotateY(var(--intro-tilt-y, 0deg))
+    scale(calc(1 - var(--intro-progress) * .12)) !important;
+  transform-origin: right bottom !important;
+  will-change: opacity, width, height, transform;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  opacity: calc(1 - var(--intro-progress) * 1.35) !important;
+  transform: translate3d(0, calc(var(--intro-progress) * -18px), 0) !important;
+  transform-origin: left center !important;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-portrait,
+  .intro-page-frame .cinematic-intro-copy h1 {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+}
