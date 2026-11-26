@@ -52,8 +52,9 @@ export function CinematicIntro() {
   const copyEndWidth = availableContentWidth;
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
   // Keep the title inside the left-side safe area so it never collides with the portrait.
+  // Reserve a clear visual column between the title and the right-aligned portrait.
   const titleWidth = viewportWidth > 900
-    ? Math.min(availableContentWidth * 0.5, viewportWidth * 0.36)
+    ? Math.min(availableContentWidth * 0.5, viewportWidth * 0.3)
     : availableContentWidth * 0.5;
   // Keep the description's left edge anchored while its container expands.
   const copyLeft = contentInset;
