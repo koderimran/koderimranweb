@@ -2525,7 +2525,7 @@ button {
 
 
 /* ===== Cinematic intro (homepage only) ===== */
-body:has(.cinematic-intro) .site-header { display: none; }
+body.intro-active .site-header { display: none; }
 .cinematic-intro {
   --intro-progress: 0;
   position: relative;
