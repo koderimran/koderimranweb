@@ -4247,3 +4247,50 @@ body.intro-active .site-header { display: none; }
     transition: none !important;
   }
 }
+
+
+/* Shoulder integration: intersect a broad horizontal feather with a shoulder-local radial alpha falloff. */
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  -webkit-mask-image:
+    radial-gradient(ellipse 86% 68% at 0% 56%, transparent 0%, rgb(0 0 0 / .1) 24%, rgb(0 0 0 / .58) 52%, #000 82%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 10%, rgb(0 0 0 / .34) 29%, #000 62%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 86% 68% at 0% 56%, transparent 0%, rgb(0 0 0 / .1) 24%, rgb(0 0 0 / .58) 52%, #000 82%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 10%, rgb(0 0 0 / .34) 29%, #000 62%);
+  mask-composite: intersect;
+  mask-mode: alpha;
+}
+.intro-page-frame .cinematic-intro-depth-layer {
+  opacity: .2;
+  filter: grayscale(1) brightness(.34) blur(2.4px) !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-depth-layer {
+    -webkit-mask-image:
+      radial-gradient(ellipse 92% 70% at 0% 56%, transparent 0%, rgb(0 0 0 / .14) 25%, #000 82%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 16%, #000 58%);
+    mask-image:
+      radial-gradient(ellipse 92% 70% at 0% 56%, transparent 0%, rgb(0 0 0 / .14) 25%, #000 82%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 16%, #000 58%);
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-depth-layer {
+    -webkit-mask-image:
+      radial-gradient(ellipse 100% 72% at 0% 58%, transparent 0%, rgb(0 0 0 / .16) 28%, #000 86%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .16) 20%, #000 60%);
+    mask-image:
+      radial-gradient(ellipse 100% 72% at 0% 58%, transparent 0%, rgb(0 0 0 / .16) 28%, #000 86%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .16) 20%, #000 60%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-depth-layer {
+    transition: none !important;
+  }
+}
