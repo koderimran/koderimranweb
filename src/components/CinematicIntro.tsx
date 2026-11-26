@@ -57,6 +57,20 @@ export function CinematicIntro() {
   const copyBottom = viewportHeight * (viewportWidth <= 640 ? 0.07 : 0.07);
   const copyStartY = viewportHeight - copyBottom - 48;
   const copyY = copyStartY + (viewportHeight / 2 - copyStartY) * progress;
+  const handlePortraitPointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    event.currentTarget.style.setProperty("--intro-tilt-x", `${-y * 3.2}deg`);
+    event.currentTarget.style.setProperty("--intro-tilt-y", `${x * 4.2}deg`);
+    event.currentTarget.style.setProperty("--intro-pointer-x", `${(x + 0.5) * 100}%`);
+    event.currentTarget.style.setProperty("--intro-pointer-y", `${(y + 0.5) * 100}%`);
+  };
+  const handlePortraitPointerLeave = (event: React.PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--intro-tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--intro-tilt-y", "0deg");
+  };
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
     "--intro-copy-y": `${copyY}px`,
@@ -86,7 +100,14 @@ export function CinematicIntro() {
   } as CSSProperties;
 
   return (
-    <section ref={sectionRef} className="cinematic-intro" style={style} aria-label="Introduction">
+    <section
+      ref={sectionRef}
+      className="cinematic-intro"
+      style={style}
+      aria-label="Introduction"
+      onPointerMove={handlePortraitPointerMove}
+      onPointerLeave={handlePortraitPointerLeave}
+    >
       <div className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
         <header className="cinematic-intro-header">
@@ -126,6 +147,7 @@ export function CinematicIntro() {
 
         <div className="cinematic-intro-portrait" aria-hidden="true">
           <div className="cinematic-intro-orbit" />
+          <Portrait alt="" className="cinematic-intro-depth-layer" />
           <Portrait alt="" className="cinematic-intro-image" />
           <div className="cinematic-intro-image-tint" />
         </div>
