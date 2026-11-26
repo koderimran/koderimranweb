@@ -83,7 +83,7 @@ export function CinematicIntro() {
   const greetingStartSize = viewportWidth <= 640
     ? Math.max(1.8, Math.min(viewportWidth * 0.075 / 16, 2.8))
     : Math.max(2, Math.min(viewportWidth * 0.038 / 16, 3.8));
-  const greetingSize = greetingStartSize + (2 - greetingStartSize) * progress;
+  const greetingSize = greetingStartSize + (1 - greetingStartSize) * progress;
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
     "--intro-copy-y": `${copyY}px`,
