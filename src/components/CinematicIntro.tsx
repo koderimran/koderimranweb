@@ -125,19 +125,8 @@ export function CinematicIntro() {
       <div className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
         <header className="cinematic-intro-header">
-          <button
-            type="button"
-            className="cinematic-intro-menu"
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span />
-            <span />
-          </button>
-
           <Link to="/" className="cinematic-intro-brand" aria-label="Koder Imran home">
-            KODER<span>IMRAN</span><i>.</i>
+            <img src="/__l5e/assets-v1/06d60901-ae30-47bd-b1bf-85d79f3ebe22/koder-imran-logo.png" alt="Koder Imran" />
           </Link>
 
           <div className="cinematic-intro-location cinematic-intro-header-location">
@@ -147,6 +136,16 @@ export function CinematicIntro() {
 
 
 
+        </header>
+
+        <div className="cinematic-intro-copy">
+          <div className="cinematic-intro-greeting-row">
+            <button type="button" className="cinematic-intro-menu" aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>
+              <span />
+              <span />
+            </button>
+            <p className="cinematic-intro-greeting"><span>Hi, I’m </span><span className="intro-greeting-accent">Imran.</span></p>
+          </div>
           <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen}>
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
@@ -154,10 +153,6 @@ export function CinematicIntro() {
             <Link to="/portfolio" onClick={() => setMenuOpen(false)}>Projects</Link>
             <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
           </nav>
-        </header>
-
-        <div className="cinematic-intro-copy">
-          <p className="cinematic-intro-greeting"><span>Hi, I’m </span><span className="intro-greeting-accent">Imran.</span></p>
           <h1><span className="intro-title-line">FULL STACK BUSINESS</span><br /><span className="intro-title-line"><span className="intro-growth-light">GROWTH </span><span className="intro-title-line-accent">ENGINEER.</span></span></h1>
         </div>
 
