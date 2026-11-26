@@ -4570,3 +4570,44 @@ body.intro-active .site-header { display: none; }
     will-change: auto;
   }
 }
+
+
+/* Intro brand mark and greeting scale refinement. */
+.intro-page-frame .cinematic-intro-brand {
+  display: inline-flex !important;
+  align-items: center;
+  justify-self: center;
+  width: clamp(112px, 11vw, 168px);
+  height: auto;
+}
+.intro-page-frame .cinematic-intro-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: clamp(2rem, 3.8vw, 3.8rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.045em !important;
+  font-weight: 700 !important;
+}
+/* Contract the actual portrait box from the first scroll pixel; no compensating image zoom. */
+.intro-page-frame .cinematic-intro-portrait {
+  opacity: calc(1 - var(--intro-portrait-progress) * 1.08) !important;
+  transform: perspective(1500px) rotateX(var(--intro-tilt-x, 0deg)) rotateY(var(--intro-tilt-y, 0deg)) scale(calc(1 - var(--intro-portrait-progress) * .16)) !important;
+  transform-origin: right bottom !important;
+}
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  transform-origin: right bottom !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: clamp(1.8rem, 7.5vw, 2.8rem) !important;
+  }
+  .intro-page-frame .cinematic-intro-brand {
+    width: clamp(88px, 22vw, 124px);
+  }
+}
