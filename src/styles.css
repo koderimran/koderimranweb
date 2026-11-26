@@ -4882,3 +4882,31 @@ body.intro-active .site-header { display: none; }
     font-size: var(--intro-greeting-size, 1rem) !important;
   }
 }
+
+
+/* Final greeting scale and description card treatment. */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: var(--intro-greeting-size, 3rem) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  box-sizing: border-box !important;
+  width: min(var(--intro-copy-width), calc(100vw - 2 * var(--intro-content-gutter))) !important;
+  padding: 20px !important;
+  border: 1px solid rgb(245 246 242 / .16) !important;
+  border-radius: 10px !important;
+  background: rgb(255 255 255 / .025) !important;
+  box-shadow: 0 12px 36px rgb(0 0 0 / .12) !important;
+  backdrop-filter: blur(8px) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  margin: 0 !important;
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    width: min(var(--intro-copy-width), calc(100vw - 32px)) !important;
+    padding: 16px !important;
+    border-radius: 8px !important;
+  }
+}
