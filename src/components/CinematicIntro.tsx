@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { Portrait } from "@/components/Portrait";
@@ -34,7 +34,7 @@ export function CinematicIntro() {
     };
   }, []);
 
-  const style = { "--intro-progress": progress } as React.CSSProperties;
+  const style = { "--intro-progress": progress } as CSSProperties;
 
   return (
     <section ref={sectionRef} className="cinematic-intro" style={style} aria-label="Introduction">
