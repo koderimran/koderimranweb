@@ -3708,3 +3708,68 @@ body.intro-active .site-header { display: none; }
     transition: none;
   }
 }
+
+
+/* Requested finishing adjustments: larger copy, header CTA and clean portrait edge. */
+.intro-page-frame .cinematic-intro-header {
+  position: absolute;
+}
+.intro-page-frame .cinematic-intro-header-portfolio {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  justify-self: auto;
+  margin: 0;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  font-size: var(--intro-copy-size);
+  line-height: 1.42;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  filter: none !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-portrait::before,
+.intro-page-frame .cinematic-intro-portrait::after,
+.intro-page-frame .cinematic-intro-image-tint {
+  display: none !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  filter: grayscale(1) contrast(1.04) !important;
+  drop-shadow: none;
+}
+.intro-page-frame .cinematic-intro-bottom {
+  position: absolute;
+  left: auto !important;
+  right: max(
+    var(--intro-content-gutter),
+    calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))
+  ) !important;
+  bottom: clamp(22px, 4vh, 42px) !important;
+  width: auto !important;
+  transform: none !important;
+  justify-content: flex-end;
+}
+.intro-page-frame .cinematic-intro-location {
+  margin-left: auto;
+  text-align: right;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header-portfolio {
+    right: 0;
+    font-size: .52rem;
+    padding: 9px 11px;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: var(--intro-copy-size);
+    line-height: 1.38;
+  }
+  .intro-page-frame .cinematic-intro-bottom {
+    right: var(--intro-content-gutter) !important;
+    bottom: 20px !important;
+  }
+}
