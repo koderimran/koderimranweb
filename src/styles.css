@@ -4670,3 +4670,100 @@ body.intro-active .site-header { display: none; }
   transform-origin: left top !important;
   will-change: font-size, transform;
 }
+
+
+/* Scroll-end navigation reveal: fixed bottom dock with individually bordered links. */
+.intro-page-frame .cinematic-intro-nav {
+  position: fixed !important;
+  z-index: 60 !important;
+  top: auto !important;
+  right: max(var(--intro-content-gutter, 24px), calc((100vw - var(--intro-content-max, 1440px)) / 2 + var(--intro-content-gutter, 24px))) !important;
+  bottom: 32px !important;
+  left: max(var(--intro-content-gutter, 24px), calc((100vw - var(--intro-content-max, 1440px)) / 2 + var(--intro-content-gutter, 24px))) !important;
+  width: auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  gap: clamp(8px, 1.2vw, 16px) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(0, 18px, 0) !important;
+  transition: opacity .45s ease, transform .65s cubic-bezier(.2,.75,.25,1), visibility .45s ease !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav a {
+  position: relative !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: auto !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  padding: clamp(13px, 1.15vw, 18px) 12px !important;
+  border: 1px solid rgb(245 246 242 / .18) !important;
+  border-radius: 2px !important;
+  color: rgb(245 246 242 / .82) !important;
+  background: rgb(8 10 7 / .48) !important;
+  font-size: clamp(.68rem, .8vw, .82rem) !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  opacity: 0 !important;
+  clip-path: inset(0 0 100% 0) !important;
+  transform: translateY(12px) !important;
+  transition: color .25s ease, border-color .25s ease, background .25s ease,
+    opacity .35s ease, transform .55s cubic-bezier(.2,.75,.25,1), clip-path .6s cubic-bezier(.2,.75,.25,1) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  opacity: 1 !important;
+  clip-path: inset(0 0 0 0) !important;
+  transform: translateY(0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(1) { transition-delay: .08s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(2) { transition-delay: .16s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(3) { transition-delay: .24s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(4) { transition-delay: .32s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(5) { transition-delay: .4s !important; }
+.intro-page-frame .cinematic-intro-nav a:hover {
+  color: #83ff00 !important;
+  border-color: rgb(131 255 0 / .55) !important;
+  background: rgb(131 255 0 / .07) !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav {
+    right: 16px !important;
+    left: 16px !important;
+    bottom: 32px !important;
+    gap: 5px !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    scrollbar-width: none !important;
+  }
+  .intro-page-frame .cinematic-intro-nav::-webkit-scrollbar { display: none !important; }
+  .intro-page-frame .cinematic-intro-nav a {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    padding: 12px 10px !important;
+    font-size: .62rem !important;
+    letter-spacing: .07em !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-nav,
+  .intro-page-frame .cinematic-intro-nav a {
+    transition: none !important;
+  }
+}
