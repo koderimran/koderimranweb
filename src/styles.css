@@ -4657,7 +4657,7 @@ body.intro-active .site-header { display: none; }
 /* The parent copy moves with the title (155px → 80px); this additional 60px
    lift places the greeting at exactly 20px from the viewport top at progress 1. */
 .intro-page-frame .cinematic-intro-greeting {
-  /* Parent title anchor moves 155px → 80px; this 32px lift lands at 48px. */
-  transform: translate3d(0, calc(clamp(0, var(--intro-progress, 0), 1) * -32px), 0) !important;
+  /* Parent title anchor moves 155px → 80px; this 8px lift lands at 72px. */
+  transform: translate3d(0, calc(clamp(0, var(--intro-progress, 0), 1) * -8px), 0) !important;
   will-change: font-size, transform;
 }
