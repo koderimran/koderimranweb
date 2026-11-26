@@ -93,7 +93,7 @@ export function CinematicIntro() {
     "--intro-greeting-size": `${greetingSize}rem`,
     "--intro-menu-start": `${Math.max(20, Math.min(viewportWidth * 0.032, 46))}px`,
     "--intro-menu-top": `${Math.max(20, Math.min(viewportWidth * 0.032, 46)) + progress * Math.max(0, viewportHeight - Math.max(20, Math.min(viewportWidth * 0.032, 46)) - (viewportWidth <= 640 ? 42 : 48) - 24)}px`,
-    "--intro-greeting-rise": `${Math.max(0, 155 - Math.max(20, Math.min(viewportWidth * 0.032, 46)))}px`,
+    "--intro-greeting-rise": "60px",
     textAlign: "left",
   } as CSSProperties;
   const initialPortraitWidth = Math.min(
