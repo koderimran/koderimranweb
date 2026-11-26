@@ -65,8 +65,24 @@ export function CinematicIntro() {
     "--intro-copy-progress": progress,
     textAlign: "left",
   } as CSSProperties;
+  const initialPortraitWidth = Math.min(
+    viewportWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52),
+    730,
+  );
+  const initialPortraitHeight = Math.max(180, viewportHeight - 100);
+  const portraitSize = initialPortraitWidth + (64 - initialPortraitWidth) * progress;
+  const portraitHeight = initialPortraitHeight + (64 - initialPortraitHeight) * progress;
+  const portraitTop = 100 + (32 - 100) * progress;
+  const titleTop = 155 + (viewportHeight * 0.32 - 155) * progress;
   const style = {
     "--intro-progress": progress,
+    "--intro-portrait-width": `${portraitSize}px`,
+    "--intro-portrait-height": `${portraitHeight}px`,
+    "--intro-portrait-top": `${portraitTop}px`,
+    "--intro-title-top": `${titleTop}px`,
+    "--intro-portrait-radius": `${progress * 50}%`,
+    "--intro-portrait-image-scale": 1 + progress * 1.35,
+    "--intro-portrait-fit": progress > 0.82 ? "cover" : "contain",
   } as CSSProperties;
 
   return (
@@ -89,9 +105,7 @@ export function CinematicIntro() {
             KODER<span>IMRAN</span><i>.</i>
           </Link>
 
-          <div className="cinematic-intro-header-profile">
-            <Portrait alt="Imran" className="cinematic-intro-avatar-image" />
-          </div>
+
 
           <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen}>
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
@@ -103,7 +117,13 @@ export function CinematicIntro() {
         </header>
 
         <div className="cinematic-intro-copy">
-          <h1>FULL STACK<br /><span>BUSINESS GROWTH</span><br />ENGINEER<b className="intro-period">.</b></h1>
+          <h1>FULL STACK BUSINESS<br /><span>GROWTH ENGINEER</span><b className="intro-period">.</b></h1>
+        </div>
+
+        <div className="cinematic-intro-portrait" aria-hidden="true">
+          <div className="cinematic-intro-orbit" />
+          <Portrait alt="" className="cinematic-intro-image" />
+          <div className="cinematic-intro-image-tint" />
         </div>
 
         <div className="cinematic-intro-sidecopy cinematic-intro-sidecopy-left cinematic-intro-scroll-copy" style={copyStyle}>
