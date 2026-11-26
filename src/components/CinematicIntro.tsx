@@ -51,11 +51,8 @@ export function CinematicIntro() {
   const copyStartWidth = availableContentWidth * 0.5;
   const copyEndWidth = availableContentWidth;
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
-  // Keep the title inside the left-side safe area so it never collides with the portrait.
-  // Reserve a clear visual column between the title and the right-aligned portrait.
-  const titleWidth = viewportWidth > 900
-    ? Math.min(availableContentWidth * 0.5, viewportWidth * 0.3)
-    : availableContentWidth * 0.5;
+  // Title width stays fixed at exactly half of the content grid throughout the scroll.
+  const titleWidth = availableContentWidth * 0.5;
   // Keep the description's left edge anchored while its container expands.
   const copyLeft = contentInset;
   const copyX = copyLeft + copyWidth / 2;
@@ -89,7 +86,7 @@ export function CinematicIntro() {
     "--intro-copy-y": `${copyY}px`,
     "--intro-copy-width": `${copyWidth}px`,
     "--intro-title-width": `${titleWidth}px`,
-    "--intro-copy-size": `${1 + progress * 2}rem`,
+    "--intro-copy-size": `${1 + progress}rem`,
     "--intro-copy-progress": progress,
     textAlign: "left",
   } as CSSProperties;
@@ -101,7 +98,7 @@ export function CinematicIntro() {
   const portraitSize = initialPortraitWidth + (64 - initialPortraitWidth) * progress;
   const portraitHeight = initialPortraitHeight + (64 - initialPortraitHeight) * progress;
   const portraitTop = 100 + (32 - 100) * progress;
-  const titleTop = 155 + (viewportHeight * 0.32 - 155) * progress;
+  const titleTop = 155 + (80 - 155) * progress;
   const style = {
     "--intro-progress": progress,
     "--intro-portrait-width": `${portraitSize}px`,
