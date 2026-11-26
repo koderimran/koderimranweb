@@ -4217,3 +4217,33 @@ body.intro-active .site-header { display: none; }
     animation: none !important;
   }
 }
+
+
+/* 2.5D depth refinement: independent pointer parallax for the portrait planes. */
+.intro-page-frame .cinematic-intro-depth-layer {
+  transform: translate3d(var(--intro-depth-x, 0px), var(--intro-depth-y, 0px), -24px) scale(1.018) !important;
+  transition: transform 700ms cubic-bezier(.2,.75,.25,1), opacity 500ms ease;
+}
+.intro-page-frame .cinematic-intro-image {
+  transform: translate3d(calc(var(--intro-depth-x, 0px) * -.34), calc(var(--intro-depth-y, 0px) * -.34), 18px) scale(var(--intro-portrait-image-scale)) !important;
+  transition: transform 700ms cubic-bezier(.2,.75,.25,1);
+}
+.intro-page-frame .cinematic-intro-portrait::before {
+  transform: translate3d(var(--intro-highlight-x, 0px), var(--intro-highlight-y, 0px), 30px) !important;
+}
+@media (hover: none), (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-depth-layer {
+    transform: translate3d(0, 0, -16px) scale(1.018) !important;
+  }
+  .intro-page-frame .cinematic-intro-image {
+    transform: translate3d(0, 0, 12px) scale(var(--intro-portrait-image-scale)) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-depth-layer,
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-portrait::before {
+    transform: none !important;
+    transition: none !important;
+  }
+}
