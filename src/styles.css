@@ -4356,7 +4356,7 @@ body.intro-active .site-header { display: none; }
 }
 @media (min-width: 641px) {
   .intro-page-frame .cinematic-intro-copy h1 {
-    font-size: clamp(2.1rem, 4.2vw, 5rem) !important;
+    font-size: clamp(2.5rem, 5vw, 6rem) !important;
   }
   .intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
     white-space: nowrap;
@@ -4364,7 +4364,7 @@ body.intro-active .site-header { display: none; }
 }
 @media (max-width: 640px) {
   .intro-page-frame .cinematic-intro-copy h1 {
-    font-size: clamp(1.65rem, 7vw, 2.8rem) !important;
+    font-size: clamp(1.85rem, 8vw, 3.2rem) !important;
   }
 }
 
