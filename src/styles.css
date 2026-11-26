@@ -2522,3 +2522,151 @@ button {
     transform: translateX(-50%);
   }
 }
+
+
+/* ===== Cinematic intro (homepage only) ===== */
+body:has(.cinematic-intro) .site-header { display: none; }
+.cinematic-intro {
+  --intro-progress: 0;
+  position: relative;
+  height: 190svh;
+  margin-top: 0;
+  background: #050605;
+  color: #f5f6f2;
+  isolation: isolate;
+}
+.cinematic-intro-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 70% at 76% 50%, rgb(120 255 0 / 0.12), transparent 72%),
+    radial-gradient(ellipse 60% 60% at 20% 90%, rgb(120 255 0 / 0.055), transparent 70%),
+    #050605;
+}
+.cinematic-intro-noise {
+  position: absolute; inset: 0; pointer-events: none; opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+.cinematic-intro-header {
+  position: absolute; z-index: 5; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(20px, 3.2vw, 46px) var(--page-gutter);
+  border-bottom: 1px solid rgb(255 255 255 / .09);
+  transform: translateY(calc(var(--intro-progress) * -12px));
+}
+.cinematic-intro-brand {
+  color: #f5f6f2; text-decoration: none; font: 800 1.05rem/1 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -.06em;
+}
+.cinematic-intro-brand span { color: #83ff00; }
+.cinematic-intro-brand i { color: #83ff00; font-style: normal; }
+.cinematic-intro-nav { display: flex; gap: clamp(16px, 3vw, 42px); }
+.cinematic-intro-nav a {
+  color: rgb(245 246 242 / .72); font-size: .78rem; font-weight: 650;
+  text-decoration: none; transition: color .2s ease;
+}
+.cinematic-intro-nav a:hover { color: #83ff00; }
+.cinematic-intro-index {
+  color: rgb(245 246 242 / .4); font-size: .58rem; letter-spacing: .18em;
+}
+.cinematic-intro-copy {
+  position: absolute; z-index: 2; top: 24%; left: max(var(--page-gutter), calc((100vw - 1280px) / 2));
+  width: min(65%, 850px);
+  transform: translate3d(calc(var(--intro-progress) * -3vw), calc(var(--intro-progress) * -17vh), 0) scale(calc(1 - var(--intro-progress) * .43));
+  transform-origin: top left;
+}
+.cinematic-intro-kicker {
+  margin: 0 0 24px; color: #83ff00; font-size: .68rem; font-weight: 800; letter-spacing: .22em;
+}
+.cinematic-intro-copy h1 {
+  margin: 0; max-width: 900px; color: #f4f5f1;
+  font: 800 clamp(3rem, 7.8vw, 8.6rem)/.91 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -.085em;
+}
+.cinematic-intro-copy h1 span { color: #83ff00; }
+.cinematic-intro-copy h1 .intro-period { color: #83ff00; }
+.cinematic-intro-description {
+  max-width: 480px; margin: 30px 0 0; color: rgb(245 246 242 / .64);
+  font-size: clamp(.9rem, 1.2vw, 1.08rem); line-height: 1.75;
+  opacity: calc(1 - var(--intro-progress) * 1.4);
+}
+.cinematic-intro-description strong { color: #f5f6f2; }
+.cinematic-intro-portrait {
+  position: absolute; z-index: 1; right: max(2vw, calc((100vw - 1440px) / 2));
+  bottom: -3%; width: min(49vw, 730px); height: 88%;
+  transform: translate3d(calc(var(--intro-progress) * 13vw), calc(var(--intro-progress) * 7vh), 0) scale(calc(1 - var(--intro-progress) * .38));
+  transform-origin: bottom right;
+}
+.cinematic-intro-image {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center;
+  filter: grayscale(1) contrast(1.08);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+}
+.cinematic-intro-image-tint {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: .36;
+  background: linear-gradient(115deg, transparent 38%, rgb(131 255 0 / .48) 100%);
+  -webkit-mask-image: linear-gradient(to left, #000, transparent 75%);
+  mask-image: linear-gradient(to left, #000, transparent 75%);
+}
+.cinematic-intro-orbit {
+  position: absolute; width: 72%; aspect-ratio: 1; right: 4%; top: 12%;
+  border: 1px solid rgb(131 255 0 / .23); border-radius: 50%;
+  box-shadow: 0 0 90px rgb(131 255 0 / .08), inset 0 0 90px rgb(131 255 0 / .04);
+}
+.cinematic-intro-bottom {
+  position: absolute; z-index: 4; left: var(--page-gutter); right: var(--page-gutter); bottom: clamp(24px, 4vw, 56px);
+  display: grid; grid-template-columns: 1fr 1fr auto; align-items: end; gap: 20px;
+  opacity: calc(.35 + var(--intro-progress) * .65);
+}
+.cinematic-intro-scroll {
+  display: flex; align-items: center; gap: 12px; color: rgb(245 246 242 / .5);
+  font-size: .6rem; font-weight: 750; letter-spacing: .18em;
+}
+.cinematic-intro-scroll i { width: 7px; height: 7px; border-radius: 50%; background: #83ff00; box-shadow: 0 0 14px #83ff00; }
+.cinematic-intro-bottom p { margin: 0; color: rgb(245 246 242 / .5); font-size: .8rem; line-height: 1.55; }
+.cinematic-intro-bottom p strong { color: #f5f6f2; }
+.cinematic-intro-cta {
+  display: inline-flex; align-items: center; gap: 22px; padding: 15px 20px;
+  border-radius: 999px; background: #83ff00; color: #080a06; text-decoration: none;
+  font-size: .68rem; font-weight: 850; letter-spacing: .06em;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.cinematic-intro-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgb(131 255 0 / .25); }
+.cinematic-intro-cta svg { width: 17px; height: 17px; }
+.cinematic-intro-watermark {
+  position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+  color: rgb(255 255 255 / .025); font: 900 22vw/1 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -.1em; pointer-events: none;
+}
+@media (max-width: 900px) {
+  .cinematic-intro-index { display: none; }
+  .cinematic-intro-copy { top: 26%; width: 76%; }
+  .cinematic-intro-portrait { right: -8%; width: 58vw; opacity: .82; }
+  .cinematic-intro-bottom { grid-template-columns: 1fr auto; }
+  .cinematic-intro-bottom p { display: none; }
+}
+@media (max-width: 640px) {
+  .cinematic-intro { height: 165svh; }
+  .cinematic-intro-stage { min-height: 560px; }
+  .cinematic-intro-header { padding-top: 22px; padding-bottom: 22px; }
+  .cinematic-intro-nav { gap: 13px; }
+  .cinematic-intro-nav a { font-size: .65rem; }
+  .cinematic-intro-nav a:nth-child(2), .cinematic-intro-nav a:nth-child(3) { display: none; }
+  .cinematic-intro-copy { top: 23%; width: 94%; left: var(--page-gutter); }
+  .cinematic-intro-copy h1 { font-size: clamp(2.8rem, 13vw, 5.2rem); }
+  .cinematic-intro-description { max-width: 290px; margin-top: 20px; font-size: .82rem; }
+  .cinematic-intro-portrait { width: 83vw; height: 65%; right: -19%; bottom: 8%; opacity: .7; }
+  .cinematic-intro-bottom { bottom: 22px; grid-template-columns: 1fr auto; align-items: center; }
+  .cinematic-intro-scroll { font-size: .52rem; }
+  .cinematic-intro-cta { gap: 8px; padding: 13px 14px; font-size: .58rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro { height: auto; }
+  .cinematic-intro-stage { position: relative; min-height: 760px; }
+  .cinematic-intro-copy, .cinematic-intro-portrait, .cinematic-intro-header { transform: none; }
+  .cinematic-intro-description, .cinematic-intro-bottom { opacity: 1; }
+}
