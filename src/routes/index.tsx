@@ -8,7 +8,6 @@ import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/SiteChrome";
 import { AmbientGlow, AmbientGrid } from "@/components/Ambient";
 import { Portrait } from "@/components/Portrait";
-import { CinematicIntro } from "@/components/CinematicIntro";
 
 const HERO_MARQUEE = ["Google Ads", "Web Analytics", "Shopify", "WordPress"];
 
@@ -56,7 +55,6 @@ function Index() {
 
   return (
     <>
-      <CinematicIntro />
       <section className="home-section-divider overflow-x-clip">
         <div className="hero-backdrop">
           <AmbientGlow />
