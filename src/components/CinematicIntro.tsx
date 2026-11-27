@@ -201,14 +201,14 @@ export function CinematicIntro() {
             aria-label="Close navigation menu"
             data-open={menuOpen}
             tabIndex={menuOpen ? 0 : -1}
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
           />
           <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen} data-closing={menuClosing} data-reveal={progress >= 0.94} aria-hidden={!menuOpen && progress < 0.96}>
             <Link to="/" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Home</Link>
-            <Link to="/about" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>About</Link>
-            <Link to="/services" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Services</Link>
-            <Link to="/portfolio" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Projects</Link>
-            <Link to="/contact" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Contact</Link>
+            <Link to="/about" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>About</Link>
+            <Link to="/services" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Services</Link>
+            <Link to="/portfolio" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Projects</Link>
+            <Link to="/contact" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Contact</Link>
           </nav>
         </header>
 
