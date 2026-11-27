@@ -8,6 +8,7 @@ import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/SiteChrome";
 import { AmbientGlow, AmbientGrid } from "@/components/Ambient";
 import { Portrait } from "@/components/Portrait";
+import { startTickerWordFade } from "@/lib/ticker-fade";
 
 const HERO_MARQUEE = ["Google Ads", "Web Analytics", "Shopify", "WordPress"];
 
@@ -50,7 +51,12 @@ function Index() {
       el.dataset.paused = entry.isIntersecting ? "false" : "true";
     });
     io.observe(el);
-    return () => io.disconnect();
+    // Words fade as whole words around the face's centre line (5rem each side stay fully clear).
+    const stopFade = startTickerWordFade(el, 5);
+    return () => {
+      io.disconnect();
+      stopFade();
+    };
   }, []);
 
   return (
