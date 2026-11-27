@@ -5091,3 +5091,23 @@ body.intro-active .site-header { display: none; }
     left: max(16px, var(--intro-content-inset, 16px)) !important;
   }
 }
+
+
+/* Keep the header's modal layer above the intro stage so every nav row stays visible. */
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-header {
+  z-index: 150 !important;
+  isolation: isolate !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu-backdrop {
+  z-index: 1 !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-nav {
+  z-index: 2 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+  z-index: 3 !important;
+  position: fixed !important;
+  left: var(--intro-content-inset, 24px) !important;
+}
