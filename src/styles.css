@@ -5111,3 +5111,22 @@ body.intro-active .site-header { display: none; }
   position: fixed !important;
   left: var(--intro-content-inset, 24px) !important;
 }
+
+
+/* Final menu control anchor: fixed to the top-left content rail, never scrolls vertically. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: fixed !important;
+  top: 24px !important;
+  left: var(--intro-content-inset, 24px) !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    top: 16px !important;
+    left: var(--intro-content-gutter, 16px) !important;
+  }
+}
