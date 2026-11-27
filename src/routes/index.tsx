@@ -51,8 +51,10 @@ function Index() {
       el.dataset.paused = entry.isIntersecting ? "false" : "true";
     });
     io.observe(el);
-    // Words fade as whole words around the face's centre line (5rem each side stay fully clear).
-    const stopFade = startTickerWordFade(el, 5);
+    // Words fade as whole words around the face's centre line: 3rem each side stay fully clear,
+    // then a word is gone 2rem further out. Neighbouring words sit ~6-9rem apart, so one word
+    // reads at a time and the next one cross-fades in as it arrives.
+    const stopFade = startTickerWordFade(el, 3, 2);
     return () => {
       io.disconnect();
       stopFade();
