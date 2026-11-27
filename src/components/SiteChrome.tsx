@@ -122,7 +122,7 @@ export function CtaBand() {
               <span className="block">Power Your Business Growth with</span>
               <span className="text-[oklch(90%_0.17_128)]">Websites, Ads &amp; Analytics</span>
             </h2>
-            <p className="text-reveal mt-4 max-w-xl text-[oklch(0.82_0.012_150)]">
+            <p className="text-reveal mt-4 text-[oklch(0.82_0.012_150)] md:max-w-xl">
               <strong className="font-bold text-[oklch(0.98_0.006_95)]">Free 30-Minute Audit</strong> of your website, tracking or Google Ads account — with clear recommendations to help you move forward.
             </p>
           </div>

@@ -127,8 +127,8 @@ function ServicePackagePanel({ service, index }: { service: (typeof SERVICES)[nu
       <div className="grid gap-8 px-6 pt-3 pb-6 md:grid-cols-[minmax(0,1.12fr)_minmax(19rem,0.88fr)] md:gap-10 md:px-9 md:pt-4 md:pb-9 lg:gap-14">
         <div className="min-w-0">
           <p className="eyebrow mb-2">About the service</p>
-          <h3 className="text-reveal max-w-2xl text-2xl font-bold leading-tight">{service.short}</h3>
-          <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{service.answer}</p>
+          <h3 className="text-reveal text-2xl font-bold leading-tight md:max-w-2xl">{service.short}</h3>
+          <p className="mt-4 leading-relaxed text-muted-foreground md:max-w-2xl">{service.answer}</p>
 
           <div className="mt-7 space-y-6">
             <div>
@@ -508,7 +508,7 @@ export function PageHero({ eyebrow, title, text, cta = "Book a free call", compa
       <div className={compact ? "container-page py-12 md:py-16" : "container-page py-20 md:py-28"}>
         <p className="eyebrow animate-rise">{eyebrow}</p>
         <h1 className="page-hero-title title-settle mt-3 max-w-4xl font-bold">{title}</h1>
-        <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>{text}</p>
+        <p className="animate-rise mt-4 text-lg text-muted-foreground md:max-w-2xl" style={{ animationDelay: "180ms" }}>{text}</p>
         <Link to="/contact" className="page-hero-cta btn btn-lg btn-ink animate-rise mt-6" style={{ animationDelay: "270ms" }}>
           {cta} <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" />
         </Link>
