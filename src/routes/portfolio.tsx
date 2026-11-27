@@ -35,7 +35,7 @@ function Portfolio() {
           <h1 className="page-hero-title title-settle mt-3 max-w-4xl font-bold">
             Stores, tracking and ads that turn visitors into customers.
           </h1>
-          <p className="animate-rise mt-4 max-w-2xl text-lg text-muted-foreground" style={{ animationDelay: "180ms" }}>
+          <p className="animate-rise mt-4 text-lg text-muted-foreground md:max-w-2xl" style={{ animationDelay: "180ms" }}>
             A selection of recent websites, stores and campaigns, each built to look sharp and to be measured properly.
           </p>
           <div className="page-hero-actions animate-rise mt-6 flex flex-wrap gap-3" style={{ animationDelay: "270ms" }}>
@@ -52,7 +52,7 @@ function Portfolio() {
               <p className="eyebrow">Project showcase</p>
               <h2 className="text-reveal mt-3 text-3xl font-bold md:text-5xl">Selected projects</h2>
             </div>
-            <p className="max-w-xl text-muted-foreground">
+            <p className="text-muted-foreground md:max-w-xl">
               Different businesses need different digital experiences. These selected builds span e-commerce,
               business websites and agency or corporate platforms.
             </p>
