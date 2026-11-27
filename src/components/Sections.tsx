@@ -9,7 +9,7 @@ import { AmbientGlow } from "@/components/Ambient";
 
 const ICONS = [BarChart3, Megaphone, ShoppingBag, LayoutTemplate];
 
-/** Home-page section header: title in the left 50%, description in the right 50%, on every screen size. */
+/** Home-page section header: below 768px the title is full width with the description under it; from 768px up the title takes the left 50% and the description the right 50%. */
 export function SectionIntro({ eyebrow, title, text, action }: { eyebrow: string; title: ReactNode; text?: string; action?: ReactNode }) {
   return (
     <Reveal className="w-full">

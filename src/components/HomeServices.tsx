@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Sparkles, Wallet, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Sparkles, Wallet, ShieldCheck } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 
@@ -46,12 +46,12 @@ export function HomeServices() {
               </div>
 
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="service-cta-row mt-6">
                 <Link to={detailHref} className="btn btn-lg btn-ink flex-1">
                   Explore service <ArrowUpRight className="btn-arrow-up size-4" aria-hidden="true" />
                 </Link>
                 <Link to="/contact" className="btn btn-lg btn-outline flex-1">
-                  Discuss your project
+                  Discuss your project <ArrowRight className="btn-arrow size-4" aria-hidden="true" />
                 </Link>
               </div>
             </div>
