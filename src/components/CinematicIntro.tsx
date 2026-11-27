@@ -8,6 +8,26 @@ export function CinematicIntro() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuClosing, setMenuClosing] = useState(false);
+  const menuCloseTimer = useRef<number | null>(null);
+
+  const closeMenu = () => {
+    if (!menuOpen || menuClosing) return;
+    setMenuClosing(true);
+    if (menuCloseTimer.current !== null) window.clearTimeout(menuCloseTimer.current);
+    menuCloseTimer.current = window.setTimeout(() => {
+      setMenuOpen(false);
+      setMenuClosing(false);
+      menuCloseTimer.current = null;
+    }, 560);
+  };
+
+  const openMenu = () => {
+    if (menuCloseTimer.current !== null) window.clearTimeout(menuCloseTimer.current);
+    menuCloseTimer.current = null;
+    setMenuClosing(false);
+    setMenuOpen(true);
+  };
   const [viewportWidth, setViewportWidth] = useState(1440);
   const [viewportHeight, setViewportHeight] = useState(900);
 
@@ -40,11 +60,19 @@ export function CinematicIntro() {
   useEffect(() => {
     if (!menuOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") closeMenu();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [menuOpen]);
+  }, [menuOpen, menuClosing]);
+
+  useEffect(() => {
+    if (menuOpen && progress > 0.015) closeMenu();
+  }, [menuOpen, progress]);
+
+  useEffect(() => () => {
+    if (menuCloseTimer.current !== null) window.clearTimeout(menuCloseTimer.current);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -134,7 +162,7 @@ export function CinematicIntro() {
     <section
       ref={sectionRef}
       className="cinematic-intro"
-      data-menu-open={menuOpen}
+      data-menu-open={menuOpen}\n      data-menu-closing={menuClosing}
       style={style}
       aria-label="Introduction"
       onPointerMove={handlePortraitPointerMove}
@@ -149,7 +177,7 @@ export function CinematicIntro() {
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
             aria-controls="cinematic-intro-navigation"
-            onClick={() => setMenuOpen((open) => !open)}
+            onClick={() => (menuOpen ? closeMenu() : openMenu())}
           >
             <span />
             <span />
@@ -174,8 +202,8 @@ export function CinematicIntro() {
             tabIndex={menuOpen ? 0 : -1}
             onClick={() => setMenuOpen(false)}
           />
-          <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen} data-reveal={progress >= 0.94} aria-hidden={!menuOpen && progress < 0.96}>
-            <Link to="/" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Home</Link>
+          <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen} data-closing={menuClosing} data-reveal={progress >= 0.94} aria-hidden={!menuOpen && progress < 0.96}>
+            <Link to="/" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Home</Link>
             <Link to="/about" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>About</Link>
             <Link to="/services" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Services</Link>
             <Link to="/portfolio" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Projects</Link>
