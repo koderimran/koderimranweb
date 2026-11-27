@@ -174,7 +174,7 @@ export function CinematicIntro() {
             tabIndex={menuOpen ? 0 : -1}
             onClick={() => setMenuOpen(false)}
           />
-          <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen} aria-hidden={!menuOpen}>
+          <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen} data-reveal={progress >= 0.96} aria-hidden={!menuOpen && progress < 0.96}>
             <Link to="/" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to="/about" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>About</Link>
             <Link to="/services" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Services</Link>
