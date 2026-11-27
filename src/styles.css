@@ -5361,3 +5361,37 @@ body.intro-active .site-header { display: none; }
     right: calc(14vw + 16px) !important;
   }
 }
+
+
+/* Keep the brand and close control on one shared header rail,
+   with both controls contained inside the overlay's 50vw bounds. */
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-brand {
+  top: 24px !important;
+  left: var(--intro-content-gutter, 24px) !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+  top: 24px !important;
+  right: calc(50vw + var(--intro-content-gutter, 24px)) !important;
+  left: auto !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-brand {
+    top: 16px !important;
+    left: 16px !important;
+    height: 40px !important;
+  }
+  .intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+    top: 16px !important;
+    right: calc(14vw + 16px) !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
