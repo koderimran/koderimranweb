@@ -5937,3 +5937,22 @@ body.intro-active .site-header { display: none; }
     backdrop-filter: none !important;
   }
 }
+
+
+/* Restore the scroll-driven type scale; never freeze description typography. */
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  font-size: clamp(.92rem, var(--intro-copy-size, 1rem), 2rem) !important;
+  line-height: 1.48 !important;
+  transition: none !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.88rem, var(--intro-copy-size, 1rem), 1.55rem) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.84rem, var(--intro-copy-size, 1rem), 1.25rem) !important;
+    line-height: 1.42 !important;
+  }
+}
