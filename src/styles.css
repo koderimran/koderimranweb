@@ -1232,7 +1232,8 @@ footer a:hover {
      photo's centre line. The first width is the fallback for browsers without container units. */
   position: absolute;
   right: var(--page-gutter);
-  bottom: 2rem;
+  /* Low enough to sit in the clean part of the portrait's lower fade, not on the dark tie. */
+  bottom: 1rem;
   width: var(--hero-photo-max-w);
   width: min(100cqh, var(--hero-photo-max-h), var(--hero-photo-max-w));
   max-width: 100%;
@@ -1261,6 +1262,12 @@ footer a:hover {
       transparent 100%);
   -webkit-mask-image: var(--hero-marquee-mask);
   mask-image: var(--hero-marquee-mask);
+}
+/* With the word fade running (src/lib/ticker-fade.ts) each word fades as a whole, so the wide
+   pixel mask above is replaced by a short edge fade that only avoids a hard clip at the ends.
+   Without JS the wide mask stays. */
+.hero-marquee-stage[data-word-fade="true"] .hero-service-marquee {
+  --hero-marquee-mask: linear-gradient(90deg, transparent 0, #000 2rem, #000 calc(100% - 2rem), transparent 100%);
 }
 .hero-service-marquee-track {
   display: flex;
