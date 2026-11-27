@@ -5999,3 +5999,18 @@ body.intro-active .site-header { display: none; }
     font-size: clamp(2.25rem, 10vw, 4rem) !important;
   }
 }
+
+
+/* Tighten the two-line hero headline after unclipping its final character. */
+.intro-page-frame .cinematic-intro-copy h1 {
+  line-height: .84 !important;
+  margin-block: 0 !important;
+  padding-block: 0 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  display: block !important;
+  line-height: .84 !important;
+  margin-block: 0 !important;
+  padding-block: 0 !important;
+}
