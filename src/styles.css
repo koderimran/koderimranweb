@@ -4910,3 +4910,23 @@ body.intro-active .site-header { display: none; }
     border-radius: 8px !important;
   }
 }
+
+
+/* Match greeting scale to the title's scroll-linked contraction. */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: 2.5rem !important;
+  transform: scale(calc(1 - var(--intro-progress, 0) * .38)) !important;
+  transform-origin: left top !important;
+  opacity: 1 !important;
+  will-change: transform;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: 2.5rem !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-greeting {
+    transform: none !important;
+  }
+}
