@@ -162,7 +162,8 @@ export function CinematicIntro() {
     <section
       ref={sectionRef}
       className="cinematic-intro"
-      data-menu-open={menuOpen}\n      data-menu-closing={menuClosing}
+      data-menu-open={menuOpen}
+      data-menu-closing={menuClosing}
       style={style}
       aria-label="Introduction"
       onPointerMove={handlePortraitPointerMove}
