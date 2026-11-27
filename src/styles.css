@@ -5130,3 +5130,74 @@ body.intro-active .site-header { display: none; }
     left: var(--intro-content-gutter, 16px) !important;
   }
 }
+
+
+/* Restore the original scroll-completion horizontal navigation dock.
+   The same links switch to the left overlay only while the menu is explicitly open. */
+.intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) {
+  position: fixed !important;
+  inset: auto 0 32px 0 !important;
+  z-index: 100 !important;
+  width: min(calc(100vw - 2 * var(--intro-content-gutter, 24px)), var(--intro-content-max, 1440px)) !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) a {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 14px 12px !important;
+  border: 1px solid rgb(245 246 242 / .2) !important;
+  border-radius: 2px !important;
+  background: rgb(8 10 8 / .68) !important;
+  color: rgb(245 246 242 / .86) !important;
+  font-size: .78rem !important;
+  opacity: 1 !important;
+  clip-path: inset(0 0 0 0) !important;
+  transform: none !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) a:hover {
+  color: #83ff00 !important;
+  border-color: rgb(131 255 0 / .55) !important;
+}
+.intro-page-frame header .cinematic-intro-nav:not([data-reveal="true"]):not([data-open="true"]) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) {
+    inset: auto 16px 32px 16px !important;
+    width: auto !important;
+    max-width: none !important;
+    gap: 5px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) a {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    padding: 12px 10px !important;
+    font-size: .62rem !important;
+  }
+}
