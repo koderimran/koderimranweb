@@ -6001,22 +6001,25 @@ body.intro-active .site-header { display: none; }
 }
 
 
-/* Tight, overlap-safe two-line hero headline spacing. */
+/* Editorial two-line headline: compact leading without glyph collision. */
 .intro-page-frame .cinematic-intro-copy h1 {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
+  justify-content: flex-start !important;
   gap: 0 !important;
-  line-height: .18 !important;
+  line-height: .9 !important;
   margin: 0 !important;
-  padding-block: 0 !important;
+  padding: 0 .16em 0 0 !important;
 }
 .intro-page-frame .cinematic-intro-copy h1 > .intro-title-line,
 .intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
   display: block !important;
-  line-height: .18 !important;
+  flex: 0 0 auto !important;
+  line-height: .9 !important;
   margin: 0 !important;
-  padding-block: 0 !important;
+  padding: 0 .16em 0 0 !important;
+  white-space: nowrap !important;
 }
 .intro-page-frame .cinematic-intro-copy h1 > .intro-title-line + .intro-title-line {
   margin-top: 0 !important;
