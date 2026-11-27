@@ -123,6 +123,7 @@ export function CinematicIntro() {
     "--intro-portrait-top": `${portraitTop}px`,
     "--intro-title-top": `${titleTop}px`,
     "--intro-title-width": `${titleWidth}px`,
+    "--intro-content-inset": `${contentInset}px`,
     "--intro-portrait-radius": `${progress * 50}%`,
     "--intro-portrait-image-scale": 1,
     "--intro-portrait-progress": portraitProgress,
@@ -133,6 +134,7 @@ export function CinematicIntro() {
     <section
       ref={sectionRef}
       className="cinematic-intro"
+      data-menu-open={menuOpen}
       style={style}
       aria-label="Introduction"
       onPointerMove={handlePortraitPointerMove}
