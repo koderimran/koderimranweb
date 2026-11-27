@@ -5825,3 +5825,31 @@ body.intro-active .site-header { display: none; }
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Animate the actual text glyph groups so scroll-linked parent transforms remain intact. */
+.intro-page-frame .cinematic-intro-greeting > span {
+  display: inline-block;
+  animation: introGreetingIn .82s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-greeting > span:first-child { animation-delay: .16s; }
+.intro-page-frame .cinematic-intro-greeting > span:last-child { animation-delay: .25s; }
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line {
+  display: inline-block;
+  animation: introTitleIn .95s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line:first-child { animation-delay: .28s; }
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line:last-child { animation-delay: .42s; }
+.intro-page-frame .cinematic-intro-title-accent,
+.intro-page-frame .intro-title-line-accent {
+  transition: color .35s ease, text-shadow .35s ease !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  text-shadow: 0 0 28px rgb(184 237 114 / .08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-greeting > span,
+  .intro-page-frame .cinematic-intro-copy h1 > .intro-title-line {
+    animation: none !important;
+  }
+}
