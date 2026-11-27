@@ -214,7 +214,10 @@ export function CinematicIntro() {
 
         <div className="cinematic-intro-copy">
           <p className="cinematic-intro-greeting"><span>Hi, I’m </span><span className="intro-greeting-accent">Imran.</span></p>
-          <h1><span className="intro-title-line">FULL STACK BUSINESS</span><br /><span className="intro-title-line"><span className="intro-growth-light">GROWTH </span><span className="intro-title-line-accent">ENGINEER.</span></span></h1>
+          <h1>
+            <span className="intro-title-line">FULL STACK BUSINESS</span>
+            <span className="intro-title-line"><span className="intro-growth-light">GROWTH </span><span className="intro-title-line-accent">ENGINEER.</span></span>
+          </h1>
         </div>
 
         <div className="cinematic-intro-portrait" aria-hidden="true">
