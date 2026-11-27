@@ -4930,3 +4930,16 @@ body.intro-active .site-header { display: none; }
     transform: none !important;
   }
 }
+
+
+/* Final description card geometry: square corners and consistent 20px inset. */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  padding: 20px !important;
+  border-radius: 0 !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    padding: 20px !important;
+    border-radius: 0 !important;
+  }
+}
