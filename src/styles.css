@@ -2235,8 +2235,8 @@ button {
   background-image: linear-gradient(to right, var(--signal), oklch(0.82 0.2 132), oklch(0.7 0.19 145));
 }
 
-/* Home section headers. Phones (< 640px): title full width, description full width under it.
-   From 640px up: title 50% / description 50% side by side. */
+/* Home section headers. Below 768px (phones and small tablets): title full width, description full width under it.
+   From 768px up: title 50% / description 50% side by side. */
 .section-intro {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -2244,19 +2244,17 @@ button {
   align-items: end;
 }
 .section-intro-title { min-width: 0; }
-/* Optional action (replaces the description): under the title on phones, right-aligned on the title baseline from 640px. */
+/* Optional action (replaces the description): under the title below 768px, right-aligned on the title baseline from 768px. */
 .section-intro--action { row-gap: 1.25rem; }
 .section-intro-action { min-width: 0; display: flex; justify-content: flex-start; align-items: flex-end; }
 .section-intro-title h2 { font-size: 1.875rem; line-height: 1.12; overflow-wrap: anywhere; }
 .section-intro-text { min-width: 0; font-size: 1rem; line-height: 1.6; }
 @media (min-width: 640px) {
-  .section-intro { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; row-gap: 0; }
-  .section-intro-action { justify-content: flex-end; padding-bottom: 0.25rem; }
   .section-intro-title h2 { font-size: 2.25rem; }
-  .section-intro-text { padding-bottom: 0.25rem; }
 }
 @media (min-width: 768px) {
-  .section-intro { column-gap: 3rem; }
+  .section-intro { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; row-gap: 0; }
+  .section-intro-action { justify-content: flex-end; padding-bottom: 0.25rem; }
   .section-intro-title h2 { font-size: 3rem; line-height: 1.05; }
   .section-intro-text { font-size: 1.125rem; padding-bottom: 0.4rem; }
 }
