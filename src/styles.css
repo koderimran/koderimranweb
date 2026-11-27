@@ -4348,7 +4348,6 @@ body.intro-active .site-header { display: none; }
 /* Two-line, bold intro headline; retain the fixed 50% title column. */
 .intro-page-frame .cinematic-intro-copy h1 {
   font-weight: 800 !important;
-  line-height: .98 !important;
   letter-spacing: -.065em !important;
 }
 .intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
@@ -5552,7 +5551,6 @@ body.intro-active .site-header { display: none; }
   font-family: "Bricolage Grotesque", sans-serif !important;
   font-size: clamp(2.65rem, 5.55vw, 6.1rem) !important;
   font-weight: 750 !important;
-  line-height: .91 !important;
   letter-spacing: -.078em !important;
   text-wrap: balance;
 }
@@ -6001,10 +5999,15 @@ body.intro-active .site-header { display: none; }
 }
 
 
-/* Semantic two-line headline: block lines, shared baseline rhythm, no flex/BR artifacts. */
+/* Single source of truth for the two-line intro headline rhythm. */
+.intro-page-frame .cinematic-intro-copy h1,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line,
+.intro-page-frame .cinematic-intro-copy h1 .intro-growth-light,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  line-height: .92 !important;
+}
 .intro-page-frame .cinematic-intro-copy h1 {
   display: block !important;
-  line-height: .92 !important;
   margin: 0 !important;
   padding: 0 .16em 0 0 !important;
 }
@@ -6012,7 +6015,6 @@ body.intro-active .site-header { display: none; }
   display: block !important;
   width: max-content !important;
   max-width: none !important;
-  line-height: .92 !important;
   margin: 0 !important;
   padding: 0 .16em 0 0 !important;
   white-space: nowrap !important;
