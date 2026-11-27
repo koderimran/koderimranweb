@@ -38,6 +38,15 @@ export function CinematicIntro() {
   }, []);
 
   useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     document.body.classList.toggle("intro-active", progress < 1);
     return () => document.body.classList.remove("intro-active");
@@ -137,6 +146,7 @@ export function CinematicIntro() {
             className="cinematic-intro-menu"
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
+            aria-controls="cinematic-intro-navigation"
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span />
@@ -154,12 +164,20 @@ export function CinematicIntro() {
 
 
 
-          <nav aria-label="Main navigation" className="cinematic-intro-nav" data-open={progress >= 0.96}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-            <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-            <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
-            <Link to="/portfolio" onClick={() => setMenuOpen(false)}>Projects</Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+          <button
+            type="button"
+            className="cinematic-intro-menu-backdrop"
+            aria-label="Close navigation menu"
+            data-open={menuOpen}
+            tabIndex={menuOpen ? 0 : -1}
+            onClick={() => setMenuOpen(false)}
+          />
+          <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen} aria-hidden={!menuOpen}>
+            <Link to="/" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/about" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>About</Link>
+            <Link to="/services" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Services</Link>
+            <Link to="/portfolio" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Projects</Link>
+            <Link to="/contact" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>Contact</Link>
           </nav>
         </header>
 
