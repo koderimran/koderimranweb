@@ -5456,3 +5456,226 @@ body.intro-active .site-header { display: none; }
   background: transparent !important;
   border-color: rgb(245 246 242 / .24) !important;
 }
+
+
+/* ==========================================================================
+   CINEMATIC INTRO — cohesive editorial art direction
+   Scoped to /intro; preserves the existing scroll choreography and navigation.
+   ========================================================================== */
+.intro-page-frame {
+  --intro-ink: #080b09;
+  --intro-ink-soft: #0d120e;
+  --intro-paper: #f1f3ed;
+  --intro-muted: #a6aea4;
+  --intro-rule: rgb(226 235 221 / .14);
+  --intro-accent: #b8ed72;
+  --intro-accent-strong: #a8e85b;
+  background: var(--intro-ink) !important;
+}
+.intro-page-frame .cinematic-intro {
+  color: var(--intro-paper) !important;
+  background: var(--intro-ink) !important;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+.intro-page-frame .cinematic-intro-stage {
+  background:
+    radial-gradient(ellipse 54% 76% at 78% 46%, rgb(139 184 91 / .105) 0%, transparent 72%),
+    radial-gradient(ellipse 48% 60% at 5% 100%, rgb(105 137 91 / .075) 0%, transparent 72%),
+    linear-gradient(112deg, #080b09 0%, #0a0e0b 54%, #0c110d 100%) !important;
+}
+.intro-page-frame .cinematic-intro-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .2;
+  background-image:
+    linear-gradient(rgb(221 235 215 / .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(221 235 215 / .035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / .7), transparent 88%);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / .7), transparent 88%);
+}
+.intro-page-frame .cinematic-intro-noise {
+  z-index: 0 !important;
+  opacity: .075 !important;
+  mix-blend-mode: soft-light;
+}
+.intro-page-frame .cinematic-intro-header {
+  border-bottom-color: var(--intro-rule) !important;
+}
+.intro-page-frame .cinematic-intro-brand {
+  color: var(--intro-paper) !important;
+  font-family: "Bricolage Grotesque", sans-serif !important;
+  font-size: 1.02rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -.065em !important;
+}
+.intro-page-frame .cinematic-intro-brand span,
+.intro-page-frame .cinematic-intro-brand i {
+  color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-location {
+  color: rgb(226 235 221 / .66) !important;
+  font-size: .6rem !important;
+  font-weight: 700 !important;
+  letter-spacing: .17em !important;
+}
+.intro-page-frame .cinematic-intro-location i,
+.intro-page-frame .cinematic-intro-location i::after {
+  background-color: var(--intro-accent) !important;
+  border-color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-menu span {
+  background: var(--intro-accent) !important;
+  border-radius: 0 !important;
+}
+.intro-page-frame .cinematic-intro-copy {
+  z-index: 3 !important;
+}
+.intro-page-frame .cinematic-intro-greeting {
+  margin-bottom: clamp(18px, 2.1vw, 30px) !important;
+  color: var(--intro-muted) !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 550 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -.065em !important;
+}
+.intro-page-frame .cinematic-intro-greeting .intro-greeting-accent {
+  color: var(--intro-accent) !important;
+  font-weight: 700 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  color: var(--intro-paper) !important;
+  font-family: "Bricolage Grotesque", sans-serif !important;
+  font-size: clamp(2.65rem, 5.55vw, 6.1rem) !important;
+  font-weight: 750 !important;
+  line-height: .91 !important;
+  letter-spacing: -.078em !important;
+  text-wrap: balance;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  color: var(--intro-paper) !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-growth-light {
+  color: var(--intro-paper) !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  color: var(--intro-accent) !important;
+  font-style: italic;
+  font-weight: 700 !important;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  z-index: 2 !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  filter: grayscale(.14) contrast(1.07) saturate(.82) !important;
+}
+.intro-page-frame .cinematic-intro-image-tint {
+  opacity: .22 !important;
+  background: linear-gradient(115deg, transparent 34%, rgb(184 237 114 / .34) 100%) !important;
+}
+.intro-page-frame .cinematic-intro-orbit {
+  border-color: rgb(184 237 114 / .17) !important;
+  box-shadow: 0 0 100px rgb(184 237 114 / .055), inset 0 0 90px rgb(184 237 114 / .025) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  border: 1px solid rgb(226 235 221 / .17) !important;
+  border-radius: 0 !important;
+  background: rgb(10 14 11 / .18) !important;
+  box-shadow: 0 18px 55px rgb(0 0 0 / .12) !important;
+  backdrop-filter: blur(10px) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  color: rgb(241 243 237 / .82) !important;
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 500 !important;
+  line-height: 1.48 !important;
+  letter-spacing: -.025em !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy strong {
+  color: var(--intro-paper) !important;
+  font-weight: 750 !important;
+}
+.intro-page-frame .cinematic-intro-nav a {
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 650 !important;
+  letter-spacing: -.015em !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+  color: rgb(241 243 237 / .86) !important;
+  border-color: rgb(226 235 221 / .16) !important;
+  background: transparent !important;
+  font-size: clamp(.84rem, .95vw, .94rem) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:hover {
+  color: var(--intro-accent) !important;
+  border-color: rgb(184 237 114 / .38) !important;
+  background: rgb(184 237 114 / .035) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] {
+  border-right-color: rgb(226 235 221 / .16) !important;
+  background: rgb(8 11 9 / .985) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a {
+  color: rgb(241 243 237 / .88) !important;
+  border-bottom-color: rgb(226 235 221 / .13) !important;
+  font-family: "Bricolage Grotesque", sans-serif !important;
+  font-size: clamp(1.25rem, 2.2vw, 2.05rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -.045em !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a:hover {
+  color: var(--intro-accent) !important;
+  border-color: rgb(184 237 114 / .3) !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  background: rgb(3 5 4 / .64) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(.68) !important;
+  backdrop-filter: blur(14px) saturate(.68) !important;
+}
+.intro-page-frame .cinematic-intro-watermark {
+  color: rgb(226 235 221 / .018) !important;
+  letter-spacing: -.12em !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.55rem, 6.6vw, 5.1rem) !important;
+  }
+  .intro-page-frame .cinematic-intro-location {
+    font-size: .54rem !important;
+    letter-spacing: .12em !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-stage::before {
+    background-size: 48px 48px;
+    opacity: .14;
+  }
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: 2.15rem !important;
+    margin-bottom: 16px !important;
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.35rem, 10.2vw, 4.2rem) !important;
+    line-height: .94 !important;
+    letter-spacing: -.075em !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    padding: 20px !important;
+    background: rgb(10 14 11 / .24) !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    line-height: 1.42 !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav[data-open="true"] {
+    background: rgb(8 11 9 / .99) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-location i::after {
+    animation: none !important;
+  }
+}
