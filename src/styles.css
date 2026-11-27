@@ -5060,3 +5060,34 @@ body.intro-active .site-header { display: none; }
     transition: none !important;
   }
 }
+
+
+/* Menu alignment + stronger modal backdrop treatment. */
+.intro-page-frame .cinematic-intro-header {
+  left: var(--intro-content-inset, 24px) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  left: var(--intro-content-inset, 24px) !important;
+  margin-left: 0 !important;
+  justify-self: start !important;
+  translate: 0 0 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  z-index: 110 !important;
+  background: rgb(4 6 5 / .58) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(.72) !important;
+  backdrop-filter: blur(12px) saturate(.72) !important;
+}
+.intro-page-frame header .cinematic-intro-nav {
+  z-index: 120 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  z-index: 130 !important;
+  left: var(--intro-content-inset, 24px) !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header,
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    left: max(16px, var(--intro-content-inset, 16px)) !important;
+  }
+}
