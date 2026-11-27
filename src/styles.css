@@ -5956,3 +5956,46 @@ body.intro-active .site-header { display: none; }
     line-height: 1.42 !important;
   }
 }
+
+
+/* BUSINESS final-character clipping fix:
+   Keep the portrait mask isolated and give the heading its own unclipped text bounds. */
+.intro-page-frame .cinematic-intro-copy {
+  width: min(78vw, 1100px) !important;
+  max-width: min(78vw, 1100px) !important;
+  overflow: visible !important;
+  clip-path: none !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  overflow: visible !important;
+  clip-path: none !important;
+  padding-right: .16em !important;
+  text-wrap: initial !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  padding-right: .16em !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: min(92vw, 760px) !important;
+    max-width: min(92vw, 760px) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.25rem, 10vw, 4rem) !important;
+  }
+}
