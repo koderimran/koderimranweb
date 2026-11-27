@@ -4943,3 +4943,120 @@ body.intro-active .site-header { display: none; }
     border-radius: 0 !important;
   }
 }
+
+
+/* Full-height half-screen navigation overlay opened only by the menu control. */
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 89 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgb(0 0 0 / .42) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .45s ease, visibility .45s ease !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: relative !important;
+  z-index: 130 !important;
+}
+.intro-page-frame header .cinematic-intro-nav {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  z-index: 120 !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: clamp(104px, 15vh, 150px) clamp(28px, 5vw, 76px) clamp(32px, 6vh, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: space-evenly !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border-right: 1px solid rgb(245 246 242 / .14) !important;
+  background: rgb(8 10 8 / .97) !important;
+  box-shadow: 24px 0 80px rgb(0 0 0 / .28) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .72s cubic-bezier(.22,.78,.22,1), opacity .4s ease, visibility .4s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame header .cinematic-intro-nav a {
+  flex: 1 1 0 !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgb(245 246 242 / .13) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgb(245 246 242 / .86) !important;
+  font-size: clamp(1.15rem, 2.1vw, 2rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: -.035em !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  opacity: 1 !important;
+  clip-path: none !important;
+  transform: none !important;
+  transition: color .25s ease, padding-left .3s ease, border-color .25s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav a:last-child {
+  border-bottom: 0 !important;
+}
+.intro-page-frame header .cinematic-intro-nav a:hover {
+  color: #83ff00 !important;
+  padding-left: 12px !important;
+  border-color: rgb(131 255 0 / .4) !important;
+  background: transparent !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame header .cinematic-intro-nav {
+    width: 50vw !important;
+    max-width: 50vw !important;
+    padding-inline: clamp(22px, 4vw, 42px) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame header .cinematic-intro-nav {
+    width: 86vw !important;
+    max-width: 86vw !important;
+    padding: 100px 24px 28px !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav a {
+    font-size: clamp(1.15rem, 5vw, 1.55rem) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-menu-backdrop,
+  .intro-page-frame header .cinematic-intro-nav {
+    transition: none !important;
+  }
+}
