@@ -82,7 +82,7 @@ export function CinematicIntro() {
   };
   const greetingStartSize = 2.5;
   const greetingEndSize = 1.5;
-  const greetingSize = greetingStartSize + (greetingEndSize - greetingStartSize) * progress;
+  const greetingSize = greetingStartSize;
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
     "--intro-copy-y": `${copyY}px`,
