@@ -5853,3 +5853,87 @@ body.intro-active .site-header { display: none; }
     animation: none !important;
   }
 }
+
+
+/* Description panel — fluid editorial treatment (replaces legacy fixed insets). */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  --description-inset: clamp(14px, 1.45vw, 24px);
+  box-sizing: border-box !important;
+  padding: var(--description-inset) !important;
+  border: 1px solid rgb(226 235 221 / .13) !important;
+  border-left: 2px solid rgb(184 237 114 / .68) !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(115deg, rgb(18 24 18 / .52), rgb(9 13 10 / .24)) !important;
+  box-shadow:
+    0 18px 54px rgb(0 0 0 / .16),
+    inset 0 1px 0 rgb(241 243 237 / .025) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(.78) !important;
+  backdrop-filter: blur(12px) saturate(.78) !important;
+  overflow: hidden;
+}
+.intro-page-frame .cinematic-intro-scroll-copy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, rgb(184 237 114 / .045), transparent 42%);
+  opacity: .8;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  position: relative;
+  z-index: 1;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 68ch !important;
+  color: rgb(241 243 237 / .82) !important;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: clamp(.92rem, 1.05vw, 1.08rem) !important;
+  font-weight: 450 !important;
+  line-height: 1.62 !important;
+  letter-spacing: -.018em !important;
+  text-wrap: pretty;
+  transform: none !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p strong {
+  color: #f1f3ed !important;
+  font-weight: 750 !important;
+  text-decoration: underline;
+  text-decoration-color: rgb(184 237 114 / .38);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    --description-inset: clamp(14px, 2vw, 20px);
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.88rem, 1.65vw, 1rem) !important;
+    line-height: 1.55 !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    --description-inset: clamp(12px, 3.8vw, 18px);
+    padding: var(--description-inset) !important;
+    border-left-width: 2px !important;
+    background: linear-gradient(115deg, rgb(18 24 18 / .62), rgb(9 13 10 / .34)) !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.84rem, 3.4vw, .96rem) !important;
+    line-height: 1.48 !important;
+    letter-spacing: -.02em !important;
+  }
+}
+@media (max-width: 380px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    --description-inset: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    scroll-behavior: auto !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
