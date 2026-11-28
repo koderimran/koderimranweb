@@ -7493,3 +7493,59 @@ body.intro-active .site-header { display: none; }
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Explicit exit choreography: CSS animation-direction does not reliably
+   reverse an already-running entrance animation when the state changes. */
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel {
+  animation: intro-menu-panel-out .72s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-brand {
+  animation: intro-menu-brand-out .78s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close {
+  animation: intro-menu-close-out .78s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+  animation: intro-menu-link-out .46s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(1) { animation-delay: .48s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(2) { animation-delay: .36s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(3) { animation-delay: .24s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(4) { animation-delay: .12s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(5) { animation-delay: 0s !important; }
+
+@keyframes intro-menu-panel-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes intro-menu-brand-out {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(-24px, 0, 0); }
+}
+@keyframes intro-menu-close-out {
+  from { opacity: 1; transform: translate3d(0, -50%, 0); }
+  to {
+    opacity: 0;
+    transform: translate3d(calc(-50vw + 2 * clamp(24px, 4vw, 64px) + 48px), -50%, 0);
+  }
+}
+@keyframes intro-menu-link-out {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(-20px, 0, 0); }
+}
+@media (max-width: 640px) {
+  @keyframes intro-menu-close-out {
+    from { opacity: 1; transform: translate3d(0, -50%, 0); }
+    to { opacity: 0; transform: translate3d(calc(-50vw + 48px), -50%, 0); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel,
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-brand,
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close,
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
