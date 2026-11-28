@@ -92,9 +92,12 @@ export function CinematicIntro() {
   // Keep the description's left edge anchored while its container expands.
   const copyLeft = contentInset;
   const copyX = copyLeft + copyWidth / 2;
-  const copyBottom = viewportHeight * (viewportWidth <= 640 ? 0.07 : 0.07);
-  const copyStartY = viewportHeight - copyBottom - 48;
-  const copyY = copyStartY + (viewportHeight / 2 - copyStartY) * progress;
+  // Keep the vertical composition tied to the proven 900px desktop canvas.
+  // Taller monitors gain breathing room around the stage, not larger gaps between content.
+  const compositionHeight = Math.min(viewportHeight, 900);
+  const copyBottom = compositionHeight * 0.07;
+  const copyStartY = compositionHeight - copyBottom - 48;
+  const copyY = copyStartY + (compositionHeight / 2 - copyStartY) * progress;
   const handlePortraitPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
     if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -136,7 +139,7 @@ export function CinematicIntro() {
     viewportWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52),
     730,
   );
-  const initialPortraitHeight = Math.max(180, viewportHeight - 100);
+  const initialPortraitHeight = Math.min(800, Math.max(180, viewportHeight - 100));
   // Portrait choreography is intentionally faster than the long-form copy reveal:
   // the first scroll movement immediately contracts the rendered image dimensions.
   const portraitProgress = clamp((-((sectionRef.current?.getBoundingClientRect().top) ?? 0)) / Math.max(1, viewportHeight * 0.72));
