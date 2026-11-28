@@ -6797,7 +6797,7 @@ body.intro-active .site-header { display: none; }
 /* Coordinated half-screen navigation system.
    Closed-state geometry remains untouched; these rules only engage while open. */
 .intro-page-frame .cinematic-intro-stage {
-  container-type: inline-size;
+  container-type: normal;
 }
 .intro-page-frame .cinematic-intro-header[data-menu-open="true"] {
   z-index: 140 !important;
@@ -6821,7 +6821,7 @@ body.intro-active .site-header { display: none; }
   transition: transform .78s cubic-bezier(.22,.72,.2,1) !important;
 }
 .intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="false"] > .cinematic-intro-menu {
-  transform: translate3d(calc(50cqw - 2 * var(--intro-content-inset, 24px) - 48px), 0, 0) !important;
+  transform: translate3d(calc(50vw - max(0px, (100vw - 1600px) / 2) - 2 * var(--intro-content-inset, 24px) - 48px), 0, 0) !important;
 }
 .intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="true"] > .cinematic-intro-menu {
   transform: translate3d(0, 0, 0) !important;
@@ -6832,7 +6832,7 @@ body.intro-active .site-header { display: none; }
   transition: transform .78s cubic-bezier(.22,.72,.2,1) !important;
 }
 .intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="false"] > .cinematic-intro-brand {
-  transform: translate3d(calc(-50cqw + var(--intro-content-inset, 24px) + 50%), 0, 0) !important;
+  transform: translate3d(calc(-50vw + max(0px, (100vw - 1600px) / 2) + var(--intro-content-inset, 24px) + 50%), 0, 0) !important;
 }
 .intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="true"] > .cinematic-intro-brand {
   transform: translate3d(0, 0, 0) !important;
