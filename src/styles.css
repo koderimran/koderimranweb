@@ -7582,3 +7582,23 @@ body.intro-active .site-header { display: none; }
   animation-duration: .85s !important;
   animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
 }
+
+
+/* Menu separators span the complete overlay panel; keep text inset independently. */
+.cinematic-intro-menu-panel-nav {
+  padding-inline: 0 !important;
+}
+.cinematic-intro-menu-panel-nav a {
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline: clamp(24px, 4vw, 64px) !important;
+  border-bottom: 1px solid var(--intro-rule, rgb(241 243 237 / .16)) !important;
+}
+.cinematic-intro-menu-panel-nav a:last-child {
+  border-bottom: 1px solid var(--intro-rule, rgb(241 243 237 / .16)) !important;
+}
+@media (max-width: 640px) {
+  .cinematic-intro-menu-panel-nav a {
+    padding-inline: 16px !important;
+  }
+}
