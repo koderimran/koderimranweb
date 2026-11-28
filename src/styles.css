@@ -7633,3 +7633,15 @@ body.intro-active .site-header { display: none; }
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Keep the overlay close mark as an X while it retraces its entrance path.
+   The original header control independently returns to its hamburger state. */
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:first-child {
+  width: 28px !important;
+  transform: translateY(-50%) rotate(45deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:last-child {
+  width: 28px !important;
+  transform: translateY(-50%) rotate(-45deg) !important;
+}
