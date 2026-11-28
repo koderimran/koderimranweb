@@ -6086,3 +6086,18 @@ body.intro-active .site-header { display: none; }
 .intro-page-frame .cinematic-intro-copy {
   transform: translate3d(0, calc((1 - var(--intro-progress, 0)) * -50%), 0) !important;
 }
+
+
+/* Lock the closed menu icon to the same left rail as the centered 1600px canvas.
+   Use viewport-fixed coordinates so a wider parent/header cannot shift the control inward. */
+.intro-page-frame .cinematic-intro-header {
+  position: fixed !important;
+  left: max(24px, calc((100vw - 1600px) / 2 + 24px)) !important;
+  right: auto !important;
+  width: auto !important;
+}
+.intro-page-frame .cinematic-intro-header:not([data-menu-open="true"]) .cinematic-intro-menu {
+  position: fixed !important;
+  left: max(24px, calc((100vw - 1600px) / 2 + 24px)) !important;
+  right: auto !important;
+}
