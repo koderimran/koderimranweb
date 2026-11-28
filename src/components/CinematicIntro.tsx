@@ -108,15 +108,6 @@ export function CinematicIntro() {
     if (menuCloseTimer.current !== null) window.clearTimeout(menuCloseTimer.current);
   }, []);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [menuOpen]);
-
   const introActive = progress < 1;
   useEffect(() => {
     document.body.classList.toggle("intro-active", introActive);
@@ -220,7 +211,7 @@ export function CinematicIntro() {
     >
       <div className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
-        <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen}>
+        <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen && !menuClosing}>
           <button
             type="button"
             ref={menuButtonRef}
