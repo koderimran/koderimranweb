@@ -85,7 +85,7 @@ export function CinematicIntro() {
   const contentInset = Math.max(0, (viewportWidth - 1920) / 2) + contentGutter;
   const availableContentWidth = Math.max(0, viewportWidth - contentInset * 2);
   const copyStartWidth = availableContentWidth * 0.5;
-  const copyEndWidth = availableContentWidth * 0.75;
+  const copyEndWidth = Math.min(availableContentWidth * 0.75, 1120);
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
   // Title width stays fixed at exactly half of the content grid throughout the scroll.
   const titleWidth = availableContentWidth * 0.5;
