@@ -6101,3 +6101,74 @@ body.intro-active .site-header { display: none; }
   left: max(24px, calc((100vw - 1600px) / 2 + 24px)) !important;
   right: auto !important;
 }
+
+
+/* Rebuild the intro header as one aligned 3-column rail.
+   Menu shares the title's left inset, brand is viewport/canvas centered,
+   and location sits at the right edge; all three share one vertical center. */
+.intro-page-frame .cinematic-intro-header {
+  position: fixed !important;
+  top: 24px !important;
+  left: max(0px, calc((100vw - 1600px) / 2)) !important;
+  right: auto !important;
+  width: min(100vw, 1600px) !important;
+  height: 48px !important;
+  padding-inline: var(--intro-content-inset, 24px) !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+  align-items: center !important;
+  justify-items: stretch !important;
+  transform: none !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: relative !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  align-self: center !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  z-index: 133 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-brand {
+  position: relative !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: center !important;
+  align-self: center !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  z-index: 132 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-header-location {
+  position: relative !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  align-self: center !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  z-index: 132 !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header {
+    top: 16px !important;
+    height: 40px !important;
+    padding-inline: 16px !important;
+  }
+}
