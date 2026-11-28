@@ -219,7 +219,7 @@ export function CinematicIntro() {
     >
       <div ref={stageRef} className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
-        <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen}>
+        <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen} data-menu-overlay-closing={menuClosing}>
           <button
             type="button"
             ref={menuButtonRef}
