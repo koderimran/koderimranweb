@@ -7549,3 +7549,36 @@ body.intro-active .site-header { display: none; }
     animation-delay: 0ms !important;
   }
 }
+
+
+/* Slower, deliberate close: let the X visibly morph into the hamburger
+   while the logo, links, and panel leave in a coordinated sequence. */
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel {
+  animation-duration: 1.45s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-brand {
+  animation-duration: 1.25s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close {
+  animation-duration: 1.45s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span {
+  transition:
+    transform 1.15s cubic-bezier(.65, 0, .35, 1) !important,
+    width 1.15s cubic-bezier(.65, 0, .35, 1) !important,
+    opacity .8s ease !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:first-child {
+  transform: translateY(calc(-50% - 3.5px)) rotate(0deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:last-child {
+  width: 19px !important;
+  transform: translateY(calc(-50% + 3.5px)) rotate(0deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+  animation-duration: .85s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
