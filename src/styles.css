@@ -6019,3 +6019,24 @@ body.intro-active .site-header { display: none; }
   padding: 0 .16em 0 0 !important;
   white-space: nowrap !important;
 }
+
+
+/* Large-desktop composition guard: preserve the 1440px art direction while
+   keeping the headline and expanding copy inside the 1920px editorial grid. */
+@media (min-width: 1600px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    /* 1440px remains untouched; wide screens use a measured cap to prevent
+       the unbroken headline from colliding with the portrait or viewport edge. */
+    font-size: clamp(4rem, 4.2vw, 5rem) !important;
+  }
+
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    max-width: min(var(--intro-copy-width), 1120px);
+  }
+}
+
+@media (min-width: 2200px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: 5rem !important;
+  }
+}
