@@ -6068,3 +6068,14 @@ body.intro-active .site-header { display: none; }
 .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
   left: calc((100vw - min(100vw, 1600px)) / 2 + var(--intro-content-inset, var(--intro-content-gutter))) !important;
 }
+
+
+/* Fluid intro typography: scale with viewport width, but keep a deliberate type range. */
+@media (min-width: 641px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.5rem, 5vw, 6rem) !important;
+  }
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  font-size: clamp(.84rem, calc(var(--intro-copy-size, 1rem) + 0.35vw - 5px), 1.85rem) !important;
+}
