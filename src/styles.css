@@ -6996,8 +6996,7 @@ body.intro-active .site-header { display: none; }
 
 /* Intro navigation is contained by the centered, clipped stage canvas. */
 .intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-header-location {
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
   opacity: 0 !important;
   pointer-events: none !important;
 }
@@ -7254,8 +7253,7 @@ body.intro-active .site-header { display: none; }
   transition: opacity .78s cubic-bezier(.22,.72,.2,1) !important;
 }
 .intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-header-location {
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
   opacity: 0 !important;
   pointer-events: none !important;
 }
@@ -7389,4 +7387,12 @@ body.intro-active .site-header { display: none; }
   z-index: 3 !important;
   pointer-events: auto !important;
   touch-action: manipulation;
+}
+
+
+/* Keep the Dhaka location visible on the uncovered right side of the menu overlay. */
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-header-location {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
 }
