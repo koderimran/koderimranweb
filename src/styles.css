@@ -7396,3 +7396,50 @@ body.intro-active .site-header { display: none; }
   visibility: visible !important;
   pointer-events: none !important;
 }
+
+
+/* Intro description: remove the decorative left rail and its card treatment. */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  border-left: 0 !important;
+  border-inline-start: 0 !important;
+  padding-left: 0 !important;
+  padding-inline-start: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Refined KODER IMRAN wordmark: crisp contrast, intentional tracking and accent. */
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: .035em !important;
+  color: #f1f3ed !important;
+  font-family: "Bricolage Grotesque", ui-sans-serif, sans-serif !important;
+  font-size: clamp(1.02rem, 1.35vw, 1.24rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.075em !important;
+  line-height: .9 !important;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: color .3s ease, transform .78s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand span {
+  color: #b8ed72 !important;
+  font-weight: 800 !important;
+  letter-spacing: -.085em !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand i {
+  display: inline-block;
+  margin-left: .015em;
+  color: #b8ed72 !important;
+  font-size: 1.22em;
+  font-style: normal;
+  font-weight: 800;
+  transform: translateY(.025em);
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand:hover {
+  color: #ffffff !important;
+}
