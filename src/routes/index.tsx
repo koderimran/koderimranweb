@@ -12,6 +12,18 @@ import { startTickerWordFade } from "@/lib/ticker-fade";
 
 const HERO_MARQUEE = ["Google Ads", "Web Analytics", "Shopify", "WordPress"];
 
+/** The star between ticker labels. An SVG, not the "✳" character: that character is drawn by whatever
+ *  fallback font a device has, and phones often draw it as a coloured emoji of a different size. */
+function TickerDot() {
+  return (
+    <i aria-hidden="true">
+      <svg viewBox="-1.4 -1.4 18.8 18.8" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
+        <path d="M8 1.5v13M1.5 8h13M3.4 3.4l9.2 9.2M12.6 3.4l-9.2 9.2" />
+      </svg>
+    </i>
+  );
+}
+
 const TITLE = "Imran | Google Ads, GA4 Tracking, Shopify & WordPress Expert";
 const DESC =
   "Imran (Koder Imran) helps e-commerce brands grow with Google Ads management, GA4 & GTM tracking, Shopify stores and WordPress/WooCommerce websites.";
@@ -51,10 +63,11 @@ function Index() {
       el.dataset.paused = entry.isIntersecting ? "false" : "true";
     });
     io.observe(el);
-    // Words fade as whole words around the face's centre line: 3rem each side stay fully clear,
-    // then a word is gone 2rem further out. Neighbouring words sit ~6-9rem apart, so one word
-    // reads at a time and the next one cross-fades in as it arrives.
-    const stopFade = startTickerWordFade(el, 3, 2);
+    // Words fade as whole words around the face's centre line: 3.85em each side stay fully clear
+    // (about 3rem at the desktop text size), then a word is gone 2.55em further out. Neighbouring
+    // words sit ~6-9rem apart, so one word reads at a time and the next one cross-fades in as it
+    // arrives. The units are em of the ticker text, so phones get a proportionally smaller window.
+    const stopFade = startTickerWordFade(el, 3.85, 2.55);
     return () => {
       io.disconnect();
       stopFade();
@@ -77,7 +90,7 @@ function Index() {
                   {[0, 1, 2, 3].flatMap((copy) =>
                     HERO_MARQUEE.flatMap((label) => [
                       <b key={`${copy}-${label}`}>{label}</b>,
-                      <i key={`${copy}-${label}-dot`}>✳</i>,
+                      <TickerDot key={`${copy}-${label}-dot`} />,
                     ]),
                   )}
                 </span>
