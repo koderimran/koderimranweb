@@ -7364,3 +7364,29 @@ body.intro-active .site-header { display: none; }
     font-size: clamp(1.15rem, 4vw, 1.35rem) !important;
   }
 }
+
+
+/* Keep the menu hit-area and close control interactive inside the stage portal. */
+.cinematic-intro-menu-layer {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] {
+  pointer-events: none !important;
+}
+.cinematic-intro-menu-panel {
+  position: absolute !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
+}
+.cinematic-intro-menu-panel-header {
+  position: relative !important;
+  z-index: 2 !important;
+}
+.cinematic-intro-menu-panel-close {
+  z-index: 3 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+}
