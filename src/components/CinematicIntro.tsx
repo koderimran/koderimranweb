@@ -121,8 +121,9 @@ export function CinematicIntro() {
     event.currentTarget.style.setProperty("--intro-highlight-x", "0px");
     event.currentTarget.style.setProperty("--intro-highlight-y", "0px");
   };
-  const greetingStartSize = 2.5;
-  const greetingEndSize = 1.5;
+  // Fluid greeting scale follows the viewport, with explicit minimum and maximum sizes.
+  const greetingStartSize = Math.max(2, Math.min(3.25, viewportWidth / 576));
+  const greetingEndSize = Math.max(1.25, Math.min(1.75, viewportWidth / 960));
   const greetingSize = greetingStartSize + (greetingEndSize - greetingStartSize) * progress;
   const copyStyle = {
     "--intro-copy-x": `${copyX}px`,
