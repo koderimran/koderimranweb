@@ -63,7 +63,7 @@ export function CinematicIntro() {
 
   useEffect(() => {
     if (!menuOpen) return;
-    menuCloseButtonRef.current?.focus();
+    menuCloseButtonRef.current?.focus({ preventScroll: true });
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
