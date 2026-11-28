@@ -203,6 +203,9 @@ export function CinematicIntro() {
 
 
 
+
+        </header>
+
           <button
             type="button"
             className="cinematic-intro-menu-backdrop"
@@ -219,7 +222,6 @@ export function CinematicIntro() {
             <Link to="/portfolio" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Projects</Link>
             <Link to="/contact" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Contact</Link>
           </nav>
-        </header>
 
         <div className="cinematic-intro-copy">
           <p className="cinematic-intro-greeting"><span>Hi, I’m </span><span className="intro-greeting-accent">Imran.</span></p>
