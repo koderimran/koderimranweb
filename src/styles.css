@@ -7104,7 +7104,7 @@ body.intro-active .site-header { display: none; }
   font-weight: 600;
   line-height: 1.1;
   opacity: 0;
-  animation: intro-menu-link-in .78s cubic-bezier(.22,.72,.2,1) both;
+  animation: intro-menu-link-in .64s cubic-bezier(.22,.72,.2,1) both;
 }
 .cinematic-intro-menu-panel-nav a:last-child { border-bottom: 0; }
 .cinematic-intro-menu-panel-nav a:hover,
