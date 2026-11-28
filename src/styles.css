@@ -7712,3 +7712,34 @@ body.intro-active .site-header { display: none; }
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Anchor the scroll-completion dock to the capped intro frame, not viewport. */
+.intro-page-frame .cinematic-intro-stage {
+  position: sticky !important;
+}
+.intro-page-frame .cinematic-intro-scroll-nav {
+  position: absolute !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 32px !important;
+  width: min(calc(100% - 2 * var(--intro-content-gutter, 24px)), var(--intro-content-max, 1600px)) !important;
+  max-width: calc(100% - 2 * var(--intro-content-gutter, 24px)) !important;
+  transform: translate3d(-50%, 16px, 0) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-nav[data-reveal="true"][data-menu-open="false"] {
+  transform: translate3d(-50%, 0, 0) !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-nav {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 32px !important;
+    width: calc(100% - 2 * var(--intro-content-gutter, 16px)) !important;
+    max-width: calc(100% - 2 * var(--intro-content-gutter, 16px)) !important;
+    transform: translate3d(-50%, 16px, 0) !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-nav[data-reveal="true"][data-menu-open="false"] {
+    transform: translate3d(-50%, 0, 0) !important;
+  }
+}
