@@ -7714,17 +7714,19 @@ body.intro-active .site-header { display: none; }
 }
 
 
-/* Anchor the scroll-completion dock to the capped intro frame, not viewport. */
-.intro-page-frame .cinematic-intro-stage {
-  position: sticky !important;
-}
+/* Frame-relative dock geometry.
+   The capped 900px intro frame is vertically centered in taller viewports;
+   calculate its bottom edge from that same frame rule, then inset by 32px. */
 .intro-page-frame .cinematic-intro-scroll-nav {
-  position: absolute !important;
+  position: fixed !important;
   left: 50% !important;
   right: auto !important;
-  bottom: 32px !important;
-  width: min(calc(100% - 2 * var(--intro-content-gutter, 24px)), var(--intro-content-max, 1600px)) !important;
-  max-width: calc(100% - 2 * var(--intro-content-gutter, 24px)) !important;
+  bottom: calc(max(0px, (100svh - 900px) / 2) + 32px) !important;
+  width: min(
+    calc(100vw - 2 * var(--intro-content-gutter, 24px)),
+    calc(1600px - 2 * var(--intro-content-gutter, 24px))
+  ) !important;
+  max-width: calc(1600px - 2 * var(--intro-content-gutter, 24px)) !important;
   transform: translate3d(-50%, 16px, 0) !important;
 }
 .intro-page-frame .cinematic-intro-scroll-nav[data-reveal="true"][data-menu-open="false"] {
@@ -7734,9 +7736,9 @@ body.intro-active .site-header { display: none; }
   .intro-page-frame .cinematic-intro-scroll-nav {
     left: 50% !important;
     right: auto !important;
-    bottom: 32px !important;
-    width: calc(100% - 2 * var(--intro-content-gutter, 16px)) !important;
-    max-width: calc(100% - 2 * var(--intro-content-gutter, 16px)) !important;
+    bottom: calc(max(0px, (100svh - 900px) / 2) + 32px) !important;
+    width: calc(100vw - 2 * var(--intro-content-gutter, 16px)) !important;
+    max-width: calc(100vw - 2 * var(--intro-content-gutter, 16px)) !important;
     transform: translate3d(-50%, 16px, 0) !important;
   }
   .intro-page-frame .cinematic-intro-scroll-nav[data-reveal="true"][data-menu-open="false"] {
