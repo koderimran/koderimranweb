@@ -39,7 +39,7 @@ export function CinematicIntro() {
       setViewportHeight(window.innerHeight);
       if (reducedMotion || !section) return;
       const rect = section.getBoundingClientRect();
-      const distance = Math.max(1, section.offsetHeight - window.innerHeight);
+      const distance = Math.max(1, section.offsetHeight - Math.min(window.innerHeight, 900));
       setProgress(clamp(-rect.top / distance));
     };
     update();
@@ -81,9 +81,10 @@ export function CinematicIntro() {
   }, [progress]);
 
   // The description grows from half to the full shared content grid as the intro scrolls.
-  const contentGutter = Math.max(24, Math.min(viewportWidth * 0.04, 80));
-  const contentInset = Math.max(0, (viewportWidth - 1920) / 2) + contentGutter;
-  const availableContentWidth = Math.max(0, viewportWidth - contentInset * 2);
+  const compositionWidth = Math.min(viewportWidth, 1600);
+  const contentGutter = Math.max(24, Math.min(compositionWidth * 0.04, 80));
+  const contentInset = contentGutter;
+  const availableContentWidth = Math.max(0, compositionWidth - contentInset * 2);
   const copyStartWidth = availableContentWidth * 0.5;
   const copyEndWidth = Math.min(availableContentWidth * 0.75, 1120);
   const copyWidth = copyStartWidth + (copyEndWidth - copyStartWidth) * progress;
@@ -131,15 +132,15 @@ export function CinematicIntro() {
     "--intro-copy-progress": progress,
     "--intro-greeting-size": `${greetingSize}rem`,
     "--intro-menu-start": `${Math.max(20, Math.min(viewportWidth * 0.032, 46))}px`,
-    "--intro-menu-top": `${Math.max(20, Math.min(viewportWidth * 0.032, 46)) + progress * Math.max(0, viewportHeight - Math.max(20, Math.min(viewportWidth * 0.032, 46)) - (viewportWidth <= 640 ? 42 : 48) - 24)}px`,
+    "--intro-menu-top": `${Math.max(20, Math.min(viewportWidth * 0.032, 46)) + progress * Math.max(0, compositionHeight - Math.max(20, Math.min(viewportWidth * 0.032, 46)) - (viewportWidth <= 640 ? 42 : 48) - 24)}px`,
     "--intro-greeting-rise": "60px",
     textAlign: "left",
   } as CSSProperties;
   const initialPortraitWidth = Math.min(
-    viewportWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52),
+    compositionWidth * (viewportWidth <= 640 ? 0.88 : viewportWidth <= 900 ? 0.62 : 0.52),
     730,
   );
-  const initialPortraitHeight = Math.min(800, Math.max(180, viewportHeight - 100));
+  const initialPortraitHeight = Math.min(800, Math.max(180, compositionHeight - 100));
   // Portrait choreography is intentionally faster than the long-form copy reveal:
   // the first scroll movement immediately contracts the rendered image dimensions.
   const portraitProgress = clamp((-((sectionRef.current?.getBoundingClientRect().top) ?? 0)) / Math.max(1, viewportHeight * 0.72));
