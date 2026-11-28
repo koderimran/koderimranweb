@@ -6033,3 +6033,20 @@ body.intro-active .site-header { display: none; }
     max-width: min(var(--intro-copy-width), 1120px);
   }
 }
+
+
+/* Center the intro composition inside a full-viewport background canvas. */
+.intro-page-frame .cinematic-intro {
+  background:
+    radial-gradient(ellipse 55% 70% at 76% 50%, rgb(120 255 0 / 0.12), transparent 72%),
+    radial-gradient(ellipse 60% 60% at 20% 90%, rgb(120 255 0 / 0.055), transparent 70%),
+    #050605;
+}
+.intro-page-frame .cinematic-intro-stage {
+  width: min(100vw, 1600px);
+  height: min(100svh, 900px);
+  min-height: 0;
+  margin-inline: auto;
+  top: max(0px, calc((100svh - 900px) / 2));
+  background: transparent;
+}
