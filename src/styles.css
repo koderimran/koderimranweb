@@ -6653,3 +6653,142 @@ body.intro-active .site-header { display: none; }
   .intro-page-frame .cinematic-intro-nav[data-open="true"] { transition-duration: .01ms !important; }
   .intro-page-frame .cinematic-intro-nav[data-open="true"] a { animation: none !important; }
 }
+
+
+/* Menu-open composition: opaque left-half overlay with a moving header row.
+   Closed-state rules above remain the source of truth when data-menu-open=false. */
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] {
+  position: relative !important;
+  z-index: 130 !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after {
+  content: "" !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 50vw !important;
+  height: 88px !important;
+  box-sizing: border-box !important;
+  border-bottom: 1px solid rgb(255 255 255 / .22) !important;
+  pointer-events: none !important;
+  z-index: 132 !important;
+  opacity: 1 !important;
+  animation: intro-menu-header-rule .72s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu {
+  position: relative !important;
+  z-index: 134 !important;
+  transform: translate3d(calc(50vw - 3rem - max(0px, (100vw - 1600px) / 2)), 0, 0) !important;
+  transition: transform .78s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-brand {
+  position: relative !important;
+  z-index: 134 !important;
+  transform: translate3d(-25vw, 0, 0) !important;
+  transition: transform .78s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-header-location {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity .24s ease, visibility .24s ease !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: 100dvh !important;
+  background: rgb(5 7 5 / .99) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(.8) !important;
+  backdrop-filter: blur(18px) saturate(.8) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .62s ease, visibility .62s ease !important;
+  z-index: 120 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-closing="true"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: fixed !important;
+  top: 88px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: calc(100dvh - 88px) !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  padding: clamp(12px, 3vh, 32px) clamp(24px, 4vw, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .72s cubic-bezier(.2,.8,.2,1) !important;
+  z-index: 125 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 1px solid rgb(255 255 255 / .14) !important;
+  color: rgb(245 246 242 / .96) !important;
+  font-size: clamp(1.1rem, 2vw, 2rem) !important;
+  line-height: 1.1 !important;
+  opacity: 0 !important;
+  animation: intro-menu-item-enter .9s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:last-child { border-bottom: 0 !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="true"] a { animation: none !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(1) { animation-delay: .48s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(2) { animation-delay: .62s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(3) { animation-delay: .76s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(4) { animation-delay: .90s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(5) { animation-delay: 1.04s !important; }
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after { height: 76px !important; }
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu {
+    transform: translate3d(calc(50vw - 2.75rem), 0, 0) !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    top: 76px !important;
+    width: 50vw !important;
+    max-width: 50vw !important;
+    height: calc(100dvh - 76px) !important;
+    padding: 12px 16px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a { font-size: clamp(.95rem, 4vw, 1.25rem) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after,
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu,
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-brand,
+  .intro-page-frame .cinematic-intro-menu-backdrop,
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a { animation: none !important; opacity: 1 !important; }
+}
