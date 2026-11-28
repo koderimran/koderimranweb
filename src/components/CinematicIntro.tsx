@@ -288,7 +288,9 @@ export function CinematicIntro() {
           className="cinematic-intro-menu-layer"
           data-closing={menuClosing}
           role="presentation"
-          onClick={closeMenu}
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) closeMenu();
+          }}
         >
           <section
             className="cinematic-intro-menu-panel"
