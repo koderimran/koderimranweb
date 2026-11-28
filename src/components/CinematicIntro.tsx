@@ -100,9 +100,14 @@ export function CinematicIntro() {
     }
   }, [menuOpen]);
 
+  // Close only when the user scrolls after opening the menu.
+  // Do not immediately close merely because the intro is already scrolled.
   useEffect(() => {
-    if (menuOpen && progress > 0.015) closeMenu();
-  }, [menuOpen, progress]);
+    if (!menuOpen || menuClosing) return;
+    const onScroll = () => closeMenu();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [menuOpen, menuClosing]);
 
   useEffect(() => () => {
     if (menuCloseTimer.current !== null) window.clearTimeout(menuCloseTimer.current);
