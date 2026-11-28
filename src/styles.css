@@ -1924,7 +1924,12 @@ button {
     text-wrap: balance;
   }
   .hero-title-line { white-space: normal; }
-  .hero-copy > p:first-child { font-size: calc(0.77rem + 2.4vw); }
+  /* No top margin on the first line: the copy box is centred in the hero, and that 20px would sit
+     inside the box with nothing to match it below, pushing the visible text about 20px low. */
+  .hero-copy > p:first-child {
+    margin-top: 0;
+    font-size: calc(0.77rem + 2.4vw);
+  }
   .hero-copy > p:nth-of-type(2) { font-size: 1rem; }
 
   .hero-background-photo {
