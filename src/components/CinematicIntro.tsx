@@ -7,6 +7,7 @@ const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
 export function CinematicIntro() {
   const sectionRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
@@ -214,7 +215,7 @@ export function CinematicIntro() {
       onPointerMove={handlePortraitPointerMove}
       onPointerLeave={handlePortraitPointerLeave}
     >
-      <div className="cinematic-intro-stage">
+      <div ref={stageRef} className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
         <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen && !menuClosing}>
           <button
@@ -282,7 +283,7 @@ export function CinematicIntro() {
         </nav>
       </div>
  
-      {menuOpen && typeof document !== "undefined" && createPortal(
+      {menuOpen && stageRef.current && createPortal(
         <div
           className="cinematic-intro-menu-layer"
           data-closing={menuClosing}
@@ -320,7 +321,7 @@ export function CinematicIntro() {
             </nav>
           </section>
         </div>,
-        document.body
+        stageRef.current
       )}
     </section>
   );
