@@ -84,8 +84,10 @@
     oklch(0.99 0.008 130) 0%,
     oklch(0.985 0.006 130) 52%,
     oklch(0.978 0.009 155) 100%);
-  --header-background: color-mix(in oklab, var(--background) 91%, transparent);
-  --header-scrolled-background: color-mix(in oklab, var(--background) 88%, transparent);
+  /* Light theme: the sticky header is fully opaque. At 88-91% it let whatever scrolled under it (the dark
+     portrait, black buttons, dark headings) show through as a faint grey smudge over the menu. */
+  --header-background: var(--background);
+  --header-scrolled-background: var(--background);
   --header-scrolled-border: var(--rule);
   --shadow-header: 0 8px 24px -14px oklch(0.22 0.025 255 / 0.22);
   /* Hero uses the same neutral canvas; only a quiet sage wash supports the portrait. */
@@ -2168,6 +2170,12 @@ button {
 
 /* Header, separators and page-level surfaces use the same neutral family. */
 :root:not(.dark) .site-header { border-color: var(--rule); }
+/* Nothing shows through the light header, so there is nothing to blur (and no filter to repaint while scrolling). */
+:root:not(.dark) .site-header,
+:root:not(.dark) .site-header[data-compact="true"] {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
 :root:not(.dark) .home-section-divider.bg-secondary\/50 { background-color: var(--secondary); }
 :root:not(.dark) .bg-grid { background-color: transparent; }
 
