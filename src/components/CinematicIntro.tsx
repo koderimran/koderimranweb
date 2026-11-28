@@ -13,6 +13,7 @@ export function CinematicIntro() {
   const menuCloseTimer = useRef<number | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const menuWasOpen = useRef(false);
 
   const closeMenu = () => {
     if (!menuOpen || menuClosing) return;
@@ -91,7 +92,12 @@ export function CinematicIntro() {
   }, [menuOpen, menuClosing]);
 
   useEffect(() => {
-    if (!menuOpen) menuButtonRef.current?.focus();
+    if (menuOpen) {
+      menuWasOpen.current = true;
+    } else if (menuWasOpen.current) {
+      menuWasOpen.current = false;
+      menuButtonRef.current?.focus();
+    }
   }, [menuOpen]);
 
   useEffect(() => {
@@ -111,11 +117,11 @@ export function CinematicIntro() {
     };
   }, [menuOpen]);
 
+  const introActive = progress < 1;
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    document.body.classList.toggle("intro-active", progress < 1);
+    document.body.classList.toggle("intro-active", introActive);
     return () => document.body.classList.remove("intro-active");
-  }, [progress]);
+  }, [introActive]);
 
   // The description grows from half to the full shared content grid as the intro scrolls.
   const compositionWidth = Math.min(viewportWidth, 1600);
