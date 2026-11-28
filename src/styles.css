@@ -6392,3 +6392,58 @@ body.intro-active .site-header { display: none; }
     height: 40px !important;
   }
 }
+
+
+/* Final menu fit: five equal-height slots inside the available panel height.
+   Adaptive vertical padding keeps every item visible on short viewports too. */
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: absolute !important;
+  inset: 0 auto 0 0 !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  padding: clamp(76px, 12vh, 112px) clamp(20px, 3vw, 48px) clamp(16px, 5vh, 48px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  line-height: 1.1 !important;
+  font-size: clamp(1rem, 1.8vw, 1.8rem) !important;
+  overflow: hidden !important;
+}
+@media (max-height: 600px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    padding-top: 68px !important;
+    padding-bottom: 12px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    font-size: clamp(.9rem, 1.5vw, 1.2rem) !important;
+    padding-block: 4px !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    width: 50% !important;
+    max-width: 50% !important;
+    padding: clamp(76px, 12vh, 88px) 16px 20px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    font-size: clamp(.95rem, 4vw, 1.25rem) !important;
+  }
+}
