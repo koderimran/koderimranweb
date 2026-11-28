@@ -7450,3 +7450,46 @@ body.intro-active .site-header { display: none; }
   border-left-color: rgb(184 237 114 / .3) !important;
   border-inline-start-color: rgb(184 237 114 / .3) !important;
 }
+
+
+/* Reverse the close glyph into the original two-bar menu icon before unmount. */
+.cinematic-intro-menu-panel-close span {
+  transform-origin: center !important;
+  transition:
+    transform .42s cubic-bezier(.22,.72,.2,1),
+    width .42s cubic-bezier(.22,.72,.2,1),
+    opacity .24s ease !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:first-child {
+  transform: translateY(calc(-50% - 3.5px)) rotate(0deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:last-child {
+  width: 19px !important;
+  transform: translateY(calc(-50% + 3.5px)) rotate(0deg) !important;
+}
+
+/* Keep the animated wordmark as clean text, never a filled highlight block. */
+.cinematic-intro-menu-panel-brand {
+  background: transparent !important;
+  -webkit-text-fill-color: #f1f3ed;
+  text-shadow: none !important;
+}
+.cinematic-intro-menu-panel-brand span {
+  display: inline !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  color: #b8ed72 !important;
+  -webkit-text-fill-color: #b8ed72 !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+.cinematic-intro-menu-panel-brand i {
+  background: transparent !important;
+  -webkit-text-fill-color: #b8ed72 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-menu-panel-close span {
+    transition-duration: .01ms !important;
+  }
+}
