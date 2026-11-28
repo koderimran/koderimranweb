@@ -24,7 +24,7 @@ export function CinematicIntro() {
       setMenuOpen(false);
       setMenuClosing(false);
       menuCloseTimer.current = null;
-    }, 1150);
+    }, 1550);
   };
 
   const openMenu = () => {
@@ -210,6 +210,7 @@ export function CinematicIntro() {
     <section
       ref={sectionRef}
       className="cinematic-intro"
+      data-menu-overlay-active={menuOpen && !menuClosing}
       style={style}
       aria-label="Introduction"
       onPointerMove={handlePortraitPointerMove}
