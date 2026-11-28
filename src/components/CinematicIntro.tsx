@@ -19,7 +19,7 @@ export function CinematicIntro() {
       setMenuOpen(false);
       setMenuClosing(false);
       menuCloseTimer.current = null;
-    }, 560);
+    }, 780);
   };
 
   const openMenu = () => {
