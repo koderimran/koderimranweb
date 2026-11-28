@@ -7264,3 +7264,100 @@ body.intro-active .site-header { display: none; }
 .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
   pointer-events: none;
 }
+
+/* Intro design tokens — one palette and type system across the hero,
+   scroll dock, and the body-portal navigation. */
+.intro-page-frame {
+  --intro-ink: #080b09;
+  --intro-paper: #f1f3ed;
+  --intro-muted: #a6aea4;
+  --intro-accent: #b8ed72;
+  --intro-accent-strong: #a8e85b;
+  --intro-rule: rgb(226 235 221 / .16);
+}
+.intro-page-frame .cinematic-intro,
+.intro-page-frame .cinematic-intro-stage {
+  color: var(--intro-paper);
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+.intro-page-frame .cinematic-intro-brand,
+.intro-page-frame .cinematic-intro-copy h1,
+.intro-page-frame .cinematic-intro-scroll-nav a {
+  font-family: "Bricolage Grotesque", ui-sans-serif, sans-serif !important;
+}
+.intro-page-frame .cinematic-intro-greeting,
+.intro-page-frame .cinematic-intro-scroll-copy p,
+.intro-page-frame .cinematic-intro-location {
+  font-family: "Manrope", ui-sans-serif, sans-serif !important;
+}
+.intro-page-frame .cinematic-intro-greeting { color: var(--intro-muted) !important; }
+.intro-page-frame .cinematic-intro-greeting .intro-greeting-accent,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent,
+.intro-page-frame .cinematic-intro-brand span,
+.intro-page-frame .cinematic-intro-brand i,
+.intro-page-frame .cinematic-intro-menu span {
+  color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-menu span {
+  background-color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-location {
+  color: var(--intro-muted) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  color: rgb(241 243 237 / .84) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p strong {
+  color: var(--intro-paper) !important;
+  text-decoration-color: rgb(184 237 114 / .42) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-nav a {
+  color: rgb(241 243 237 / .9) !important;
+  border-color: var(--intro-rule) !important;
+  background: rgb(8 11 9 / .78) !important;
+  font-weight: 650 !important;
+  letter-spacing: -.025em !important;
+}
+.intro-page-frame .cinematic-intro-scroll-nav a:hover,
+.intro-page-frame .cinematic-intro-scroll-nav a:focus-visible {
+  color: var(--intro-accent) !important;
+  border-color: rgb(184 237 114 / .48) !important;
+}
+.cinematic-intro-menu-panel {
+  color: var(--intro-paper) !important;
+  background: var(--intro-ink) !important;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif !important;
+}
+.cinematic-intro-menu-panel-brand,
+.cinematic-intro-menu-panel-nav a {
+  font-family: "Bricolage Grotesque", ui-sans-serif, sans-serif !important;
+}
+.cinematic-intro-menu-panel-brand,
+.cinematic-intro-menu-panel-close {
+  color: var(--intro-paper) !important;
+}
+.cinematic-intro-menu-panel-brand span,
+.cinematic-intro-menu-panel-brand i,
+.cinematic-intro-menu-panel-close span {
+  color: var(--intro-accent) !important;
+  background-color: var(--intro-accent) !important;
+}
+.cinematic-intro-menu-panel-header {
+  border-bottom-color: var(--intro-rule) !important;
+}
+.cinematic-intro-menu-panel-nav a {
+  color: rgb(241 243 237 / .92) !important;
+  border-bottom-color: var(--intro-rule) !important;
+  font-size: clamp(1.25rem, 2.2vw, 2rem) !important;
+  font-weight: 650 !important;
+  letter-spacing: -.045em !important;
+}
+.cinematic-intro-menu-panel-nav a:hover,
+.cinematic-intro-menu-panel-nav a:focus-visible {
+  color: var(--intro-accent) !important;
+}
+@media (max-width: 640px) {
+  .cinematic-intro-menu-panel-nav a {
+    font-size: clamp(1.15rem, 4vw, 1.35rem) !important;
+  }
+}
