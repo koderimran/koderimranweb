@@ -224,7 +224,7 @@ export function CinematicIntro() {
             ref={menuButtonRef}
             className="cinematic-intro-menu"
             aria-label="Open navigation menu"
-            aria-expanded={menuOpen}
+            aria-expanded={menuOpen && !menuClosing}
             aria-controls="cinematic-intro-navigation"
             onClick={() => (menuOpen ? closeMenu() : openMenu())}
           >
