@@ -271,6 +271,19 @@ export function CinematicIntro() {
 
 
         <span className="cinematic-intro-watermark" aria-hidden="true">IMRAN</span>
+        <nav
+          className="cinematic-intro-scroll-nav"
+          aria-label="Section navigation"
+          data-reveal={progress >= 0.94}
+          data-menu-open={menuOpen}
+          aria-hidden={menuOpen || progress < 0.94}
+        >
+          <Link to="/" tabIndex={menuOpen || progress < 0.94 ? -1 : 0}>Home</Link>
+          <Link to="/about" tabIndex={menuOpen || progress < 0.94 ? -1 : 0}>About</Link>
+          <Link to="/services" tabIndex={menuOpen || progress < 0.94 ? -1 : 0}>Services</Link>
+          <Link to="/portfolio" tabIndex={menuOpen || progress < 0.94 ? -1 : 0}>Projects</Link>
+          <Link to="/contact" tabIndex={menuOpen || progress < 0.94 ? -1 : 0}>Contact</Link>
+        </nav>
       </div>
  
       {menuOpen && typeof document !== "undefined" && createPortal(
