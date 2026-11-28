@@ -6316,3 +6316,79 @@ body.intro-active .site-header { display: none; }
   width: 28px !important;
   transform: translateY(0) rotate(-45deg) !important;
 }
+
+
+/* Final header alignment: one shared canvas rail for menu + intro copy.
+   Keep all three header elements in the same grid row and vertical center. */
+.intro-page-frame .cinematic-intro-header {
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  right: auto !important;
+  width: calc(100% - 2 * var(--intro-content-gutter, 24px)) !important;
+  max-width: calc(1600px - 2 * var(--intro-content-gutter, 24px)) !important;
+  height: 96px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 24px 0 !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  grid-template-rows: 48px !important;
+  align-items: center !important;
+  align-content: start !important;
+  transform: translateX(-50%) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: relative !important;
+  inset: auto !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  align-self: center !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  z-index: 133 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-brand {
+  position: relative !important;
+  inset: auto !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: center !important;
+  align-self: center !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-header-location {
+  position: relative !important;
+  inset: auto !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  align-self: center !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header {
+    width: calc(100% - 2 * var(--intro-content-gutter, 16px)) !important;
+    max-width: none !important;
+    height: 72px !important;
+    padding: 16px 0 !important;
+    grid-template-rows: 40px !important;
+  }
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
