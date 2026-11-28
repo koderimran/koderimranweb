@@ -1239,35 +1239,41 @@ footer a:hover {
   max-width: 100%;
   overflow: hidden;
   color: var(--foreground);
-  /* Words are fully clear within 5rem of the face's centre line on each side, then fade out smoothly
-     (smoothstep) until they disappear into the background at both ends. */
+  /* First paint, before src/lib/ticker-fade.ts runs (and without JS): a pixel mask with the same window
+     as the word fade, so nothing changes when the script starts. Words are fully clear within
+     --ticker-clear of the face's centre line and gone --ticker-fade further out (smoothstep). */
+  --ticker-clear: 3rem;
+  --ticker-fade: 2rem;
   --hero-marquee-mask: linear-gradient(90deg,
       transparent 0%,
-      rgb(0 0 0 / 0.043) calc(50% - 5rem - 0.875 * (50% - 5rem)),
-      rgb(0 0 0 / 0.156) calc(50% - 5rem - 0.750 * (50% - 5rem)),
-      rgb(0 0 0 / 0.316) calc(50% - 5rem - 0.625 * (50% - 5rem)),
-      rgb(0 0 0 / 0.500) calc(50% - 5rem - 0.500 * (50% - 5rem)),
-      rgb(0 0 0 / 0.684) calc(50% - 5rem - 0.375 * (50% - 5rem)),
-      rgb(0 0 0 / 0.844) calc(50% - 5rem - 0.250 * (50% - 5rem)),
-      rgb(0 0 0 / 0.957) calc(50% - 5rem - 0.125 * (50% - 5rem)),
-      rgb(0 0 0 / 1.000) calc(50% - 5rem),
-      rgb(0 0 0 / 1.000) calc(50% + 5rem),
-      rgb(0 0 0 / 0.957) calc(50% + 5rem + 0.125 * (50% - 5rem)),
-      rgb(0 0 0 / 0.844) calc(50% + 5rem + 0.250 * (50% - 5rem)),
-      rgb(0 0 0 / 0.684) calc(50% + 5rem + 0.375 * (50% - 5rem)),
-      rgb(0 0 0 / 0.500) calc(50% + 5rem + 0.500 * (50% - 5rem)),
-      rgb(0 0 0 / 0.316) calc(50% + 5rem + 0.625 * (50% - 5rem)),
-      rgb(0 0 0 / 0.156) calc(50% + 5rem + 0.750 * (50% - 5rem)),
-      rgb(0 0 0 / 0.043) calc(50% + 5rem + 0.875 * (50% - 5rem)),
+      transparent calc(50% - var(--ticker-clear) - var(--ticker-fade)),
+      rgb(0 0 0 / 0.043) calc(50% - var(--ticker-clear) - 0.875 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.156) calc(50% - var(--ticker-clear) - 0.750 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.316) calc(50% - var(--ticker-clear) - 0.625 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.500) calc(50% - var(--ticker-clear) - 0.500 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.684) calc(50% - var(--ticker-clear) - 0.375 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.844) calc(50% - var(--ticker-clear) - 0.250 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.957) calc(50% - var(--ticker-clear) - 0.125 * var(--ticker-fade)),
+      rgb(0 0 0 / 1.000) calc(50% - var(--ticker-clear)),
+      rgb(0 0 0 / 1.000) calc(50% + var(--ticker-clear)),
+      rgb(0 0 0 / 0.957) calc(50% + var(--ticker-clear) + 0.125 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.844) calc(50% + var(--ticker-clear) + 0.250 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.684) calc(50% + var(--ticker-clear) + 0.375 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.500) calc(50% + var(--ticker-clear) + 0.500 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.316) calc(50% + var(--ticker-clear) + 0.625 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.156) calc(50% + var(--ticker-clear) + 0.750 * var(--ticker-fade)),
+      rgb(0 0 0 / 0.043) calc(50% + var(--ticker-clear) + 0.875 * var(--ticker-fade)),
+      transparent calc(50% + var(--ticker-clear) + var(--ticker-fade)),
       transparent 100%);
   -webkit-mask-image: var(--hero-marquee-mask);
   mask-image: var(--hero-marquee-mask);
 }
-/* With the word fade running (src/lib/ticker-fade.ts) each word fades as a whole, so the wide
-   pixel mask above is replaced by a short edge fade that only avoids a hard clip at the ends.
-   Without JS the wide mask stays. */
+/* With the word fade running (src/lib/ticker-fade.ts) every word is already fully transparent
+   beyond the window, well inside the ticker, so the mask is dropped: the words are the only thing
+   that fades, and the lane has no mask layer to repaint while the track slides. */
 .hero-marquee-stage[data-word-fade="true"] .hero-service-marquee {
-  --hero-marquee-mask: linear-gradient(90deg, transparent 0, #000 2rem, #000 calc(100% - 2rem), transparent 100%);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 .hero-service-marquee-track {
   display: flex;
@@ -1289,14 +1295,20 @@ footer a:hover {
 }
 .hero-service-marquee-track b { font-weight: inherit; margin-right: 0.95rem; }
 .hero-service-marquee-track i {
+  display: inline-flex;
+  flex: none;
+  /* Same footprint as the old "✳" character: about 0.62em of ink inside a 0.79em box. */
+  width: 0.79em;
+  height: 0.79em;
   color: var(--signal);
-  font-style: normal;
-  font-size: 0.8em;
   margin-right: 0.95rem;
 }
+.hero-service-marquee-track i svg { display: block; width: 100%; height: 100%; }
+/* The track holds two identical halves, so sliding by exactly half of it and starting over is the
+   same picture: no visible end. translate3d keeps it on the compositor in every browser. */
 @keyframes hero-service-marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
 }
 .hero-content { z-index: 2; }
 @media (max-width: 767px) {
@@ -1308,6 +1320,7 @@ footer a:hover {
     width: auto;
     max-width: none;
   }
+  .hero-service-marquee { --ticker-clear: 2.54rem; --ticker-fade: 1.68rem; }
   .hero-service-marquee-track span { font-size: 0.66rem; letter-spacing: 0.1em; }
   .hero-service-marquee-track b,
   .hero-service-marquee-track i { margin-right: 0.7rem; }
