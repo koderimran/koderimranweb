@@ -6088,87 +6088,145 @@ body.intro-active .site-header { display: none; }
 }
 
 
-/* Lock the closed menu icon to the same left rail as the centered 1600px canvas.
-   Use viewport-fixed coordinates so a wider parent/header cannot shift the control inward. */
-.intro-page-frame .cinematic-intro-header {
-  position: fixed !important;
-  left: max(24px, calc((100vw - 1600px) / 2 + 24px)) !important;
-  right: auto !important;
-  width: auto !important;
-}
-.intro-page-frame .cinematic-intro-header:not([data-menu-open="true"]) .cinematic-intro-menu {
-  position: fixed !important;
-  left: max(24px, calc((100vw - 1600px) / 2 + 24px)) !important;
-  right: auto !important;
-}
-
-
-/* Rebuild the intro header as one aligned 3-column rail.
-   Menu shares the title's left inset, brand is viewport/canvas centered,
-   and location sits at the right edge; all three share one vertical center. */
-.intro-page-frame .cinematic-intro-header {
-  position: fixed !important;
-  top: 24px !important;
-  left: max(0px, calc((100vw - 1600px) / 2)) !important;
-  right: auto !important;
+/* Single composition container: header, headline and description share one
+   centered 1600px canvas. Header uses a stable three-column grid. */
+.intro-page-frame .cinematic-intro-stage {
+  position: sticky !important;
   width: min(100vw, 1600px) !important;
-  height: 48px !important;
-  padding-inline: var(--intro-content-inset, 24px) !important;
-  box-sizing: border-box !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) !important;
-  align-items: center !important;
-  justify-items: stretch !important;
-  transform: none !important;
+  max-width: 1600px !important;
+  height: min(100svh, 900px) !important;
+  max-height: 900px !important;
+  margin-inline: auto !important;
+  left: auto !important;
+  right: auto !important;
 }
-.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+.intro-page-frame .cinematic-intro-header {
+  position: absolute !important;
+  inset: 0 0 auto 0 !important;
+  width: 100% !important;
+  height: 96px !important;
+  box-sizing: border-box !important;
+  padding: 24px var(--intro-content-inset, 24px) 24px var(--intro-content-inset, 24px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 16px !important;
+  transform: none !important;
+  z-index: 130 !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-menu {
   position: relative !important;
   grid-column: 1 !important;
   grid-row: 1 !important;
   justify-self: start !important;
   align-self: center !important;
-  top: auto !important;
-  right: auto !important;
-  left: auto !important;
+  inset: auto !important;
+  width: 48px !important;
+  height: 48px !important;
   margin: 0 !important;
   transform: none !important;
   translate: none !important;
   z-index: 133 !important;
 }
-.intro-page-frame .cinematic-intro-header .cinematic-intro-brand {
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand {
   position: relative !important;
   grid-column: 2 !important;
   grid-row: 1 !important;
   justify-self: center !important;
   align-self: center !important;
-  top: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
+  inset: auto !important;
   margin: 0 !important;
   transform: none !important;
   white-space: nowrap !important;
   z-index: 132 !important;
 }
-.intro-page-frame .cinematic-intro-header .cinematic-intro-header-location {
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-header-location {
   position: relative !important;
   grid-column: 3 !important;
   grid-row: 1 !important;
   justify-self: end !important;
   align-self: center !important;
-  top: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: auto !important;
+  inset: auto !important;
   margin: 0 !important;
   transform: none !important;
   white-space: nowrap !important;
   z-index: 132 !important;
 }
+
+/* Explicit menu-open state: panel occupies exactly half of the composition
+   and enters from outside its left edge; backdrop remains outside the panel. */
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 112px var(--intro-content-inset, 24px) 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-right: 1px solid rgb(255 255 255 / .12) !important;
+  border-radius: 0 !important;
+  background: rgb(5 7 5 / .96) !important;
+  backdrop-filter: blur(24px) saturate(.8) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .62s cubic-bezier(.2,.8,.2,1), opacity .35s ease !important;
+  z-index: 125 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  width: 100% !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgb(255 255 255 / .12) !important;
+  color: rgb(245 246 242 / .9) !important;
+  font-size: clamp(1.15rem, 2vw, 2rem) !important;
+  opacity: 1 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 120 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="false"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 @media (max-width: 640px) {
   .intro-page-frame .cinematic-intro-header {
-    top: 16px !important;
+    height: 72px !important;
+    padding: 16px !important;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+    gap: 6px !important;
+  }
+  .intro-page-frame .cinematic-intro-header > .cinematic-intro-menu {
+    width: 40px !important;
     height: 40px !important;
-    padding-inline: 16px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    width: 50% !important;
+    max-width: 50% !important;
+    padding: 88px 16px 28px !important;
   }
 }
