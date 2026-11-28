@@ -7437,3 +7437,16 @@ body.intro-active .site-header { display: none; }
 .intro-page-frame .cinematic-intro-header > .cinematic-intro-brand:hover {
   color: #ffffff !important;
 }
+
+
+/* Description card: keep the left edge consistent with the other three sides.
+   Apply the same restrained lime hover tint to all four edges. */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  border-left: 1px solid rgb(226 235 221 / .17) !important;
+  border-inline-start: 1px solid rgb(226 235 221 / .17) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy:hover {
+  border-color: rgb(184 237 114 / .3) !important;
+  border-left-color: rgb(184 237 114 / .3) !important;
+  border-inline-start-color: rgb(184 237 114 / .3) !important;
+}
