@@ -6079,3 +6079,10 @@ body.intro-active .site-header { display: none; }
 .intro-page-frame .cinematic-intro-scroll-copy p {
   font-size: clamp(.84rem, calc(var(--intro-copy-size, 1rem) + 0.35vw - 5px), 1.85rem) !important;
 }
+
+
+/* Initial intro typography group is vertically centered inside the capped stage.
+   As scroll progresses, the group smoothly returns to its established 40px anchor. */
+.intro-page-frame .cinematic-intro-copy {
+  transform: translate3d(0, calc((1 - var(--intro-progress, 0)) * -50%), 0) !important;
+}
