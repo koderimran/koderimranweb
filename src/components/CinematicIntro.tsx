@@ -208,6 +208,7 @@ export function CinematicIntro() {
             className="cinematic-intro-menu-backdrop"
             aria-label="Close navigation menu"
             data-open={menuOpen}
+            data-closing={menuClosing}
             tabIndex={menuOpen ? 0 : -1}
             onClick={closeMenu}
           />
