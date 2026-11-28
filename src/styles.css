@@ -7662,53 +7662,53 @@ body.intro-active .site-header { display: none; }
 }
 
 
-/* Final menu surface and synchronized reverse reveal.
-   The panel itself is transparent; every original intro element shares one
-   opacity transition with zero delay when the overlay closes. */
+/* Root-cause fix: the header must expose the same closing state as the
+   intro section. Animate the actual visible leaf elements, not only parents. */
+.cinematic-intro-menu-layer,
 .cinematic-intro-menu-panel {
   background: transparent !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   box-shadow: none !important;
 }
-.intro-page-frame .cinematic-intro-header > .cinematic-intro-menu,
-.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand,
-.intro-page-frame .cinematic-intro-copy,
-.intro-page-frame .cinematic-intro-scroll-copy {
-  transition-property: opacity !important;
-  transition-duration: 1.65s !important;
-  transition-timing-function: cubic-bezier(.22, .72, .2, 1) !important;
-  transition-delay: 0s !important;
+.cinematic-intro-menu-panel::before,
+.cinematic-intro-menu-panel::after,
+.cinematic-intro-menu-layer::before,
+.cinematic-intro-menu-layer::after {
+  content: none !important;
+  display: none !important;
 }
-.intro-page-frame .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy,
-.intro-page-frame .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-scroll-copy,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
+.cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy,
+.cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy .cinematic-intro-greeting,
+.cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy h1,
+.cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-scroll-copy,
+.cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
+.cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
   opacity: 0 !important;
   pointer-events: none !important;
+  transition: opacity 1.7s cubic-bezier(.22, .72, .2, 1) 0s !important;
 }
-.intro-page-frame .cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy,
-.intro-page-frame .cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-scroll-copy,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"][data-menu-overlay-closing="true"] > .cinematic-intro-menu,
-.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"][data-menu-overlay-closing="true"] > .cinematic-intro-brand {
+.cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy,
+.cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy .cinematic-intro-greeting,
+.cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy h1,
+.cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-scroll-copy,
+.cinematic-intro-header[data-menu-overlay-closing="true"] > .cinematic-intro-menu,
+.cinematic-intro-header[data-menu-overlay-closing="true"] > .cinematic-intro-brand {
   opacity: 1 !important;
   pointer-events: auto !important;
-  transition-duration: 1.65s !important;
-  transition-delay: 0s !important;
+  transition: opacity 1.7s cubic-bezier(.22, .72, .2, 1) 0s !important;
 }
-.intro-page-frame .cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy h1,
-.intro-page-frame .cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-greeting {
-  opacity: 1 !important;
-  transition: opacity 1.65s cubic-bezier(.22, .72, .2, 1) 0s !important;
+.cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy h1,
+.cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy .cinematic-intro-greeting {
+  animation: none !important;
 }
 @media (prefers-reduced-motion: reduce) {
-  .intro-page-frame .cinematic-intro-header > .cinematic-intro-menu,
-  .intro-page-frame .cinematic-intro-header > .cinematic-intro-brand,
-  .intro-page-frame .cinematic-intro-copy,
-  .intro-page-frame .cinematic-intro-scroll-copy,
-  .intro-page-frame .cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-copy h1,
-  .intro-page-frame .cinematic-intro[data-menu-overlay-closing="true"] .cinematic-intro-greeting {
+  .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy,
+  .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy .cinematic-intro-greeting,
+  .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy h1,
+  .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-scroll-copy,
+  .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
+  .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
     transition-duration: .01ms !important;
-    transition-delay: 0ms !important;
   }
 }
