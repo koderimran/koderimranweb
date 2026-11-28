@@ -24,7 +24,7 @@ export function CinematicIntro() {
       setMenuOpen(false);
       setMenuClosing(false);
       menuCloseTimer.current = null;
-    }, 1550);
+    }, 1650);
   };
 
   const openMenu = () => {
@@ -210,7 +210,7 @@ export function CinematicIntro() {
     <section
       ref={sectionRef}
       className="cinematic-intro"
-      data-menu-overlay-active={menuOpen && !menuClosing}
+      data-menu-overlay-active={menuOpen}
       style={style}
       aria-label="Introduction"
       onPointerMove={handlePortraitPointerMove}
@@ -218,7 +218,7 @@ export function CinematicIntro() {
     >
       <div ref={stageRef} className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
-        <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen && !menuClosing}>
+        <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen}>
           <button
             type="button"
             ref={menuButtonRef}
