@@ -2551,3 +2551,5141 @@ button {
     transform: translateX(-50%);
   }
 }
+
+
+/* ===== Cinematic intro (homepage only) ===== */
+body.intro-active .site-header { display: none; }
+.cinematic-intro {
+  --intro-progress: 0;
+  position: relative;
+  height: 190svh;
+  margin-top: 0;
+  background: #050605;
+  color: #f5f6f2;
+  isolation: isolate;
+}
+.cinematic-intro-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 70% at 76% 50%, rgb(120 255 0 / 0.12), transparent 72%),
+    radial-gradient(ellipse 60% 60% at 20% 90%, rgb(120 255 0 / 0.055), transparent 70%),
+    #050605;
+}
+.cinematic-intro-noise {
+  position: absolute; inset: 0; pointer-events: none; opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+.cinematic-intro-header {
+  position: absolute; z-index: 5; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(20px, 3.2vw, 46px) var(--page-gutter);
+  border-bottom: 1px solid rgb(255 255 255 / .09);
+  transform: translateY(calc(var(--intro-progress) * -12px));
+}
+.cinematic-intro-brand {
+  color: #f5f6f2; text-decoration: none; font: 800 1.05rem/1 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -.06em;
+}
+.cinematic-intro-brand span { color: #83ff00; }
+.cinematic-intro-brand i { color: #83ff00; font-style: normal; }
+.cinematic-intro-nav { display: flex; gap: clamp(16px, 3vw, 42px); }
+.cinematic-intro-nav a {
+  color: rgb(245 246 242 / .72); font-size: .78rem; font-weight: 650;
+  text-decoration: none; transition: color .2s ease;
+}
+.cinematic-intro-nav a:hover { color: #83ff00; }
+.cinematic-intro-index {
+  color: rgb(245 246 242 / .4); font-size: .58rem; letter-spacing: .18em;
+}
+.cinematic-intro-copy {
+  position: absolute; z-index: 2; top: 24%; left: max(var(--page-gutter), calc((100vw - 1280px) / 2));
+  width: min(65%, 850px);
+  transform: translate3d(calc(var(--intro-progress) * -3vw), calc(var(--intro-progress) * -17vh), 0) scale(calc(1 - var(--intro-progress) * .43));
+  transform-origin: top left;
+}
+.cinematic-intro-kicker {
+  margin: 0 0 24px; color: #83ff00; font-size: .68rem; font-weight: 800; letter-spacing: .22em;
+}
+.cinematic-intro-copy h1 {
+  margin: 0; max-width: 900px; color: #f4f5f1;
+  font: 800 clamp(3rem, 7.8vw, 8.6rem)/.91 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -.085em;
+}
+.cinematic-intro-copy h1 span { color: #83ff00; }
+.cinematic-intro-copy h1 .intro-period { color: #83ff00; }
+.cinematic-intro-description {
+  max-width: 480px; margin: 30px 0 0; color: rgb(245 246 242 / .64);
+  font-size: clamp(.9rem, 1.2vw, 1.08rem); line-height: 1.75;
+  opacity: calc(1 - var(--intro-progress) * 1.4);
+}
+.cinematic-intro-description strong { color: #f5f6f2; }
+.cinematic-intro-portrait {
+  position: absolute; z-index: 1; right: max(2vw, calc((100vw - 1440px) / 2));
+  bottom: -3%; width: min(49vw, 730px); height: 88%;
+  transform: translate3d(calc(var(--intro-progress) * 13vw), calc(var(--intro-progress) * 7vh), 0) scale(calc(1 - var(--intro-progress) * .38));
+  transform-origin: bottom right;
+}
+.cinematic-intro-image {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center;
+  filter: grayscale(1) contrast(1.08);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+}
+.cinematic-intro-image-tint {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: .36;
+  background: linear-gradient(115deg, transparent 38%, rgb(131 255 0 / .48) 100%);
+  -webkit-mask-image: linear-gradient(to left, #000, transparent 75%);
+  mask-image: linear-gradient(to left, #000, transparent 75%);
+}
+.cinematic-intro-orbit {
+  position: absolute; width: 72%; aspect-ratio: 1; right: 4%; top: 12%;
+  border: 1px solid rgb(131 255 0 / .23); border-radius: 50%;
+  box-shadow: 0 0 90px rgb(131 255 0 / .08), inset 0 0 90px rgb(131 255 0 / .04);
+}
+.cinematic-intro-bottom {
+  position: absolute; z-index: 4; left: var(--page-gutter); right: var(--page-gutter); bottom: clamp(24px, 4vw, 56px);
+  display: grid; grid-template-columns: 1fr 1fr auto; align-items: end; gap: 20px;
+  opacity: calc(.35 + var(--intro-progress) * .65);
+}
+.cinematic-intro-scroll {
+  display: flex; align-items: center; gap: 12px; color: rgb(245 246 242 / .5);
+  font-size: .6rem; font-weight: 750; letter-spacing: .18em;
+}
+.cinematic-intro-scroll i { width: 7px; height: 7px; border-radius: 50%; background: #83ff00; box-shadow: 0 0 14px #83ff00; }
+.cinematic-intro-bottom p { margin: 0; color: rgb(245 246 242 / .5); font-size: .8rem; line-height: 1.55; }
+.cinematic-intro-bottom p strong { color: #f5f6f2; }
+.cinematic-intro-cta {
+  display: inline-flex; align-items: center; gap: 22px; padding: 15px 20px;
+  border-radius: 999px; background: #83ff00; color: #080a06; text-decoration: none;
+  font-size: .68rem; font-weight: 850; letter-spacing: .06em;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.cinematic-intro-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgb(131 255 0 / .25); }
+.cinematic-intro-cta svg { width: 17px; height: 17px; }
+.cinematic-intro-watermark {
+  position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+  color: rgb(255 255 255 / .025); font: 900 22vw/1 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -.1em; pointer-events: none;
+}
+@media (max-width: 900px) {
+  .cinematic-intro-index { display: none; }
+  .cinematic-intro-copy { top: 26%; width: 76%; }
+  .cinematic-intro-portrait { right: -8%; width: 58vw; opacity: .82; }
+  .cinematic-intro-bottom { grid-template-columns: 1fr auto; }
+  .cinematic-intro-bottom p { display: none; }
+}
+@media (max-width: 640px) {
+  .cinematic-intro { height: 165svh; }
+  .cinematic-intro-stage { min-height: 560px; }
+  .cinematic-intro-header { padding-top: 22px; padding-bottom: 22px; }
+  .cinematic-intro-nav { gap: 13px; }
+  .cinematic-intro-nav a { font-size: .65rem; }
+  .cinematic-intro-nav a:nth-child(2), .cinematic-intro-nav a:nth-child(3) { display: none; }
+  .cinematic-intro-copy { top: 23%; width: 94%; left: var(--page-gutter); }
+  .cinematic-intro-copy h1 { font-size: clamp(2.8rem, 13vw, 5.2rem); }
+  .cinematic-intro-description { max-width: 290px; margin-top: 20px; font-size: .82rem; }
+  .cinematic-intro-portrait { width: 83vw; height: 65%; right: -19%; bottom: 8%; opacity: .7; }
+  .cinematic-intro-bottom { bottom: 22px; grid-template-columns: 1fr auto; align-items: center; }
+  .cinematic-intro-scroll { font-size: .52rem; }
+  .cinematic-intro-cta { gap: 8px; padding: 13px 14px; font-size: .58rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro { height: auto; }
+  .cinematic-intro-stage { position: relative; min-height: 760px; }
+  .cinematic-intro-copy, .cinematic-intro-portrait, .cinematic-intro-header { transform: none; }
+  .cinematic-intro-description, .cinematic-intro-bottom { opacity: 1; }
+}
+
+
+
+/* Cinematic intro refinement: compact menu / centered wordmark / Dhaka status */
+.cinematic-intro-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+.cinematic-intro-menu {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  color: #f5f6f2;
+  cursor: pointer;
+}
+.cinematic-intro-menu span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: #83ff00;
+  transition: width .28s ease, transform .28s ease;
+}
+.cinematic-intro-menu span:last-child { width: 19px; }
+.cinematic-intro-menu:hover span:last-child { width: 28px; }
+.cinematic-intro-menu[aria-expanded="true"] span:first-child { transform: translateY(4.5px) rotate(45deg); }
+.cinematic-intro-menu[aria-expanded="true"] span:last-child { width: 28px; transform: translateY(-4.5px) rotate(-45deg); }
+.cinematic-intro-brand {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  white-space: nowrap;
+}
+.cinematic-intro-location {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgb(245 246 242 / .66);
+  font-size: .62rem;
+  font-weight: 750;
+  letter-spacing: .16em;
+  white-space: nowrap;
+}
+.cinematic-intro-location i {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #83ff00;
+  box-shadow: 0 0 12px rgb(131 255 0 / .9);
+}
+.cinematic-intro-location i::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid #83ff00;
+  border-radius: 50%;
+  animation: intro-location-pulse 1.7s ease-out infinite;
+}
+@keyframes intro-location-pulse {
+  0% { transform: scale(.55); opacity: .9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.cinematic-intro-nav {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: var(--page-gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 210px;
+  padding: 12px 20px;
+  border: 1px solid rgb(255 255 255 / .12);
+  border-radius: 14px;
+  background: rgb(8 10 7 / .94);
+  box-shadow: 0 18px 60px rgb(0 0 0 / .35);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+}
+.cinematic-intro-nav[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.cinematic-intro-nav a {
+  width: 100%;
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(255 255 255 / .07);
+  font-size: .8rem;
+}
+.cinematic-intro-nav a:last-child { border-bottom: 0; }
+.cinematic-intro-copy {
+  top: 27%;
+  width: min(76%, 1040px);
+  transform: translate3d(0, calc(var(--intro-progress) * -9vh), 0);
+}
+.cinematic-intro-copy h1 {
+  max-width: 1050px;
+  font-size: clamp(2.8rem, 7.1vw, 7.6rem);
+  line-height: .94;
+  letter-spacing: -.075em;
+  transform: scale(calc(.88 + var(--intro-progress) * .28));
+  transform-origin: left center;
+  transition: color .2s ease;
+}
+.cinematic-intro-copy h1 span,
+.cinematic-intro-copy h1 .intro-period { color: #83ff00; }
+.cinematic-intro-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 1;
+}
+@media (max-width: 900px) {
+  .cinematic-intro-copy { top: 28%; width: 88%; }
+  .cinematic-intro-copy h1 { font-size: clamp(2.7rem, 8.6vw, 6rem); }
+}
+@media (max-width: 640px) {
+  .cinematic-intro-header { padding-top: 16px; padding-bottom: 16px; }
+  .cinematic-intro-menu { width: 36px; height: 42px; }
+  .cinematic-intro-menu span { width: 24px; }
+  .cinematic-intro-menu span:last-child { width: 16px; }
+  .cinematic-intro-brand { font-size: .94rem; }
+  .cinematic-intro-location { gap: 7px; font-size: .48rem; letter-spacing: .1em; }
+  .cinematic-intro-location i { width: 6px; height: 6px; flex-basis: 6px; }
+  .cinematic-intro-nav { left: var(--page-gutter); }
+  .cinematic-intro-copy { top: 25%; width: 95%; }
+  .cinematic-intro-copy h1 {
+    font-size: clamp(2.55rem, 10.8vw, 4.8rem);
+    line-height: .98;
+    transform: scale(calc(.9 + var(--intro-progress) * .18));
+  }
+  .cinematic-intro-portrait { width: 78vw; height: 61%; right: -14%; bottom: 7%; }
+  .cinematic-intro-bottom { bottom: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-location i::after { animation: none; }
+  .cinematic-intro-copy h1 { transform: none; }
+}
+
+
+
+/* Cinematic intro: edge-to-edge responsive portrait and refined scroll choreography */
+.cinematic-intro,
+.cinematic-intro-stage {
+  background: #050605;
+}
+.cinematic-intro-stage {
+  min-height: min(100svh, 1000px);
+  background:
+    radial-gradient(ellipse 58% 75% at 76% 48%, rgb(131 255 0 / .035), transparent 74%),
+    #050605;
+}
+.cinematic-intro-header {
+  border-bottom: 0 !important;
+  grid-template-columns: 1fr auto 1fr;
+}
+.cinematic-intro-menu { justify-self: start; }
+.cinematic-intro-brand { grid-column: 2; }
+.cinematic-intro-portfolio {
+  grid-column: 3;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 17px;
+  border: 1px solid rgb(245 246 242 / .42);
+  border-radius: 999px;
+  background: transparent;
+  color: #f5f6f2;
+  text-decoration: none;
+  font-size: .62rem;
+  font-weight: 750;
+  letter-spacing: .1em;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.cinematic-intro-portfolio:hover {
+  border-color: #83ff00;
+  color: #83ff00;
+  background: rgb(131 255 0 / .05);
+}
+.cinematic-intro-portfolio svg { width: 15px; height: 15px; }
+.cinematic-intro-copy {
+  z-index: 3;
+  top: 24%;
+  left: max(var(--page-gutter), calc((100vw - 1280px) / 2));
+  width: min(76%, 1080px);
+  transform: translate3d(0, calc(var(--intro-progress) * -11vh), 0);
+}
+.cinematic-intro-copy h1 {
+  max-width: 1080px;
+  font-size: clamp(3.1rem, 8vw, 8.7rem);
+  line-height: .9;
+  letter-spacing: -.085em;
+  transform: scale(calc(1 - var(--intro-progress) * .58));
+  transform-origin: left top;
+}
+.cinematic-intro-copy h1 span,
+.cinematic-intro-copy h1 .intro-period { color: #83ff00; }
+.cinematic-intro-portrait {
+  z-index: 2;
+  top: 50%;
+  right: max(4vw, calc((100vw - 1440px) / 2));
+  bottom: auto;
+  width: var(--intro-portrait-size);
+  height: var(--intro-portrait-size);
+  max-width: 730px;
+  aspect-ratio: 1;
+  overflow: visible;
+  border-radius: calc(var(--intro-progress) * 50%);
+  transform: translateY(-50%);
+  transform-origin: center;
+  transition: border-radius .12s linear;
+  filter: drop-shadow(0 0 38px rgb(131 255 0 / .045));
+}
+.cinematic-intro-image {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: grayscale(1) contrast(1.025);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.cinematic-intro-image-tint {
+  opacity: .11;
+  mix-blend-mode: screen;
+  background: radial-gradient(ellipse at 72% 48%, rgb(131 255 0 / .3), transparent 70%);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.cinematic-intro-orbit {
+  inset: 5%;
+  width: 90%;
+  top: 5%;
+  right: 5%;
+  border-color: rgb(131 255 0 / .08);
+  box-shadow: none;
+  opacity: calc(1 - var(--intro-progress));
+}
+.cinematic-intro-sidecopy {
+  position: absolute;
+  z-index: 4;
+  bottom: 19%;
+  width: min(30vw, 340px);
+  padding: 13px 15px;
+  border: 1px solid rgb(245 246 242 / .12);
+  border-radius: 9px;
+  background: rgb(255 255 255 / .018);
+  backdrop-filter: blur(8px);
+  transform: scale(calc(.78 + var(--intro-progress) * .22));
+  transform-origin: bottom left;
+  transition: border-color .25s ease, background .25s ease;
+}
+.cinematic-intro-sidecopy-left { left: var(--page-gutter); }
+.cinematic-intro-sidecopy-right {
+  right: var(--page-gutter);
+  transform-origin: bottom right;
+}
+.cinematic-intro-side-index {
+  color: #83ff00;
+  font-size: .56rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+.cinematic-intro-sidecopy p {
+  margin: 9px 0 0;
+  color: rgb(245 246 242 / .68);
+  font-size: clamp(.62rem, .8vw, .76rem);
+  line-height: 1.6;
+  transform: scale(calc(.84 + var(--intro-progress) * .16));
+  transform-origin: left center;
+}
+.cinematic-intro-sidecopy-right p { transform-origin: right center; }
+.cinematic-intro-bottom {
+  z-index: 5;
+  left: var(--page-gutter);
+  right: var(--page-gutter);
+  bottom: clamp(22px, 4vh, 42px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.cinematic-intro-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgb(245 246 242 / .58);
+  font-size: .6rem;
+  font-weight: 750;
+  letter-spacing: .16em;
+}
+.cinematic-intro-location i {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #83ff00;
+  box-shadow: 0 0 10px rgb(131 255 0 / .75);
+}
+.cinematic-intro-location i::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid #83ff00;
+  border-radius: 50%;
+  animation: intro-location-pulse 1.7s ease-out infinite;
+}
+@media (max-width: 900px) {
+  .cinematic-intro-copy { top: 25%; width: 90%; }
+  .cinematic-intro-copy h1 { font-size: clamp(3rem, 9vw, 6.8rem); }
+  .cinematic-intro-portrait { right: 3vw; }
+  .cinematic-intro-sidecopy { bottom: 17%; width: 34vw; }
+}
+@media (max-width: 640px) {
+  .cinematic-intro { height: 175svh; }
+  .cinematic-intro-stage { min-height: 100svh; }
+  .cinematic-intro-header {
+    padding: 15px var(--page-gutter);
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .cinematic-intro-brand { font-size: .9rem; }
+  .cinematic-intro-portfolio {
+    gap: 5px;
+    padding: 9px 10px;
+    font-size: .48rem;
+    letter-spacing: .06em;
+  }
+  .cinematic-intro-portfolio svg { width: 12px; height: 12px; }
+  .cinematic-intro-copy {
+    top: 22%;
+    left: var(--page-gutter);
+    width: 94%;
+  }
+  .cinematic-intro-copy h1 {
+    font-size: clamp(2.55rem, 11.6vw, 4.7rem);
+    line-height: .96;
+    transform: scale(calc(1 - var(--intro-progress) * .48));
+  }
+  .cinematic-intro-portrait {
+    top: 53%;
+    right: 50%;
+    width: var(--intro-portrait-size);
+    height: var(--intro-portrait-size);
+    transform: translate(50%, -50%);
+  }
+  .cinematic-intro-sidecopy {
+    bottom: 13%;
+    width: calc(50% - var(--page-gutter) - 7px);
+    padding: 9px 8px;
+    border-radius: 7px;
+  }
+  .cinematic-intro-side-index {
+    font-size: .43rem;
+    letter-spacing: .08em;
+  }
+  .cinematic-intro-sidecopy p {
+    margin-top: 6px;
+    font-size: .54rem;
+    line-height: 1.45;
+  }
+  .cinematic-intro-bottom { bottom: 20px; }
+  .cinematic-intro-location { font-size: .5rem; }
+}
+@media (max-width: 380px) {
+  .cinematic-intro-brand { font-size: .78rem; }
+  .cinematic-intro-portfolio { padding: 8px; }
+  .cinematic-intro-sidecopy { padding: 8px 6px; }
+  .cinematic-intro-side-index { font-size: .39rem; }
+  .cinematic-intro-sidecopy p { font-size: .49rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-copy h1,
+  .cinematic-intro-sidecopy,
+  .cinematic-intro-sidecopy p { transform: none; }
+  .cinematic-intro-location i::after { animation: none; }
+}
+
+
+
+/* Final visual pass: full-frame lighting, portrait breathing room and display typography */
+.cinematic-intro-stage {
+  position: sticky;
+  isolation: isolate;
+  background: #050605;
+}
+.cinematic-intro-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 82% at 72% 42%, rgb(131 255 0 / .105), transparent 72%),
+    radial-gradient(ellipse 48% 58% at 15% 88%, rgb(131 255 0 / .065), transparent 75%),
+    radial-gradient(ellipse 85% 95% at 50% 48%, rgb(34 48 28 / .18), transparent 78%),
+    linear-gradient(135deg, #080a07 0%, #050605 48%, #080a07 100%);
+}
+.cinematic-intro-noise { z-index: 0; }
+.cinematic-intro-header,
+.cinematic-intro-copy,
+.cinematic-intro-sidecopy,
+.cinematic-intro-portrait,
+.cinematic-intro-bottom,
+.cinematic-intro-watermark { z-index: 2; }
+.cinematic-intro-copy h1 {
+  font-family: var(--font-display), "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  letter-spacing: -.075em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.cinematic-intro-portrait {
+  top: 100px;
+  right: max(4vw, calc((100vw - 1440px) / 2));
+  bottom: auto;
+  width: min(52vw, 730px);
+  height: calc(100svh - 100px);
+  max-width: none;
+  aspect-ratio: auto;
+  overflow: visible;
+  border-radius: 0;
+  transform: scale(var(--intro-portrait-scale));
+  transform-origin: top right;
+  filter: drop-shadow(0 0 48px rgb(131 255 0 / .08));
+}
+.cinematic-intro-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center bottom;
+  filter: grayscale(1) contrast(1.04);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.cinematic-intro-image-tint {
+  inset: 0;
+  opacity: .14;
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(90deg, transparent 55%, rgb(131 255 0 / .12)),
+    radial-gradient(ellipse at 65% 55%, rgb(131 255 0 / .2), transparent 70%);
+}
+.cinematic-intro-orbit { display: none; }
+.cinematic-intro-sidecopy-left {
+  left: var(--page-gutter);
+  right: auto;
+  bottom: clamp(28px, 7vh, 76px);
+  width: min(34vw, 390px);
+  transform-origin: bottom left;
+}
+.cinematic-intro-sidecopy-left p {
+  transform-origin: left bottom;
+}
+.cinematic-intro-sidecopy-right { display: none !important; }
+.cinematic-intro-bottom {
+  bottom: clamp(22px, 4vh, 42px);
+  justify-content: flex-end;
+}
+@media (max-width: 900px) {
+  .cinematic-intro-portrait {
+    top: 100px;
+    right: 2vw;
+    width: 62vw;
+    height: calc(100svh - 100px);
+  }
+  .cinematic-intro-sidecopy-left {
+    bottom: clamp(24px, 6vh, 58px);
+    width: min(42vw, 360px);
+  }
+}
+@media (max-width: 640px) {
+  .cinematic-intro-portrait {
+    top: 100px;
+    right: 50%;
+    width: 88vw;
+    height: calc(100svh - 100px);
+    transform: translateX(50%) scale(var(--intro-portrait-scale));
+    transform-origin: top center;
+  }
+  .cinematic-intro-copy h1 {
+    font-family: var(--font-display), "Bricolage Grotesque", sans-serif;
+    letter-spacing: -.065em;
+    line-height: .94;
+  }
+  .cinematic-intro-sidecopy-left {
+    left: var(--page-gutter);
+    bottom: 7%;
+    width: min(78vw, 330px);
+    padding: 10px 12px;
+  }
+  .cinematic-intro-sidecopy-left p {
+    font-size: .58rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-portrait { transform: none; }
+  .cinematic-intro-stage::before { background: #080a07; }
+}
+
+
+
+/* Shoulder-edge art direction: restrained circular halo behind the cut-out portrait */
+.cinematic-intro-portrait {
+  isolation: isolate;
+  overflow: visible;
+  transform-origin: top right;
+  filter: drop-shadow(0 18px 42px rgb(0 0 0 / .28));
+}
+.cinematic-intro-portrait::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width: min(88%, 640px);
+  aspect-ratio: 1;
+  top: 13%;
+  right: 1%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(131 255 0 / .12) 0%, rgb(131 255 0 / .055) 43%, transparent 72%);
+  box-shadow:
+    0 0 75px rgb(131 255 0 / .075),
+    inset 0 0 45px rgb(131 255 0 / .035);
+  pointer-events: none;
+}
+.cinematic-intro-portrait::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(84%, 610px);
+  aspect-ratio: 1;
+  top: 15%;
+  right: 3%;
+  border: 1px solid rgb(163 255 76 / .22);
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px rgb(131 255 0 / .08),
+    inset 0 0 22px rgb(131 255 0 / .025);
+  pointer-events: none;
+}
+.cinematic-intro-image {
+  z-index: 1;
+  object-position: center bottom;
+}
+.cinematic-intro-image-tint {
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 48% 58%, transparent 44%, rgb(5 6 5 / .12) 100%),
+    linear-gradient(90deg, rgb(5 6 5 / .14), transparent 24%, transparent 78%, rgb(5 6 5 / .18));
+  mix-blend-mode: normal;
+  opacity: .7;
+}
+@media (max-width: 900px) {
+  .cinematic-intro-portrait::before {
+    width: 94%;
+    top: 18%;
+    right: -2%;
+  }
+  .cinematic-intro-portrait::after {
+    width: 90%;
+    top: 20%;
+    right: 0;
+  }
+}
+@media (max-width: 640px) {
+  .cinematic-intro-portrait {
+    transform-origin: top center;
+  }
+  .cinematic-intro-portrait::before {
+    width: 96%;
+    top: 17%;
+    right: 2%;
+  }
+  .cinematic-intro-portrait::after {
+    width: 92%;
+    top: 19%;
+    right: 4%;
+    border-color: rgb(163 255 76 / .16);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-portrait::before,
+  .cinematic-intro-portrait::after { transition: none; }
+}
+
+
+/* Standalone cinematic intro route: isolated from the normal site chrome. */
+.intro-page-frame {
+  min-height: 100svh;
+  width: 100%;
+  overflow: clip;
+  background: #050605;
+}
+.intro-page-frame > main {
+  width: 100%;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+}
+.intro-page-frame .cinematic-intro {
+  width: 100%;
+  height: 190svh;
+  margin: 0;
+}
+.intro-page-frame .cinematic-intro-stage {
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  right: 0 !important;
+}
+.intro-page-frame .cinematic-intro-sidecopy-left.cinematic-intro-scroll-copy {
+  left: var(--intro-copy-x);
+  top: var(--intro-copy-y);
+  right: auto;
+  bottom: auto;
+  width: min(var(--intro-copy-width), calc(100vw - 32px));
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  text-align: inherit;
+  transition: none;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  margin: 0;
+  font-size: var(--intro-copy-size);
+  line-height: 1.35;
+  letter-spacing: -.035em;
+  font-weight: 500;
+  color: rgb(245 246 242 / .9);
+  text-wrap: balance;
+  transition: none;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro { height: 175svh; }
+  .intro-page-frame .cinematic-intro-portrait {
+    right: 0 !important;
+    width: 88vw;
+    transform: scale(var(--intro-portrait-scale));
+    transform-origin: top right;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: var(--intro-copy-size);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro { height: 100svh; }
+  .intro-page-frame .cinematic-intro-stage { position: relative; }
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    left: 50%;
+    top: 50%;
+    width: min(82vw, 980px);
+    text-align: center;
+  }
+}
+
+
+/* Intro route: true viewport bleed, edge-pinned portrait, anchored left copy. */
+.page-frame.intro-page-frame {
+  width: 100vw !important;
+  max-width: none !important;
+  min-height: 100svh;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: clip;
+}
+.page-frame.intro-page-frame > main {
+  width: 100%;
+  max-width: none;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+}
+.intro-page-frame .cinematic-intro,
+.intro-page-frame .cinematic-intro-stage {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  left: auto !important;
+  right: 0 !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  object-position: right bottom !important;
+}
+.intro-page-frame .cinematic-intro-sidecopy-left.cinematic-intro-scroll-copy {
+  text-align: left !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    right: 0 !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    left: auto !important;
+    right: 0 !important;
+    width: 88vw;
+    transform: scale(var(--intro-portrait-scale));
+    transform-origin: top right;
+  }
+}
+
+
+/* Intro typography and controls share a 1920px content grid.
+   The background and portrait remain viewport-bleed. */
+.intro-page-frame {
+  --intro-content-max: 1600px;
+  --intro-content-gutter: clamp(24px, 4vw, 80px);
+}
+.intro-page-frame .cinematic-intro-header {
+  left: 50%;
+  right: auto;
+  width: min(calc(100% - 2 * var(--intro-content-gutter)), var(--intro-content-max));
+  max-width: var(--intro-content-max);
+  padding-inline: 0;
+  transform: translateX(-50%);
+}
+.intro-page-frame .cinematic-intro-copy {
+  left: max(
+    var(--intro-content-gutter),
+    calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))
+  ) !important;
+  width: min(
+    calc(100vw - 2 * max(var(--intro-content-gutter), (100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))),
+    1080px
+  );
+  max-width: 1080px;
+  text-align: left;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  transform-origin: left top !important;
+}
+.intro-page-frame .cinematic-intro-bottom {
+  left: 50%;
+  right: auto;
+  width: min(calc(100% - 2 * var(--intro-content-gutter)), var(--intro-content-max));
+  transform: translateX(-50%);
+  padding: 0;
+}
+.intro-page-frame .cinematic-intro-nav {
+  left: 0;
+}
+.intro-page-frame .cinematic-intro-sidecopy-left.cinematic-intro-scroll-copy {
+  left: var(--intro-copy-x);
+  text-align: left !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header {
+    width: calc(100% - 2 * var(--intro-content-gutter));
+  }
+  .intro-page-frame .cinematic-intro-copy {
+    left: var(--intro-content-gutter) !important;
+    width: calc(100% - 2 * var(--intro-content-gutter));
+    max-width: none;
+  }
+  .intro-page-frame .cinematic-intro-bottom {
+    width: calc(100% - 2 * var(--intro-content-gutter));
+  }
+}
+
+
+/* Final alignment grid: menu, heading and description share one left rail;
+   portfolio and location share the matching right rail. */
+.intro-page-frame .cinematic-intro-header,
+.intro-page-frame .cinematic-intro-bottom {
+  width: min(calc(100% - 2 * var(--intro-content-gutter)), var(--intro-content-max));
+  max-width: var(--intro-content-max);
+}
+.intro-page-frame .cinematic-intro-header {
+  left: 50%;
+  right: auto;
+  padding-inline: 0;
+  transform: translateX(-50%);
+}
+.intro-page-frame .cinematic-intro-menu {
+  justify-self: start;
+  margin-left: 0;
+}
+.intro-page-frame .cinematic-intro-brand {
+  justify-self: center;
+}
+.intro-page-frame .cinematic-intro-portfolio {
+  justify-self: end;
+  margin-right: 0;
+}
+.intro-page-frame .cinematic-intro-copy {
+  left: max(
+    var(--intro-content-gutter),
+    calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))
+  ) !important;
+  text-align: left !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  text-align: left !important;
+  transform-origin: left center !important;
+  margin-inline: 0 !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  text-align: left !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  text-align: left !important;
+  font-size: var(--intro-copy-size);
+  line-height: 1.45;
+  letter-spacing: -.025em;
+  text-wrap: pretty;
+  max-width: 100%;
+}
+.intro-page-frame .cinematic-intro-scroll-copy strong {
+  color: #f5f6f2;
+  font-weight: 750;
+}
+.intro-page-frame .cinematic-intro-bottom {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  justify-content: flex-end;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header,
+  .intro-page-frame .cinematic-intro-bottom {
+    width: calc(100% - 2 * var(--intro-content-gutter));
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    line-height: 1.4;
+  }
+}
+
+
+/* Intro refinement: compact circular profile, anchored CTA and scroll-responsive copy. */
+.intro-page-frame .cinematic-intro-header {
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+.intro-page-frame .cinematic-intro-header-profile {
+  grid-column: 3;
+  justify-self: end;
+  width: clamp(48px, 4.2vw, 64px);
+  height: clamp(48px, 4.2vw, 64px);
+  overflow: hidden;
+  border: 1px solid rgb(163 255 76 / .52);
+  border-radius: 50%;
+  background: #151914;
+  box-shadow: 0 0 24px rgb(131 255 0 / .12);
+}
+.intro-page-frame .cinematic-intro-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  filter: grayscale(1) contrast(1.05);
+}
+.intro-page-frame .cinematic-intro-copy {
+  top: clamp(155px, 20vh, 205px);
+  width: calc(40% + var(--intro-progress) * 10%) !important;
+  max-width: 50% !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  font-size: clamp(2.5rem, 6.2vw, 7.1rem);
+  transform: scale(calc(1 - var(--intro-progress) * .38)) !important;
+  transform-origin: left top !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  width: min(var(--intro-copy-width), calc(100vw - 2 * var(--intro-content-gutter)));
+  transform: translate(-50%, -50%);
+}
+.intro-page-frame .cinematic-intro-copy-portfolio {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: clamp(18px, 2.4vh, 28px);
+  margin-left: 0;
+  justify-self: start;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  display: none !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: min(50%, calc(100vw - 2 * var(--intro-content-gutter))) !important;
+    max-width: 50% !important;
+    top: clamp(145px, 19vh, 185px);
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2rem, 6.4vw, 4.8rem);
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header-profile {
+    width: 44px;
+    height: 44px;
+  }
+  .intro-page-frame .cinematic-intro-copy {
+    top: 150px;
+    width: 88% !important;
+    max-width: 88% !important;
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.15rem, 9.2vw, 3.8rem);
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    width: min(var(--intro-copy-width), calc(100vw - 48px));
+  }
+  .intro-page-frame .cinematic-intro-copy-portfolio {
+    margin-top: 16px;
+    padding: 10px 13px;
+    font-size: .55rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    transform: none !important;
+  }
+}
+
+
+/* Scroll morph: keep the original full-size bottom-right portrait, then dock it as an avatar. */
+.intro-page-frame .cinematic-intro-portrait {
+  display: block !important;
+  position: absolute;
+  top: var(--intro-portrait-top);
+  right: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: var(--intro-portrait-width);
+  height: var(--intro-portrait-height);
+  max-width: none;
+  aspect-ratio: auto;
+  overflow: hidden;
+  border-radius: var(--intro-portrait-radius);
+  transform: none !important;
+  transform-origin: top right;
+  z-index: 3;
+  filter: drop-shadow(0 18px 42px rgb(0 0 0 / .28));
+  transition: none;
+}
+.intro-page-frame .cinematic-intro-image {
+  width: 100%;
+  height: 100%;
+  object-fit: var(--intro-portrait-fit) !important;
+  object-position: center 24% !important;
+  transform: scale(var(--intro-portrait-image-scale));
+  transform-origin: center 24%;
+  transition: none;
+}
+.intro-page-frame .cinematic-intro-image-tint,
+.intro-page-frame .cinematic-intro-orbit,
+.intro-page-frame .cinematic-intro-portrait::before,
+.intro-page-frame .cinematic-intro-portrait::after {
+  opacity: calc(1 - var(--intro-progress));
+  transition: none;
+}
+.intro-page-frame .cinematic-intro-copy {
+  top: var(--intro-title-top);
+  width: 50% !important;
+  max-width: 50% !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  font-size: clamp(2.3rem, 6.1vw, 7rem);
+  line-height: .92;
+  transform: scale(calc(1 - var(--intro-progress) * .38)) !important;
+  transform-origin: left top !important;
+  text-wrap: balance;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  top: var(--intro-copy-y);
+  left: var(--intro-copy-x);
+  width: min(var(--intro-copy-width), calc(100vw - 2 * var(--intro-content-gutter)));
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2rem, 6.2vw, 4.8rem);
+  }
+  .intro-page-frame .cinematic-intro-portrait {
+    right: 0 !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    right: 0 !important;
+    width: var(--intro-portrait-width);
+    height: var(--intro-portrait-height);
+  }
+  .intro-page-frame .cinematic-intro-copy {
+    width: 88% !important;
+    max-width: 88% !important;
+    top: var(--intro-title-top);
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(1.8rem, 8.2vw, 3.4rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-portrait,
+  .intro-page-frame .cinematic-intro-image {
+    transition: none;
+  }
+}
+
+
+/* Requested finishing adjustments: larger copy, header CTA and clean portrait edge. */
+.intro-page-frame .cinematic-intro-header {
+  position: absolute;
+}
+.intro-page-frame .cinematic-intro-header-portfolio {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  justify-self: auto;
+  margin: 0;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  font-size: var(--intro-copy-size);
+  line-height: 1.42;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  filter: none !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-portrait::before,
+.intro-page-frame .cinematic-intro-portrait::after,
+.intro-page-frame .cinematic-intro-image-tint {
+  display: none !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  filter: grayscale(1) contrast(1.04) !important;
+}
+.intro-page-frame .cinematic-intro-bottom {
+  position: absolute;
+  left: auto !important;
+  right: max(
+    var(--intro-content-gutter),
+    calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))
+  ) !important;
+  bottom: clamp(22px, 4vh, 42px) !important;
+  width: auto !important;
+  transform: none !important;
+  justify-content: flex-end;
+}
+.intro-page-frame .cinematic-intro-location {
+  margin-left: auto;
+  text-align: right;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header-portfolio {
+    right: 0;
+    font-size: .52rem;
+    padding: 9px 11px;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: var(--intro-copy-size);
+    line-height: 1.38;
+  }
+  .intro-page-frame .cinematic-intro-bottom {
+    right: var(--intro-content-gutter) !important;
+    bottom: 20px !important;
+  }
+}
+
+
+/* Keep the Dhaka status pinned to the viewport for the entire intro scroll. */
+.page-frame.intro-page-frame {
+  overflow: visible !important;
+}
+.intro-page-frame .cinematic-intro-bottom {
+  position: fixed !important;
+  z-index: 100 !important;
+  top: auto !important;
+  left: auto !important;
+  right: max(
+    var(--intro-content-gutter),
+    calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))
+  ) !important;
+  bottom: clamp(22px, 4vh, 42px) !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none;
+}
+.intro-page-frame .cinematic-intro-location {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: rgb(245 246 242 / .72) !important;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-bottom {
+    right: var(--intro-content-gutter) !important;
+    bottom: 20px !important;
+  }
+}
+
+
+/* Right-edge portrait alignment with a soft shoulder-side alpha blend. */
+.intro-page-frame .cinematic-intro-portrait {
+  right: 0 !important;
+  left: auto !important;
+  margin-right: 0 !important;
+  transform: none !important;
+  overflow: hidden;
+}
+.intro-page-frame .cinematic-intro-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 0 0 auto !important;
+  object-fit: var(--intro-portrait-fit) !important;
+  object-position: right bottom !important;
+  transform-origin: right bottom !important;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .18) 12%,
+    #000 34%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .18) 12%,
+    #000 34%,
+    #000 100%
+  );
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-image {
+    object-position: right bottom !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+  }
+}
+
+
+/* Cinematic portrait blend v2: preserve the cut-out; feather only the shoulder-side edge. */
+.intro-page-frame .cinematic-intro-portrait {
+  position: absolute;
+  right: 0 !important;
+  left: auto !important;
+  isolation: isolate;
+  overflow: hidden;
+  background: transparent;
+}
+.intro-page-frame .cinematic-intro-image {
+  position: relative;
+  z-index: 1;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 0 0 auto !important;
+  object-fit: var(--intro-portrait-fit) !important;
+  object-position: right bottom !important;
+  transform-origin: right bottom !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  filter: grayscale(1) contrast(1.04) !important;
+}
+.intro-page-frame .cinematic-intro-image-tint {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none;
+  opacity: 1 !important;
+  mix-blend-mode: normal;
+  background:
+    radial-gradient(
+      ellipse 72% 88% at 0% 54%,
+      #050605 0%,
+      rgb(5 6 5 / .96) 22%,
+      rgb(5 6 5 / .78) 40%,
+      rgb(5 6 5 / .34) 61%,
+      transparent 82%
+    ),
+    radial-gradient(
+      ellipse 86% 42% at 4% 100%,
+      #050605 0%,
+      rgb(5 6 5 / .9) 28%,
+      rgb(5 6 5 / .48) 55%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to top,
+      #050605 0%,
+      rgb(5 6 5 / .72) 8%,
+      transparent 27%
+    );
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image-tint {
+    background:
+      radial-gradient(
+        ellipse 78% 86% at 0% 55%,
+        #050605 0%,
+        rgb(5 6 5 / .94) 24%,
+        rgb(5 6 5 / .7) 45%,
+        transparent 84%
+      ),
+      radial-gradient(
+        ellipse 95% 38% at 0% 100%,
+        #050605 0%,
+        rgb(5 6 5 / .84) 35%,
+        transparent 100%
+      ),
+      linear-gradient(to top, #050605 0%, transparent 24%);
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-image-tint {
+    background:
+      radial-gradient(
+        ellipse 88% 78% at 0% 58%,
+        #050605 0%,
+        rgb(5 6 5 / .96) 26%,
+        rgb(5 6 5 / .72) 48%,
+        transparent 88%
+      ),
+      radial-gradient(
+        ellipse 110% 34% at 0% 100%,
+        #050605 0%,
+        rgb(5 6 5 / .86) 38%,
+        transparent 100%
+      ),
+      linear-gradient(to top, #050605 0%, transparent 20%);
+  }
+}
+
+
+/* Shoulder-to-bottom blend: fade in at shoulder height, then feather the left contour to the base. */
+.intro-page-frame .cinematic-intro-image-tint {
+  inset: 0 !important;
+  opacity: 1 !important;
+  background:
+    radial-gradient(
+      ellipse 72% 88% at 0% 56%,
+      #050605 0%,
+      rgb(5 6 5 / .96) 22%,
+      rgb(5 6 5 / .76) 42%,
+      rgb(5 6 5 / .3) 64%,
+      transparent 84%
+    ),
+    radial-gradient(
+      ellipse 92% 42% at 0% 100%,
+      #050605 0%,
+      rgb(5 6 5 / .88) 34%,
+      rgb(5 6 5 / .42) 60%,
+      transparent 100%
+    );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 34%,
+    rgb(0 0 0 / .08) 42%,
+    rgb(0 0 0 / .55) 54%,
+    #000 68%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 34%,
+    rgb(0 0 0 / .08) 42%,
+    rgb(0 0 0 / .55) 54%,
+    #000 68%,
+    #000 100%
+  );
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image-tint {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 32%,
+      rgb(0 0 0 / .12) 43%,
+      rgb(0 0 0 / .62) 57%,
+      #000 70%,
+      #000 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 32%,
+      rgb(0 0 0 / .12) 43%,
+      rgb(0 0 0 / .62) 57%,
+      #000 70%,
+      #000 100%
+    );
+  }
+}
+
+
+/* Shoulder-origin blend: keep the upper portrait untouched and feather the left edge down to the base. */
+.intro-page-frame .cinematic-intro-image-tint {
+  display: block !important;
+  position: absolute !important;
+  top: 41% !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none;
+  opacity: 1 !important;
+  background:
+    radial-gradient(
+      ellipse 118% 92% at 0% 0%,
+      #050605 0%,
+      rgb(5 6 5 / .94) 20%,
+      rgb(5 6 5 / .72) 42%,
+      rgb(5 6 5 / .32) 64%,
+      transparent 88%
+    ),
+    radial-gradient(
+      ellipse 112% 88% at 0% 100%,
+      #050605 0%,
+      rgb(5 6 5 / .9) 24%,
+      rgb(5 6 5 / .58) 48%,
+      rgb(5 6 5 / .18) 72%,
+      transparent 96%
+    );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 16%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 16%,
+    #000 100%
+  );
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image-tint {
+    top: 39% !important;
+    background:
+      radial-gradient(
+        ellipse 124% 94% at 0% 0%,
+        #050605 0%,
+        rgb(5 6 5 / .94) 22%,
+        rgb(5 6 5 / .7) 46%,
+        rgb(5 6 5 / .26) 70%,
+        transparent 92%
+      ),
+      radial-gradient(
+        ellipse 120% 88% at 0% 100%,
+        #050605 0%,
+        rgb(5 6 5 / .88) 28%,
+        rgb(5 6 5 / .48) 58%,
+        transparent 96%
+      );
+  }
+}
+
+
+/* Clean portrait presentation: no backing shape, no crop, fade the cut-out itself into the page. */
+.intro-page-frame .cinematic-intro-portrait {
+  right: 0 !important;
+  left: auto !important;
+  bottom: 0 !important;
+  top: auto !important;
+  width: var(--intro-portrait-width);
+  height: var(--intro-portrait-height);
+  overflow: visible !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+.intro-page-frame .cinematic-intro-image-tint {
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-orbit,
+.intro-page-frame .cinematic-intro-portrait::before,
+.intro-page-frame .cinematic-intro-portrait::after {
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: right bottom !important;
+  transform-origin: right bottom !important;
+  filter: grayscale(1) contrast(1.04) !important;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .12) 12%,
+    rgb(0 0 0 / .48) 27%,
+    #000 48%,
+    #000 100%
+  ) !important;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / .12) 12%,
+    rgb(0 0 0 / .48) 27%,
+    #000 48%,
+    #000 100%
+  ) !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .25) 18%, #000 52%) !important;
+    mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .25) 18%, #000 52%) !important;
+  }
+}
+
+
+/* Final intro detail refinements: 45% initial copy width and clearer location label. */
+.intro-page-frame .cinematic-intro-location {
+  gap: 10px;
+}
+.intro-page-frame .cinematic-intro-location span {
+  font-size: clamp(.72rem, .82vw, .9rem) !important;
+  letter-spacing: .13em !important;
+  font-weight: 600 !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-location span {
+    font-size: .68rem !important;
+    letter-spacing: .1em !important;
+  }
+}
+
+
+/* 2.5D portrait depth: restrained perspective, layered extrusion and pointer-reactive light. */
+.intro-page-frame .cinematic-intro-stage {
+  perspective: 1500px;
+  perspective-origin: 72% 44%;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  transform: perspective(1500px) rotateX(var(--intro-tilt-x, 0deg)) rotateY(var(--intro-tilt-y, 0deg)) !important;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 650ms cubic-bezier(.2,.75,.25,1);
+}
+.intro-page-frame .cinematic-intro-depth-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: right bottom !important;
+  transform: translate3d(0, 0, -24px) scale(1.018);
+  transform-origin: right bottom;
+  filter: grayscale(1) brightness(.52) blur(1.2px) !important;
+  opacity: .42;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 12%, rgb(0 0 0 / .48) 27%, #000 48%, #000 100%) !important;
+  mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 12%, rgb(0 0 0 / .48) 27%, #000 48%, #000 100%) !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  position: relative;
+  z-index: 1;
+  transform: translate3d(0, 0, 18px) scale(var(--intro-portrait-image-scale)) !important;
+  backface-visibility: hidden;
+}
+.intro-page-frame .cinematic-intro-portrait::before {
+  content: "";
+  display: block !important;
+  position: absolute;
+  inset: 8% 0 12% 18%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .34;
+  background: radial-gradient(ellipse at var(--intro-pointer-x, 72%) var(--intro-pointer-y, 42%), rgb(210 255 166 / .22), transparent 42%);
+  mix-blend-mode: screen;
+  transform: translateZ(30px);
+  transition: opacity 500ms ease;
+}
+@media (hover: none), (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    transform: none !important;
+    transition: none;
+  }
+  .intro-page-frame .cinematic-intro-depth-layer { opacity: .24; }
+  .intro-page-frame .cinematic-intro-portrait::before { opacity: .16; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-portrait,
+  .intro-page-frame .cinematic-intro-depth-layer,
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-portrait::before {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* 2.5D depth refinement: independent pointer parallax for the portrait planes. */
+.intro-page-frame .cinematic-intro-depth-layer {
+  transform: translate3d(var(--intro-depth-x, 0px), var(--intro-depth-y, 0px), -24px) scale(1.018) !important;
+  transition: transform 700ms cubic-bezier(.2,.75,.25,1), opacity 500ms ease;
+}
+.intro-page-frame .cinematic-intro-image {
+  transform: translate3d(calc(var(--intro-depth-x, 0px) * -.34), calc(var(--intro-depth-y, 0px) * -.34), 18px) scale(var(--intro-portrait-image-scale)) !important;
+  transition: transform 700ms cubic-bezier(.2,.75,.25,1);
+}
+.intro-page-frame .cinematic-intro-portrait::before {
+  transform: translate3d(var(--intro-highlight-x, 0px), var(--intro-highlight-y, 0px), 30px) !important;
+}
+@media (hover: none), (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-depth-layer {
+    transform: translate3d(0, 0, -16px) scale(1.018) !important;
+  }
+  .intro-page-frame .cinematic-intro-image {
+    transform: translate3d(0, 0, 12px) scale(var(--intro-portrait-image-scale)) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-depth-layer,
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-portrait::before {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* Shoulder integration: intersect a broad horizontal feather with a shoulder-local radial alpha falloff. */
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  -webkit-mask-image:
+    radial-gradient(ellipse 86% 68% at 0% 56%, transparent 0%, rgb(0 0 0 / .1) 24%, rgb(0 0 0 / .58) 52%, #000 82%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 10%, rgb(0 0 0 / .34) 29%, #000 62%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 86% 68% at 0% 56%, transparent 0%, rgb(0 0 0 / .1) 24%, rgb(0 0 0 / .58) 52%, #000 82%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 10%, rgb(0 0 0 / .34) 29%, #000 62%);
+  mask-composite: intersect;
+  mask-mode: alpha;
+}
+.intro-page-frame .cinematic-intro-depth-layer {
+  opacity: .2;
+  filter: grayscale(1) brightness(.34) blur(2.4px) !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-depth-layer {
+    -webkit-mask-image:
+      radial-gradient(ellipse 92% 70% at 0% 56%, transparent 0%, rgb(0 0 0 / .14) 25%, #000 82%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 16%, #000 58%);
+    mask-image:
+      radial-gradient(ellipse 92% 70% at 0% 56%, transparent 0%, rgb(0 0 0 / .14) 25%, #000 82%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .12) 16%, #000 58%);
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-depth-layer {
+    -webkit-mask-image:
+      radial-gradient(ellipse 100% 72% at 0% 58%, transparent 0%, rgb(0 0 0 / .16) 28%, #000 86%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .16) 20%, #000 60%);
+    mask-image:
+      radial-gradient(ellipse 100% 72% at 0% 58%, transparent 0%, rgb(0 0 0 / .16) 28%, #000 86%),
+      linear-gradient(to right, transparent 0%, rgb(0 0 0 / .16) 20%, #000 60%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-depth-layer {
+    transition: none !important;
+  }
+}
+
+
+/* Title width follows the same scroll progress as the description: 50% → 100%. */
+.intro-page-frame .cinematic-intro-copy {
+  width: var(--intro-title-width) !important;
+  max-width: var(--intro-title-width) !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: var(--intro-title-width) !important;
+    max-width: var(--intro-title-width) !important;
+  }
+}
+
+
+/* Let the title wrap naturally from its animated container width. */
+.intro-page-frame .cinematic-intro-copy h1 {
+  white-space: normal !important;
+  text-wrap: initial !important;
+  overflow-wrap: normal;
+}
+
+
+/* Intro greeting above the main title */
+.intro-page-frame .cinematic-intro-greeting {
+  margin: 0 0 clamp(12px, 1.4vw, 22px);
+  color: #83ff00;
+  font-size: clamp(.85rem, 1.1vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 1.2;
+}
+
+
+/* Typography hierarchy: prominent greeting, medium-weight main title */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  margin-bottom: clamp(10px, 1vw, 16px);
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  font-weight: 600;
+}
+
+
+/* Two-line, bold intro headline; retain the fixed 50% title column. */
+.intro-page-frame .cinematic-intro-copy h1 {
+  font-weight: 800 !important;
+  letter-spacing: -.065em !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  display: inline;
+}
+@media (min-width: 641px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.5rem, 5vw, 6rem) !important;
+  }
+  .intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(1.85rem, 8vw, 3.2rem) !important;
+  }
+}
+
+
+/* Requested intro brand-color hierarchy */
+.intro-page-frame .cinematic-intro-greeting,
+.intro-page-frame .cinematic-intro-greeting span {
+  color: #f5f5f2 !important;
+}
+.intro-page-frame .cinematic-intro-greeting .intro-greeting-accent {
+  color: #83ff00 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  color: #f5f5f2 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  color: #83ff00 !important;
+  font-style: italic !important;
+}
+
+
+/* Explicitly keep GROWTH light while ENGINEER remains the lime italic accent. */
+.intro-page-frame .cinematic-intro-copy h1 .intro-growth-light {
+  color: #f5f5f2 !important;
+  font-style: normal !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  color: #83ff00 !important;
+  font-style: italic !important;
+  font-weight: 800 !important;
+}
+
+
+/* Final portrait edge integration: feather the left shoulder into the stage,
+   with a deeper lower-left falloff. Keep the face and right silhouette intact. */
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  -webkit-mask-image:
+    radial-gradient(ellipse 92% 86% at 0% 66%, transparent 0%, rgb(0 0 0 / .08) 18%, rgb(0 0 0 / .42) 42%, #000 76%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 7%, rgb(0 0 0 / .28) 18%, rgb(0 0 0 / .78) 34%, #000 49%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 92% 86% at 0% 66%, transparent 0%, rgb(0 0 0 / .08) 18%, rgb(0 0 0 / .42) 42%, #000 76%),
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / .06) 7%, rgb(0 0 0 / .28) 18%, rgb(0 0 0 / .78) 34%, #000 49%);
+  mask-composite: intersect;
+  mask-mode: alpha;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+
+/* Cinematic intro art-direction pass — one shared portrait alpha field.
+   Previous per-layer multi-mask intersections created inconsistent edge falloff.
+   Mask the portrait stage once so both image pixels and silhouette feather together. */
+.intro-page-frame .cinematic-intro-stage {
+  background:
+    radial-gradient(ellipse 58% 78% at 83% 54%, rgb(131 255 0 / .075) 0%, rgb(131 255 0 / .025) 44%, transparent 76%),
+    radial-gradient(ellipse 90% 110% at 100% 100%, rgb(255 255 255 / .025) 0%, transparent 68%),
+    linear-gradient(115deg, #050605 0%, #080a07 54%, #050605 100%) !important;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  -webkit-mask-image: radial-gradient(ellipse 79% 150% at 100% 60%,
+    #000 0%,
+    #000 49%,
+    rgb(0 0 0 / .97) 57%,
+    rgb(0 0 0 / .86) 65%,
+    rgb(0 0 0 / .62) 73%,
+    rgb(0 0 0 / .30) 82%,
+    rgb(0 0 0 / .08) 91%,
+    transparent 100%) !important;
+  mask-image: radial-gradient(ellipse 79% 150% at 100% 60%,
+    #000 0%,
+    #000 49%,
+    rgb(0 0 0 / .97) 57%,
+    rgb(0 0 0 / .86) 65%,
+    rgb(0 0 0 / .62) 73%,
+    rgb(0 0 0 / .30) 82%,
+    rgb(0 0 0 / .08) 91%,
+    transparent 100%) !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+  -webkit-mask-size: 100% 100% !important;
+  mask-size: 100% 100% !important;
+  filter: none !important;
+  isolation: isolate;
+}
+/* Do not stack multiple independently feathered cut-outs: it creates a ghost edge. */
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  -webkit-mask-composite: source-over !important;
+  mask-composite: add !important;
+}
+.intro-page-frame .cinematic-intro-depth-layer {
+  opacity: .10 !important;
+  filter: grayscale(1) brightness(.42) blur(3px) !important;
+  transform: translate3d(var(--intro-depth-x, 0px), var(--intro-depth-y, 0px), -24px) scale(1.025) !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  filter: grayscale(1) contrast(1.035) !important;
+  backface-visibility: hidden;
+}
+/* Keep the shoulder fade wide and organic on smaller screens too. */
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    -webkit-mask-image: radial-gradient(ellipse 92% 150% at 100% 60%,
+      #000 0%, #000 42%, rgb(0 0 0 / .92) 57%, rgb(0 0 0 / .68) 70%,
+      rgb(0 0 0 / .30) 84%, transparent 100%) !important;
+    mask-image: radial-gradient(ellipse 92% 150% at 100% 60%,
+      #000 0%, #000 42%, rgb(0 0 0 / .92) 57%, rgb(0 0 0 / .68) 70%,
+      rgb(0 0 0 / .30) 84%, transparent 100%) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-portrait {
+    -webkit-mask-image: radial-gradient(ellipse 112% 150% at 100% 60%,
+      #000 0%, #000 38%, rgb(0 0 0 / .90) 55%, rgb(0 0 0 / .62) 72%,
+      rgb(0 0 0 / .24) 88%, transparent 100%) !important;
+    mask-image: radial-gradient(ellipse 112% 150% at 100% 60%,
+      #000 0%, #000 38%, rgb(0 0 0 / .90) 55%, rgb(0 0 0 / .62) 72%,
+      rgb(0 0 0 / .24) 88%, transparent 100%) !important;
+  }
+}
+
+
+/* Intro UI refinement: framed description and location in the header's right slot. */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  box-sizing: border-box !important;
+  padding: clamp(16px, 2vw, 28px) clamp(18px, 2.4vw, 34px) !important;
+  border: 1px solid rgb(245 246 242 / .20) !important;
+  border-radius: 3px !important;
+  background: rgb(245 246 242 / .018) !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .025) !important;
+}
+.intro-page-frame .cinematic-intro-header-location {
+  grid-column: 3;
+  justify-self: end;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  margin: 0 !important;
+  padding: 10px 14px;
+  border: 1px solid rgb(245 246 242 / .20);
+  border-radius: 3px;
+  background: rgb(245 246 242 / .018);
+  color: rgb(245 246 242 / .78) !important;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.intro-page-frame .cinematic-intro-header-location i {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: #83ff00;
+  box-shadow: 0 0 10px rgb(131 255 0 / .5);
+}
+.intro-page-frame .cinematic-intro-header-location span {
+  font-size: clamp(.62rem, .75vw, .78rem) !important;
+  line-height: 1;
+  letter-spacing: .12em !important;
+  font-weight: 650 !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header-location {
+    gap: 7px;
+    padding: 8px 9px;
+  }
+  .intro-page-frame .cinematic-intro-header-location span {
+    font-size: .55rem !important;
+    letter-spacing: .07em !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    padding: 14px 16px !important;
+  }
+}
+
+
+/* Scroll choreography: portrait contracts and fades from the first scroll movement;
+   headline fades independently while the supporting copy remains readable. */
+.intro-page-frame .cinematic-intro-portrait {
+  opacity: calc(1 - var(--intro-progress) * 1.18) !important;
+  transform:
+    perspective(1500px)
+    rotateX(var(--intro-tilt-x, 0deg))
+    rotateY(var(--intro-tilt-y, 0deg))
+    scale(calc(1 - var(--intro-progress) * .12)) !important;
+  transform-origin: right bottom !important;
+  will-change: opacity, width, height, transform;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  opacity: calc(1 - var(--intro-progress) * 1.35) !important;
+  transform: translate3d(0, calc(var(--intro-progress) * -18px), 0) !important;
+  transform-origin: left center !important;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-portrait,
+  .intro-page-frame .cinematic-intro-copy h1 {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+}
+
+
+/* Intro brand mark and greeting scale refinement. */
+.intro-page-frame .cinematic-intro-brand {
+  display: inline-flex !important;
+  align-items: center;
+  justify-self: center;
+  width: clamp(112px, 11vw, 168px);
+  height: auto;
+}
+.intro-page-frame .cinematic-intro-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: clamp(2rem, 3.8vw, 3.8rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.045em !important;
+  font-weight: 700 !important;
+}
+/* Contract the actual portrait box from the first scroll pixel; no compensating image zoom. */
+.intro-page-frame .cinematic-intro-portrait {
+  opacity: calc(1 - var(--intro-portrait-progress) * 1.08) !important;
+  transform: perspective(1500px) rotateX(var(--intro-tilt-x, 0deg)) rotateY(var(--intro-tilt-y, 0deg)) scale(calc(1 - var(--intro-portrait-progress) * .16)) !important;
+  transform-origin: right bottom !important;
+}
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  transform-origin: right bottom !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: clamp(1.8rem, 7.5vw, 2.8rem) !important;
+  }
+  .intro-page-frame .cinematic-intro-brand {
+    width: clamp(88px, 22vw, 124px);
+  }
+}
+
+
+/* Scroll choreography: preserve greeting anchor while reducing type to 2rem. */
+.intro-page-frame .cinematic-intro-greeting { font-size:var(--intro-greeting-size,clamp(2rem,3.8vw,3.8rem)) !important; line-height:1.04 !important; transform:translate3d(0,calc(var(--intro-progress,0) * var(--intro-greeting-rise,109px) * -1),0) !important; transform-origin:left top !important; will-change:font-size,transform; }
+/* Menu travels down the viewport in direct proportion to the section scroll progress. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu { position:relative !important; z-index:30 !important; transform:translate3d(0,calc(var(--intro-progress,0) * var(--intro-menu-travel,0px)),0) !important; transition:none !important; will-change:transform; }
+/* Brand mark fades with the same scroll timeline without affecting header layout. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-brand { opacity:clamp(0,calc(1 - var(--intro-progress,0)),1) !important; transition:none !important; will-change:opacity; }
+@media(prefers-reduced-motion:reduce){.intro-page-frame .cinematic-intro-greeting{font-size:var(--intro-greeting-size)!important}.intro-page-frame .cinematic-intro-header .cinematic-intro-menu{transform:none!important}.intro-page-frame .cinematic-intro-header .cinematic-intro-brand{opacity:1!important}}
+
+
+/* Pin the menu control to the viewport and interpolate its top edge to 24px above the bottom. */
+.intro-page-frame .cinematic-intro-header {
+  transform: none !important;
+  left: max(var(--intro-content-gutter), calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))) !important;
+  right: auto !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: fixed !important;
+  top: var(--intro-menu-top, 24px) !important;
+  left: max(var(--intro-content-gutter), calc((100vw - var(--intro-content-max)) / 2 + var(--intro-content-gutter))) !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  transform: none !important;
+  opacity: clamp(0, calc(1 - var(--intro-progress, 0)), 1) !important;
+  transition: none !important;
+  will-change: top, opacity;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    left: var(--intro-content-gutter) !important;
+  }
+}
+
+
+/* Unified scroll timing: logo and menu fade on the exact same progress curve. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-brand,
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  /* Both elements use one accelerated curve and start fading on the first scroll pixel. */
+  opacity: clamp(0, calc(1 - clamp(0, var(--intro-progress, 0), 1) * 2.5), 1) !important;
+  transition: none !important;
+  will-change: opacity;
+}
+/* The parent copy moves with the title (155px → 80px); this additional 60px
+   lift places the greeting at exactly 20px from the viewport top at progress 1. */
+.intro-page-frame .cinematic-intro-greeting {
+  /* Parent title anchor moves 155px → 80px; this 8px lift lands at 72px. */
+  transform: translate3d(0, calc(clamp(0, var(--intro-progress, 0), 1) * -8px), 0) !important;
+  will-change: font-size, transform;
+}
+
+
+/* Greeting final choreography: preserve its initial anchor, settle 100px below viewport top. */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: var(--intro-greeting-size, clamp(2rem, 3.8vw, 3.8rem)) !important;
+  transform: translate3d(0, calc(clamp(0, var(--intro-progress, 0), 1) * 20px), 0) !important;
+  transform-origin: left top !important;
+  will-change: font-size, transform;
+}
+
+
+/* Scroll-end navigation reveal: fixed bottom dock with individually bordered links. */
+.intro-page-frame .cinematic-intro-nav {
+  position: fixed !important;
+  z-index: 60 !important;
+  top: auto !important;
+  right: max(var(--intro-content-gutter, 24px), calc((100vw - var(--intro-content-max, 1440px)) / 2 + var(--intro-content-gutter, 24px))) !important;
+  bottom: 32px !important;
+  left: max(var(--intro-content-gutter, 24px), calc((100vw - var(--intro-content-max, 1440px)) / 2 + var(--intro-content-gutter, 24px))) !important;
+  width: auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  gap: clamp(8px, 1.2vw, 16px) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(0, 18px, 0) !important;
+  transition: opacity .45s ease, transform .65s cubic-bezier(.2,.75,.25,1), visibility .45s ease !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav a {
+  position: relative !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: auto !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  padding: clamp(13px, 1.15vw, 18px) 12px !important;
+  border: 1px solid rgb(245 246 242 / .18) !important;
+  border-radius: 2px !important;
+  color: rgb(245 246 242 / .82) !important;
+  background: rgb(8 10 7 / .48) !important;
+  font-size: clamp(.68rem, .8vw, .82rem) !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  opacity: 0 !important;
+  clip-path: inset(0 0 100% 0) !important;
+  transform: translateY(12px) !important;
+  transition: color .25s ease, border-color .25s ease, background .25s ease,
+    opacity .35s ease, transform .55s cubic-bezier(.2,.75,.25,1), clip-path .6s cubic-bezier(.2,.75,.25,1) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  opacity: 1 !important;
+  clip-path: inset(0 0 0 0) !important;
+  transform: translateY(0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(1) { transition-delay: .08s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(2) { transition-delay: .16s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(3) { transition-delay: .24s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(4) { transition-delay: .32s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(5) { transition-delay: .4s !important; }
+.intro-page-frame .cinematic-intro-nav a:hover {
+  color: #83ff00 !important;
+  border-color: rgb(131 255 0 / .55) !important;
+  background: rgb(131 255 0 / .07) !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav {
+    right: 16px !important;
+    left: 16px !important;
+    bottom: 32px !important;
+    gap: 5px !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    scrollbar-width: none !important;
+  }
+  .intro-page-frame .cinematic-intro-nav::-webkit-scrollbar { display: none !important; }
+  .intro-page-frame .cinematic-intro-nav a {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    padding: 12px 10px !important;
+    font-size: .62rem !important;
+    letter-spacing: .07em !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-nav,
+  .intro-page-frame .cinematic-intro-nav a {
+    transition: none !important;
+  }
+}
+
+/* Ensure every navigation destination remains visible in the mobile dock. */
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav a:nth-child(2),
+  .intro-page-frame .cinematic-intro-nav a:nth-child(3) {
+    display: grid !important;
+  }
+}
+
+
+/* Final navigation placement: viewport-bottom dock, never anchored beneath menu control. */
+.intro-page-frame header .cinematic-intro-nav {
+  position: fixed !important;
+  inset: auto 0 32px 0 !important;
+  width: min(calc(100vw - 2 * var(--intro-content-gutter, 24px)), var(--intro-content-max, 1440px)) !important;
+  margin-inline: auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  gap: clamp(8px, 1.2vw, 16px) !important;
+  z-index: 100 !important;
+}
+.intro-page-frame header .cinematic-intro-nav a {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  border: 1px solid rgb(245 246 242 / .2) !important;
+  border-radius: 2px !important;
+  padding: 14px 12px !important;
+  clip-path: inset(0 0 100% 0) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a {
+  clip-path: inset(0 0 0 0) !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame header .cinematic-intro-nav {
+    width: calc(100vw - 32px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    margin: 0 !important;
+    gap: 5px !important;
+    overflow-x: auto !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav a {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    padding: 12px 10px !important;
+  }
+}
+
+
+/* Shared title/greeting scroll choreography.
+   Both travel on the same parent timeline; the title fades, the greeting remains pinned at 100px. */
+.intro-page-frame .cinematic-intro-copy {
+  transform: none !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  opacity: clamp(0, calc(1 - var(--intro-progress, 0) * 1.35), 1) !important;
+  transform: scale(calc(1 - var(--intro-progress, 0) * .38)) !important;
+  transform-origin: left top !important;
+  will-change: opacity, transform;
+}
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: var(--intro-greeting-size, clamp(2rem, 3.8vw, 3.8rem)) !important;
+  transform: none !important;
+  opacity: 1 !important;
+  transform-origin: left top !important;
+  will-change: font-size;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: var(--intro-greeting-size) !important;
+    opacity: 1 !important;
+  }
+}
+
+
+/* Pixel-locked title and greeting choreography: shared vertical anchor, independent scale/fade. */
+.intro-page-frame .cinematic-intro-copy {
+  top: var(--intro-title-top, 155px) !important;
+  width: var(--intro-title-width, 50%) !important;
+  max-width: var(--intro-title-width, 50%) !important;
+  transform: none !important;
+}
+.intro-page-frame .cinematic-intro-greeting {
+  margin-top: 0 !important;
+  font-size: var(--intro-greeting-size, 1rem) !important;
+  line-height: 1.04 !important;
+  transform: none !important;
+  opacity: 1 !important;
+  transform-origin: left top !important;
+  will-change: font-size;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  opacity: clamp(0, calc(1 - var(--intro-progress, 0)), 1) !important;
+  transform: scale(calc(1 - var(--intro-progress, 0) * .38)) !important;
+  transform-origin: left top !important;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: var(--intro-greeting-size, 1rem) !important;
+  }
+}
+
+
+/* Final greeting scale and description card treatment. */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: var(--intro-greeting-size, 3rem) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  box-sizing: border-box !important;
+  width: min(var(--intro-copy-width), calc(100vw - 2 * var(--intro-content-gutter))) !important;
+  padding: 20px !important;
+  border: 1px solid rgb(245 246 242 / .16) !important;
+  border-radius: 10px !important;
+  background: rgb(255 255 255 / .025) !important;
+  box-shadow: 0 12px 36px rgb(0 0 0 / .12) !important;
+  backdrop-filter: blur(8px) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  margin: 0 !important;
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    width: min(var(--intro-copy-width), calc(100vw - 32px)) !important;
+    padding: 16px !important;
+    border-radius: 8px !important;
+  }
+}
+
+
+/* Match greeting scale to the title's scroll-linked contraction. */
+.intro-page-frame .cinematic-intro-greeting {
+  font-size: 2.5rem !important;
+  transform: scale(calc(1 - var(--intro-progress, 0) * .38)) !important;
+  transform-origin: left top !important;
+  opacity: 1 !important;
+  will-change: transform;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: 2.5rem !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-greeting {
+    transform: none !important;
+  }
+}
+
+
+/* Final description card geometry: square corners and consistent 20px inset. */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  padding: 20px !important;
+  border-radius: 0 !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    padding: 20px !important;
+    border-radius: 0 !important;
+  }
+}
+
+
+/* Full-height half-screen navigation overlay opened only by the menu control. */
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 89 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgb(0 0 0 / .42) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .45s ease, visibility .45s ease !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: relative !important;
+  z-index: 130 !important;
+}
+.intro-page-frame header .cinematic-intro-nav {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  z-index: 120 !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: clamp(104px, 15vh, 150px) clamp(28px, 5vw, 76px) clamp(32px, 6vh, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: space-evenly !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border-right: 1px solid rgb(245 246 242 / .14) !important;
+  background: rgb(8 10 8 / .97) !important;
+  box-shadow: 24px 0 80px rgb(0 0 0 / .28) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .72s cubic-bezier(.22,.78,.22,1), opacity .4s ease, visibility .4s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame header .cinematic-intro-nav a {
+  flex: 1 1 0 !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgb(245 246 242 / .13) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgb(245 246 242 / .86) !important;
+  font-size: clamp(1.15rem, 2.1vw, 2rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: -.035em !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  opacity: 1 !important;
+  clip-path: none !important;
+  transform: none !important;
+  transition: color .25s ease, padding-left .3s ease, border-color .25s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav a:last-child {
+  border-bottom: 0 !important;
+}
+.intro-page-frame header .cinematic-intro-nav a:hover {
+  color: #83ff00 !important;
+  padding-left: 12px !important;
+  border-color: rgb(131 255 0 / .4) !important;
+  background: transparent !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame header .cinematic-intro-nav {
+    width: 50vw !important;
+    max-width: 50vw !important;
+    padding-inline: clamp(22px, 4vw, 42px) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame header .cinematic-intro-nav {
+    width: 86vw !important;
+    max-width: 86vw !important;
+    padding: 100px 24px 28px !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav a {
+    font-size: clamp(1.15rem, 5vw, 1.55rem) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-menu-backdrop,
+  .intro-page-frame header .cinematic-intro-nav {
+    transition: none !important;
+  }
+}
+
+
+/* Menu alignment + stronger modal backdrop treatment. */
+.intro-page-frame .cinematic-intro-header {
+  left: var(--intro-content-inset, 24px) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  left: var(--intro-content-inset, 24px) !important;
+  margin-left: 0 !important;
+  justify-self: start !important;
+  translate: 0 0 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  z-index: 110 !important;
+  background: rgb(4 6 5 / .58) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(.72) !important;
+  backdrop-filter: blur(12px) saturate(.72) !important;
+}
+.intro-page-frame header .cinematic-intro-nav {
+  z-index: 120 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  z-index: 130 !important;
+  left: var(--intro-content-inset, 24px) !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header,
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    left: max(16px, var(--intro-content-inset, 16px)) !important;
+  }
+}
+
+
+/* Keep the header's modal layer above the intro stage so every nav row stays visible. */
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-header {
+  z-index: 150 !important;
+  isolation: isolate !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu-backdrop {
+  z-index: 1 !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-nav {
+  z-index: 2 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+  z-index: 3 !important;
+  position: fixed !important;
+  left: var(--intro-content-inset, 24px) !important;
+}
+
+
+/* Final menu control anchor: fixed to the top-left content rail, never scrolls vertically. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: fixed !important;
+  top: 24px !important;
+  left: var(--intro-content-inset, 24px) !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    top: 16px !important;
+    left: var(--intro-content-gutter, 16px) !important;
+  }
+}
+
+
+/* Restore the original scroll-completion horizontal navigation dock.
+   The same links switch to the left overlay only while the menu is explicitly open. */
+.intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) {
+  position: fixed !important;
+  inset: auto 0 32px 0 !important;
+  z-index: 100 !important;
+  width: min(calc(100vw - 2 * var(--intro-content-gutter, 24px)), var(--intro-content-max, 1440px)) !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) a {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 14px 12px !important;
+  border: 1px solid rgb(245 246 242 / .2) !important;
+  border-radius: 2px !important;
+  background: rgb(8 10 8 / .68) !important;
+  color: rgb(245 246 242 / .86) !important;
+  font-size: .78rem !important;
+  opacity: 1 !important;
+  clip-path: inset(0 0 0 0) !important;
+  transform: none !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) a:hover {
+  color: #83ff00 !important;
+  border-color: rgb(131 255 0 / .55) !important;
+}
+.intro-page-frame header .cinematic-intro-nav:not([data-reveal="true"]):not([data-open="true"]) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) {
+    inset: auto 16px 32px 16px !important;
+    width: auto !important;
+    max-width: none !important;
+    gap: 5px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav[data-reveal="true"]:not([data-open="true"]) a {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    padding: 12px 10px !important;
+    font-size: .62rem !important;
+  }
+}
+
+
+/* Scroll-synchronized navigation: icon exits first, full-width dock reveals progressively. */
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] {
+  position: fixed !important;
+  inset: auto 0 32px 0 !important;
+  z-index: 100 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 var(--intro-content-gutter, 24px) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 8px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: clamp(0, (var(--intro-progress, 0) - .34) / .60, 1) !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  transform: translate3d(0, calc((1 - clamp(0, (var(--intro-progress, 0) - .34) / .60, 1)) * 22px), 0) !important;
+  transition: none !important;
+  will-change: opacity, transform;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+  flex: 1 1 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 10px !important;
+  border: 1px solid rgb(245 246 242 / .22) !important;
+  border-radius: 0 !important;
+  background: rgb(8 10 8 / .72) !important;
+  color: rgb(245 246 242 / .9) !important;
+  font-size: clamp(.68rem, .85vw, .82rem) !important;
+  white-space: nowrap !important;
+  opacity: 1 !important;
+  clip-path: inset(0 0 0 0) !important;
+  transform: none !important;
+  transition: border-color .25s ease, color .25s ease, background .25s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:hover {
+  color: #83ff00 !important;
+  border-color: rgb(131 255 0 / .55) !important;
+  background: rgb(8 10 8 / .9) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"]:not([data-reveal="true"]) {
+  pointer-events: none !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"][data-reveal="true"] {
+  pointer-events: auto !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame header .cinematic-intro-nav[data-open="false"] {
+    padding-inline: 12px !important;
+    gap: 4px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav[data-open="false"]::-webkit-scrollbar {
+    display: none !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+    flex: 1 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding-inline: 9px !important;
+    font-size: .62rem !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame header .cinematic-intro-nav[data-open="false"] {
+    transform: none !important;
+  }
+}
+
+
+/* Close choreography: the modal backdrop fades and the menu rows slide out
+   before the navigation returns to its scroll-docked state. */
+.intro-page-frame .cinematic-intro-menu-backdrop[data-closing="true"] {
+  opacity: 0 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  transition: opacity .48s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] {
+  opacity: 0 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .56s cubic-bezier(.7,0,.3,1), opacity .42s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] a {
+  opacity: 0 !important;
+  transform: translate3d(-26px, 0, 0) !important;
+  clip-path: inset(0 100% 0 0) !important;
+  transition: opacity .22s ease, transform .32s ease, clip-path .32s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] a:nth-child(5) { transition-delay: 0s !important; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] a:nth-child(4) { transition-delay: .035s !important; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] a:nth-child(3) { transition-delay: .07s !important; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] a:nth-child(2) { transition-delay: .105s !important; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] a:nth-child(1) { transition-delay: .14s !important; }
+.intro-page-frame .cinematic-intro[data-menu-closing="true"] .cinematic-intro-menu-backdrop {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"],
+  .intro-page-frame header .cinematic-intro-nav[data-open="true"][data-closing="true"] a,
+  .intro-page-frame .cinematic-intro-menu-backdrop[data-closing="true"] {
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* Open-menu header alignment: brand anchors to overlay's left rail,
+   while the close (X) control anchors to the overlay's right edge. */
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-brand {
+  position: fixed !important;
+  top: 24px !important;
+  left: var(--intro-content-gutter, 24px) !important;
+  right: auto !important;
+  width: auto !important;
+  margin: 0 !important;
+  z-index: 132 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  text-align: left !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+  position: fixed !important;
+  top: 24px !important;
+  left: auto !important;
+  right: calc(50vw - var(--intro-content-gutter, 24px)) !important;
+  z-index: 133 !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-brand {
+    top: 16px !important;
+    left: 16px !important;
+  }
+  .intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+    top: 16px !important;
+    right: calc(14vw + 16px) !important;
+  }
+}
+
+
+/* Keep the brand and close control on one shared header rail,
+   with both controls contained inside the overlay's 50vw bounds. */
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-brand {
+  top: 24px !important;
+  left: var(--intro-content-gutter, 24px) !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+  top: 24px !important;
+  right: calc(50vw + var(--intro-content-gutter, 24px)) !important;
+  left: auto !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-brand {
+    top: 16px !important;
+    left: 16px !important;
+    height: 40px !important;
+  }
+  .intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu {
+    top: 16px !important;
+    right: calc(14vw + 16px) !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+
+/* Bottom scroll-reveal navigation: five equal full-width bordered cells. */
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] {
+  width: 100vw !important;
+  padding-inline: 0 !important;
+  gap: 0 !important;
+  inset-inline: 0 !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 54px !important;
+  box-sizing: border-box !important;
+  padding: 14px 12px !important;
+  border: 1px solid rgb(245 246 242 / .24) !important;
+  border-right-width: 0 !important;
+  font-size: clamp(.82rem, .95vw, .92rem) !important;
+  letter-spacing: .015em !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:first-child {
+  border-left-width: 0 !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:last-child {
+  border-right-width: 0 !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame header .cinematic-intro-nav[data-open="false"] {
+    padding-inline: 0 !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    min-height: 48px !important;
+    padding: 12px 5px !important;
+    font-size: clamp(.68rem, 2.6vw, .78rem) !important;
+    letter-spacing: 0 !important;
+  }
+}
+
+
+/* Subtle, square-corner outline for every cell in the bottom navigation dock. */
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+  background: transparent !important;
+  border: 1px solid rgb(245 246 242 / .14) !important;
+  border-radius: 0 !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a + a {
+  border-left: 0 !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:first-child {
+  border-left: 1px solid rgb(245 246 242 / .14) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:last-child {
+  border-right: 1px solid rgb(245 246 242 / .14) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:hover {
+  background: transparent !important;
+  border-color: rgb(245 246 242 / .24) !important;
+}
+
+
+/* ==========================================================================
+   CINEMATIC INTRO — cohesive editorial art direction
+   Scoped to /intro; preserves the existing scroll choreography and navigation.
+   ========================================================================== */
+.intro-page-frame {
+  --intro-ink: #080b09;
+  --intro-ink-soft: #0d120e;
+  --intro-paper: #f1f3ed;
+  --intro-muted: #a6aea4;
+  --intro-rule: rgb(226 235 221 / .14);
+  --intro-accent: #b8ed72;
+  --intro-accent-strong: #a8e85b;
+  background: var(--intro-ink) !important;
+}
+.intro-page-frame .cinematic-intro {
+  color: var(--intro-paper) !important;
+  background: var(--intro-ink) !important;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+.intro-page-frame .cinematic-intro-stage {
+  background:
+    radial-gradient(ellipse 54% 76% at 78% 46%, rgb(139 184 91 / .105) 0%, transparent 72%),
+    radial-gradient(ellipse 48% 60% at 5% 100%, rgb(105 137 91 / .075) 0%, transparent 72%),
+    linear-gradient(112deg, #080b09 0%, #0a0e0b 54%, #0c110d 100%) !important;
+}
+.intro-page-frame .cinematic-intro-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .2;
+  background-image:
+    linear-gradient(rgb(221 235 215 / .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(221 235 215 / .035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / .7), transparent 88%);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / .7), transparent 88%);
+}
+.intro-page-frame .cinematic-intro-noise {
+  z-index: 0 !important;
+  opacity: .075 !important;
+  mix-blend-mode: soft-light;
+}
+.intro-page-frame .cinematic-intro-header {
+  border-bottom-color: var(--intro-rule) !important;
+}
+.intro-page-frame .cinematic-intro-brand {
+  color: var(--intro-paper) !important;
+  font-family: "Bricolage Grotesque", sans-serif !important;
+  font-size: 1.02rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -.065em !important;
+}
+.intro-page-frame .cinematic-intro-brand span,
+.intro-page-frame .cinematic-intro-brand i {
+  color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-location {
+  color: rgb(226 235 221 / .66) !important;
+  font-size: .6rem !important;
+  font-weight: 700 !important;
+  letter-spacing: .17em !important;
+}
+.intro-page-frame .cinematic-intro-location i,
+.intro-page-frame .cinematic-intro-location i::after {
+  background-color: var(--intro-accent) !important;
+  border-color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-menu span {
+  background: var(--intro-accent) !important;
+  border-radius: 0 !important;
+}
+.intro-page-frame .cinematic-intro-copy {
+  z-index: 3 !important;
+}
+.intro-page-frame .cinematic-intro-greeting {
+  margin-bottom: clamp(18px, 2.1vw, 30px) !important;
+  color: var(--intro-muted) !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 550 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -.065em !important;
+}
+.intro-page-frame .cinematic-intro-greeting .intro-greeting-accent {
+  color: var(--intro-accent) !important;
+  font-weight: 700 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  color: var(--intro-paper) !important;
+  font-family: "Bricolage Grotesque", sans-serif !important;
+  font-size: clamp(2.65rem, 5.55vw, 6.1rem) !important;
+  font-weight: 750 !important;
+  letter-spacing: -.078em !important;
+  text-wrap: balance;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  color: var(--intro-paper) !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-growth-light {
+  color: var(--intro-paper) !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  color: var(--intro-accent) !important;
+  font-style: italic;
+  font-weight: 700 !important;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  z-index: 2 !important;
+}
+.intro-page-frame .cinematic-intro-image {
+  filter: grayscale(.14) contrast(1.07) saturate(.82) !important;
+}
+.intro-page-frame .cinematic-intro-image-tint {
+  opacity: .22 !important;
+  background: linear-gradient(115deg, transparent 34%, rgb(184 237 114 / .34) 100%) !important;
+}
+.intro-page-frame .cinematic-intro-orbit {
+  border-color: rgb(184 237 114 / .17) !important;
+  box-shadow: 0 0 100px rgb(184 237 114 / .055), inset 0 0 90px rgb(184 237 114 / .025) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  border: 1px solid rgb(226 235 221 / .17) !important;
+  border-radius: 0 !important;
+  background: rgb(10 14 11 / .18) !important;
+  box-shadow: 0 18px 55px rgb(0 0 0 / .12) !important;
+  backdrop-filter: blur(10px) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  color: rgb(241 243 237 / .82) !important;
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 500 !important;
+  line-height: 1.48 !important;
+  letter-spacing: -.025em !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy strong {
+  color: var(--intro-paper) !important;
+  font-weight: 750 !important;
+}
+.intro-page-frame .cinematic-intro-nav a {
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 650 !important;
+  letter-spacing: -.015em !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+  color: rgb(241 243 237 / .86) !important;
+  border-color: rgb(226 235 221 / .16) !important;
+  background: transparent !important;
+  font-size: clamp(.84rem, .95vw, .94rem) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a:hover {
+  color: var(--intro-accent) !important;
+  border-color: rgb(184 237 114 / .38) !important;
+  background: rgb(184 237 114 / .035) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] {
+  border-right-color: rgb(226 235 221 / .16) !important;
+  background: rgb(8 11 9 / .985) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a {
+  color: rgb(241 243 237 / .88) !important;
+  border-bottom-color: rgb(226 235 221 / .13) !important;
+  font-family: "Bricolage Grotesque", sans-serif !important;
+  font-size: clamp(1.25rem, 2.2vw, 2.05rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -.045em !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a:hover {
+  color: var(--intro-accent) !important;
+  border-color: rgb(184 237 114 / .3) !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  background: rgb(3 5 4 / .64) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(.68) !important;
+  backdrop-filter: blur(14px) saturate(.68) !important;
+}
+.intro-page-frame .cinematic-intro-watermark {
+  color: rgb(226 235 221 / .018) !important;
+  letter-spacing: -.12em !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.55rem, 6.6vw, 5.1rem) !important;
+  }
+  .intro-page-frame .cinematic-intro-location {
+    font-size: .54rem !important;
+    letter-spacing: .12em !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-stage::before {
+    background-size: 48px 48px;
+    opacity: .14;
+  }
+  .intro-page-frame .cinematic-intro-greeting {
+    font-size: 2.15rem !important;
+    margin-bottom: 16px !important;
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.35rem, 10.2vw, 4.2rem) !important;
+    line-height: .94 !important;
+    letter-spacing: -.075em !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    padding: 20px !important;
+    background: rgb(10 14 11 / .24) !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    line-height: 1.42 !important;
+  }
+  .intro-page-frame header .cinematic-intro-nav[data-open="true"] {
+    background: rgb(8 11 9 / .99) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-location i::after {
+    animation: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   CINEMATIC INTRO MOTION SYSTEM
+   Entrance, scroll reveal, menu choreography and micro-interactions.
+   Keep motion restrained; no animation changes the existing layout geometry.
+   ========================================================================== */
+@keyframes introAmbientIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes introHeaderIn {
+  from { opacity: 0; transform: translate3d(0,-12px,0); }
+  to { opacity: 1; transform: translate3d(0,0,0); }
+}
+@keyframes introGreetingIn {
+  from { opacity: 0; transform: translate3d(0,18px,0); }
+  to { opacity: 1; transform: translate3d(0,0,0); }
+}
+@keyframes introTitleIn {
+  from { opacity: 0; clip-path: inset(0 0 100% 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes introPortraitIn {
+  from { opacity: 0; filter: blur(12px) grayscale(.3); }
+  to { opacity: 1; filter: blur(0) grayscale(.14); }
+}
+@keyframes introCopyIn {
+  from { opacity: 0; translate: 0 22px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes introNavItemIn {
+  from { opacity: 0; transform: translate3d(-18px,0,0); clip-path: inset(0 100% 0 0); }
+  to { opacity: 1; transform: translate3d(0,0,0); clip-path: inset(0 0 0 0); }
+}
+@keyframes introSoftPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgb(184 237 114 / 0); }
+  50% { box-shadow: 0 0 0 5px rgb(184 237 114 / .07); }
+}
+.intro-page-frame .cinematic-intro-stage {
+  animation: introAmbientIn 1.05s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-brand,
+.intro-page-frame .cinematic-intro-location {
+  animation: introHeaderIn .75s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-location { animation-delay: .12s; }
+.intro-page-frame .cinematic-intro-menu {
+  transition: opacity .35s ease, color .35s ease, background-color .35s ease, transform .45s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-menu:hover {
+  transform: translateY(-2px) !important;
+}
+.intro-page-frame .cinematic-intro-menu span {
+  transition: transform .42s cubic-bezier(.2,.8,.2,1), width .3s ease !important;
+  transform-origin: center;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu span:first-child {
+  transform: translateY(3px) rotate(45deg) !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu span:last-child {
+  transform: translateY(-3px) rotate(-45deg) !important;
+}
+.intro-page-frame .cinematic-intro-greeting {
+  animation: introGreetingIn .9s .12s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  animation: introTitleIn 1.05s .28s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-portrait {
+  animation: introPortraitIn 1.25s .18s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  animation: introCopyIn .9s .48s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-watermark {
+  animation: introAmbientIn 1.5s .55s ease both;
+}
+.intro-page-frame .cinematic-intro-location i {
+  animation: introSoftPulse 3.2s 1.2s ease-in-out infinite;
+  transition: background-color .3s ease, transform .3s ease;
+}
+.intro-page-frame .cinematic-intro-brand {
+  transition: color .3s ease, letter-spacing .4s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-brand:hover {
+  letter-spacing: -.035em !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy {
+  transition: border-color .45s ease, background-color .45s ease, box-shadow .45s ease !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy:hover {
+  border-color: rgb(184 237 114 / .3) !important;
+  background-color: rgb(10 14 11 / .3) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a {
+  animation: introNavItemIn .62s cubic-bezier(.2,.75,.2,1) both;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a:nth-child(1) { animation-delay: .12s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a:nth-child(2) { animation-delay: .19s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a:nth-child(3) { animation-delay: .26s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a:nth-child(4) { animation-delay: .33s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"] a:nth-child(5) { animation-delay: .40s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="true"]:not([data-closing="true"]) a:hover {
+  transition: color .25s ease, padding-left .35s cubic-bezier(.2,.8,.2,1), border-color .25s ease !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  transition: opacity .55s cubic-bezier(.2,.7,.2,1), backdrop-filter .55s ease, visibility .55s ease !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"] a {
+  transition: color .3s ease, border-color .3s ease, background-color .3s ease, transform .4s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame header .cinematic-intro-nav[data-open="false"][data-reveal="true"] a:nth-child(1) { transition-delay: 0s,0s,0s,0s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="false"][data-reveal="true"] a:nth-child(2) { transition-delay: .035s,.035s,.035s,.035s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="false"][data-reveal="true"] a:nth-child(3) { transition-delay: .07s,.07s,.07s,.07s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="false"][data-reveal="true"] a:nth-child(4) { transition-delay: .105s,.105s,.105s,.105s; }
+.intro-page-frame header .cinematic-intro-nav[data-open="false"][data-reveal="true"] a:nth-child(5) { transition-delay: .14s,.14s,.14s,.14s; }
+.intro-page-frame .cinematic-intro-image,
+.intro-page-frame .cinematic-intro-depth-layer {
+  transition: filter .7s ease, transform .7s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-portrait:hover .cinematic-intro-image {
+  filter: grayscale(0) contrast(1.08) saturate(.95) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-stage,
+  .intro-page-frame .cinematic-intro-brand,
+  .intro-page-frame .cinematic-intro-location,
+  .intro-page-frame .cinematic-intro-greeting,
+  .intro-page-frame .cinematic-intro-copy h1,
+  .intro-page-frame .cinematic-intro-portrait,
+  .intro-page-frame .cinematic-intro-scroll-copy,
+  .intro-page-frame .cinematic-intro-watermark,
+  .intro-page-frame .cinematic-intro-location i,
+  .intro-page-frame header .cinematic-intro-nav[data-open="true"] a {
+    animation: none !important;
+  }
+  .intro-page-frame .cinematic-intro-menu,
+  .intro-page-frame .cinematic-intro-menu span,
+  .intro-page-frame .cinematic-intro-image,
+  .intro-page-frame .cinematic-intro-depth-layer,
+  .intro-page-frame .cinematic-intro-scroll-copy,
+  .intro-page-frame header .cinematic-intro-nav a {
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* Animate the actual text glyph groups so scroll-linked parent transforms remain intact. */
+.intro-page-frame .cinematic-intro-greeting > span {
+  display: inline-block;
+  animation: introGreetingIn .82s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-greeting > span:first-child { animation-delay: .16s; }
+.intro-page-frame .cinematic-intro-greeting > span:last-child { animation-delay: .25s; }
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line {
+  display: inline-block;
+  animation: introTitleIn .95s cubic-bezier(.2,.7,.2,1) both;
+}
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line:first-child { animation-delay: .28s; }
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line:last-child { animation-delay: .42s; }
+.intro-page-frame .cinematic-intro-title-accent,
+.intro-page-frame .intro-title-line-accent {
+  transition: color .35s ease, text-shadow .35s ease !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  text-shadow: 0 0 28px rgb(184 237 114 / .08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-greeting > span,
+  .intro-page-frame .cinematic-intro-copy h1 > .intro-title-line {
+    animation: none !important;
+  }
+}
+
+
+/* Description panel — fluid editorial treatment (replaces legacy fixed insets). */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  --description-inset: clamp(14px, 1.45vw, 24px);
+  box-sizing: border-box !important;
+  padding: var(--description-inset) !important;
+  border: 1px solid rgb(226 235 221 / .13) !important;
+  border-left: 2px solid rgb(184 237 114 / .68) !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(115deg, rgb(18 24 18 / .52), rgb(9 13 10 / .24)) !important;
+  box-shadow:
+    0 18px 54px rgb(0 0 0 / .16),
+    inset 0 1px 0 rgb(241 243 237 / .025) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(.78) !important;
+  backdrop-filter: blur(12px) saturate(.78) !important;
+  overflow: hidden;
+}
+.intro-page-frame .cinematic-intro-scroll-copy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, rgb(184 237 114 / .045), transparent 42%);
+  opacity: .8;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  position: relative;
+  z-index: 1;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 68ch !important;
+  color: rgb(241 243 237 / .82) !important;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: clamp(.92rem, 1.05vw, 1.08rem) !important;
+  font-weight: 450 !important;
+  line-height: 1.62 !important;
+  letter-spacing: -.018em !important;
+  text-wrap: pretty;
+  transform: none !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p strong {
+  color: #f1f3ed !important;
+  font-weight: 750 !important;
+  text-decoration: underline;
+  text-decoration-color: rgb(184 237 114 / .38);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    --description-inset: clamp(14px, 2vw, 20px);
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.88rem, 1.65vw, 1rem) !important;
+    line-height: 1.55 !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    --description-inset: clamp(12px, 3.8vw, 18px);
+    padding: var(--description-inset) !important;
+    border-left-width: 2px !important;
+    background: linear-gradient(115deg, rgb(18 24 18 / .62), rgb(9 13 10 / .34)) !important;
+  }
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.84rem, 3.4vw, .96rem) !important;
+    line-height: 1.48 !important;
+    letter-spacing: -.02em !important;
+  }
+}
+@media (max-width: 380px) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    --description-inset: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    scroll-behavior: auto !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+
+/* Restore the scroll-driven type scale; never freeze description typography. */
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  font-size: clamp(.92rem, var(--intro-copy-size, 1rem), 2rem) !important;
+  line-height: 1.48 !important;
+  transition: none !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.88rem, var(--intro-copy-size, 1rem), 1.55rem) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-copy p {
+    font-size: clamp(.84rem, var(--intro-copy-size, 1rem), 1.25rem) !important;
+    line-height: 1.42 !important;
+  }
+}
+
+
+/* BUSINESS final-character clipping fix:
+   Keep the portrait mask isolated and give the heading its own unclipped text bounds. */
+.intro-page-frame .cinematic-intro-copy {
+  width: min(78vw, 1100px) !important;
+  max-width: min(78vw, 1100px) !important;
+  overflow: visible !important;
+  clip-path: none !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  overflow: visible !important;
+  clip-path: none !important;
+  padding-right: .16em !important;
+  text-wrap: initial !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  padding-right: .16em !important;
+}
+@media (max-width: 900px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: min(92vw, 760px) !important;
+    max-width: min(92vw, 760px) !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-copy {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.25rem, 10vw, 4rem) !important;
+  }
+}
+
+
+/* Single source of truth for the two-line intro headline rhythm. */
+.intro-page-frame .cinematic-intro-copy h1,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line,
+.intro-page-frame .cinematic-intro-copy h1 .intro-growth-light,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent {
+  line-height: .92 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 .16em 0 0 !important;
+}
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line {
+  display: block !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 .16em 0 0 !important;
+  white-space: nowrap !important;
+}
+
+
+/* Large-desktop composition guard: preserve the 1440px art direction while
+   keeping the headline and expanding copy inside the 1920px editorial grid. */
+@media (min-width: 1600px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    /* Match the existing 1440px headline scale instead of growing indefinitely. */
+    font-size: 5rem !important;
+  }
+
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    max-width: min(var(--intro-copy-width), 1120px);
+  }
+}
+
+
+/* Center the intro composition inside a full-viewport background canvas. */
+.intro-page-frame .cinematic-intro {
+  background:
+    radial-gradient(ellipse 55% 70% at 76% 50%, rgb(120 255 0 / 0.12), transparent 72%),
+    radial-gradient(ellipse 60% 60% at 20% 90%, rgb(120 255 0 / 0.055), transparent 70%),
+    #050605;
+}
+.intro-page-frame .cinematic-intro-stage {
+  width: min(100vw, 1600px);
+  height: min(100svh, 900px);
+  min-height: 0;
+  margin-inline: auto;
+  top: max(0px, calc((100svh - 900px) / 2));
+  background: transparent;
+}
+
+
+/* Keep left-side intro content pinned to the centered 1600px canvas rail. */
+.intro-page-frame .cinematic-intro-copy {
+  left: var(--intro-content-inset, var(--intro-content-gutter)) !important;
+  right: auto !important;
+  text-align: left !important;
+}
+.intro-page-frame .cinematic-intro-copy .cinematic-intro-greeting,
+.intro-page-frame .cinematic-intro-copy h1,
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line {
+  margin-left: 0 !important;
+  text-align: left !important;
+  transform-origin: left center !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  left: calc((100vw - min(100vw, 1600px)) / 2 + var(--intro-content-inset, var(--intro-content-gutter))) !important;
+}
+
+
+/* Fluid intro typography: scale with viewport width, but keep a deliberate type range. */
+@media (min-width: 641px) {
+  .intro-page-frame .cinematic-intro-copy h1 {
+    font-size: clamp(2.5rem, 5vw, 6rem) !important;
+  }
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  font-size: clamp(.84rem, calc(var(--intro-copy-size, 1rem) + 0.35vw - 5px), 1.85rem) !important;
+}
+
+
+/* Initial intro typography group is vertically centered inside the capped stage.
+   As scroll progresses, the group smoothly returns to its established 40px anchor. */
+.intro-page-frame .cinematic-intro-copy {
+  transform: translate3d(0, calc((1 - var(--intro-progress, 0)) * -50%), 0) !important;
+}
+
+
+/* Single composition container: header, headline and description share one
+   centered 1600px canvas. Header uses a stable three-column grid. */
+.intro-page-frame .cinematic-intro-stage {
+  position: sticky !important;
+  width: min(100vw, 1600px) !important;
+  max-width: 1600px !important;
+  height: min(100svh, 900px) !important;
+  max-height: 900px !important;
+  margin-inline: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
+.intro-page-frame .cinematic-intro-header {
+  position: absolute !important;
+  inset: 0 0 auto 0 !important;
+  width: 100% !important;
+  height: 96px !important;
+  box-sizing: border-box !important;
+  padding: 24px var(--intro-content-inset, 24px) 24px var(--intro-content-inset, 24px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 16px !important;
+  transform: none !important;
+  z-index: 130 !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-menu {
+  position: relative !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  align-self: center !important;
+  inset: auto !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  z-index: 133 !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand {
+  position: relative !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: center !important;
+  align-self: center !important;
+  inset: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  z-index: 132 !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-header-location {
+  position: relative !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  align-self: center !important;
+  inset: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  z-index: 132 !important;
+}
+
+/* Explicit menu-open state: panel occupies exactly half of the composition
+   and enters from outside its left edge; backdrop remains outside the panel. */
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 112px var(--intro-content-inset, 24px) 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-right: 1px solid rgb(255 255 255 / .12) !important;
+  border-radius: 0 !important;
+  background: rgb(5 7 5 / .96) !important;
+  backdrop-filter: blur(24px) saturate(.8) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .62s cubic-bezier(.2,.8,.2,1), opacity .35s ease !important;
+  z-index: 125 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  width: 100% !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgb(255 255 255 / .12) !important;
+  color: rgb(245 246 242 / .9) !important;
+  font-size: clamp(1.15rem, 2vw, 2rem) !important;
+  opacity: 1 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 120 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="false"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header {
+    height: 72px !important;
+    padding: 16px !important;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+    gap: 6px !important;
+  }
+  .intro-page-frame .cinematic-intro-header > .cinematic-intro-menu {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    width: 50% !important;
+    max-width: 50% !important;
+    padding: 88px 16px 28px !important;
+  }
+}
+
+
+/* Open navigation: distribute all links evenly through the full-height
+   half-canvas panel, with a subtle staggered entrance after the icon click. */
+.intro-page-frame .cinematic-intro-header {
+  height: 100% !important;
+  min-height: 100% !important;
+  grid-template-rows: 48px !important;
+  align-content: start !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  top: 0 !important;
+  bottom: 0 !important;
+  height: 100% !important;
+  justify-content: space-evenly !important;
+  padding-top: 112px !important;
+  padding-bottom: 48px !important;
+  gap: 0 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 12px 0 !important;
+  animation: intro-menu-item-enter .56s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="true"] a {
+  animation: none !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(1) { animation-delay: .08s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(2) { animation-delay: .14s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(3) { animation-delay: .20s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(4) { animation-delay: .26s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(5) { animation-delay: .32s !important; }
+@keyframes intro-menu-item-enter {
+  from { opacity: 0; transform: translate3d(-22px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    padding-top: 88px !important;
+    padding-bottom: 28px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    animation: none !important;
+  }
+}
+
+
+/* Make the open-state close glyph a true, symmetric X.
+   Center both bars on the same point; do not rely on flex-gap translations. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: fixed !important;
+}
+.intro-page-frame .cinematic-intro-menu span {
+  position: absolute !important;
+  left: 10px !important;
+  top: 50% !important;
+  width: 28px !important;
+  height: 2px !important;
+  margin: 0 !important;
+  transform-origin: center center !important;
+  transition: transform .32s cubic-bezier(.2,.8,.2,1), opacity .2s ease !important;
+}
+.intro-page-frame .cinematic-intro-menu span:first-child {
+  transform: translateY(-3.5px) rotate(0deg) !important;
+}
+.intro-page-frame .cinematic-intro-menu span:last-child {
+  width: 19px !important;
+  transform: translateY(3.5px) rotate(0deg) !important;
+}
+.intro-page-frame .cinematic-intro-menu[aria-expanded="true"] span:first-child,
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu span:first-child {
+  width: 28px !important;
+  transform: translateY(0) rotate(45deg) !important;
+}
+.intro-page-frame .cinematic-intro-menu[aria-expanded="true"] span:last-child,
+.intro-page-frame .cinematic-intro[data-menu-open="true"] .cinematic-intro-menu span:last-child {
+  width: 28px !important;
+  transform: translateY(0) rotate(-45deg) !important;
+}
+
+
+/* Final header alignment: one shared canvas rail for menu + intro copy.
+   Keep all three header elements in the same grid row and vertical center. */
+.intro-page-frame .cinematic-intro-header {
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  right: auto !important;
+  width: calc(100% - 2 * var(--intro-content-gutter, 24px)) !important;
+  max-width: calc(1600px - 2 * var(--intro-content-gutter, 24px)) !important;
+  height: 96px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 24px 0 !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  grid-template-rows: 48px !important;
+  align-items: center !important;
+  align-content: start !important;
+  transform: translateX(-50%) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  position: relative !important;
+  inset: auto !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  align-self: center !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+  z-index: 133 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-brand {
+  position: relative !important;
+  inset: auto !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: center !important;
+  align-self: center !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-header-location {
+  position: relative !important;
+  inset: auto !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  align-self: center !important;
+  margin: 0 !important;
+  transform: none !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header {
+    width: calc(100% - 2 * var(--intro-content-gutter, 16px)) !important;
+    max-width: none !important;
+    height: 72px !important;
+    padding: 16px 0 !important;
+    grid-template-rows: 40px !important;
+  }
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+
+/* Final menu fit: five equal-height slots inside the available panel height.
+   Adaptive vertical padding keeps every item visible on short viewports too. */
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: absolute !important;
+  inset: 0 auto 0 0 !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  padding: clamp(76px, 12vh, 112px) clamp(20px, 3vw, 48px) clamp(16px, 5vh, 48px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  line-height: 1.1 !important;
+  font-size: clamp(1rem, 1.8vw, 1.8rem) !important;
+  overflow: hidden !important;
+}
+@media (max-height: 600px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    padding-top: 68px !important;
+    padding-bottom: 12px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    font-size: clamp(.9rem, 1.5vw, 1.2rem) !important;
+    padding-block: 4px !important;
+  }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    width: 50% !important;
+    max-width: 50% !important;
+    padding: clamp(76px, 12vh, 88px) 16px 20px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    font-size: clamp(.95rem, 4vw, 1.25rem) !important;
+  }
+}
+
+
+/* Full-screen navigation overlay: only active while the menu is opened.
+   The initial/closed intro composition is intentionally left untouched. */
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgb(5 7 5 / .975) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(.82) !important;
+  backdrop-filter: blur(22px) saturate(.82) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .56s ease, visibility .56s ease !important;
+  z-index: 120 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu-backdrop[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu-backdrop[data-closing="true"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: max(0px, calc((100vw - 1600px) / 2)) !important;
+  right: auto !important;
+  width: min(50vw, 800px) !important;
+  max-width: min(50vw, 800px) !important;
+  height: 100dvh !important;
+  min-height: 100dvh !important;
+  box-sizing: border-box !important;
+  padding: clamp(88px, 13vh, 128px) clamp(24px, 4vw, 64px) clamp(24px, 6vh, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-right: 1px solid rgb(255 255 255 / .14) !important;
+  border-radius: 0 !important;
+  background: rgb(5 7 5 / .985) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .62s cubic-bezier(.2,.8,.2,1) !important;
+  z-index: 125 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"][data-closing="false"] {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 1px solid rgb(255 255 255 / .13) !important;
+  color: rgb(245 246 242 / .94) !important;
+  font-size: clamp(1.1rem, 2vw, 2rem) !important;
+  line-height: 1.1 !important;
+  opacity: 1 !important;
+  animation: intro-menu-item-enter .56s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a:last-child {
+  border-bottom: 0 !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"][data-closing="true"] a {
+  animation: none !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a:nth-child(1) { animation-delay: .08s !important; }
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a:nth-child(2) { animation-delay: .14s !important; }
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a:nth-child(3) { animation-delay: .20s !important; }
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a:nth-child(4) { animation-delay: .26s !important; }
+.intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a:nth-child(5) { animation-delay: .32s !important; }
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] {
+    left: 0 !important;
+    width: 50vw !important;
+    max-width: 50vw !important;
+    padding: 88px 18px 24px !important;
+  }
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a {
+    font-size: clamp(.95rem, 4vw, 1.25rem) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-menu-backdrop,
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] {
+    transition-duration: .01ms !important;
+  }
+  .intro-page-frame .cinematic-intro-header .cinematic-intro-nav[data-open="true"] a {
+    animation: none !important;
+  }
+}
+
+
+/* Overlay/nav are stage siblings (not children of the transformed header),
+   so fixed positioning is relative to the viewport and covers the full screen. */
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  background: rgb(5 7 5 / .975) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(.82) !important;
+  backdrop-filter: blur(22px) saturate(.82) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .56s ease, visibility .56s ease !important;
+  z-index: 120 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-closing="true"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: max(0px, calc((100vw - 1600px) / 2)) !important;
+  right: auto !important;
+  width: min(50vw, 800px) !important;
+  max-width: min(50vw, 800px) !important;
+  height: 100dvh !important;
+  min-height: 100dvh !important;
+  box-sizing: border-box !important;
+  padding: clamp(88px, 13vh, 128px) clamp(24px, 4vw, 64px) clamp(24px, 6vh, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-right: 1px solid rgb(255 255 255 / .14) !important;
+  border-radius: 0 !important;
+  background: rgb(5 7 5 / .985) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .62s cubic-bezier(.2,.8,.2,1) !important;
+  z-index: 125 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 1px solid rgb(255 255 255 / .13) !important;
+  color: rgb(245 246 242 / .94) !important;
+  font-size: clamp(1.1rem, 2vw, 2rem) !important;
+  line-height: 1.1 !important;
+  opacity: 1 !important;
+  animation: intro-menu-item-enter .56s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:last-child { border-bottom: 0 !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="true"] a { animation: none !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(1) { animation-delay: .08s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(2) { animation-delay: .14s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(3) { animation-delay: .20s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(4) { animation-delay: .26s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(5) { animation-delay: .32s !important; }
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    left: 0 !important;
+    width: 50vw !important;
+    max-width: 50vw !important;
+    padding: 88px 18px 24px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a { font-size: clamp(.95rem, 4vw, 1.25rem) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-menu-backdrop,
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] { transition-duration: .01ms !important; }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a { animation: none !important; }
+}
+
+
+/* Menu-open composition: opaque left-half overlay with a moving header row.
+   Closed-state rules above remain the source of truth when data-menu-open=false. */
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] {
+  position: relative !important;
+  z-index: 130 !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after {
+  content: "" !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 50vw !important;
+  height: 88px !important;
+  box-sizing: border-box !important;
+  border-bottom: 1px solid rgb(255 255 255 / .22) !important;
+  pointer-events: none !important;
+  z-index: 132 !important;
+  opacity: 1 !important;
+  animation: intro-menu-header-rule .72s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu {
+  position: relative !important;
+  z-index: 134 !important;
+  transform: translate3d(calc(50vw - 3rem - max(0px, (100vw - 1600px) / 2)), 0, 0) !important;
+  transition: transform .78s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-brand {
+  position: relative !important;
+  z-index: 134 !important;
+  transform: translate3d(-25vw, 0, 0) !important;
+  transition: transform .78s cubic-bezier(.2,.8,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-header-location {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity .24s ease, visibility .24s ease !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: 100dvh !important;
+  background: rgb(5 7 5 / .99) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(.8) !important;
+  backdrop-filter: blur(18px) saturate(.8) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .62s ease, visibility .62s ease !important;
+  z-index: 120 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-closing="true"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: fixed !important;
+  top: 88px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: calc(100dvh - 88px) !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  padding: clamp(12px, 3vh, 32px) clamp(24px, 4vw, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .72s cubic-bezier(.2,.8,.2,1) !important;
+  z-index: 125 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 1px solid rgb(255 255 255 / .14) !important;
+  color: rgb(245 246 242 / .96) !important;
+  font-size: clamp(1.1rem, 2vw, 2rem) !important;
+  line-height: 1.1 !important;
+  opacity: 0 !important;
+  animation: intro-menu-item-enter .9s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:last-child { border-bottom: 0 !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="true"] a { animation: none !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(1) { animation-delay: .48s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(2) { animation-delay: .62s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(3) { animation-delay: .76s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(4) { animation-delay: .90s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(5) { animation-delay: 1.04s !important; }
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after { height: 76px !important; }
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu {
+    transform: translate3d(calc(50vw - 2.75rem), 0, 0) !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    top: 76px !important;
+    width: 50vw !important;
+    max-width: 50vw !important;
+    height: calc(100dvh - 76px) !important;
+    padding: 12px 16px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a { font-size: clamp(.95rem, 4vw, 1.25rem) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after,
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu,
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-brand,
+  .intro-page-frame .cinematic-intro-menu-backdrop,
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a { animation: none !important; opacity: 1 !important; }
+}
+
+
+/* Coordinated half-screen navigation system.
+   Closed-state geometry remains untouched; these rules only engage while open. */
+.intro-page-frame .cinematic-intro-stage {
+  container-type: normal;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] {
+  z-index: 140 !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 auto auto 0 !important;
+  width: 50vw !important;
+  height: 88px !important;
+  box-sizing: border-box !important;
+  border-bottom: 1px solid rgb(255 255 255 / .18) !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  z-index: 141 !important;
+  animation: intro-menu-rule-in .7s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu {
+  position: relative !important;
+  z-index: 142 !important;
+  transition: transform .78s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="false"] > .cinematic-intro-menu {
+  transform: translate3d(calc(50vw - max(0px, (100vw - 1600px) / 2) - 2 * var(--intro-content-inset, 24px) - 48px), 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="true"] > .cinematic-intro-menu {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-brand {
+  position: relative !important;
+  z-index: 142 !important;
+  transition: transform .78s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="false"] > .cinematic-intro-brand {
+  transform: translate3d(calc(-50vw + max(0px, (100vw - 1600px) / 2) + var(--intro-content-inset, 24px) + 50%), 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"][data-menu-closing="true"] > .cinematic-intro-brand {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-header-location {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity .22s ease, visibility .22s ease !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #050605 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .62s ease, visibility .62s ease !important;
+  z-index: 120 !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-open="true"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.intro-page-frame .cinematic-intro-menu-backdrop[data-closing="true"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  position: fixed !important;
+  inset: 88px auto 0 0 !important;
+  width: 50vw !important;
+  max-width: 50vw !important;
+  height: calc(100dvh - 88px) !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: clamp(14px, 3vh, 32px) clamp(24px, 4vw, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(-102%, 0, 0) !important;
+  transition: transform .68s cubic-bezier(.22,.72,.2,1) !important;
+  z-index: 125 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] {
+  transform: translate3d(0, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="true"] {
+  transform: translate3d(-102%, 0, 0) !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-bottom: 1px solid rgb(255 255 255 / .14) !important;
+  color: rgb(245 246 242 / .96) !important;
+  font-size: clamp(1.1rem, 2vw, 2rem) !important;
+  line-height: 1.1 !important;
+  opacity: 0 !important;
+  animation: intro-menu-link-reveal .78s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:last-child {
+  border-bottom: 0 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="true"] a {
+  animation: none !important;
+  opacity: 1 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] a:nth-child(1) { animation-delay: .28s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] a:nth-child(2) { animation-delay: .42s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] a:nth-child(3) { animation-delay: .56s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] a:nth-child(4) { animation-delay: .70s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="false"] a:nth-child(5) { animation-delay: .84s !important; }
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu span {
+  position: absolute !important;
+  left: 10px !important;
+  top: 50% !important;
+  width: 28px !important;
+  height: 2px !important;
+  margin: 0 !important;
+  transform-origin: center !important;
+  transition: transform .34s cubic-bezier(.22,.72,.2,1), opacity .2s ease !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu span:first-child {
+  transform: translateY(-3.5px) rotate(0deg) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu span:last-child {
+  width: 19px !important;
+  transform: translateY(3.5px) rotate(0deg) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu[aria-expanded="true"] span:first-child {
+  width: 28px !important;
+  transform: translateY(0) rotate(45deg) !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu[aria-expanded="true"] span:last-child {
+  width: 28px !important;
+  transform: translateY(0) rotate(-45deg) !important;
+}
+@keyframes intro-menu-rule-in {
+  from { opacity: 0; transform: scaleX(.72); transform-origin: left center; }
+  to { opacity: 1; transform: scaleX(1); transform-origin: left center; }
+}
+@keyframes intro-menu-link-reveal {
+  from { opacity: 0; transform: translate3d(-18px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after { height: 72px !important; }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    top: 72px !important;
+    height: calc(100dvh - 72px) !important;
+    padding: 10px 16px !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    font-size: clamp(.92rem, 3.8vw, 1.2rem) !important;
+  }
+}
+@media (max-height: 600px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"]::after,
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-menu,
+  .intro-page-frame .cinematic-intro-header[data-menu-open="true"] > .cinematic-intro-brand,
+  .intro-page-frame .cinematic-intro-menu-backdrop,
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Intro navigation is contained by the centered, clipped stage canvas. */
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.cinematic-intro-menu-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: auto;
+}
+.cinematic-intro-menu-layer[data-closing="true"] {
+  pointer-events: none;
+}
+.cinematic-intro-menu-panel {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 50%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #f5f6f2;
+  background: linear-gradient(
+    135deg,
+    rgb(7 10 7 / 82%) 0%,
+    rgb(8 11 8 / 70%) 48%,
+    rgb(16 20 14 / 58%) 100%
+  );
+  -webkit-backdrop-filter: blur(22px) saturate(118%);
+  backdrop-filter: blur(22px) saturate(118%);
+  animation: intro-menu-panel-in .72s cubic-bezier(.22,.72,.2,1) both;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel {
+  animation: intro-menu-panel-in .72s cubic-bezier(.22,.72,.2,1) reverse both;
+}
+.cinematic-intro-menu-panel-header {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(24px, 4vw, 64px);
+  border-bottom: 1px solid rgb(255 255 255 / .09);
+}
+.cinematic-intro-menu-panel-brand {
+  display: inline-block;
+  color: #f5f6f2;
+  text-decoration: none;
+  white-space: nowrap;
+  font: 800 1.05rem/1 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -.06em;
+  animation: intro-menu-brand-in .78s cubic-bezier(.22,.72,.2,1) both;
+}
+.cinematic-intro-menu-panel-brand span,
+.cinematic-intro-menu-panel-brand i {
+  color: #83ff00;
+}
+.cinematic-intro-menu-panel-brand i { font-style: normal; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-brand {
+  animation-direction: reverse;
+}
+.cinematic-intro-menu-panel-close {
+  position: absolute;
+  top: 50%;
+  right: clamp(24px, 4vw, 64px);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #f5f6f2;
+  cursor: pointer;
+  transform: translateY(-50%);
+  animation: intro-menu-close-in .78s cubic-bezier(.22,.72,.2,1) both;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close {
+  animation-direction: reverse;
+}
+.cinematic-intro-menu-panel-close span {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: #83ff00;
+}
+.cinematic-intro-menu-panel-close span:first-child { transform: translateY(-50%) rotate(45deg); }
+.cinematic-intro-menu-panel-close span:last-child { transform: translateY(-50%) rotate(-45deg); }
+.cinematic-intro-menu-panel-nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(12px, 3vh, 32px) clamp(24px, 4vw, 64px);
+}
+.cinematic-intro-menu-panel-nav a {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(255 255 255 / .075);
+  color: rgb(245 246 242 / .94);
+  text-decoration: none;
+  font-size: clamp(1.1rem, 2vw, 2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  opacity: 0;
+  animation: intro-menu-link-in .64s cubic-bezier(.22,.72,.2,1) both;
+}
+.cinematic-intro-menu-panel-nav a:last-child { border-bottom: 0; }
+.cinematic-intro-menu-panel-nav a:hover,
+.cinematic-intro-menu-panel-nav a:focus-visible {
+  color: #83ff00;
+  outline: none;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+  animation-direction: reverse;
+}
+.cinematic-intro-menu-panel-nav a:nth-child(1) { animation-delay: .28s; }
+.cinematic-intro-menu-panel-nav a:nth-child(2) { animation-delay: .42s; }
+.cinematic-intro-menu-panel-nav a:nth-child(3) { animation-delay: .56s; }
+.cinematic-intro-menu-panel-nav a:nth-child(4) { animation-delay: .70s; }
+.cinematic-intro-menu-panel-nav a:nth-child(5) { animation-delay: .84s; }
+@keyframes intro-menu-panel-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes intro-menu-brand-in {
+  from { opacity: 0; transform: translate3d(calc(50vw - clamp(24px, 4vw, 64px) - 50%), 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes intro-menu-close-in {
+  from { opacity: 0; transform: translate3d(calc(-50vw + 2 * clamp(24px, 4vw, 64px) + 48px), -50%, 0); }
+  to { opacity: 1; transform: translate3d(0, -50%, 0); }
+}
+@keyframes intro-menu-link-in {
+  from { opacity: 0; transform: translate3d(-20px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@media (max-width: 640px) {
+  .cinematic-intro-menu-panel-header {
+    flex-basis: 72px;
+    height: 72px;
+    padding-inline: 24px;
+  }
+  .cinematic-intro-menu-panel-close {
+    right: 24px;
+    width: 40px;
+    height: 40px;
+  }
+  .cinematic-intro-menu-panel-close span { left: 6px; width: 28px; }
+  .cinematic-intro-menu-panel-brand { font-size: .94rem; }
+  .cinematic-intro-menu-panel-nav { padding: 10px 16px; }
+  .cinematic-intro-menu-panel-nav a { font-size: clamp(.92rem, 3.8vw, 1.2rem); }
+}
+@media (max-height: 600px) {
+  .cinematic-intro-menu-panel-nav { padding-block: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-menu-panel,
+  .cinematic-intro-menu-panel-brand,
+  .cinematic-intro-menu-panel-close,
+  .cinematic-intro-menu-panel-nav a {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+
+/* Independent scroll-completion dock; menu overlay is rendered in a body portal. */
+.intro-page-frame .cinematic-intro-scroll-nav {
+  position: fixed;
+  z-index: 80;
+  left: 50%;
+  bottom: 32px;
+  width: min(calc(100vw - 2 * var(--intro-content-gutter, 24px)), 1600px);
+  display: flex;
+  align-items: stretch;
+  gap: clamp(6px, 1vw, 12px);
+  transform: translate3d(-50%, 16px, 0);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .42s ease, transform .52s cubic-bezier(.22,.72,.2,1), visibility .42s ease;
+}
+.intro-page-frame .cinematic-intro-scroll-nav[data-reveal="true"][data-menu-open="false"] {
+  transform: translate3d(-50%, 0, 0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.intro-page-frame .cinematic-intro-scroll-nav a {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+  border: 1px solid rgb(245 246 242 / .2);
+  background: rgb(8 10 8 / .72);
+  color: rgb(245 246 242 / .9);
+  text-decoration: none;
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+  letter-spacing: .04em;
+  white-space: nowrap;
+  transition: color .22s ease, border-color .22s ease, background .22s ease;
+}
+.intro-page-frame .cinematic-intro-scroll-nav a:hover,
+.intro-page-frame .cinematic-intro-scroll-nav a:focus-visible {
+  color: #83ff00;
+  border-color: rgb(131 255 0 / .55);
+  background: rgb(8 10 8 / .9);
+  outline: none;
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-scroll-nav {
+    left: 12px;
+    right: 12px;
+    bottom: 24px;
+    width: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+    transform: translate3d(0, 16px, 0);
+  }
+  .intro-page-frame .cinematic-intro-scroll-nav::-webkit-scrollbar { display: none; }
+  .intro-page-frame .cinematic-intro-scroll-nav[data-reveal="true"][data-menu-open="false"] {
+    transform: translate3d(0, 0, 0);
+  }
+  .intro-page-frame .cinematic-intro-scroll-nav a {
+    flex: 0 0 auto;
+    min-width: max-content;
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 1.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-scroll-nav,
+  .intro-page-frame .cinematic-intro-scroll-nav a {
+    transition: none;
+  }
+}
+
+
+/* Close choreography: restore the original header in sync with the portal
+   travelling back to its origin. Keep the scrollbar available so scroll can
+   initiate the same close sequence as the close button and outside click. */
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-menu,
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand,
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-header-location {
+  transition: opacity .78s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(1) { animation-delay: .48s; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(2) { animation-delay: .36s; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(3) { animation-delay: .24s; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(4) { animation-delay: .12s; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(5) { animation-delay: 0s; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+  pointer-events: none;
+}
+
+/* Intro design tokens — one palette and type system across the hero,
+   scroll dock, and the body-portal navigation. */
+.intro-page-frame {
+  --intro-ink: #080b09;
+  --intro-paper: #f1f3ed;
+  --intro-muted: #a6aea4;
+  --intro-accent: #b8ed72;
+  --intro-accent-strong: #a8e85b;
+  --intro-rule: rgb(226 235 221 / .16);
+}
+.intro-page-frame .cinematic-intro,
+.intro-page-frame .cinematic-intro-stage {
+  color: var(--intro-paper);
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+.intro-page-frame .cinematic-intro-brand,
+.intro-page-frame .cinematic-intro-copy h1,
+.intro-page-frame .cinematic-intro-scroll-nav a {
+  font-family: "Bricolage Grotesque", ui-sans-serif, sans-serif !important;
+}
+.intro-page-frame .cinematic-intro-greeting,
+.intro-page-frame .cinematic-intro-scroll-copy p,
+.intro-page-frame .cinematic-intro-location {
+  font-family: "Manrope", ui-sans-serif, sans-serif !important;
+}
+.intro-page-frame .cinematic-intro-greeting { color: var(--intro-muted) !important; }
+.intro-page-frame .cinematic-intro-greeting .intro-greeting-accent,
+.intro-page-frame .cinematic-intro-copy h1 .intro-title-line-accent,
+.intro-page-frame .cinematic-intro-brand span,
+.intro-page-frame .cinematic-intro-brand i,
+.intro-page-frame .cinematic-intro-menu span {
+  color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-menu span {
+  background-color: var(--intro-accent) !important;
+}
+.intro-page-frame .cinematic-intro-location {
+  color: var(--intro-muted) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p {
+  color: rgb(241 243 237 / .84) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy p strong {
+  color: var(--intro-paper) !important;
+  text-decoration-color: rgb(184 237 114 / .42) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-nav a {
+  color: rgb(241 243 237 / .9) !important;
+  border-color: var(--intro-rule) !important;
+  background: rgb(8 11 9 / .78) !important;
+  font-weight: 650 !important;
+  letter-spacing: -.025em !important;
+}
+.intro-page-frame .cinematic-intro-scroll-nav a:hover,
+.intro-page-frame .cinematic-intro-scroll-nav a:focus-visible {
+  color: var(--intro-accent) !important;
+  border-color: rgb(184 237 114 / .48) !important;
+}
+.cinematic-intro-menu-panel {
+  color: var(--intro-paper) !important;
+  background: linear-gradient(
+    132deg,
+    rgb(8 12 9 / 74%) 0%,
+    rgb(9 13 10 / 58%) 52%,
+    rgb(18 22 14 / 44%) 100%
+  ) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(125%) !important;
+  backdrop-filter: blur(24px) saturate(125%) !important;
+  border-right: 1px solid rgb(241 243 237 / 8%) !important;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif !important;
+}
+.cinematic-intro-menu-panel-brand,
+.cinematic-intro-menu-panel-nav a {
+  font-family: "Bricolage Grotesque", ui-sans-serif, sans-serif !important;
+}
+.cinematic-intro-menu-panel-brand,
+.cinematic-intro-menu-panel-close {
+  color: var(--intro-paper) !important;
+}
+.cinematic-intro-menu-panel-brand span,
+.cinematic-intro-menu-panel-brand i,
+.cinematic-intro-menu-panel-close span {
+  color: var(--intro-accent) !important;
+  background-color: var(--intro-accent) !important;
+}
+.cinematic-intro-menu-panel-header {
+  border-bottom: 1px solid rgb(241 243 237 / 9%) !important;
+}
+.cinematic-intro-menu-panel-nav a {
+  color: rgb(241 243 237 / .92) !important;
+  border-bottom-color: rgb(241 243 237 / 7%) !important;
+  font-size: clamp(1.25rem, 2.2vw, 2rem) !important;
+  font-weight: 650 !important;
+  letter-spacing: -.045em !important;
+}
+.cinematic-intro-menu-panel-nav a:hover,
+.cinematic-intro-menu-panel-nav a:focus-visible {
+  color: var(--intro-accent) !important;
+}
+@media (max-width: 640px) {
+  .cinematic-intro-menu-panel-nav a {
+    font-size: clamp(1.15rem, 4vw, 1.35rem) !important;
+  }
+}
+
+
+/* Keep the menu hit-area and close control interactive inside the stage portal. */
+.cinematic-intro-menu-layer {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] {
+  pointer-events: none !important;
+}
+.cinematic-intro-menu-panel {
+  position: absolute !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
+}
+.cinematic-intro-menu-panel-header {
+  position: relative !important;
+  z-index: 2 !important;
+}
+.cinematic-intro-menu-panel-close {
+  z-index: 3 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+}
+
+
+/* Keep the Dhaka location visible on the uncovered right side of the menu overlay. */
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-header-location {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+}
+
+
+/* Remove only the accent rail; preserve the description card border and inset spacing. */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  border-left: 0 !important;
+  border-inline-start: 0 !important;
+}
+
+/* Refined KODER IMRAN wordmark: crisp contrast, intentional tracking and accent. */
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  gap: .035em !important;
+  color: #f1f3ed !important;
+  font-family: "Bricolage Grotesque", ui-sans-serif, sans-serif !important;
+  font-size: clamp(1.02rem, 1.35vw, 1.24rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.075em !important;
+  line-height: .9 !important;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: color .3s ease, transform .78s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand span {
+  color: #b8ed72 !important;
+  font-weight: 800 !important;
+  letter-spacing: -.085em !important;
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand i {
+  display: inline-block;
+  margin-left: .015em;
+  color: #b8ed72 !important;
+  font-size: 1.22em;
+  font-style: normal;
+  font-weight: 800;
+  transform: translateY(.025em);
+}
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand:hover {
+  color: #ffffff !important;
+}
+
+
+/* Description card: keep the left edge consistent with the other three sides.
+   Apply the same restrained lime hover tint to all four edges. */
+.intro-page-frame .cinematic-intro-scroll-copy {
+  border-left: 1px solid rgb(226 235 221 / .17) !important;
+  border-inline-start: 1px solid rgb(226 235 221 / .17) !important;
+}
+.intro-page-frame .cinematic-intro-scroll-copy:hover {
+  border-color: rgb(184 237 114 / .3) !important;
+  border-left-color: rgb(184 237 114 / .3) !important;
+  border-inline-start-color: rgb(184 237 114 / .3) !important;
+}
+
+
+/* Reverse the close glyph into the original two-bar menu icon before unmount. */
+.cinematic-intro-menu-panel-close span {
+  transform-origin: center !important;
+  transition:
+    transform .42s cubic-bezier(.22,.72,.2,1),
+    width .42s cubic-bezier(.22,.72,.2,1),
+    opacity .24s ease !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:first-child {
+  transform: translateY(calc(-50% - 3.5px)) rotate(0deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:last-child {
+  width: 19px !important;
+  transform: translateY(calc(-50% + 3.5px)) rotate(0deg) !important;
+}
+
+/* Keep the animated wordmark as clean text, never a filled highlight block. */
+.cinematic-intro-menu-panel-brand {
+  background: transparent !important;
+  -webkit-text-fill-color: #f1f3ed;
+  text-shadow: none !important;
+}
+.cinematic-intro-menu-panel-brand span {
+  display: inline !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  color: #b8ed72 !important;
+  -webkit-text-fill-color: #b8ed72 !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+.cinematic-intro-menu-panel-brand i {
+  background: transparent !important;
+  -webkit-text-fill-color: #b8ed72 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-menu-panel-close span {
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* Explicit exit choreography: CSS animation-direction does not reliably
+   reverse an already-running entrance animation when the state changes. */
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel {
+  animation: intro-menu-panel-out .72s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-brand {
+  animation: intro-menu-brand-out .78s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close {
+  animation: intro-menu-close-out .78s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+  animation: intro-menu-link-out .46s cubic-bezier(.22,.72,.2,1) both !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(1) { animation-delay: .48s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(2) { animation-delay: .36s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(3) { animation-delay: .24s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(4) { animation-delay: .12s !important; }
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a:nth-child(5) { animation-delay: 0s !important; }
+
+@keyframes intro-menu-panel-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes intro-menu-brand-out {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(-24px, 0, 0); }
+}
+@keyframes intro-menu-close-out {
+  from { opacity: 1; transform: translate3d(0, -50%, 0); }
+  to {
+    opacity: 0;
+    transform: translate3d(calc(-50vw + 2 * clamp(24px, 4vw, 64px) + 48px), -50%, 0);
+  }
+}
+@keyframes intro-menu-link-out {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to { opacity: 0; transform: translate3d(-20px, 0, 0); }
+}
+@media (max-width: 640px) {
+  @keyframes intro-menu-close-out {
+    from { opacity: 1; transform: translate3d(0, -50%, 0); }
+    to { opacity: 0; transform: translate3d(calc(-50vw + 48px), -50%, 0); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel,
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-brand,
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close,
+  .cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+
+/* Slower, deliberate close: let the X visibly morph into the hamburger
+   while the logo, links, and panel leave in a coordinated sequence. */
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel {
+  animation-duration: 1.45s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-brand {
+  animation-duration: 1.25s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close {
+  animation-duration: 1.45s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span {
+  transition:
+    transform 1.15s cubic-bezier(.65, 0, .35, 1) !important,
+    width 1.15s cubic-bezier(.65, 0, .35, 1) !important,
+    opacity .8s ease !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:first-child {
+  transform: translateY(calc(-50% - 3.5px)) rotate(0deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:last-child {
+  width: 19px !important;
+  transform: translateY(calc(-50% + 3.5px)) rotate(0deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-nav a {
+  animation-duration: .85s !important;
+  animation-timing-function: cubic-bezier(.65, 0, .35, 1) !important;
+}
+
+
+/* Menu separators span the complete overlay panel; keep text inset independently. */
+.cinematic-intro-menu-panel-nav {
+  padding-inline: 0 !important;
+}
+.cinematic-intro-menu-panel-nav a {
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline: clamp(24px, 4vw, 64px) !important;
+  border-bottom: 1px solid rgb(241 243 237 / 7%) !important;
+}
+.cinematic-intro-menu-panel-nav a:last-child {
+  border-bottom: 1px solid rgb(241 243 237 / 7%) !important;
+}
+@media (max-width: 640px) {
+  .cinematic-intro-menu-panel-nav a {
+    padding-inline: 16px !important;
+  }
+}
+
+
+/* Coordinated intro/menu choreography.
+   The initial composition fades as one group while the menu enters; the same
+   state transition restores it during close without changing its geometry. */
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-menu,
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand {
+  transition: opacity .88s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-copy,
+.intro-page-frame .cinematic-intro-scroll-copy {
+  transition: opacity .88s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy,
+.intro-page-frame .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-scroll-copy {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-header > .cinematic-intro-menu,
+  .intro-page-frame .cinematic-intro-header > .cinematic-intro-brand,
+  .intro-page-frame .cinematic-intro-copy,
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* Keep the overlay close mark as an X while it retraces its entrance path.
+   The original header control independently returns to its hamburger state. */
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:first-child {
+  width: 28px !important;
+  transform: translateY(-50%) rotate(45deg) !important;
+}
+.cinematic-intro-menu-layer[data-closing="true"] .cinematic-intro-menu-panel-close span:last-child {
+  width: 28px !important;
+  transform: translateY(-50%) rotate(-45deg) !important;
+}

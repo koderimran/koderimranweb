@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -143,16 +144,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const isIntroPage = pathname === "/intro";
 
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-      <div className="page-frame">
-        <Header />
+      <div className={isIntroPage ? "page-frame intro-page-frame" : "page-frame"}>
+        {!isIntroPage && <Header />}
         <main>
           <Outlet />
         </main>
-        <Footer />
+        {!isIntroPage && <Footer />}
       </div>
       </ThemeProvider>
     </QueryClientProvider>
