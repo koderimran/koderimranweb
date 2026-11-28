@@ -179,7 +179,7 @@ export function CinematicIntro() {
     >
       <div className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
-        <header className="cinematic-intro-header">
+        <header className="cinematic-intro-header" data-menu-open={menuOpen} data-menu-closing={menuClosing}>
           <button
             type="button"
             className="cinematic-intro-menu"
