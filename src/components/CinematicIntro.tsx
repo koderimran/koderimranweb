@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "@tanstack/react-router";
 import { Portrait } from "@/components/Portrait";
 
@@ -10,6 +11,7 @@ export function CinematicIntro() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const menuCloseTimer = useRef<number | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => {
     if (!menuOpen || menuClosing) return;
@@ -73,6 +75,15 @@ export function CinematicIntro() {
   useEffect(() => () => {
     if (menuCloseTimer.current !== null) window.clearTimeout(menuCloseTimer.current);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -170,8 +181,6 @@ export function CinematicIntro() {
     <section
       ref={sectionRef}
       className="cinematic-intro"
-      data-menu-open={menuOpen}
-      data-menu-closing={menuClosing}
       style={style}
       aria-label="Introduction"
       onPointerMove={handlePortraitPointerMove}
@@ -179,11 +188,12 @@ export function CinematicIntro() {
     >
       <div className="cinematic-intro-stage">
         <div className="cinematic-intro-noise" aria-hidden="true" />
-        <header className="cinematic-intro-header" data-menu-open={menuOpen} data-menu-closing={menuClosing}>
+        <header className="cinematic-intro-header" data-menu-overlay-active={menuOpen}>
           <button
             type="button"
+            ref={menuButtonRef}
             className="cinematic-intro-menu"
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label="Open navigation menu"
             aria-expanded={menuOpen}
             aria-controls="cinematic-intro-navigation"
             onClick={() => (menuOpen ? closeMenu() : openMenu())}
@@ -206,22 +216,7 @@ export function CinematicIntro() {
 
         </header>
 
-          <button
-            type="button"
-            className="cinematic-intro-menu-backdrop"
-            aria-label="Close navigation menu"
-            data-open={menuOpen}
-            data-closing={menuClosing}
-            tabIndex={menuOpen ? 0 : -1}
-            onClick={closeMenu}
-          />
-          <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-nav" data-open={menuOpen} data-closing={menuClosing} data-reveal={progress >= 0.94} aria-hidden={!menuOpen && progress < 0.96}>
-            <Link to="/" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Home</Link>
-            <Link to="/about" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>About</Link>
-            <Link to="/services" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Services</Link>
-            <Link to="/portfolio" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Projects</Link>
-            <Link to="/contact" tabIndex={menuOpen ? 0 : -1} onClick={closeMenu}>Contact</Link>
-          </nav>
+
 
         <div className="cinematic-intro-copy">
           <p className="cinematic-intro-greeting"><span>Hi, I’m </span><span className="intro-greeting-accent">Imran.</span></p>
@@ -245,6 +240,46 @@ export function CinematicIntro() {
 
         <span className="cinematic-intro-watermark" aria-hidden="true">IMRAN</span>
       </div>
+ 
+      {menuOpen && typeof document !== "undefined" && createPortal(
+        <div
+          className="cinematic-intro-menu-layer"
+          data-closing={menuClosing}
+          role="presentation"
+          onClick={closeMenu}
+        >
+          <section
+            className="cinematic-intro-menu-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main navigation"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="cinematic-intro-menu-panel-header">
+              <Link to="/" className="cinematic-intro-menu-panel-brand" aria-label="Koder Imran home" onClick={closeMenu}>
+                KODER<span>IMRAN</span><i>.</i>
+              </Link>
+              <button
+                type="button"
+                className="cinematic-intro-menu-panel-close"
+                aria-label="Close navigation menu"
+                onClick={closeMenu}
+              >
+                <span />
+                <span />
+              </button>
+            </div>
+            <nav id="cinematic-intro-navigation" aria-label="Main navigation" className="cinematic-intro-menu-panel-nav">
+              <Link to="/" onClick={closeMenu}>Home</Link>
+              <Link to="/about" onClick={closeMenu}>About</Link>
+              <Link to="/services" onClick={closeMenu}>Services</Link>
+              <Link to="/portfolio" onClick={closeMenu}>Projects</Link>
+              <Link to="/contact" onClick={closeMenu}>Contact</Link>
+            </nav>
+          </section>
+        </div>,
+        document.body
+      )}
     </section>
   );
 }
