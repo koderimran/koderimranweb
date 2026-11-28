@@ -1096,13 +1096,6 @@ footer a:hover {
   .hero-copy > p:not(:first-child) { font-size: 1rem; }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .hero-content { min-height: 34rem; padding-bottom: 10rem; }
-  .hero-copy { width: 54%; }
-  .hero-copy .hero-title { font-size: clamp(2.5rem, 4.4vw, 3rem); }
-  .hero-background-photo { max-width: 44%; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-background-photo { scroll-behavior: auto; }
 }
@@ -1729,33 +1722,6 @@ button {
   overflow-wrap: anywhere;
 }
 
-/* Tablet and compact laptop: preserve the full hero copy column and avoid
-   forcing long display-title lines to stay on one line. */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .hero-row {
-    align-items: center;
-    gap: clamp(1.25rem, 3vw, 2rem);
-  }
-  .hero-copy {
-    width: 56%;
-    max-width: none;
-  }
-  .hero-copy .hero-title {
-    font-size: clamp(2rem, 4.2vw, 2.65rem);
-    line-height: 1.08;
-    text-wrap: balance;
-  }
-  .hero-title-line {
-    white-space: normal;
-  }
-  .hero-background-photo {
-    max-width: 42%;
-  }
-  .hero-specialism {
-    max-width: 42%;
-  }
-}
-
 /* Small screens: use the available width instead of fixed desktop gutters. */
 @media (max-width: 767px) {
   :root {
@@ -1926,30 +1892,49 @@ button {
   }
 }
 
-/* Home hero responsive sizing: preserve the existing desktop/tablet breakpoints. */
+/* Home hero, tablet (768-1023px).
+   The hero is one composition that scales with the viewport and is exactly the desktop hero at
+   1024px (portrait 46% of the width and 53.1% as tall, copy about 480px, title 48px). Nothing jumps
+   at 1024px, and the portrait is never cropped harder as the window narrows: it only gets smaller.
+   The portrait box is sized by its aspect ratio and sits on the bottom edge, so the ticker (which uses
+   the same 46% width and sits 1rem above the bottom) stays inside the portrait's lower fade at every
+   width. The hero is as tall as the portrait or the copy, whichever is taller. */
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero-content {
-    min-height: 34rem;
-    padding-block: 3.5rem 10rem;
+    min-height: clamp(30rem, 53.1vw, 34rem);
+    padding-block: clamp(2.75rem, calc(2.75rem + 0.078 * (100vw - 768px)), 4rem);
   }
 
-  :root { --hero-photo-max-h: 34rem; --hero-photo-max-w: 42%; }
-  .hero-background-photo {
-    height: 100%;
-    max-height: var(--hero-photo-max-h);
-    max-width: var(--hero-photo-max-w);
+  .hero-row {
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 2rem);
   }
 
+  /* 400px at 768px up to 480px at 1023px. The copy box may reach under the portrait box's empty left
+     margin (the head starts about a quarter of the way into the box), never under the head. */
+  .hero-copy {
+    width: calc(25rem + 0.3137 * (100vw - 768px));
+    max-width: none;
+  }
+
+  /* 40px at 768px up to 48px at 1024px; "Hi, I'm" keeps the desktop ratio to the title. */
   .hero-copy .hero-title {
-    font-size: clamp(2.5rem, 4.4vw, 3rem);
+    font-size: calc(1rem + 3.125vw);
+    line-height: 1.08;
+    text-wrap: balance;
   }
+  .hero-title-line { white-space: normal; }
+  .hero-copy > p:first-child { font-size: calc(0.77rem + 2.4vw); }
+  .hero-copy > p:nth-of-type(2) { font-size: 1rem; }
 
-  .hero-copy > p:first-child {
-    font-size: clamp(2.25rem, 4vw, 2.75rem);
-  }
-
-  .hero-copy > p:nth-of-type(2) {
-    font-size: clamp(1rem, 1.35vw, 1.125rem);
+  .hero-background-photo {
+    top: auto;
+    bottom: 0;
+    width: 46%;
+    height: auto;
+    aspect-ratio: 471 / 544;
+    max-width: none;
+    max-height: none;
   }
 }
 
@@ -2549,5 +2534,15 @@ button {
     width: var(--hero-mobile-photo-height);
     height: var(--hero-mobile-photo-height);
     transform: translateX(-50%);
+  }
+}
+/* Tablet: the glow follows the portrait box (same width, same aspect ratio, same bottom edge). */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root.dark .hero-photo-stage::before {
+    top: auto;
+    bottom: 0;
+    width: 46%;
+    height: auto;
+    aspect-ratio: 471 / 544;
   }
 }
