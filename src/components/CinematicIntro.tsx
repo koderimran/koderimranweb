@@ -148,7 +148,9 @@ export function CinematicIntro() {
   const portraitSize = initialPortraitWidth + (64 - initialPortraitWidth) * portraitProgress;
   const portraitHeight = initialPortraitHeight + (64 - initialPortraitHeight) * portraitProgress;
   const portraitTop = 100 + (32 - 100) * portraitProgress;
-  const titleTop = 155 + (40 - 155) * progress;
+  // Center the greeting + headline group on the capped 900px stage initially,
+  // then retain the existing 40px scroll-settled anchor.
+  const titleTop = compositionHeight / 2 + (40 - compositionHeight / 2) * progress;
   const style = {
     "--intro-progress": progress,
     "--intro-portrait-width": `${portraitSize}px`,
