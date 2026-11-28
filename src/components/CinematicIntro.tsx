@@ -185,7 +185,7 @@ export function CinematicIntro() {
   // Center the greeting + headline group on the capped 900px stage initially,
   // then settle the greeting at 32px from the top as the intro scroll completes.
   const initialTitleTop = compositionHeight / 2 - 40; // 2.5rem above exact vertical center
-  const titleTop = initialTitleTop + (28 - initialTitleTop) * progress;
+  const titleTop = initialTitleTop + (24 - initialTitleTop) * progress;
   const style = {
     "--intro-progress": progress,
     "--intro-portrait-width": `${portraitSize}px`,
