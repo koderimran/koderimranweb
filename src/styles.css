@@ -7200,8 +7200,8 @@ body.intro-active .site-header { display: none; }
   background: rgb(8 10 8 / .72);
   color: rgb(245 246 242 / .9);
   text-decoration: none;
-  font-size: clamp(.68rem, .85vw, .82rem);
-  letter-spacing: .08em;
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+  letter-spacing: .04em;
   white-space: nowrap;
   transition: color .22s ease, border-color .22s ease, background .22s ease;
 }
@@ -7231,7 +7231,7 @@ body.intro-active .site-header { display: none; }
     min-width: max-content;
     min-height: 44px;
     padding: 10px 12px;
-    font-size: .62rem;
+    font-size: 1.25rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
