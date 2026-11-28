@@ -3407,7 +3407,7 @@ body.intro-active .site-header { display: none; }
 /* Intro typography and controls share a 1920px content grid.
    The background and portrait remain viewport-bleed. */
 .intro-page-frame {
-  --intro-content-max: 1920px;
+  --intro-content-max: 1600px;
   --intro-content-gutter: clamp(24px, 4vw, 80px);
 }
 .intro-page-frame .cinematic-intro-header {
@@ -6049,4 +6049,22 @@ body.intro-active .site-header { display: none; }
   margin-inline: auto;
   top: max(0px, calc((100svh - 900px) / 2));
   background: transparent;
+}
+
+
+/* Keep left-side intro content pinned to the centered 1600px canvas rail. */
+.intro-page-frame .cinematic-intro-copy {
+  left: var(--intro-content-inset, var(--intro-content-gutter)) !important;
+  right: auto !important;
+  text-align: left !important;
+}
+.intro-page-frame .cinematic-intro-copy .cinematic-intro-greeting,
+.intro-page-frame .cinematic-intro-copy h1,
+.intro-page-frame .cinematic-intro-copy h1 > .intro-title-line {
+  margin-left: 0 !important;
+  text-align: left !important;
+  transform-origin: left center !important;
+}
+.intro-page-frame .cinematic-intro-header .cinematic-intro-menu {
+  left: calc((100vw - min(100vw, 1600px)) / 2 + var(--intro-content-inset, var(--intro-content-gutter))) !important;
 }
