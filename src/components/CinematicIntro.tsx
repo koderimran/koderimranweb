@@ -12,6 +12,7 @@ export function CinematicIntro() {
   const [menuClosing, setMenuClosing] = useState(false);
   const menuCloseTimer = useRef<number | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuCloseButtonRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => {
     if (!menuOpen || menuClosing) return;
@@ -21,7 +22,7 @@ export function CinematicIntro() {
       setMenuOpen(false);
       setMenuClosing(false);
       menuCloseTimer.current = null;
-    }, 780);
+    }, 1150);
   };
 
   const openMenu = () => {
@@ -61,12 +62,37 @@ export function CinematicIntro() {
 
   useEffect(() => {
     if (!menuOpen) return;
+    menuCloseButtonRef.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeMenu();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          ".cinematic-intro-menu-layer a[href], .cinematic-intro-menu-panel-close"
+        )
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen, menuClosing]);
+
+  useEffect(() => {
+    if (!menuOpen) menuButtonRef.current?.focus();
+  }, [menuOpen]);
 
   useEffect(() => {
     if (menuOpen && progress > 0.015) closeMenu();
@@ -261,6 +287,7 @@ export function CinematicIntro() {
               </Link>
               <button
                 type="button"
+                ref={menuCloseButtonRef}
                 className="cinematic-intro-menu-panel-close"
                 aria-label="Close navigation menu"
                 onClick={closeMenu}
