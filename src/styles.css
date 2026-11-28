@@ -7602,3 +7602,34 @@ body.intro-active .site-header { display: none; }
     padding-inline: 16px !important;
   }
 }
+
+
+/* Coordinated intro/menu choreography.
+   The initial composition fades as one group while the menu enters; the same
+   state transition restores it during close without changing its geometry. */
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-menu,
+.intro-page-frame .cinematic-intro-header > .cinematic-intro-brand {
+  transition: opacity .88s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro-copy,
+.intro-page-frame .cinematic-intro-scroll-copy {
+  transition: opacity .88s cubic-bezier(.22,.72,.2,1) !important;
+}
+.intro-page-frame .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-copy,
+.intro-page-frame .cinematic-intro[data-menu-overlay-active="true"] .cinematic-intro-scroll-copy {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-menu,
+.intro-page-frame .cinematic-intro-header[data-menu-overlay-active="true"] > .cinematic-intro-brand {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-header > .cinematic-intro-menu,
+  .intro-page-frame .cinematic-intro-header > .cinematic-intro-brand,
+  .intro-page-frame .cinematic-intro-copy,
+  .intro-page-frame .cinematic-intro-scroll-copy {
+    transition-duration: .01ms !important;
+  }
+}
