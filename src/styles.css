@@ -6230,3 +6230,55 @@ body.intro-active .site-header { display: none; }
     padding: 88px 16px 28px !important;
   }
 }
+
+
+/* Open navigation: distribute all links evenly through the full-height
+   half-canvas panel, with a subtle staggered entrance after the icon click. */
+.intro-page-frame .cinematic-intro-header {
+  height: 100% !important;
+  min-height: 100% !important;
+  grid-template-rows: 48px !important;
+  align-content: start !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] {
+  top: 0 !important;
+  bottom: 0 !important;
+  height: 100% !important;
+  justify-content: space-evenly !important;
+  padding-top: 112px !important;
+  padding-bottom: 48px !important;
+  gap: 0 !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 12px 0 !important;
+  animation: intro-menu-item-enter .56s cubic-bezier(.2,.8,.2,1) both !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"][data-closing="true"] a {
+  animation: none !important;
+}
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(1) { animation-delay: .08s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(2) { animation-delay: .14s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(3) { animation-delay: .20s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(4) { animation-delay: .26s !important; }
+.intro-page-frame .cinematic-intro-nav[data-open="true"] a:nth-child(5) { animation-delay: .32s !important; }
+@keyframes intro-menu-item-enter {
+  from { opacity: 0; transform: translate3d(-22px, 0, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@media (max-width: 640px) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] {
+    padding-top: 88px !important;
+    padding-bottom: 28px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-page-frame .cinematic-intro-nav[data-open="true"] a {
+    animation: none !important;
+  }
+}
